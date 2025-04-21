@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Network">
+      <UniqueIdentifier>{9b111fb7-77c4-4fd8-ab6f-205e44b78158}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{ef63f988-38f3-45cc-8a28-75d83793fd0a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{23ae13f7-3f05-4574-bcbd-e9f5dfc32833}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Log">
+      <UniqueIdentifier>{f77cf2aa-619c-4adc-af29-d8dc8ad2a7f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Concurrency">
+      <UniqueIdentifier>{dfc3a4a0-f315-4e16-a561-6ecc9dc93928}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Network\Connection.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Listener.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Session.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\SessionFactory.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\DateTime.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Diagnostics.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Scheduler.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Singleton.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\String.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Format.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\Logger.h">
+      <Filter>Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Concurrency\MPSC.h">
+      <Filter>Concurrency</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Path.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Program.h">
+      <Filter>System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Network\Connection.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Session.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\SessionFactory.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\DateTime.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Diagnostics.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Scheduler.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Singleton.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Listener.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Log\Logger.cpp">
+      <Filter>Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Concurrency\MPSC.cpp">
+      <Filter>Concurrency</Filter>
+    </ClCompile>
+    <ClCompile Include="System\String.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Path.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Program.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

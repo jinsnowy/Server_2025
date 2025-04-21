@@ -1,0 +1,54 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "Build Core Library",
+            "command": "make",
+            "args": [
+                "-G",
+                "MinGW Makefiles",
+                "-B",
+                "${workspaceFolder}/Core/build",
+                "-S",
+                "${workspaceFolder}/Core"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": "build",
+            "detail": "Core 라이브러리 빌드"
+        },
+        {
+            "type": "cppbuild",
+            "label": "Build RTS Project",
+            "command": "g++",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${workspaceFolder}/RTS/main.cpp",
+                "${workspaceFolder}/RTS/Core/*.cpp",
+                "-I${workspaceFolder}/RTS/Core",
+                "-L${workspaceFolder}/Core/build/Debug",
+                "-lcore",
+                "-o",
+                "${workspaceFolder}/RTS/build/Debug/main.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "RTS 프로젝트 빌드",
+            "dependsOn": ["Build Core Library"]
+        }
+    ]
+}

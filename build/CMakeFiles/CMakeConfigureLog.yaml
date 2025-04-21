@@ -1,0 +1,1394 @@
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:37:45 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.71
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-xnfxdu"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-xnfxdu"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-xnfxdu'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_d7fc3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:37:46 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xnfxdu\\cmTC_d7fc3.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_d7fc3.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xnfxdu\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d7fc3.dir\\Debug\\\\" /Fd"cmTC_d7fc3.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_d7fc3.dir\\Debug\\\\" /Fd"cmTC_d7fc3.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xnfxdu\\Debug\\cmTC_d7fc3.exe" /INCREMENTAL /ILK:"cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-xnfxdu/Debug/cmTC_d7fc3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-xnfxdu/Debug/cmTC_d7fc3.lib" /MACHINE:X64  /machine:x64 cmTC_d7fc3.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_d7fc3.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xnfxdu\\Debug\\cmTC_d7fc3.exe
+        FinalizeBuildStatus:
+          "cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_d7fc3.dir\\Debug\\cmTC_d7fc3.tlog\\cmTC_d7fc3.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-xnfxdu\\cmTC_d7fc3.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.67
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:38:01 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.72
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-fhuzpc"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-fhuzpc"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-fhuzpc'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_189a5.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:38:03 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fhuzpc\\cmTC_189a5.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_189a5.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fhuzpc\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_189a5.dir\\Debug\\cmTC_189a5.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_189a5.dir\\Debug\\cmTC_189a5.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_189a5.dir\\Debug\\cmTC_189a5.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_189a5.dir\\Debug\\\\" /Fd"cmTC_189a5.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_189a5.dir\\Debug\\\\" /Fd"cmTC_189a5.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fhuzpc\\Debug\\cmTC_189a5.exe" /INCREMENTAL /ILK:"cmTC_189a5.dir\\Debug\\cmTC_189a5.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-fhuzpc/Debug/cmTC_189a5.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-fhuzpc/Debug/cmTC_189a5.lib" /MACHINE:X64  /machine:x64 cmTC_189a5.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_189a5.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fhuzpc\\Debug\\cmTC_189a5.exe
+        FinalizeBuildStatus:
+          "cmTC_189a5.dir\\Debug\\cmTC_189a5.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_189a5.dir\\Debug\\cmTC_189a5.tlog\\cmTC_189a5.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-fhuzpc\\cmTC_189a5.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.68
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:38:40 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.78
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ghh88k"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ghh88k"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ghh88k'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_546e7.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:38:41 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ghh88k\\cmTC_546e7.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_546e7.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ghh88k\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_546e7.dir\\Debug\\cmTC_546e7.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_546e7.dir\\Debug\\cmTC_546e7.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_546e7.dir\\Debug\\cmTC_546e7.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_546e7.dir\\Debug\\\\" /Fd"cmTC_546e7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_546e7.dir\\Debug\\\\" /Fd"cmTC_546e7.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ghh88k\\Debug\\cmTC_546e7.exe" /INCREMENTAL /ILK:"cmTC_546e7.dir\\Debug\\cmTC_546e7.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ghh88k/Debug/cmTC_546e7.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ghh88k/Debug/cmTC_546e7.lib" /MACHINE:X64  /machine:x64 cmTC_546e7.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_546e7.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ghh88k\\Debug\\cmTC_546e7.exe
+        FinalizeBuildStatus:
+          "cmTC_546e7.dir\\Debug\\cmTC_546e7.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_546e7.dir\\Debug\\cmTC_546e7.tlog\\cmTC_546e7.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ghh88k\\cmTC_546e7.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.67
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:39:12 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.73
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-w3dmsx"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-w3dmsx"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-w3dmsx'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_81006.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:39:14 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-w3dmsx\\cmTC_81006.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_81006.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-w3dmsx\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_81006.dir\\Debug\\cmTC_81006.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_81006.dir\\Debug\\cmTC_81006.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_81006.dir\\Debug\\cmTC_81006.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_81006.dir\\Debug\\\\" /Fd"cmTC_81006.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_81006.dir\\Debug\\\\" /Fd"cmTC_81006.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-w3dmsx\\Debug\\cmTC_81006.exe" /INCREMENTAL /ILK:"cmTC_81006.dir\\Debug\\cmTC_81006.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-w3dmsx/Debug/cmTC_81006.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-w3dmsx/Debug/cmTC_81006.lib" /MACHINE:X64  /machine:x64 cmTC_81006.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_81006.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-w3dmsx\\Debug\\cmTC_81006.exe
+        FinalizeBuildStatus:
+          "cmTC_81006.dir\\Debug\\cmTC_81006.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_81006.dir\\Debug\\cmTC_81006.tlog\\cmTC_81006.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-w3dmsx\\cmTC_81006.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.70
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:40:01 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.74
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-04qvvp"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-04qvvp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-04qvvp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_12678.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:40:02 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-04qvvp\\cmTC_12678.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_12678.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-04qvvp\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_12678.dir\\Debug\\cmTC_12678.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_12678.dir\\Debug\\cmTC_12678.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_12678.dir\\Debug\\cmTC_12678.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_12678.dir\\Debug\\\\" /Fd"cmTC_12678.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_12678.dir\\Debug\\\\" /Fd"cmTC_12678.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-04qvvp\\Debug\\cmTC_12678.exe" /INCREMENTAL /ILK:"cmTC_12678.dir\\Debug\\cmTC_12678.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-04qvvp/Debug/cmTC_12678.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-04qvvp/Debug/cmTC_12678.lib" /MACHINE:X64  /machine:x64 cmTC_12678.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_12678.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-04qvvp\\Debug\\cmTC_12678.exe
+        FinalizeBuildStatus:
+          "cmTC_12678.dir\\Debug\\cmTC_12678.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_12678.dir\\Debug\\cmTC_12678.tlog\\cmTC_12678.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-04qvvp\\cmTC_12678.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.67
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:40:27 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.71
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-6nkfiy"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-6nkfiy"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-6nkfiy'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_a5a42.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:40:28 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6nkfiy\\cmTC_a5a42.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_a5a42.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6nkfiy\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_a5a42.dir\\Debug\\cmTC_a5a42.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_a5a42.dir\\Debug\\cmTC_a5a42.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_a5a42.dir\\Debug\\cmTC_a5a42.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_a5a42.dir\\Debug\\\\" /Fd"cmTC_a5a42.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_a5a42.dir\\Debug\\\\" /Fd"cmTC_a5a42.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6nkfiy\\Debug\\cmTC_a5a42.exe" /INCREMENTAL /ILK:"cmTC_a5a42.dir\\Debug\\cmTC_a5a42.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-6nkfiy/Debug/cmTC_a5a42.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-6nkfiy/Debug/cmTC_a5a42.lib" /MACHINE:X64  /machine:x64 cmTC_a5a42.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_a5a42.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6nkfiy\\Debug\\cmTC_a5a42.exe
+        FinalizeBuildStatus:
+          "cmTC_a5a42.dir\\Debug\\cmTC_a5a42.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_a5a42.dir\\Debug\\cmTC_a5a42.tlog\\cmTC_a5a42.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-6nkfiy\\cmTC_a5a42.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.69
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:40:59 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.72
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ravqbp"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ravqbp"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ravqbp'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_f8b2b.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:41:00 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ravqbp\\cmTC_f8b2b.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_f8b2b.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ravqbp\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f8b2b.dir\\Debug\\\\" /Fd"cmTC_f8b2b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f8b2b.dir\\Debug\\\\" /Fd"cmTC_f8b2b.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ravqbp\\Debug\\cmTC_f8b2b.exe" /INCREMENTAL /ILK:"cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ravqbp/Debug/cmTC_f8b2b.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-ravqbp/Debug/cmTC_f8b2b.lib" /MACHINE:X64  /machine:x64 cmTC_f8b2b.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_f8b2b.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ravqbp\\Debug\\cmTC_f8b2b.exe
+        FinalizeBuildStatus:
+          "cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_f8b2b.dir\\Debug\\cmTC_f8b2b.tlog\\cmTC_f8b2b.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-ravqbp\\cmTC_f8b2b.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.68
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:41:32 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.74
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-bkg4av"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-bkg4av"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-bkg4av'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_f84b3.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:41:33 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bkg4av\\cmTC_f84b3.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_f84b3.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bkg4av\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_f84b3.dir\\Debug\\cmTC_f84b3.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_f84b3.dir\\Debug\\cmTC_f84b3.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_f84b3.dir\\Debug\\cmTC_f84b3.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f84b3.dir\\Debug\\\\" /Fd"cmTC_f84b3.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_f84b3.dir\\Debug\\\\" /Fd"cmTC_f84b3.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bkg4av\\Debug\\cmTC_f84b3.exe" /INCREMENTAL /ILK:"cmTC_f84b3.dir\\Debug\\cmTC_f84b3.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-bkg4av/Debug/cmTC_f84b3.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-bkg4av/Debug/cmTC_f84b3.lib" /MACHINE:X64  /machine:x64 cmTC_f84b3.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_f84b3.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bkg4av\\Debug\\cmTC_f84b3.exe
+        FinalizeBuildStatus:
+          "cmTC_f84b3.dir\\Debug\\cmTC_f84b3.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_f84b3.dir\\Debug\\cmTC_f84b3.tlog\\cmTC_f84b3.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-bkg4av\\cmTC_f84b3.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.66
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...
+
+---
+events:
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineSystem.cmake:205 (message)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      The system is: Windows - 10.0.19045 - AMD64
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:17 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerId.cmake:64 (__determine_compiler_id_test)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCXXCompiler.cmake:126 (CMAKE_DETERMINE_COMPILER_ID)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
+      Compiler:  
+      Build flags: 
+      Id flags:  
+      
+      The output was:
+      0
+      msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+      鍮뚮뱶 ?쒖옉: 4/21/2025 1:42:18 AM
+      
+      1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+      PrepareForBuild:
+        "Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+        "Debug\\CompilerIdCXX.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+      InitializeBuildStatus:
+        "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      ClCompile:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /nologo /W0 /WX- /diagnostics:column /Od /D _MBCS /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /Fo"Debug\\\\" /Fd"Debug\\vc143.pdb" /external:W0 /Gd /TP /FC /errorReport:queue CMakeCXXCompilerId.cpp
+        CMakeCXXCompilerId.cpp
+      Link:
+        C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:".\\CompilerIdCXX.exe" /INCREMENTAL:NO /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /PDB:".\\CompilerIdCXX.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:".\\CompilerIdCXX.lib" /MACHINE:X64 Debug\\CMakeCXXCompilerId.obj
+        CompilerIdCXX.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.exe
+      PostBuildEvent:
+        for %%i in (cl.exe) do @echo CMAKE_CXX_COMPILER=%%~$PATH:i
+        :VCEnd
+        CMAKE_CXX_COMPILER=C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\Hostx64\\x64\\cl.exe
+      FinalizeBuildStatus:
+        "Debug\\CompilerIdCXX.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+        "Debug\\CompilerIdCXX.tlog\\CompilerIdCXX.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+      "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\4.0.1\\CompilerIdCXX\\CompilerIdCXX.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+      
+      鍮뚮뱶?덉뒿?덈떎.
+          寃쎄퀬 0媛?
+          ?ㅻ쪟 0媛?
+      
+      寃쎄낵 ?쒓컙: 00:00:00.81
+      
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.exe"
+      
+      Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "CompilerIdCXX.vcxproj"
+      
+      The CXX compiler identification is MSVC, found in:
+        C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/4.0.1/CompilerIdCXX/CompilerIdCXX.exe
+      
+  -
+    kind: "try_compile-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:83 (try_compile)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    checks:
+      - "Detecting CXX compiler ABI info"
+    directories:
+      source: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-d6olv1"
+      binary: "C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-d6olv1"
+    cmakeVariables:
+      CMAKE_CXX_FLAGS: "/DWIN32 /D_WINDOWS /W3 /GR /EHsc"
+      CMAKE_CXX_FLAGS_DEBUG: "/MDd /Zi /Ob0 /Od /RTC1"
+      CMAKE_CXX_SCAN_FOR_MODULES: "OFF"
+      CMAKE_EXE_LINKER_FLAGS: "/machine:x64"
+    buildResult:
+      variable: "CMAKE_CXX_ABI_COMPILED"
+      cached: true
+      stdout: |
+        Change Dir: 'C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-d6olv1'
+        
+        Run Build Command(s): "C:/Program Files/Microsoft Visual Studio/2022/Community/MSBuild/Current/Bin/amd64/MSBuild.exe" cmTC_3a3d0.vcxproj /p:Configuration=Debug /p:Platform=x64 /p:VisualStudioVersion=17.0 /v:n
+        msbuild 踰꾩쟾 17.10.4+10fbfbf2e(.NET Framework??
+        鍮뚮뱶 ?쒖옉: 4/21/2025 1:42:19 AM
+        
+        1 ?몃뱶??"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d6olv1\\cmTC_3a3d0.vcxproj" ?꾨줈?앺듃(湲곕낯 ?\xc2\x80???낅땲??
+        PrepareForBuild:
+          "cmTC_3a3d0.dir\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          援ъ“??異쒕젰???ъ슜?????덉뒿?덈떎. 而댄뙆?쇰윭 吏꾨떒???쒖떇?\xc2\x80 ?ㅻ쪟 怨꾩링 援ъ“瑜?諛섏쁺?⑸땲?? ?먯꽭???댁슜?\xc2\x80 https://aka.ms/cpp/structured-output??李몄“?섏꽭??
+          "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d6olv1\\Debug\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.tlog\\" ?붾젆?곕━瑜?留뚮뱾怨??덉뒿?덈떎.
+        InitializeBuildStatus:
+          "AlwaysCreate"??媛\xc2\x80) 吏\xc2\x80?뺣릺?덇린 ?뚮Ц??"cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.tlog\\unsuccessfulbuild"??瑜? 留뚮뱾怨??덉뒿?덈떎.
+          "cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.tlog\\unsuccessfulbuild"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        ClCompile:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\CL.exe /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_3a3d0.dir\\Debug\\\\" /Fd"cmTC_3a3d0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          Microsoft (R) C/C++ 理쒖쟻??而댄뙆?쇰윭 踰꾩쟾 19.40.33813(x64)
+          Copyright (c) Microsoft Corporation. All rights reserved.
+          cl /c /Zi /W3 /WX- /diagnostics:column /Od /Ob0 /D _MBCS /D WIN32 /D _WINDOWS /D "CMAKE_INTDIR=\\"Debug\\"" /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Zc:inline /GR /Fo"cmTC_3a3d0.dir\\Debug\\\\" /Fd"cmTC_3a3d0.dir\\Debug\\vc143.pdb" /external:W3 /Gd /TP /errorReport:queue "C:\\Program Files\\CMake\\share\\cmake-4.0\\Modules\\CMakeCXXCompilerABI.cpp"
+          CMakeCXXCompilerABI.cpp
+        Link:
+          C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.40.33807\\bin\\HostX64\\x64\\link.exe /ERRORREPORT:QUEUE /OUT:"C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d6olv1\\Debug\\cmTC_3a3d0.exe" /INCREMENTAL /ILK:"cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.ilk" /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib shell32.lib ole32.lib oleaut32.lib uuid.lib comdlg32.lib advapi32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-d6olv1/Debug/cmTC_3a3d0.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/CMakeScratch/TryCompile-d6olv1/Debug/cmTC_3a3d0.lib" /MACHINE:X64  /machine:x64 cmTC_3a3d0.dir\\Debug\\CMakeCXXCompilerABI.obj
+          cmTC_3a3d0.vcxproj -> C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d6olv1\\Debug\\cmTC_3a3d0.exe
+        FinalizeBuildStatus:
+          "cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.tlog\\unsuccessfulbuild" ?뚯씪????젣?섍퀬 ?덉뒿?덈떎.
+          "cmTC_3a3d0.dir\\Debug\\cmTC_3a3d0.tlog\\cmTC_3a3d0.lastbuildstate"???곌껐(touching)?섍퀬 ?덉뒿?덈떎.
+        "C:\\Users\\yoon\\Desktop\\CppProject\\RTS\\build\\CMakeFiles\\CMakeScratch\\TryCompile-d6olv1\\cmTC_3a3d0.vcxproj" ?꾨줈?앺듃瑜?鍮뚮뱶?덉뒿?덈떎(湲곕낯 ?\xc2\x80??.
+        
+        鍮뚮뱶?덉뒿?덈떎.
+            寃쎄퀬 0媛?
+            ?ㅻ쪟 0媛?
+        
+        寃쎄낵 ?쒓컙: 00:00:00.69
+        
+      exitCode: 0
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:227 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Parsed CXX implicit link information:
+        link line regex: [^( *|.*[/\\])(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
+        linker tool regex: [^[ 	]*(->|")?[ 	]*(([^"]*[/\\])?(ld[0-9]*(|\\.[a-rt-z][a-z]*|\\.s[a-np-z][a-z]*|\\.so[a-z]+)|link\\.exe|lld-link(\\.exe)?))("|,| |$)]
+        linker tool for 'CXX': C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe
+        implicit libs: []
+        implicit objs: []
+        implicit dirs: []
+        implicit fwks: []
+      
+      
+  -
+    kind: "message-v1"
+    backtrace:
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/Internal/CMakeDetermineLinkerId.cmake:36 (message)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeDetermineCompilerABI.cmake:264 (cmake_determine_linker_id)"
+      - "C:/Program Files/CMake/share/cmake-4.0/Modules/CMakeTestCXXCompiler.cmake:26 (CMAKE_DETERMINE_COMPILER_ABI)"
+      - "CMakeLists.txt:2 (project)"
+    message: |
+      Running the CXX compiler's linker: "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.40.33807/bin/HostX64/x64/link.exe" "-v"
+      Microsoft (R) Incremental Linker Version 14.40.33813.0
+      Copyright (C) Microsoft Corporation.  All rights reserved.
+...

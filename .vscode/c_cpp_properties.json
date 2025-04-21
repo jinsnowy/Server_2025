@@ -1,0 +1,17 @@
+{
+  "configurations": [
+    {
+      "name": "windows-gcc-x64",
+      "includePath": [
+        "${workspaceFolder}/**",
+        "C:/Users/yoon/Desktop/CppProject/vcpkg/vcpkg/installed/x64-windows/include"
+      ],
+      "defines": [],
+      "compilerPath": "C:/Program Files/w64devkit/bin/gcc.exe",
+      "cStandard": "${default}",
+      "cppStandard": "c++20",
+      "intelliSenseMode": "windows-gcc-x64"
+    }
+  ],
+  "version": 4
+}
