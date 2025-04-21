@@ -128,4 +128,8 @@ namespace Network {
 	boost::asio::io_context& Connection::io_context() const {
 		return io_context_;
 	}
+
+	std::string Connection::ToString() const {
+		return FORMAT("{}:{}", socket_.remote_endpoint().address().to_string(), socket_.remote_endpoint().port());
+	}
 }

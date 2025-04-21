@@ -20,11 +20,14 @@ namespace Network {
         boost::asio::ip::tcp::endpoint endpoint(boost::asio::ip::make_address(ip), port);
         acceptor_->open(endpoint.protocol());
         acceptor_->bind(endpoint);
+
+        LOG_INFO("Listener::Bind ip: {}, port: {}", ip, port);
     }
 
     void Listener::Start() {
         Accept();
         acceptor_->listen();
+        LOG_INFO("Listener::Start");
     }
 
     void Listener::Stop() {

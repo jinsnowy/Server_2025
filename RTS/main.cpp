@@ -12,11 +12,11 @@ public:
     }
 
     void OnConnect() override {
-        std::cout << "HelloSession::OnConnect" << session_id_ << std::endl;
+        LOG_INFO("HelloSession::OnConnect session_id:{}, address:{}", session_id_, connection()->ToString());
     }
 
     void OnDisconnect() override {
-        std::cout << "HelloSession::OnDisconnect" << session_id_ << std::endl;
+        LOG_INFO("HelloSession::OnDisconnect session_id:{}, address:{}", session_id_, connection()->ToString());
     }
 
 private:
@@ -24,9 +24,20 @@ private:
 };
 
 std::vector<std::shared_ptr<HelloSession>> hello_sessions_;
+std::vector<std::shared_ptr<Network::Connection>> hello_connections_;
+
+void ConnectMany(int32_t count) {
+    auto& scheduler = System::Scheduler::Current();
+    for (int32_t i = 0; i < count; ++i) {
+        auto connection = std::make_shared<Network::Connection>(scheduler.GetIoContext());
+        connection->Connect("127.0.0.1", 8080, [](std::shared_ptr<Network::Connection> connection) {
+            return true;
+        });
+        hello_connections_.push_back(connection);
+    }
+}
 
 int main() {
-
     System::Scheduler::Launch(4);
 
     Network::SessionFactory session_factory;
@@ -37,9 +48,15 @@ int main() {
         return true;
     });
 
-    Network::Listener listener(System::Scheduler::RoundRobin().GetIoContext(), session_factory);
-    listener.Bind("0.0.0.0", 8080);
-    listener.Start();
+    auto& scheduler = System::Scheduler::RoundRobin();
+    auto listener = std::make_shared<Network::Listener>(scheduler.GetIoContext(), session_factory);
+    scheduler.Post([listener]() {
+        listener->Bind("0.0.0.0", 8080);
+        listener->Start();
+    });
+    scheduler.Post([]() {
+        ConnectMany(100);
+    });
 
     System::Program::Wait();
 

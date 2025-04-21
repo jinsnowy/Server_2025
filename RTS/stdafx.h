@@ -1,14 +1,10 @@
 #pragma once
 
-#include <cstdlib>
-#include <cstdio>
 #include <cstring>
 #include <climits>
 #include <cassert>
 
 #include <iostream>
-#include <iomanip>
-#include <sstream>
 #include <string>
 #include <fstream>
 
@@ -19,9 +15,6 @@
 #include <limits>
 #include <random>
 #include <functional>
-
-#include <type_traits>
-#include <typeinfo>
 #include <utility>
 
 #include <array>
@@ -37,7 +30,6 @@
 
 #include <atomic>
 #include <mutex>
-#include <shared_mutex>
 #include <thread>
 #include <condition_variable>
 #include <future>

@@ -19,6 +19,8 @@ namespace Network {
 		void SetSession(std::weak_ptr<Session> session);
 		boost::asio::io_context& io_context() const;
 
+		std::string ToString() const;
+
 	private:
 		boost::asio::io_context& io_context_;
 		boost::asio::ip::tcp::socket socket_;

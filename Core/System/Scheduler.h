@@ -21,10 +21,6 @@ public:
     static int32_t ThreadId();
 
     void Post(std::function<void()> task);
-    template<typename Func, typename... Args>
-    void Post(Func&& func, Args&&... args) {
-        Post(std::bind(std::forward<Func>(func), std::forward<Args>(args)...));
-    }
 
     boost::asio::io_context& GetIoContext();
 
