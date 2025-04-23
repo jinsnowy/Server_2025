@@ -5,9 +5,9 @@ int session_id_counter_ = 0;
 
 class HelloSession : public Network::Session {
 public:
-    HelloSession(std::shared_ptr<Network::Connection> connection)
+    HelloSession()
         :
-        Network::Session(connection) {
+        Network::Session() {
         session_id_ = session_id_counter_++;
     }
 

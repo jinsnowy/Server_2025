@@ -11,6 +11,7 @@ namespace Network {
 class Connection;
 class Session : public std::enable_shared_from_this<Session> {
 public:
+    Session() = default;
     Session(std::shared_ptr<Connection> connection);
     ~Session();
 
@@ -27,7 +28,6 @@ protected:
 private:
     friend class SessionFactory;
     friend class Connection;
-    boost::asio::io_context& io_context_;
 
     void SetConnection(std::shared_ptr<Connection> connection);
 

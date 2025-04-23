@@ -21,22 +21,15 @@ namespace Network {
 		ip_ = ip;
 		port_ = port;
 
-		resolver_.async_resolve(ip_, std::to_string(port_), [weak_conn=weak_from_this(), on_connect](const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
-			if (error){
-				return;
-			}
-			auto conn = weak_conn.lock();
-			if (conn == nullptr){
+		resolver_.async_resolve(ip_, std::to_string(port_), [conn = shared_from_this(), on_connect](const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
+			if (error) {
+				LOG_INFO("[CONNECTION] resolve to {} failed {}", conn->GetConnectionString(), error.to_string());
 				return;
 			}
 
-			boost::asio::async_connect(conn->socket_, results, [weak_conn, on_connect](const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
+			boost::asio::async_connect(conn->socket_, results, [conn, on_connect](const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
 				if (error){
-					return;
-				}
-
-				auto conn = weak_conn.lock();
-				if (conn == nullptr){
+					LOG_INFO("[CONNECTION] connect to {} failed {}", conn->GetConnectionString(), error.to_string());
 					return;
 				}
 
@@ -131,5 +124,9 @@ namespace Network {
 
 	std::string Connection::ToString() const {
 		return FORMAT("{}:{}", socket_.remote_endpoint().address().to_string(), socket_.remote_endpoint().port());
+	}
+
+	std::string Connection::GetConnectionString() const {
+		return FORMAT("{}:{}", ip_, port_);
 	}
 }

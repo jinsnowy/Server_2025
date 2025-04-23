@@ -17,7 +17,7 @@ namespace Network {
             return;
         }
 
-        auto session = session_factory_(connection);
+        auto session = session_factory_();
         session->SetConnection(connection);
 
         if (on_connect_) {

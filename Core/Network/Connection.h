@@ -20,6 +20,7 @@ namespace Network {
 		boost::asio::io_context& io_context() const;
 
 		std::string ToString() const;
+		std::string GetConnectionString() const;
 
 	private:
 		boost::asio::io_context& io_context_;

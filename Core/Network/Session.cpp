@@ -1,11 +1,12 @@
 #include "stdafx.h"
 #include "Session.h"
 #include "Core/Network/Connection.h"
+#include "Core/System/Scheduler.h"
 
 namespace Network {
 
 Session::Session(std::shared_ptr<Connection> connection)
-    : io_context_(connection->io_context()), connection_(connection) {
+    : connection_(connection) {
 }
 
 Session::~Session() {
@@ -15,10 +16,11 @@ Session::~Session() {
 void Session::Connect(const std::string& ip, const uint16_t& port) {
     if (connection_ != nullptr) {
         connection_->Disconnect();
+        connection_ = nullptr;
     }
 
-    connection_ = std::make_shared<Connection>(io_context_);
-    connection_->Connect(ip, port, [session_weak=weak_from_this()](std::shared_ptr<Connection> conn)mutable {
+    auto connection = std::make_shared<Connection>(System::Scheduler::Current().GetIoContext());
+    connection->Connect(ip, port, [session_weak=weak_from_this()](std::shared_ptr<Connection> conn)mutable {
         auto session = session_weak.lock();
         if (session == nullptr) {
             return false;
