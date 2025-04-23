@@ -5,11 +5,11 @@ namespace System {
 
     DateTime::DateTime() 
     :
-    time_t_(0),
     year_(1970),
     month_(1),
     day_(1),
     hour_(0),
+    day_of_week_(DayOfWeek::Thursday),
     minute_(0),
     second_(0),
     millisecond_(0) {
@@ -20,9 +20,8 @@ namespace System {
         std::time_t now_time = std::chrono::system_clock::to_time_t(now);
         
         DateTime date_time;
-        date_time.time_t_ = now_time;
         tm time_info;
-        localtime_s(&time_info, &date_time.time_t_);
+        localtime_s(&time_info, &now_time);
 
         date_time.year_ = time_info.tm_year + 1900; 
         date_time.month_ = time_info.tm_mon + 1;
@@ -30,7 +29,7 @@ namespace System {
         date_time.hour_ = time_info.tm_hour;
         date_time.minute_ = time_info.tm_min;
         date_time.second_ = time_info.tm_sec;
-        date_time.week_day_ = time_info.tm_wday;
+        date_time.day_of_week_ = static_cast<DayOfWeek>(time_info.tm_wday);
         date_time.millisecond_ = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
 
         return date_time;
@@ -41,9 +40,8 @@ namespace System {
         std::time_t now_time = std::chrono::system_clock::to_time_t(now);
 
         DateTime date_time;
-        date_time.time_t_ = now_time;
         tm time_info;
-        gmtime_s(&time_info, &date_time.time_t_);
+        gmtime_s(&time_info, &now_time);
 
         date_time.year_ = time_info.tm_year + 1900;
         date_time.month_ = time_info.tm_mon + 1;
@@ -51,7 +49,7 @@ namespace System {
         date_time.hour_ = time_info.tm_hour;
         date_time.minute_ = time_info.tm_min;
         date_time.second_ = time_info.tm_sec;
-        date_time.week_day_ = time_info.tm_wday;
+        date_time.day_of_week_ = static_cast<DayOfWeek>(time_info.tm_wday);
         date_time.millisecond_ = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
 
         return date_time;
@@ -69,8 +67,8 @@ namespace System {
         return day_;
     }
 
-    uint8_t DateTime::week_day() const {
-        return week_day_;
+    DayOfWeek DateTime::day_of_week() const {
+        return day_of_week_;
     }
 
     uint8_t DateTime::hour() const {

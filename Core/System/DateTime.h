@@ -1,5 +1,15 @@
 #pragma once
 namespace System {
+    enum class DayOfWeek : uint8_t {
+		Sunday = 0,
+		Monday,
+		Tuesday,
+		Wednesday,
+		Thursday,
+		Friday,
+		Saturday
+	};
+
     class DateTime final {
     public:
         DateTime();
@@ -10,7 +20,7 @@ namespace System {
         uint16_t year() const;
         uint8_t month() const;
         uint8_t day() const;
-        uint8_t week_day() const;
+        DayOfWeek day_of_week() const;
         uint8_t hour() const;
         uint8_t minute() const;
         uint8_t second() const;
@@ -19,11 +29,10 @@ namespace System {
         std::string ToString() const;
 
     private:
-        time_t time_t_;
         uint16_t year_;
         uint8_t month_;
         uint8_t day_;
-        uint8_t week_day_;
+        DayOfWeek day_of_week_;
         uint8_t hour_;
         uint8_t minute_;
         uint8_t second_;
