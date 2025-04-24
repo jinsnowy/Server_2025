@@ -1,0 +1,10 @@
+syntax = "proto3";
+
+package User;
+
+import "Enum.proto";
+
+message WideString 
+{
+	string message = 1;
+}
