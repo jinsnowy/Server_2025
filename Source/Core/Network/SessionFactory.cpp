@@ -18,13 +18,16 @@ namespace Network {
             return;
         }
 
-        auto session = session_factory_();
-        session->SetConnection(connection);
-
-        connection->SetSession(session);
-
+        auto session = session_factory_(connection);
         if (on_connect_) {
-            on_connect_(session);
+            bool is_session_okay = on_connect_(session);
+            if (is_session_okay == false) {
+                return;
+            }
         }
+
+        session->Post([](Session& session) {
+            session.BeginSession();
+        });
     }
 }

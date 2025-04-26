@@ -36,8 +36,7 @@ namespace Concurrency {
 	public:
 		MPSCQueue() 
 			:
-			_cache_padding{} 
-		{
+			_cache_padding{}  {
 			_head = _tail = new buffer_node_t();
 		}
 

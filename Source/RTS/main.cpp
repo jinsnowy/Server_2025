@@ -6,9 +6,9 @@ int session_id_counter_ = 1;
 
 class HelloSession : public RTS::ServerSession {
 public:
-    HelloSession()
+    HelloSession(std::shared_ptr<Network::Connection> conn)
         :
-        RTS::ServerSession() {
+        RTS::ServerSession(conn) {
         session_id_ = session_id_counter_++;
     }
 
@@ -24,13 +24,14 @@ private:
     int session_id_;
 };
 
+std::shared_ptr<Network::Listener> listener_;
 std::vector<std::shared_ptr<HelloSession>> hello_sessions_;
 std::vector<std::shared_ptr<Network::Connection>> hello_connections_;
 
 void ConnectMany(int32_t count) {
     auto& scheduler = System::Scheduler::Current();
     for (int32_t i = 0; i < count; ++i) {
-        auto connection = std::make_shared<Network::Connection>(scheduler.GetIoContext());
+        auto connection = std::make_shared<Network::Connection>(scheduler.GetContext());
         connection->Connect("127.0.0.1", 8080, [](std::shared_ptr<Network::Connection> connection) {
             connection->Send("Hello, world!");
             return connection->IsConnected();
@@ -50,11 +51,13 @@ int main() {
     });
 
     auto& scheduler = System::Scheduler::RoundRobin();
-    auto listener = std::make_shared<Network::Listener>(scheduler.GetIoContext(), session_factory);
-    scheduler.Post([listener]() {
-        listener->Bind("0.0.0.0", 8080);
-        listener->Start();
+    scheduler.Post([session_factory]() {
+        auto& current = System::Scheduler::Current();
+        listener_ = std::make_shared<Network::Listener>(current.GetContext(), session_factory);
+        listener_->Bind("0.0.0.0", 8080);
+        listener_->Listen();
     });
+  
     scheduler.Post([]() {
         ConnectMany(100);
     });

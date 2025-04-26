@@ -2,13 +2,13 @@
 #include "ServerSession.h"
 
 namespace RTS {
-
-	ServerSession::ServerSession() {
+	ServerSession::ServerSession(std::shared_ptr<Network::Connection> conn)
+		:
+		Network::Session(std::move(conn)) {
 	}
 
 	ServerSession::~ServerSession() {
 	}
-
 
 	void ServerSession::Send(const std::shared_ptr<const google::protobuf::Message>& message) {
 		std::string data;

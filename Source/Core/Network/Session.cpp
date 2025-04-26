@@ -5,8 +5,15 @@
 
 namespace Network {
 
+Session::Session(const std::shared_ptr<System::Context>& context)
+    :
+    ActorClass(System::Channel(context)) {
+}
+
 Session::Session(std::shared_ptr<Connection> connection)
-    : connection_(connection) {
+    : 
+    ActorClass(connection->GetChannel()),
+    connection_(connection) {
 }
 
 Session::~Session() {
@@ -14,18 +21,19 @@ Session::~Session() {
 }
 
 void Session::Connect(const std::string& ip, const uint16_t& port) {
+    DEBUG_ASSERT(IsSynchronized());
     if (connection_ != nullptr) {
         connection_->Disconnect();
         connection_ = nullptr;
     }
 
-    auto connection = std::make_shared<Connection>(System::Scheduler::Current().GetIoContext());
-    connection->Connect(ip, port, [session_weak=weak_from_this()](std::shared_ptr<Connection> conn)mutable {
+    connection_ = std::make_shared<Connection>(GetChannel().GetContext());
+    connection_->Connect(ip, port, [session_weak=weak_from_this()](std::shared_ptr<Connection>) mutable {
         auto session = session_weak.lock();
         if (session == nullptr) {
             return false;
         }
-        session->SetConnection(conn);
+        session->BeginSession();
         return true;
     });
 }
@@ -36,13 +44,15 @@ bool Session::IsConnected() const {
 
 void Session::Disconnect() {
     if (connection_ != nullptr) {
-        connection_->Disconnect();
+        connection_->Post([](Connection& conn) {
+            conn.Disconnect();
+		});
     }
 }
 
-void Session::SetConnection(std::shared_ptr<Connection> connection) {
-    connection_ = connection;
-    connection_->SetSession(shared_from_this());
+void Session::BeginSession() {
+    DEBUG_ASSERT(IsSynchronized());
+    connection_->BeginSession(shared_from_this());
     OnConnect();
 }
 

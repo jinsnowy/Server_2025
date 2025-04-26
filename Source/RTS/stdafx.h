@@ -50,6 +50,7 @@
 #include <sdkddkver.h>
 #include <windows.h>
 #undef SendMessage
+#undef PostMessage
 #endif 
 
 #include "Core/CoreMinimal.h"
@@ -58,8 +59,6 @@
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/timestamp.pb.h>
 #include <google/protobuf/util/time_util.h>
-
-#pragma comment(lib, "fmt.lib")
 
 #ifdef NDEBUG
 #pragma comment(lib, "boost_system-vc143-mt-x64-1_88.lib")

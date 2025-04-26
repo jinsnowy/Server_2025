@@ -1,14 +1,10 @@
 #pragma once
 
 #include "Core/Concurrency/MPSC.h"
-
-namespace boost {
-    namespace asio {
-        class io_context;
-    }
-}
+#include "Core/System/Context.h"
 
 namespace System {
+class Context;
 class Scheduler {
 public:
     Scheduler();
@@ -18,21 +14,23 @@ public:
     static void Destroy();
     static Scheduler& RoundRobin();
     static Scheduler& Current();
-    static Scheduler& Get(const boost::asio::io_context& io_context);
     static int32_t ThreadId();
 
     void Post(std::function<void()> task);
 
-    boost::asio::io_context& GetIoContext();
-
     int32_t thread_id() const { return thread_id_; }
+    int32_t scheduler_index() const { return scheduler_index_; }
+
+    std::shared_ptr<Context> GetContext() { return context_; }
+    const std::shared_ptr<Context>& GetContext() const { return context_; }
 
 private:
     friend class SchedulerStorage;
 
     bool is_running_ = true;
     int32_t thread_id_ = 0;
-    std::unique_ptr<boost::asio::io_context> io_context_;
+    int32_t scheduler_index_ = 0;
+    std::shared_ptr<Context> context_;
   
     void Run();
     void Stop();

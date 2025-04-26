@@ -1,0 +1,32 @@
+#pragma once
+
+namespace System {
+	class Context;
+	class Callable;
+	class Channel {
+	public:
+		Channel();
+		Channel(const std::shared_ptr<Context>& context) 
+			: 
+			context_(context) {
+		}
+		~Channel() = default;
+
+		Channel(const Channel&) = default;
+		Channel& operator=(const Channel&) = default;
+
+		bool IsSynchronized() const;
+
+		void Post(std::function<void()> func);
+		void Post(std::unique_ptr<Callable> callable);
+		void Post(Callable* callable);
+
+		std::shared_ptr<Context>& GetContext() { return context_; }
+		const std::shared_ptr<Context>& GetContext() const { return context_; }
+
+	private:
+		std::shared_ptr<Context> context_;
+	};
+} // namespace System
+
+

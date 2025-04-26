@@ -58,8 +58,29 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="ThirdParty\BoostAsio.cpp">
-      <Filter>ThirdParty</Filter>
+    <ClCompile Include="System\Channel.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Socket.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Actor.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Resolver.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Context.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\FuncTraits.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Acceptor.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Callable.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -80,9 +101,6 @@
     </ClInclude>
     <ClInclude Include="Log\Logger.h">
       <Filter>Log</Filter>
-    </ClInclude>
-    <ClInclude Include="ThirdParty\Format.h">
-      <Filter>ThirdParty</Filter>
     </ClInclude>
     <ClInclude Include="System\DateTime.h">
       <Filter>System</Filter>
@@ -109,6 +127,33 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h">
       <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Channel.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Socket.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Actor.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Resolver.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Context.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Macro.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\FuncTraits.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Acceptor.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Callable.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

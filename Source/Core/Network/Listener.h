@@ -1,26 +1,36 @@
 #pragma once
 
-#include <boost/asio.hpp>
+#include "Core/ThirdParty/BoostAsio.h"
+#include "Core/System/Actor.h"
+
+namespace System {
+	class Context;
+} // namespace System {
 
 namespace Network {
     class Connection;
+    class Acceptor;
+    class Socket;
     class SessionFactory;
-    class Listener : public std::enable_shared_from_this<Listener> {
+    class Listener : public System::Actor<Listener> {
     public:
-        Listener(boost::asio::io_context& io_context, SessionFactory session_factory);
+        Listener(std::shared_ptr<System::Context> context, SessionFactory session_factory);
         ~Listener();
 
         void Bind(const std::string& ip, const uint16_t& port);
-        void Start();
+        void Listen();
         void Stop();
 
+        std::string ToString() const;
+
     private:
-        boost::asio::io_context& io_context_;
-        std::unique_ptr<boost::asio::ip::tcp::acceptor> acceptor_;
+        bool is_listening_ = false;
+        std::shared_ptr<System::Context> context_;
+        std::unique_ptr<Acceptor> acceptor_;
         std::unique_ptr<SessionFactory> session_factory_;
 
         void Accept();
         void AcceptInternal();
-        void OnAccept(boost::asio::ip::tcp::socket&& socket, const boost::system::error_code& error);
+        void OnAccept(std::unique_ptr<Socket> socket, const boost::system::error_code& error);
     };
 }

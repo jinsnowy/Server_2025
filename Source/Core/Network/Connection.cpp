@@ -2,73 +2,48 @@
 #include "Connection.h"
 #include "Core/Network/Session.h"
 #include "Core/System/Scheduler.h"
+#include "Core/System/Channel.h"
+#include "Core/Network/Resolver.h"
+#include "Core/Network/Socket.h"
 
 namespace Network {
-	Connection::Connection(boost::asio::ip::tcp::socket socket)
-		: 
-		io_context_(static_cast<boost::asio::io_context&>(socket.get_executor().context())),
-		resolver_(static_cast<boost::asio::io_context&>(socket.get_executor().context())),
-		socket_(std::move(socket)) {
+	Connection::Connection(std::unique_ptr<Socket> socket) 
+		:
+		System::Actor<Connection>(System::Channel(socket->context())),
+		socket_(std::move(socket)),
+		resolver_(std::make_unique<Resolver>(socket_->context())) {
 	}
 
-	Connection::Connection(boost::asio::io_context& io_context)
-		: 
-		io_context_(io_context), socket_(io_context), resolver_(io_context) {
+	Connection::Connection(std::shared_ptr<System::Context> context)
+		:
+		System::Actor<Connection>(System::Channel(context)),
+		socket_(std::make_unique<Socket>(context)),
+		resolver_(std::make_unique<Resolver>(context)) {
 	}
 
 	Connection::~Connection() {
-		Disconnect();
+		if (IsConnected()) {
+			Disconnect();
+		}
 	}
 
 	void Connection::Connect(const std::string& ip, const uint16_t& port, std::function<bool(std::shared_ptr<Connection>)> on_connect) {
+		DEBUG_ASSERT(IsSynchronized());
+
+		if (on_connect == nullptr) {
+			throw std::runtime_error("on_connect callback is not set");
+		}
+
 		ip_ = ip;
 		port_ = port;
-
-		System::Scheduler::Get(io_context_).Post([weak_conn = weak_from_this(), on_connect = std::move(on_connect)]() mutable {
-			auto conn = weak_conn.lock();
-			if (conn == nullptr) {
-				return;
-			}
-
-			conn->resolver_.async_resolve(conn->ip_, std::to_string(conn->port_), [weak_conn, on_connect = std::move(on_connect)](const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
-				auto conn = weak_conn.lock();
-				if (conn == nullptr) {
-					return;
-				}
-
-				if (error) {
-					LOG_ERROR("[CONNECTION] resolve to {} failed {}", conn->GetConnectionString(), error.to_string());
-					return;
-				}
-
-				boost::asio::async_connect(conn->socket_, results, [weak_conn, on_connect](const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
-						auto conn = weak_conn.lock();
-						if (conn == nullptr) {
-							return;
-						}
-					
-						if (error) {
-							LOG_ERROR("[CONNECTION] connect to {} failed {}", conn->GetConnectionString(), error.to_string());
-							return;
-						}
-
-						conn->socket_.set_option(boost::asio::socket_base::keep_alive(true));
-						conn->socket_.set_option(boost::asio::socket_base::linger(true, 0));
-
-						conn->ip_ = endpoint.address().to_string();
-						conn->port_ = endpoint.port();
-
-						if (on_connect(conn) == false) {
-							conn->Disconnect();
-						}
-					});
-				});
-		});
+		on_connect_ = std::move(on_connect);
+		resolver_->Resolve(ip_, port_, &Connection::OnResolved, shared_from_this());
 	}
 
 	void Connection::Disconnect() {
-		if (socket_.is_open()){
-			socket_.close();
+		DEBUG_ASSERT(IsSynchronized());
+		if (socket_->IsOpen()){
+			socket_->Close();
 
 			auto session = session_.lock();
 			if (session){
@@ -79,89 +54,85 @@ namespace Network {
 	}
 
 	bool Connection::IsConnected() const {
-		return socket_.is_open();
+		return socket_->IsOpen();
 	}
 
 	void Connection::Send(std::string message) {
-		boost::asio::post(io_context_, [message = std::move(message), weak_conn = std::weak_ptr(shared_from_this())]() {
-			auto conn = weak_conn.lock();
-			if (conn == nullptr) {
-				return;
-			}
-			bool is_connected = conn->IsConnected();
-			UNREFERENCED_PARAMETER(is_connected);
-
+		Post([message = std::move(message)](Connection& connection) {
 			auto message_shared = std::make_shared<std::string>(std::move(message));
-			boost::asio::async_write(conn->socket_, boost::asio::buffer(*message_shared),
-				[weak_conn, message_shared](const boost::system::error_code& error, std::size_t bytes_transferred) {
-					auto conn = weak_conn.lock();
-					if (conn == nullptr) {
-						return;
-					}
-
-					if (error) {
-						if (error == boost::asio::error::operation_aborted) {
-							return;  // 정상적인 취소
-						}
-						LOG_ERROR("Send failed :{}, {}", error.message(), error.value());
-						conn->Disconnect();
-					}
-
-					UNREFERENCED_PARAMETER(bytes_transferred);
-				});
-			});
-	}
-
-	void Connection::StartReceive() {
-		boost::asio::post(io_context_, [weak_conn = weak_from_this()]() {
-			auto conn = weak_conn.lock();
-			if (conn == nullptr) {
-				return;
-			}
-			conn->buffer_.resize(1024);
-			boost::asio::async_read(conn->socket_,
-			boost::asio::buffer(conn->buffer_),
-			boost::asio::transfer_at_least(1),
-			[weak_conn](const boost::system::error_code& error, std::size_t bytes_transferred) {
-				auto conn = weak_conn.lock();
-				if (conn == nullptr) {
-					return;
-				}
-
-				if (error) {
-					LOG_ERROR("Error during async_read: {}", error.message());
-					return;
-				}
-
-				if (bytes_transferred == 0) {
-					conn->Disconnect();
-					return;
-				}
-
-				try {
-					conn->buffer_.resize(bytes_transferred);
-
-					auto session = conn->session_.lock();
-					if (session) {
-						session->OnReceive(conn->buffer_);
-					}
-
-					conn->StartReceive();
-				}
-				catch (const std::exception& e) {
-					LOG_ERROR("Connection::Receive() error: {}", e.what());
-					conn->Disconnect();
-				}
-			});
+			connection.socket_->WriteAsync(message_shared);
 		});
 	}
 
-	void Connection::SetSession(std::weak_ptr<Session> session) {
+	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
+		DEBUG_ASSERT(IsSynchronized());
+		if (error) {
+			LOG_ERROR("[CONNECTION] resolve to {} failed {}", ToString(), error.to_string());
+			return;
+		}
+
+		socket_->ConnectAsync(results, &Connection::OnConnected, shared_from_this());
+	}
+
+	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
+		DEBUG_ASSERT(IsSynchronized());
+		if (error) {
+			LOG_ERROR("[CONNECTION] connect to {} failed {}", ToString(), error.to_string());
+			return;
+		}
+
+		socket_->SetOption(boost::asio::socket_base::keep_alive(true));
+		socket_->SetOption(boost::asio::socket_base::linger(true, 0));
+
+		ip_ = endpoint.address().to_string();
+		port_ = endpoint.port();
+
+		if (on_connect_(shared_from_this()) == false) {
+			Disconnect();
+		}
+	}
+
+	void Connection::BeginReceive() {
+		DEBUG_ASSERT(IsSynchronized());
+		buffer_.resize(1024);
+		socket_->ReadAsync(buffer_, &Connection::OnReceived, shared_from_this());
+	}
+
+	void Connection::OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred) {
+		DEBUG_ASSERT(IsSynchronized());
+		if (error) {
+			LOG_ERROR("Error during async_read: {}", error.message());
+			return;
+		}
+
+		if (bytes_transferred == 0) {
+			Disconnect();
+			return;
+		}
+
+		try {
+			buffer_.resize(bytes_transferred);
+
+			auto session = session_.lock();
+			if (session) {
+				session->OnReceive(buffer_);
+			}
+
+			BeginReceive();
+		}
+		catch (const std::exception& e) {
+			LOG_ERROR("Connection::Receive() error: {}", e.what());
+			Disconnect();
+		}
+	}
+
+	void Connection::BeginSession(std::weak_ptr<Session> session) {
+		DEBUG_ASSERT(IsSynchronized());
 		session_ = session;
 		try {
-			StartReceive();
-			ip_ = socket_.local_endpoint().address().to_string();
-			port_ = socket_.local_endpoint().port();
+			BeginReceive();
+			ip_ = socket_->address();
+			port_ = socket_->port();
 		}
 		catch (const std::exception& e) {
 			LOG_ERROR("Connection::SetSession() error: {}", e.what());
@@ -169,15 +140,7 @@ namespace Network {
 		}
 	}
 
-	boost::asio::io_context& Connection::io_context() const {
-		return io_context_;
-	}
-
 	std::string Connection::ToString() const {
-		return GetConnectionString();
-	}
-
-	std::string Connection::GetConnectionString() const {
 		return FORMAT("{}:{}", ip_, port_);
 	}
 }

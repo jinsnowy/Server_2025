@@ -19,9 +19,6 @@
 #include <limits>
 #include <random>
 #include <functional>
-
-#include <type_traits>
-#include <typeinfo>
 #include <utility>
 
 #include <array>
@@ -60,8 +57,12 @@
 
 #undef CreateDirectory
 #undef SendMessage
+#undef PostMessage
 
 #endif 
 
-#include "Core/ThirdParty/Format.h"
+#include <boost/asio.hpp>
 #include "Core/Log/Logger.h"
+#include "Core/System/Macro.h"
+#include "Core/System/FuncTraits.h"
+#include "Core/System/Callable.h"

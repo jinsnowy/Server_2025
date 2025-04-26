@@ -1,17 +1,17 @@
 #pragma once
 
-namespace boost {
-    namespace asio {
-        class io_context;
-    }
-}
+#include "Core/System/Actor.h"
+
+namespace System {
+	class Context;
+} // namespace System
 
 namespace Network {
 
 class Connection;
-class Session : public std::enable_shared_from_this<Session> {
+class Session : public System::Actor<Session> {
 public:
-    Session() = default;
+    Session(const std::shared_ptr<System::Context>& context);
     Session(std::shared_ptr<Connection> connection);
     ~Session();
 
@@ -28,7 +28,7 @@ private:
     friend class SessionFactory;
     friend class Connection;
 
-    void SetConnection(std::shared_ptr<Connection> connection);
+    void BeginSession();
 
     virtual void OnConnect();
     virtual void OnDisconnect();
