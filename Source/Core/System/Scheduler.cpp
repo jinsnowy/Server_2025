@@ -105,6 +105,7 @@ int32_t Scheduler::ThreadId() {
 void Scheduler::Run() {
     while (is_running_) {
         context_->RunFor(60);
+        std::this_thread::sleep_for(std::chrono::microseconds(200));
     }
 }
 

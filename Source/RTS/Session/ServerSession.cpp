@@ -21,6 +21,8 @@ namespace RTS {
 
 	void ServerSession::OnMessage(const std::string& message) {
 		LOG_INFO("ServerSession::OnMessage: {}", message.c_str());
+
+		SendMessage("Hello, client!");
 	}
 }
 

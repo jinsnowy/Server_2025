@@ -40,6 +40,7 @@ namespace Network {
     }
 
     void Listener::Accept() {
+        DEBUG_ASSERT(IsSynchronized());
         AcceptInternal();
     }
 

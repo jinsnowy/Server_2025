@@ -3,6 +3,7 @@
 #include "RTS/Session/ServerSession.h"
 
 int session_id_counter_ = 1;
+std::atomic<int> session_id_counter_client_ = 1;
 
 class HelloSession : public RTS::ServerSession {
 public:
@@ -32,7 +33,9 @@ public:
     }
 
     void OnConnected() override {
-        LOG_INFO("ClientSession::OnConnect");
+        session_id_ = session_id_counter_client_++;
+
+        LOG_INFO("ClientSession::OnConnect sesion_id:{}", session_id_);
 
         SendMessage("Hello, server!");
     }
@@ -40,6 +43,13 @@ public:
     void OnDisconnected() override {
         LOG_INFO("ClientSession::OnDisconnect");
     }
+
+    void OnMessage(const std::string& message) override {
+		LOG_INFO("ClientSession::OnMessage: {}", message.c_str());
+	}
+
+private:
+    int session_id_;
 };
 
 std::shared_ptr<Network::Listener> listener_;
@@ -57,7 +67,7 @@ void ConnectMany(int32_t count) {
 }
 
 int main() {
-    System::Scheduler::Launch(4);
+    System::Scheduler::Launch(32);
 
     Network::SessionFactory session_factory;
     session_factory.SetSessionClass<HelloSession>();
