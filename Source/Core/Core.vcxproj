@@ -83,6 +83,10 @@
     <ClCompile Include="Network\Acceptor.cpp" />
     <ClCompile Include="Network\Connection.cpp" />
     <ClCompile Include="Network\Listener.cpp" />
+    <ClCompile Include="Network\Packet\Internal.cpp" />
+    <ClCompile Include="Network\Packet\Packet.cpp" />
+    <ClCompile Include="Network\Packet\PacketHandlerMap.cpp" />
+    <ClCompile Include="Network\Protocol.cpp" />
     <ClCompile Include="Network\Resolver.cpp" />
     <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Network\SessionFactory.cpp" />
@@ -110,6 +114,10 @@
     <ClInclude Include="Network\Acceptor.h" />
     <ClInclude Include="Network\Connection.h" />
     <ClInclude Include="Network\Listener.h" />
+    <ClInclude Include="Network\Packet\Internal.h" />
+    <ClInclude Include="Network\Packet\Packet.h" />
+    <ClInclude Include="Network\Packet\PacketHandlerMap.h" />
+    <ClInclude Include="Network\Protocol.h" />
     <ClInclude Include="Network\Resolver.h" />
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="Network\SessionFactory.h" />

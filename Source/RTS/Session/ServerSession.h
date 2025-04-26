@@ -13,7 +13,7 @@ namespace RTS {
 		~ServerSession();
 
 		void Send(const std::shared_ptr<const google::protobuf::Message>& message);
-		bool OnReceive(std::string message) override;
+		void OnMessage(const std::string& message) override;
 	};
 }
 

@@ -19,9 +19,8 @@ namespace RTS {
 		SendMessage(data);
 	}
 
-	bool ServerSession::OnReceive(std::string message) {
-		LOG_INFO("ServerSession::OnRecv: {}", message.c_str());
-		return true;
+	void ServerSession::OnMessage(const std::string& message) {
+		LOG_INFO("ServerSession::OnMessage: {}", message.c_str());
 	}
 }
 

@@ -1,12 +1,15 @@
 #pragma once
 
 #include "Core/System/Actor.h"
+#include "Core/Network/PendingStream.h"
 
 namespace System {
 	class Context;
 } // namespace System
 
 namespace Network {
+struct PacketSegment;
+struct PendingRecvStream;
 
 class Connection;
 class Session : public System::Actor<Session> {
@@ -28,11 +31,18 @@ private:
     friend class SessionFactory;
     friend class Connection;
 
-    void BeginSession();
+    std::optional<PendingRecvStream> pending_recv_stream_;
 
-    virtual void OnConnect();
-    virtual void OnDisconnect();
-    virtual bool OnReceive(std::string message);
+    void BeginSession();
+    bool OnReceived(const char* data, size_t length);
+
+    bool OnProcessPacket(const PacketSegment& packet_segment);
+
+    virtual void OnConnected();
+    virtual void OnDisconnected();
+
+protected: // internal packet handler;
+    virtual void OnMessage(const std::string& message) {}
 };
 
 }  

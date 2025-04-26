@@ -12,11 +12,11 @@ public:
         session_id_ = session_id_counter_++;
     }
 
-    void OnConnect() override {
+    void OnConnected() override {
         LOG_INFO("HelloSession::OnConnect session_id:{}, address:{}", session_id_, connection()->ToString());
     }
 
-    void OnDisconnect() override {
+    void OnDisconnected() override {
         LOG_INFO("HelloSession::OnDisconnect session_id:{}, address:{}", session_id_, connection()->ToString());
     }
 
@@ -24,19 +24,35 @@ private:
     int session_id_;
 };
 
+class ClientSession : public Network::Session {
+public:
+    ClientSession(std::shared_ptr<Network::Connection> conn)
+        :
+        Network::Session(std::move(conn)) {
+    }
+
+    void OnConnected() override {
+        LOG_INFO("ClientSession::OnConnect");
+
+        SendMessage("Hello, server!");
+    }
+
+    void OnDisconnected() override {
+        LOG_INFO("ClientSession::OnDisconnect");
+    }
+};
+
 std::shared_ptr<Network::Listener> listener_;
 std::vector<std::shared_ptr<HelloSession>> hello_sessions_;
-std::vector<std::shared_ptr<Network::Connection>> hello_connections_;
+std::vector<std::shared_ptr<ClientSession>> client_sessions_;
 
 void ConnectMany(int32_t count) {
     auto& scheduler = System::Scheduler::Current();
     for (int32_t i = 0; i < count; ++i) {
         auto connection = std::make_shared<Network::Connection>(scheduler.GetContext());
-        connection->Connect("127.0.0.1", 8080, [](std::shared_ptr<Network::Connection> connection) {
-            connection->Send("Hello, world!");
-            return connection->IsConnected();
-        });
-        hello_connections_.push_back(connection);
+        auto session = std::make_shared<ClientSession>(connection);
+        session->Connect("127.0.0.1", 8080);
+        client_sessions_.push_back(session);
     }
 }
 

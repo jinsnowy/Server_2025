@@ -26,25 +26,32 @@ namespace Network {
 		}
 	}
 
+	struct ConnectCompletionEvent {
+		std::weak_ptr<Connection> weak_conn;
+		Socket::ConnectCallback callback;
+
+		void operator()(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
+			auto conn = weak_conn.lock();
+			if (!conn) {
+				return;
+			}
+			if (error == boost::asio::error::operation_aborted) {
+				return;
+			}
+			if (error) {
+				LOG_ERROR("[SOCKET] connect error: {}, endpoint: {}", error.message(), endpoint.address().to_string());
+				return;
+			}
+
+			conn->Post([callback=this->callback, error, endpoint](Connection& conn) {
+				(conn.*callback)(error, endpoint);
+			});
+		}
+	};
+
 	void Socket::ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			boost::asio::async_connect(*socket_, results, [callback, weak_conn=std::weak_ptr(conn)](const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
-				auto conn = weak_conn.lock();
-				if (!conn) {
-					return;
-				}
-				if (error == boost::asio::error::operation_aborted) {
-					return;
-				}
-				if (error) {
-					LOG_ERROR("[SOCKET] connect error: {}, endpoint: {}", error.message(), endpoint.address().to_string());
-					return;
-				}
-
-				conn->Post([callback, error, endpoint](Connection& conn) {
-					(conn.*callback)(error, endpoint);
-				});
-			});
+			boost::asio::async_connect(*socket_, results, ConnectCompletionEvent{conn, callback});
 		}catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] connect error: {}", e.what());
 		}
@@ -56,19 +63,24 @@ namespace Network {
 		}
 	}
 
-	void Socket::WriteAsync(std::shared_ptr<std::string> message) {
+	struct WriteCompletionEvent {
+		std::vector<char> buffer;
+		void operator()(const boost::system::error_code& error, std::size_t bytes_transferred) {
+			if (error == boost::asio::error::operation_aborted) {
+				return;
+			}
+			if (error) {
+				LOG_ERROR("[SOCKET] write error: {}, bytes_transferred: {}", error.message(), bytes_transferred);
+				return;
+			}
+		}
+	};
+
+	void Socket::WriteAsync(std::vector<char> buffer) {
 		try {
-			boost::asio::async_write(*socket_, boost::asio::buffer(*message),
-				[message](const boost::system::error_code& error, std::size_t bytes_transferred) {
-					if (error == boost::asio::error::operation_aborted) {
-						return;
-					}
-					if (error) {
-						LOG_ERROR("[SOCKET] write error: {}, bytes_transferred: {}", error.message(), bytes_transferred);
-						return;
-					}
-				}
-			);
+			char* data_ptr = reinterpret_cast<char*>(buffer.data());
+			std::string_view buffer_view(data_ptr, buffer.size());
+			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ std::move(buffer) });
 		}
 		catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] write error: {}", e.what());
@@ -85,7 +97,7 @@ namespace Network {
 		try {
 			boost::asio::async_read(*socket_,
 			boost::asio::buffer(buffer),
-			boost::asio::transfer_at_least(1),
+			boost::asio::transfer_at_least(PacketHeader::Size()),
 			[callback, weak_conn = std::weak_ptr(conn)](const boost::system::error_code& error, std::size_t bytes_transferred) {
 				auto conn = weak_conn.lock();
 				if (conn == nullptr) {

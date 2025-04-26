@@ -25,7 +25,7 @@ public:
 	}
 
 	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn);
-	void WriteAsync(std::shared_ptr<std::string> message);
+	void WriteAsync(std::vector<char> message);
 	void ReadAsync(std::string& buffer, ReadCallback callback, std::shared_ptr<Connection> conn);
 
 	std::string address() const { return socket_->remote_endpoint().address().to_string(); }

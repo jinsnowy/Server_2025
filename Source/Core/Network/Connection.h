@@ -21,7 +21,7 @@ namespace Network {
 
 		void Connect(const std::string& ip, const uint16_t& port, std::function<bool(std::shared_ptr<Connection>)> on_connect);
 		void Disconnect();
-		void Send(std::string message);
+		void Send(std::vector<char> buffer);
 		bool IsConnected() const;
 
 		void BeginSession(std::weak_ptr<Session> session);

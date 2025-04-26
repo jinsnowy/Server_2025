@@ -16,6 +16,9 @@
     <Filter Include="Network">
       <UniqueIdentifier>{5876726b-46f6-48dc-a597-490fc293deef}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Network\Packet">
+      <UniqueIdentifier>{c5dae6d6-951e-493d-b915-cbbfd36ace5a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Concurrency\MPSC.cpp">
@@ -81,6 +84,18 @@
     </ClCompile>
     <ClCompile Include="System\Callable.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Protocol.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Packet\Packet.cpp">
+      <Filter>Network\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Packet\PacketHandlerMap.cpp">
+      <Filter>Network\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Packet\Internal.cpp">
+      <Filter>Network\Packet</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -154,6 +169,18 @@
     </ClInclude>
     <ClInclude Include="System\Callable.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packet\PacketHandlerMap.h">
+      <Filter>Network\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packet\Packet.h">
+      <Filter>Network\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Packet\Internal.h">
+      <Filter>Network\Packet</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

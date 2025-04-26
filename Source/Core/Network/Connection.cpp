@@ -47,7 +47,7 @@ namespace Network {
 
 			auto session = session_.lock();
 			if (session){
-				session->OnDisconnect();
+				session->OnDisconnected();
 				session_.reset();
 			}
 		}
@@ -57,10 +57,9 @@ namespace Network {
 		return socket_->IsOpen();
 	}
 
-	void Connection::Send(std::string message) {
-		Post([message = std::move(message)](Connection& connection) {
-			auto message_shared = std::make_shared<std::string>(std::move(message));
-			connection.socket_->WriteAsync(message_shared);
+	void Connection::Send(std::vector<char> buffer) {
+		Post([buffer = std::move(buffer)](Connection& connection) mutable {
+			connection.socket_->WriteAsync(std::move(buffer));
 		});
 	}
 
@@ -111,12 +110,13 @@ namespace Network {
 		}
 
 		try {
-			buffer_.resize(bytes_transferred);
-
 			auto session = session_.lock();
-			if (session) {
-				session->OnReceive(buffer_);
+			if (session == nullptr) {
+				Disconnect();
+				return;
 			}
+
+			session->OnReceived(buffer_.data(), bytes_transferred);
 
 			BeginReceive();
 		}

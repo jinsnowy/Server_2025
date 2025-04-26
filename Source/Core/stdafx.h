@@ -66,3 +66,4 @@
 #include "Core/System/Macro.h"
 #include "Core/System/FuncTraits.h"
 #include "Core/System/Callable.h"
+#include "Core/Network/Packet/Packet.h"
