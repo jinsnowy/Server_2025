@@ -103,6 +103,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Protocol\Protobuf.cpp" />
+    <ClCompile Include="Protocol\ProtobufDescriptor.cpp" />
     <ClCompile Include="Session\ServerSession.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -110,6 +112,8 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Protocol\Protobuf.h" />
+    <ClInclude Include="Protocol\ProtobufDescriptor.h" />
     <ClInclude Include="Session\ServerSession.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

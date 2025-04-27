@@ -10,7 +10,7 @@ namespace System {
 namespace Network {
 struct PacketSegment;
 struct PendingRecvStream;
-
+class Protocol;
 class Connection;
 class Session : public System::Actor<Session> {
 public:
@@ -27,22 +27,26 @@ public:
 protected:
     std::shared_ptr<Connection> connection_;
 
+    void SetProtocol(std::unique_ptr<Protocol> protocol) {
+        protocol_ = std::move(protocol);
+    }
+
 private:
     friend class SessionFactory;
     friend class Connection;
 
     std::optional<PendingRecvStream> pending_recv_stream_;
+    std::unique_ptr<Protocol> protocol_;
 
     void BeginSession();
     bool OnReceived(const char* data, size_t length);
-
     bool OnProcessPacket(const PacketSegment& packet_segment);
 
     virtual void OnConnected();
     virtual void OnDisconnected();
 
 protected: // internal packet handler;
-    virtual void OnMessage(const std::string& message) {}
+    virtual void OnMessage(const std::string& message);
 };
 
 }  

@@ -79,7 +79,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Concurrency\MPSC.cpp" />
-    <ClCompile Include="Log\Logger.cpp" />
+    <ClCompile Include="Logging\Logger.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
     <ClCompile Include="Network\Connection.cpp" />
     <ClCompile Include="Network\Listener.cpp" />
@@ -87,6 +87,7 @@
     <ClCompile Include="Network\Packet\Packet.cpp" />
     <ClCompile Include="Network\Packet\PacketHandlerMap.cpp" />
     <ClCompile Include="Network\Protocol.cpp" />
+    <ClCompile Include="Network\ProtocolController.cpp" />
     <ClCompile Include="Network\Resolver.cpp" />
     <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Network\SessionFactory.cpp" />
@@ -110,7 +111,7 @@
   <ItemGroup>
     <ClInclude Include="Concurrency\MPSC.h" />
     <ClInclude Include="CoreMinimal.h" />
-    <ClInclude Include="Log\Logger.h" />
+    <ClInclude Include="Logging\Logger.h" />
     <ClInclude Include="Network\Acceptor.h" />
     <ClInclude Include="Network\Connection.h" />
     <ClInclude Include="Network\Listener.h" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Network\Packet\Packet.h" />
     <ClInclude Include="Network\Packet\PacketHandlerMap.h" />
     <ClInclude Include="Network\Protocol.h" />
+    <ClInclude Include="Network\ProtocolController.h" />
     <ClInclude Include="Network\Resolver.h" />
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="Network\SessionFactory.h" />

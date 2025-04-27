@@ -30,10 +30,11 @@ namespace System {
 		current_context = nullptr;
 	}
 
-	void Context::RunFor(int32_t milliseconds) {
+	size_t Context::RunFor(int32_t milliseconds) {
 		current_context = this;
-		io_context_->run_for(std::chrono::milliseconds(milliseconds));
+		size_t count = io_context_->run_for(std::chrono::milliseconds(milliseconds));
 		current_context = nullptr;
+		return count;
 	}
 
 	void Context::Stop() {

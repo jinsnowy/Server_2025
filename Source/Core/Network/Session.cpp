@@ -3,6 +3,7 @@
 #include "Core/Network/Connection.h"
 #include "Core/System/Scheduler.h"
 #include "Core/Network/Packet/Internal.h"
+#include "Core/Network/Protocol.h"
 
 namespace Network {
 
@@ -158,9 +159,16 @@ namespace Network {
                 return false;
             }
 
-            return true;
+            return false;
         }
 
-        return true;
+        if (protocol_ == nullptr) {
+            return false;
+        }
+
+        return protocol_->ProcessMessage(packetId, packet_segment);
+    }
+
+    void Session::OnMessage(const std::string& ){
     }
 }

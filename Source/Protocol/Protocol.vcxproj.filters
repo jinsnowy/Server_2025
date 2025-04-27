@@ -8,29 +8,4 @@
       <UniqueIdentifier>{1041a061-4f0d-490c-8b45-f4382efafb2f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Private\Enum.pb.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Private\Struct.pb.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Private\User.pb.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Public\User.h">
-      <Filter>Public</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Private\Enum.pb.cc">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\Struct.pb.cc">
-      <Filter>Private</Filter>
-    </ClCompile>
-    <ClCompile Include="Private\User.pb.cc">
-      <Filter>Private</Filter>
-    </ClCompile>
-  </ItemGroup>
 </Project>

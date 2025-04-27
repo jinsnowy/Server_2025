@@ -62,7 +62,7 @@
 #endif 
 
 #include <boost/asio.hpp>
-#include "Core/Log/Logger.h"
+#include "Core/Logging/Logger.h"
 #include "Core/System/Macro.h"
 #include "Core/System/FuncTraits.h"
 #include "Core/System/Callable.h"

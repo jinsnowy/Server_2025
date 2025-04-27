@@ -31,7 +31,7 @@ namespace System {
 		std::unique_ptr<boost::asio::io_context> io_context_;
 
 		void Run();
-		void RunFor(int32_t milliseconds);
+		size_t RunFor(int32_t milliseconds);
 		void Stop();
 	};
 } // namespace System

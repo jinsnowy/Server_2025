@@ -4,9 +4,6 @@
     <Filter Include="Concurrency">
       <UniqueIdentifier>{c57c0169-0e2b-4e68-bf69-9a9ad71bc5c4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Log">
-      <UniqueIdentifier>{4547e68c-718d-4bbe-bd01-76c25092bb06}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{23e8fbdb-508c-4939-9166-d577dca27f78}</UniqueIdentifier>
     </Filter>
@@ -18,6 +15,9 @@
     </Filter>
     <Filter Include="Network\Packet">
       <UniqueIdentifier>{c5dae6d6-951e-493d-b915-cbbfd36ace5a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{4547e68c-718d-4bbe-bd01-76c25092bb06}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -35,9 +35,6 @@
     </ClCompile>
     <ClCompile Include="Network\SessionFactory.cpp">
       <Filter>Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Log\Logger.cpp">
-      <Filter>Log</Filter>
     </ClCompile>
     <ClCompile Include="System\DateTime.cpp">
       <Filter>System</Filter>
@@ -85,7 +82,7 @@
     <ClCompile Include="System\Callable.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="Network\Protocol.cpp">
+    <ClCompile Include="Network\ProtocolController.cpp">
       <Filter>Network</Filter>
     </ClCompile>
     <ClCompile Include="Network\Packet\Packet.cpp">
@@ -96,6 +93,12 @@
     </ClCompile>
     <ClCompile Include="Network\Packet\Internal.cpp">
       <Filter>Network\Packet</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Protocol.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Logging\Logger.cpp">
+      <Filter>Logging</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -113,9 +116,6 @@
     </ClInclude>
     <ClInclude Include="Network\SessionFactory.h">
       <Filter>Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Log\Logger.h">
-      <Filter>Log</Filter>
     </ClInclude>
     <ClInclude Include="System\DateTime.h">
       <Filter>System</Filter>
@@ -170,7 +170,7 @@
     <ClInclude Include="System\Callable.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="Network\Protocol.h">
+    <ClInclude Include="Network\ProtocolController.h">
       <Filter>Network</Filter>
     </ClInclude>
     <ClInclude Include="Network\Packet\PacketHandlerMap.h">
@@ -181,6 +181,12 @@
     </ClInclude>
     <ClInclude Include="Network\Packet\Internal.h">
       <Filter>Network\Packet</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Protocol.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Logging\Logger.h">
+      <Filter>Logging</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -6,16 +6,31 @@
     <ClCompile Include="Session\ServerSession.cpp">
       <Filter>Session</Filter>
     </ClCompile>
+    <ClCompile Include="Protocol\Protobuf.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ProtobufDescriptor.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Session\ServerSession.h">
       <Filter>Session</Filter>
     </ClInclude>
+    <ClInclude Include="Protocol\Protobuf.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ProtobufDescriptor.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Session">
       <UniqueIdentifier>{1d287964-289e-47df-9105-97b68131d85b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{a4c6b4a1-943f-4584-809c-621760e06394}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>
