@@ -1,5 +1,7 @@
 #include "stdafx.h"
 #include "ServerSession.h"
+#include "Protobuf/Protobuf.h"
+#include "PacketHandler/ServerPacketHandler.h"
 
 namespace RTS {
 	ServerSession::ServerSession(std::shared_ptr<Network::Connection> conn)
@@ -8,6 +10,10 @@ namespace RTS {
 	}
 
 	ServerSession::~ServerSession() {
+	}
+
+	void ServerSession::OnConnected() {
+		InstallProtocol(std::make_unique<ProtobufProtocol>(&ServerPacketHandler::GetInstance()));
 	}
 
 	void ServerSession::Send(const std::shared_ptr<const google::protobuf::Message>& message) {

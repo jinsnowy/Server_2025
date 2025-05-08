@@ -1,42 +1,39 @@
 #pragma once
+#include "Core/System/Singleton.h"
 
 namespace Network {
-
-	template<typename THandler, typename TPacket, typename TPacketSerializer>
+	class Session;
+	template<typename TPacket>
 	class PacketHandlerMap {
 	public:
-		using Type = PacketHandlerMap<THandler, TPacket, TPacketSerializer>;
-		using HandlerFunc = std::function<void(THandler&, const std::shared_ptr<const TPacket>&)>;
+		using Type = PacketHandlerMap<TPacket>;
+		using HandlerFunc = std::function<void(Session&, const std::shared_ptr<const TPacket>&)>;
 		using Packet = TPacket;
-		using Serializer = TPacketSerializer;
-		using Handler = THandler;
 
-		template<typename T, typename = std::enable_if_t < std::is_base_of_v<TPacket, T>>>
-		using TypedHandlerFuncPointer = void(*)(THandler&, const std::shared_ptr<const T>&);
+		template<typename TSession, typename TMessage, typename = std::enable_if_t<std::is_base_of_v<TPacket, TMessage>>>
+		using TypedHandlerFuncPointer = void(*)(TSession&, const std::shared_ptr<const TMessage>&);
 
 	public:
-		PacketHandlerMap();
-		virtual ~PacketHandlerMap() = default;
+		PacketHandlerMap() = default;
+		~PacketHandlerMap() = default;
 
-		template<typename T>
-		void RegisterHandler(size_t packetId, TypedHandlerFuncPointer<T>&& typedHandler) {
-			_handlers[packetId] = [typedHandler = std::forward<TypedHandlerFuncPointer<T>>(typedHandler)](THandler& handler, const std::shared_ptr<const TPacket>& packet) mutable {
-				typedHandler(handler, std::static_pointer_cast<const T>(packet));
+		template<typename TSession, typename TMessage>
+		void RegisterHandler(size_t packetId, TypedHandlerFuncPointer<TSession, TMessage>&& typedHandler) {
+			_handlers[packetId] = [typedHandler = std::forward<TypedHandlerFuncPointer<TSession, TMessage>>(typedHandler)](TSession& handler, const std::shared_ptr<const TPacket>& packet) mutable {
+				typedHandler(handler, std::static_pointer_cast<const TMessage>(packet));
 			};
 		}
 
-		void HandleMessage(THandler& receiver, const std::shared_ptr<const TPacket>& message) {
-			size_t packetId = _serializer.Resolve(*message);
-			_handlers[packetId](receiver, message);
+		bool HandleMessage(Session& session, const size_t packetId, const std::shared_ptr<const TPacket>& message) {
+			auto iter = _handlers.find(packetId);
+			if (iter == _handlers.end()) {
+				return false;
+			}
+			(*iter)(session, message);
+			return true;
 		}
 
 	private:
-		Serializer _serializer;
 		std::unordered_map<size_t, HandlerFunc> _handlers;
 	};
-
-	template<typename THandler, typename TPacket, typename TPacketSerializer>
-	inline PacketHandlerMap<THandler, TPacket, TPacketSerializer>::PacketHandlerMap()
-	{
-	}
 }

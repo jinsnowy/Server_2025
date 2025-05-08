@@ -13,6 +13,7 @@ namespace Network {
 	class Socket;
 	class Resolver;
 	class Session;
+	class Buffer;
 	class Connection final : public System::Actor<Connection> {
 	public:
 		Connection(std::unique_ptr<Socket> socket);
@@ -21,10 +22,12 @@ namespace Network {
 
 		void Connect(const std::string& ip, const uint16_t& port, std::function<bool(std::shared_ptr<Connection>)> on_connect);
 		void Disconnect();
-		void Send(std::vector<char> buffer);
+		void Send(const Buffer& buffer);
 		bool IsConnected() const;
 
-		void BeginSession(std::weak_ptr<Session> session);
+		void BeginSession(std::shared_ptr<Session> session);
+		void BeginReceive(std::shared_ptr<char[]> buffer, int32_t size);
+
 		std::string ToString() const;
 
 	private:
@@ -35,11 +38,10 @@ namespace Network {
 
 		std::string ip_;
 		uint16_t port_ = 0;
-		std::string buffer_;
 
-		void BeginReceive();
 		void OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results);
 		void OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint);
 		void OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred);
+		void OnSendCompleted(const boost::system::error_code& error, std::size_t bytes_transferred);
 	};
 }

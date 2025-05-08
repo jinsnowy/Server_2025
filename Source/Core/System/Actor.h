@@ -76,7 +76,12 @@ namespace System {
 	template<typename T>
 	template<typename F>
 	inline void Actor<T>::Post(F&& func) {
-		channel_.Post(std::make_unique<PostMessage<F, T>>(std::forward<F>(func), Get()));
+		if (channel_.IsSynchronized()) {
+			PostMessage{ std::forward<F>(func), Get() }();
+		}
+		else {
+			channel_.Post(std::make_unique<PostMessage<F, T>>(std::forward<F>(func), Get()));
+		}
 	}
 
 }

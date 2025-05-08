@@ -10,9 +10,11 @@ namespace System {
 		Saturday
 	};
 
+    class TimePoint;
     class DateTime final {
     public:
         DateTime();
+        DateTime(const TimePoint& time_point);
 
         static DateTime Now();
         static DateTime UtcNow();

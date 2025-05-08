@@ -100,6 +100,18 @@
     <ClCompile Include="Logging\Logger.cpp">
       <Filter>Logging</Filter>
     </ClCompile>
+    <ClCompile Include="Network\NetworkStream.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Buffer.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\OutputStream.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\TimePoint.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Concurrency\MPSC.h">
@@ -187,6 +199,18 @@
     </ClInclude>
     <ClInclude Include="Logging\Logger.h">
       <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\NetworkStream.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Buffer.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\OutputStream.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\TimePoint.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

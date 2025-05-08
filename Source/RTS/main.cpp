@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Core/System/Program.h"
 #include "RTS/Session/ServerSession.h"
+#include "RTS/Session/ClientSession.h"
 
 int session_id_counter_ = 1;
 std::atomic<int> session_id_counter_client_ = 1;
@@ -25,42 +26,16 @@ private:
     int session_id_;
 };
 
-class ClientSession : public Network::Session {
-public:
-    ClientSession(std::shared_ptr<Network::Connection> conn)
-        :
-        Network::Session(std::move(conn)) {
-    }
-
-    void OnConnected() override {
-        session_id_ = session_id_counter_client_++;
-
-        LOG_INFO("ClientSession::OnConnect sesion_id:{}", session_id_);
-
-        SendMessage("Hello, server!");
-    }
-
-    void OnDisconnected() override {
-        LOG_INFO("ClientSession::OnDisconnect");
-    }
-
-    void OnMessage(const std::string& message) override {
-		LOG_INFO("ClientSession::OnMessage: {}", message.c_str());
-	}
-
-private:
-    int session_id_;
-};
 
 std::shared_ptr<Network::Listener> listener_;
 std::vector<std::shared_ptr<HelloSession>> hello_sessions_;
-std::vector<std::shared_ptr<ClientSession>> client_sessions_;
+std::vector<std::shared_ptr<RTS::ClientSession>> client_sessions_;
 
 void ConnectMany(int32_t count) {
     auto& scheduler = System::Scheduler::Current();
     for (int32_t i = 0; i < count; ++i) {
         auto connection = std::make_shared<Network::Connection>(scheduler.GetContext());
-        auto session = std::make_shared<ClientSession>(connection);
+        auto session = std::make_shared<RTS::ClientSession>(connection);
         session->Connect("127.0.0.1", 8080);
         client_sessions_.push_back(session);
     }

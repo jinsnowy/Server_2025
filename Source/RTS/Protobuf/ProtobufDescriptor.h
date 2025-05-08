@@ -5,18 +5,8 @@
 namespace RTS {
 	using Message = google::protobuf::Message;
 
-	struct ProtoSerializer {
-		static std::vector<char> Serialize(const Message& packet);
-		static std::shared_ptr<Message> Deserialize(const size_t& packetId, const Network::PacketSegment& segment);
-		static uint32_t Resolve(const Message& packet);
-		static bool IsValid(const uint32_t& packetId);
-	};
-
-	class ProtocolHelper final {
+	class ProtobufDescriptor final {
 	public:
-		template<typename THandler>
-		using PacketHandlerMapType = Tcp::Packet::PacketHandlerMap<THandler, Message, ProtoSerializer>;
-
 		template<typename TPacketHandlerMap, typename THandler, typename TPacket>
 		static void RegisterHandler(TPacketHandlerMap& handlerMap, void (*handlerFunc)(THandler&, const std::shared_ptr<const TPacket>&)) {
 			DescriptorRegistry<TPacket> registry;

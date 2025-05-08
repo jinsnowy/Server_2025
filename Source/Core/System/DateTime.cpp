@@ -15,6 +15,10 @@ namespace System {
     millisecond_(0) {
     }
 
+    DateTime::DateTime(const TimePoint& time_point)
+    {
+    }
+
     DateTime DateTime::Now() {
         std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
         std::time_t now_time = std::chrono::system_clock::to_time_t(now);

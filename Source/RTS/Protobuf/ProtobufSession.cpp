@@ -1,0 +1,68 @@
+#include "stdafx.h"
+#include "ProtobufSession.h"
+#include "ProtoSerializer.h"
+#include "Core/Network/Packet/Packet.h"
+
+namespace RTS {
+	struct ZeroCopyOutputStream  : public google::protobuf::io::ZeroCopyOutputStream {
+		ZeroCopyOutputStream(Network::OutputStream stream)
+			:
+			stream_(stream) {
+		}
+
+		bool Next(void** data, int32_t* size) override {
+			return stream_.Next(data, size);
+		}
+
+		void BackUp(int32_t count) override {
+			stream_.BackUp(count);
+		}
+
+		int64_t ByteCount() const override {
+			return stream_.ByteCount();
+		}
+
+		bool WriteAliasedRaw(const void* data, int32_t size) override {
+			return stream_.WriteAliasedRaw(data, size);
+		}
+
+		bool AllowsAliasing() const {
+			return stream_.AllowsAliasing();
+		}
+
+		void WriteHeader(const Network::PacketHeader& header) {
+			stream_.WriteAliasedRaw(&header, sizeof(Network::PacketHeader));
+		}
+
+		Network::OutputStream stream_;
+	};
+
+	void ProtobufSession::Send(const google::protobuf::Message& message) {
+		size_t message_id = ProtoSerializer::Resolve(message);
+		Post([serialized_string = message.SerializeAsString(), message_id](ProtobufSession& session) { // google::protobuf::Message 16bytes
+			auto header = Network::PacketHeader{
+				.id = message_id,
+				.size = serialized_string.size()
+			};
+			auto outputStream = ZeroCopyOutputStream(session.GetOutputStream());
+			outputStream.WriteHeader(header);
+			outputStream.WriteAliasedRaw(serialized_string.data(), serialized_string.size());
+			session.FlushSend();
+		});
+	}
+
+	void ProtobufSession::Send(const std::shared_ptr<const google::protobuf::Message>& message) {
+		Post([message](ProtobufSession& session) {
+			auto header = Network::PacketHeader{
+				.id = ProtoSerializer::Resolve(*message),
+				.size = message->ByteSizeLong()
+			};
+			
+			auto outputStream = ZeroCopyOutputStream(session.GetOutputStream());
+			outputStream.WriteHeader(header);
+			message->SerializeToZeroCopyStream(&outputStream);
+			session.FlushSend();
+		});
+	}
+}
+

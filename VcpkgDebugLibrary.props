@@ -3,8 +3,8 @@
   <ImportGroup Label="PropertySheets" />
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
-    <LibraryPath>..\..\..\vcpkg\vcpkg\installed\x64-windows\debug\lib;$(LibraryPath)</LibraryPath>
-    <ExternalIncludePath>..\..\..\vcpkg\vcpkg\installed\x64-windows\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(SolutionDir)..\..\vcpkg\vcpkg\installed\x64-windows\debug\lib;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(SolutionDir)..\..\vcpkg\vcpkg\installed\x64-windows\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <CopyFileToFolders />

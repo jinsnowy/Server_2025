@@ -5,6 +5,7 @@
 #include "Core/System/Channel.h"
 #include "Core/Network/Resolver.h"
 #include "Core/Network/Socket.h"
+#include "Core/Network/Buffer.h"
 
 namespace Network {
 	Connection::Connection(std::unique_ptr<Socket> socket) 
@@ -16,7 +17,6 @@ namespace Network {
 
 	Connection::Connection(std::shared_ptr<System::Context> context)
 		:
-		System::Actor<Connection>(System::Channel(context)),
 		socket_(std::make_unique<Socket>(context)),
 		resolver_(std::make_unique<Resolver>(context)) {
 	}
@@ -57,10 +57,9 @@ namespace Network {
 		return socket_->IsOpen();
 	}
 
-	void Connection::Send(std::vector<char> buffer) {
-		Post([buffer = std::move(buffer)](Connection& connection) mutable {
-			connection.socket_->WriteAsync(std::move(buffer));
-		});
+	void Connection::Send(const Buffer& buffer) {
+		DEBUG_ASSERT(IsSynchronized());
+		socket_->WriteAsync(buffer.buffer_shared(), buffer.offset(), buffer.size(), &Connection::OnSendCompleted, shared_from_this());
 	}
 
 	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
@@ -91,10 +90,9 @@ namespace Network {
 		}
 	}
 
-	void Connection::BeginReceive() {
+	void Connection::BeginReceive(std::shared_ptr<char[]> buffer, int32_t size) {
 		DEBUG_ASSERT(IsSynchronized());
-		buffer_.resize(1024);
-		socket_->ReadAsync(buffer_, &Connection::OnReceived, shared_from_this());
+		socket_->ReadAsync(buffer, size, &Connection::OnReceived, shared_from_this());
 	}
 
 	void Connection::OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred) {
@@ -116,9 +114,8 @@ namespace Network {
 				return;
 			}
 
-			session->OnReceived(buffer_.data(), bytes_transferred);
-
-			BeginReceive();
+			session->OnReceived(bytes_transferred);
+			session->BeginReceive();
 		}
 		catch (const std::exception& e) {
 			LOG_ERROR("Connection::Receive() error: {}", e.what());
@@ -126,11 +123,26 @@ namespace Network {
 		}
 	}
 
-	void Connection::BeginSession(std::weak_ptr<Session> session) {
+	void Connection::OnSendCompleted(const boost::system::error_code& error, std::size_t bytes_transferred) {
+		DEBUG_ASSERT(IsSynchronized());
+		if (error) {
+			LOG_ERROR("Error during async_write: {}", error.message());
+		}
+
+		auto session = session_.lock();
+		if (session == nullptr) {
+			Disconnect();
+			return;
+		}
+
+		session->FlushSend(true);
+	}
+
+	void Connection::BeginSession(std::shared_ptr<Session> session) {
 		DEBUG_ASSERT(IsSynchronized());
 		session_ = session;
 		try {
-			BeginReceive();
+			session->BeginReceive();
 			ip_ = socket_->address();
 			port_ = socket_->port();
 		}

@@ -1,18 +1,21 @@
 #pragma once
 
 #include "Core/Network/Protocol.h"
+#include "Core/Network/Packet/PacketHandlerMap.h"
 
 namespace Network {
 
 	template<typename TPacket, typename TSerializer>
 	class ProtocolController : public Protocol {
 	public:
+		ProtocolController(PacketHandlerMap<TPacket>* handler_map)
+			:
+			handler_map_(handler_map) {
+		}
+
 		virtual ~ProtocolController() = default;
 
-		virtual void Send(const TPacket& packet) = 0;
-		virtual void Send(const std::shared_ptr<const TPacket>& packet) = 0;
-
-		bool ProcessMessage(const size_t& packetId, const PacketSegment& segment) override;
+		bool ProcessMessage(Session& session, const size_t& packetId, const PacketSegment& segment) override;
 
 	protected:
 		bool IsValid(const uint32_t& packetId) const {
@@ -35,11 +38,12 @@ namespace Network {
 			return TSerializer::Resolve(packet);
 		}
 
-		virtual void HandleMessage(const size_t& packetId, const std::shared_ptr<const TPacket>& packet) = 0;
+	private:
+		PacketHandlerMap<TPacket>* handler_map_;
 	};
 
 	template<typename TPacket, typename TSerializer>
-	inline bool ProtocolController<TPacket, TSerializer>::ProcessMessage(const size_t& packetId, const PacketSegment& segment) {
+	inline bool ProtocolController<TPacket, TSerializer>::ProcessMessage(Session& session, const size_t& packetId, const PacketSegment& segment) {
 		if (IsValid(packetId) == false) {
 			return false;
 		}
@@ -50,12 +54,6 @@ namespace Network {
 			return true;
 		}
 
-		HandleMessage(packetId, packet);
-		return true;
-	}
-
-	template<typename TPacket, typename TSerializer>
-	inline void ProtocolController<TPacket, TSerializer>::HandleMessage(const size_t& packetId, const std::shared_ptr<const TPacket>& packet)
-	{
+		return handler_map_->HandleMessage(session, packetId, packet);
 	}
 }

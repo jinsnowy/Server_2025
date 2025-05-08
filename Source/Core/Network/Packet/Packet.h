@@ -8,15 +8,16 @@ namespace Network {
 		static constexpr size_t Size() {
 			return sizeof(PacketHeader);
 		}
-		static constexpr size_t kMaxSize = 1 << 24; // 64MB
+
+		static constexpr size_t kMaxSize = 1 << 32;
 
 		size_t id;
-		uint32_t size;
+		size_t size;
 	};
 
 	struct PacketSegment {
 		const void* data;
-		const uint32_t length;
+		const size_t length;
 
 		const PacketHeader& header() const {
 			return *reinterpret_cast<const PacketHeader*>(data);
@@ -26,7 +27,7 @@ namespace Network {
 			return reinterpret_cast<const char*>(data) + sizeof(PacketHeader);
 		}
 
-		uint32_t body_length() const {
+		size_t body_length() const {
 			return header().size;
 		}
 	};
