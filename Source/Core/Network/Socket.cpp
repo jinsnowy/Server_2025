@@ -64,23 +64,25 @@ namespace Network {
 	}
 
 	struct WriteCompletionEvent {
-		std::vector<char> buffer;
+		Socket::SendCallback callback;
+		std::weak_ptr<Connection> weak_conn;
+		std::shared_ptr<char[]> buffer;
 		void operator()(const boost::system::error_code& error, std::size_t bytes_transferred) {
-			if (error == boost::asio::error::operation_aborted) {
+			auto conn = weak_conn.lock();
+			if (!conn) {
 				return;
 			}
-			if (error) {
-				LOG_ERROR("[SOCKET] write error: {}, bytes_transferred: {}", error.message(), bytes_transferred);
-				return;
-			}
+			conn->Post([callback = this->callback, error, bytes_transferred](Connection& conn) {
+				(conn.*callback)(error, bytes_transferred);
+			});
 		}
 	};
 
-	void Socket::WriteAsync(std::vector<char> buffer) {
+	void Socket::WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			char* data_ptr = reinterpret_cast<char*>(buffer.data());
-			std::string_view buffer_view(data_ptr, buffer.size());
-			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ std::move(buffer) });
+			char* data_ptr = buffer.get() + offset;
+			std::string_view buffer_view(data_ptr, count);
+			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer });
 		}
 		catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] write error: {}", e.what());
@@ -93,12 +95,12 @@ namespace Network {
 		}
 	}
 
-	void Socket::ReadAsync(std::string& buffer, ReadCallback callback, std::shared_ptr<Connection> conn) {
+	void Socket::ReadAsync(std::shared_ptr<char[]> buffer, int32_t size, ReadCallback callback, std::shared_ptr<Connection> conn) {
 		try {
 			boost::asio::async_read(*socket_,
-			boost::asio::buffer(buffer),
+			boost::asio::buffer(buffer.get(), size),
 			boost::asio::transfer_at_least(PacketHeader::Size()),
-			[callback, weak_conn = std::weak_ptr(conn)](const boost::system::error_code& error, std::size_t bytes_transferred) {
+			[buffer, callback, weak_conn = std::weak_ptr(conn)](const boost::system::error_code& error, std::size_t bytes_transferred) {
 				auto conn = weak_conn.lock();
 				if (conn == nullptr) {
 					return;

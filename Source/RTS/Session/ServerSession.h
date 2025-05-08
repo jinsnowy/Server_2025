@@ -12,6 +12,8 @@ namespace RTS {
 		ServerSession(std::shared_ptr<Network::Connection> conn);
 		~ServerSession();
 
+		void OnConnected();
+
 		void Send(const std::shared_ptr<const google::protobuf::Message>& message);
 		void OnMessage(const std::string& message) override;
 	};

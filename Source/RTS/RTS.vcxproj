@@ -101,8 +101,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Protocol\Protobuf.cpp" />
-    <ClCompile Include="Protocol\ProtobufDescriptor.cpp" />
+    <ClCompile Include="PacketHandler\ClientPacketHandler.cpp" />
+    <ClCompile Include="PacketHandler\ServerPacketHandler.cpp" />
+    <ClCompile Include="Protobuf\Protobuf.cpp" />
+    <ClCompile Include="Protobuf\ProtobufDescriptor.cpp" />
+    <ClCompile Include="Protobuf\ProtobufSession.cpp" />
+    <ClCompile Include="Protobuf\ProtoSerializer.cpp" />
+    <ClCompile Include="Session\ClientSession.cpp" />
     <ClCompile Include="Session\ServerSession.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -110,8 +115,13 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Protocol\Protobuf.h" />
-    <ClInclude Include="Protocol\ProtobufDescriptor.h" />
+    <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
+    <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
+    <ClInclude Include="Protobuf\Protobuf.h" />
+    <ClInclude Include="Protobuf\ProtobufDescriptor.h" />
+    <ClInclude Include="Protobuf\ProtobufSession.h" />
+    <ClInclude Include="Protobuf\ProtoSerializer.h" />
+    <ClInclude Include="Session\ClientSession.h" />
     <ClInclude Include="Session\ServerSession.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>

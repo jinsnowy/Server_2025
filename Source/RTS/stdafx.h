@@ -60,6 +60,12 @@
 #include <google/protobuf/timestamp.pb.h>
 #include <google/protobuf/util/time_util.h>
 
+namespace google {
+	namespace protobuf {
+		class Message; 
+} // namespace protobuf
+} // namespace google
+
 #ifdef NDEBUG
 #pragma comment(lib, "boost_system-vc143-mt-x64-1_88.lib")
 #pragma comment(lib, "boost_filesystem-vc143-mt-x64-1_88.lib")

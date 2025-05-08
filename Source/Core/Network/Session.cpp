@@ -4,18 +4,25 @@
 #include "Core/System/Scheduler.h"
 #include "Core/Network/Packet/Internal.h"
 #include "Core/Network/Protocol.h"
+#include "Core/Network/Buffer.h"
+#include "Core/Network/NetworkStream.h"
 
 namespace Network {
-
     Session::Session(const std::shared_ptr<System::Context>& context)
         :
-        ActorClass(System::Channel(context)) {
+        ActorClass(System::Channel(context)),
+        send_stream_(std::make_unique<SendNetworkStream>()),
+        recv_stream_(std::make_unique<RecvNetworkStream>())
+    {
     }
 
     Session::Session(std::shared_ptr<Connection> connection)
         :
         ActorClass(connection->GetChannel()),
-        connection_(connection) {
+        connection_(connection),
+        send_stream_(std::make_unique<SendNetworkStream>()),
+        recv_stream_(std::make_unique<RecvNetworkStream>())
+    {
     }
 
     Session::~Session() {
@@ -48,11 +55,12 @@ namespace Network {
         if (connection_ != nullptr) {
             connection_->Post([](Connection& conn) {
                 conn.Disconnect();
-                });
+            });
         }
     }
 
     void Session::SendMessage(const std::string& message) {
+        DEBUG_ASSERT(IsSynchronized());
         if (connection_ == nullptr) {
             return;
         }
@@ -61,15 +69,35 @@ namespace Network {
             return;
         }
 
-        std::vector<char> buffer(PacketHeader::Size() + message.size());
-        PacketHeader header = {
-            .id = InternalPacketId::kMessage,
-            .size = static_cast<uint32_t>(message.size())
-        };
-        memcpy_s(buffer.data(), PacketHeader::Size(), &header, PacketHeader::Size());
-        memcpy_s(buffer.data() + PacketHeader::Size(), message.size(), message.data(), message.size());
+        InternalMessage packet(message);
 
-        connection_->Send(std::move(buffer));
+        auto header = packet.header();
+        auto outputStream = GetOutputStream();
+        outputStream.WriteAliasedRaw(&header, sizeof(PacketHeader));
+        outputStream.WriteAliasedRaw(packet.data(), packet.length());
+
+        FlushSend();
+    }
+
+    void Session::FlushSend(bool continueOnWriter) {
+        DEBUG_ASSERT(IsSynchronized());
+        if (connection_ == nullptr) {
+            return;
+        }
+        if (continueOnWriter == false && send_stream_->is_sending == true) {
+            return;
+        }
+        if (send_stream_->buffers.empty()) {
+            send_stream_->is_sending = false;
+            return;
+        }
+        send_stream_->is_sending = true;
+        connection_->Send(send_stream_->buffers.front());
+        send_stream_->buffers.pop_front();
+    }
+
+    void Session::InstallProtocol(std::unique_ptr<Protocol> protocol) {
+        protocol_ = std::move(protocol);
     }
 
     void Session::SetProtocol(std::unique_ptr<Protocol> protocol) {
@@ -78,8 +106,20 @@ namespace Network {
 
     void Session::BeginSession() {
         DEBUG_ASSERT(IsSynchronized());
+        if (connection_ == nullptr) {
+            return;
+        }
         connection_->BeginSession(shared_from_this());
+        
+        send_stream_->is_sending = false;
+        recv_stream_->buffer.Allocate(Buffer::kDefault);
+        BeginReceive();
+
         OnConnected();
+    }
+
+    void Session::BeginReceive() {
+        connection_->BeginReceive(recv_stream_->buffer.buffer_shared(), Buffer::kDefault);
     }
 
     void Session::OnDisconnected() {
@@ -89,7 +129,7 @@ namespace Network {
     void Session::OnConnected() {
     }
 
-    bool Session::OnReceived(const char* data, size_t length) {
+    bool Session::OnReceived(size_t length) {
         DEBUG_ASSERT(IsSynchronized());
 
         if (length <= PacketHeader::Size()) {
@@ -97,13 +137,14 @@ namespace Network {
             return false;
         }
 
+        const char* data = recv_stream_->buffer.data();
         uint32_t dataLength = static_cast<uint32_t>(length);
         uint32_t readOffset = 0;
         while (dataLength > 0) {
             const char* readDataPtr = data + readOffset;
 
-            if (pending_recv_stream_.has_value()) {
-                auto& pendingStream = pending_recv_stream_.value();
+            if (recv_stream_->pending.has_value()) {
+                auto& pendingStream = recv_stream_->pending.value();
                 uint32_t currentReadableSize = std::min(pendingStream.remainSegmentLength, dataLength);
                 uint32_t currentPacketBufferOffset = pendingStream.packetBuffer.size() - pendingStream.remainSegmentLength;
                 memcpy_s(pendingStream.packetBuffer.data() + currentPacketBufferOffset, pendingStream.remainSegmentLength, readDataPtr, currentReadableSize);
@@ -112,7 +153,7 @@ namespace Network {
                     if (OnProcessPacket(PacketSegment{ pendingStream.packetBuffer.data(), static_cast<uint32_t>(pendingStream.packetBuffer.size()) }) == false) {
                         return false;
                     }
-                    pending_recv_stream_.reset();
+                    recv_stream_->pending.reset();
                 }
 
                 dataLength -= currentReadableSize;
@@ -130,7 +171,7 @@ namespace Network {
                     std::vector<char> packetBuffer(packetReadableSize);
                     memcpy_s(packetBuffer.data(), packetReadableSize, readDataPtr, dataLength);
 
-                    pending_recv_stream_.emplace(PendingRecvStream{
+                    recv_stream_->pending.emplace(PendingStream{
                         .header = *header,
                         .packetBuffer = std::move(packetBuffer),
                         .remainSegmentLength = packetReadableSize - dataLength,
@@ -170,7 +211,7 @@ namespace Network {
             return false;
         }
 
-        return protocol_->ProcessMessage(packetId, packet_segment);
+        return protocol_->ProcessMessage(*this, packetId, packet_segment);
     }
 
     void Session::OnMessage(const std::string& ){

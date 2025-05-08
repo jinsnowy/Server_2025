@@ -85,12 +85,15 @@
     <ClCompile Include="Network\Acceptor.cpp" />
     <ClCompile Include="Network\Connection.cpp" />
     <ClCompile Include="Network\Listener.cpp" />
+    <ClCompile Include="Network\OutputStream.cpp" />
     <ClCompile Include="Network\Packet\Internal.cpp" />
     <ClCompile Include="Network\Packet\Packet.cpp" />
     <ClCompile Include="Network\Packet\PacketHandlerMap.cpp" />
+    <ClCompile Include="Network\NetworkStream.cpp" />
     <ClCompile Include="Network\Protocol.cpp" />
     <ClCompile Include="Network\ProtocolController.cpp" />
     <ClCompile Include="Network\Resolver.cpp" />
+    <ClCompile Include="Network\Buffer.cpp" />
     <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Network\SessionFactory.cpp" />
     <ClCompile Include="Network\Socket.cpp" />
@@ -110,6 +113,7 @@
     <ClCompile Include="System\Scheduler.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
     <ClCompile Include="System\String.cpp" />
+    <ClCompile Include="System\TimePoint.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Concurrency\MPSC.h" />
@@ -118,12 +122,15 @@
     <ClInclude Include="Network\Acceptor.h" />
     <ClInclude Include="Network\Connection.h" />
     <ClInclude Include="Network\Listener.h" />
+    <ClInclude Include="Network\OutputStream.h" />
     <ClInclude Include="Network\Packet\Internal.h" />
     <ClInclude Include="Network\Packet\Packet.h" />
     <ClInclude Include="Network\Packet\PacketHandlerMap.h" />
+    <ClInclude Include="Network\NetworkStream.h" />
     <ClInclude Include="Network\Protocol.h" />
     <ClInclude Include="Network\ProtocolController.h" />
     <ClInclude Include="Network\Resolver.h" />
+    <ClInclude Include="Network\Buffer.h" />
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="Network\SessionFactory.h" />
     <ClInclude Include="Network\Socket.h" />
@@ -141,6 +148,7 @@
     <ClInclude Include="System\Scheduler.h" />
     <ClInclude Include="System\Singleton.h" />
     <ClInclude Include="System\String.h" />
+    <ClInclude Include="System\TimePoint.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

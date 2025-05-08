@@ -12,9 +12,6 @@ namespace RTS {
 
 	class ProtocolHelper final {
 	public:
-		template<typename THandler>
-		using PacketHandlerMapType = Tcp::Packet::PacketHandlerMap<THandler, Message, ProtoSerializer>;
-
 		template<typename TPacketHandlerMap, typename THandler, typename TPacket>
 		static void RegisterHandler(TPacketHandlerMap& handlerMap, void (*handlerFunc)(THandler&, const std::shared_ptr<const TPacket>&)) {
 			DescriptorRegistry<TPacket> registry;
