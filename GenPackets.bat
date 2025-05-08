@@ -1,4 +1,13 @@
-protoc.exe -I=./Proto/ --cpp_out=./Source/Protocol/Private ./Proto/Enum.proto
-protoc.exe -I=./Proto/ --cpp_out=./Source/Protocol/Private ./Proto/Struct.proto
-protoc.exe -I=./Proto/ --cpp_out=./Source/Protocol/Private ./Proto/User.proto
-IF ERRORLEVEL 1 PAUSE
+@echo off
+
+SET INCLUDE_PATH=../vcpkg/vcpkg/installed/x64-windows/include
+SET PROTO_SRC_PATH=./Proto
+SET OUTPUT_PATH=./Source/Protocol/Private
+
+echo COMPILING PROTO FILES TO %OUTPUT_PATH%/...
+
+protoc.exe --proto_path=%INCLUDE_PATH%;%PROTO_SRC_PATH% --cpp_out=%OUTPUT_PATH% ./Proto/*.proto
+
+echo FINISHED
+
+PAUSE

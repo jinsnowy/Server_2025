@@ -75,3 +75,7 @@
 #pragma comment(lib, "libprotobuf-lited.lib")
 #pragma comment(lib, "libprotocd.lib")
 #endif
+
+namespace google::protobuf {
+	class Message;
+} // namespace google::protobuf

@@ -27,9 +27,7 @@ public:
 protected:
     std::shared_ptr<Connection> connection_;
 
-    void SetProtocol(std::unique_ptr<Protocol> protocol) {
-        protocol_ = std::move(protocol);
-    }
+    void SetProtocol(std::unique_ptr<Protocol> protocol);
 
 private:
     friend class SessionFactory;

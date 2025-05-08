@@ -72,6 +72,10 @@ namespace Network {
         connection_->Send(std::move(buffer));
     }
 
+    void Session::SetProtocol(std::unique_ptr<Protocol> protocol) {
+        protocol_ = std::move(protocol);
+    }
+
     void Session::BeginSession() {
         DEBUG_ASSERT(IsSynchronized());
         connection_->BeginSession(shared_from_this());

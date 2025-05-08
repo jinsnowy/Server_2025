@@ -2,8 +2,6 @@
 #include "ProtobufDescriptor.h"
 
 namespace RTS {
-	using namespace google::protobuf;
-
 	class Impl : public System::Singleton<Impl> {
 	public:
 		std::unordered_map<uint32_t, const google::protobuf::Descriptor*> _descriptors;
@@ -20,7 +18,7 @@ namespace RTS {
 		}
 	};
 
-	std::vector<char> ProtoSerializer::Serialize(const Message& packet) {
+	std::vector<char> ProtoSerializer::Serialize(const google::protobuf::Message& packet) {
 		std::vector<char> buffer(packet.ByteSizeLong());
 		if (packet.SerializeToArray(buffer.data(), buffer.size()) == false) {
 			LOG_ERROR("serialize protobuf failed: {}", packet.GetTypeName());
@@ -30,15 +28,15 @@ namespace RTS {
 		return buffer;
 	}
 
-	std::shared_ptr<Message> ProtoSerializer::Deserialize(const size_t& packetId, const Network::PacketSegment& segment) {
+	std::shared_ptr<google::protobuf::Message> ProtoSerializer::Deserialize(const size_t& packetId, const Network::PacketSegment& segment) {
 		auto* descriptor = ProtocolHelper::GetDescriptor(packetId);
 		if (descriptor == nullptr) {
 			LOG_ERROR("cannot get descriptor packet_id: {}", packetId);
 			return nullptr;
 		}
 
-		const auto* prototype = MessageFactory::generated_factory()->GetPrototype(descriptor);
-		std::shared_ptr<Message> message(prototype->New());
+		const auto* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
+		std::shared_ptr<google::protobuf::Message> message(prototype->New());
 		if (message->ParseFromArray(segment.body(), segment.body_length()) == false) {
 			LOG_ERROR("parse failed packet_id: {}, name: {}", packetId, prototype->GetTypeName());
 			return nullptr;
@@ -46,7 +44,7 @@ namespace RTS {
 		return message;
 	}
 
-	uint32_t ProtoSerializer::Resolve(const Message& packet) {
+	uint32_t ProtoSerializer::Resolve(const google::protobuf::Message& packet) {
 		return packet.GetDescriptor()->options().GetExtension(type::message_id);
 	}
 
@@ -64,7 +62,7 @@ namespace RTS {
 			LOG_ERROR("cannot get descriptor packet_id: {}", packet_id);
 			return nullptr;
 		}
-		const auto* prototype = MessageFactory::generated_factory()->GetPrototype(descriptor);
+		const google::protobuf::Message* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
 		return std::shared_ptr<google::protobuf::Message>(prototype->New());
 	}
 
@@ -81,11 +79,11 @@ namespace RTS {
 		Impl::GetInstance().AddDescriptor(messageId, descriptor);
 	}
 
-	google::protobuf::Timestamp ToTimestamp(const System::Time& timepoint) {
-		return google::protobuf::util::TimeUtil::MicrosecondsToTimestamp(timepoint.ToMicroseconds());
-	}
+	//google::protobuf::Timestamp ToTimestamp(const System::Time& timepoint) {
+	//	return google::protobuf::util::TimeUtil::MicrosecondsToTimestamp(timepoint.ToMicroseconds());
+	//}
 
-	System::Time FromTimestamp(const google::protobuf::Timestamp& timestamp) {
-		return System::Time::FromMicroseconds(google::protobuf::util::TimeUtil::TimestampToMicroseconds(timestamp));
-	}
+	//System::Time FromTimestamp(const google::protobuf::Timestamp& timestamp) {
+	//	return System::Time::FromMicroseconds(google::protobuf::util::TimeUtil::TimestampToMicroseconds(timestamp));
+	//}
 }

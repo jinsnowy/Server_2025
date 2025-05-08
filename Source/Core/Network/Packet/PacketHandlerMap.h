@@ -7,36 +7,32 @@ namespace Network {
 	public:
 		using Type = PacketHandlerMap<THandler, TPacket, TPacketSerializer>;
 		using HandlerFunc = std::function<void(THandler&, const std::shared_ptr<const TPacket>&)>;
-		using Packet = TPacket;
-		using Serializer = TPacketSerializer;
-		using Handler = THandler;
 
 		template<typename T, typename = std::enable_if_t < std::is_base_of_v<TPacket, T>>>
 		using TypedHandlerFuncPointer = void(*)(THandler&, const std::shared_ptr<const T>&);
 
 	public:
-		PacketHandlerMap();
-		virtual ~PacketHandlerMap() = default;
-
 		template<typename T>
 		void RegisterHandler(size_t packetId, TypedHandlerFuncPointer<T>&& typedHandler) {
-			_handlers[packetId] = [typedHandler = std::forward<TypedHandlerFuncPointer<T>>(typedHandler)](THandler& handler, const std::shared_ptr<const TPacket>& packet) mutable {
+			static_assert(std::is_base_of_v<TPacket, T>, "T must be derived from TPacket" );
+
+			_handlers[packetId] = [typedHandler](THandler& handler, const std::shared_ptr<const TPacket>& packet) {
 				typedHandler(handler, std::static_pointer_cast<const T>(packet));
 			};
 		}
 
-		void HandleMessage(THandler& receiver, const std::shared_ptr<const TPacket>& message) {
-			size_t packetId = _serializer.Resolve(*message);
-			_handlers[packetId](receiver, message);
+		bool HandleMessage(THandler& receiver, const std::shared_ptr<const TPacket>& message) {
+			const size_t packetId = _serializer.Resolve(*message);
+			const auto it = _handlers.find(packetId);
+			if (it == _handlers.end()) {
+				return false;
+			}
+			it->second(receiver, message);
+			return true;
 		}
 
 	private:
-		Serializer _serializer;
+		TPacketSerializer _serializer;
 		std::unordered_map<size_t, HandlerFunc> _handlers;
 	};
-
-	template<typename THandler, typename TPacket, typename TPacketSerializer>
-	inline PacketHandlerMap<THandler, TPacket, TPacketSerializer>::PacketHandlerMap()
-	{
-	}
 }

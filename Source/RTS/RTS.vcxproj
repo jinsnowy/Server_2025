@@ -39,14 +39,12 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\VcpkgDebugLibrary.props" />
-    <Import Project="..\..\CppDebugLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllDebugCopy.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\VcpkgReleaseLibrary.props" />
-    <Import Project="..\..\CppReleaseLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllReleaseCopy.props" />
   </ImportGroup>

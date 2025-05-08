@@ -1,10 +1,41 @@
 syntax = "proto3";
 
-package User;
+import "google/protobuf/descriptor.proto";
 
-import "Enum.proto";
+package types;
 
-message WideString 
-{
-	string message = 1;
+enum protocol {
+	kInvalid			= 0x0;
+	kHello				= 0x1001;
+	kPingReq			= 0x1002;
+	kPingRes			= 0x1003;
+	kContentReadyReq	= 0x1004;
+	kContentReadyRes	= 0x1005;
+	kLightContentNotify = 0x1006;
+	kHeavyContentNotify = 0x1007;
+	kMapTestReq		= 0x100a;
+	kCreateCharacterReq = 0x100b;
+	kCreateCharacterRes = 0x100c;
+	kGetCharacterListReq = 0x100d;
+	kGetCharacterListRes = 0x100e;
+	kChangeCharacterNameReq = 0x100f;
+	kChangeCharacterNameRes = 0x1010;
+	kLoginReq = 0x1011;
+	kLoginRes = 0x1012;
+	kKeyValueStorage_Put = 0x1013;
+	kKeyValueStorage_Delete = 0x1014;
+	kCreateItemNotify = 0x1015;
+}
+
+extend google.protobuf.MessageOptions {
+	optional protocol message_id = 1001;
+}
+
+enum Result {
+	kSuccess = 0;
+	kUnknown = 1;
+	kInvalidRequest = 2;
+	kInvalidParameter = 3;
+	kNotFound = 4;
+	kInternalError = 5;
 }

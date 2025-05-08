@@ -3,13 +3,11 @@
 #include "Core/Network/Packet/Packet.h"
 
 namespace RTS {
-	using Message = google::protobuf::Message;
-
 	struct ProtoSerializer {
-		static std::vector<char> Serialize(const Message& packet);
-		static std::shared_ptr<Message> Deserialize(const size_t& packetId, const Network::PacketSegment& segment);
-		static uint32_t Resolve(const Message& packet);
-		static bool IsValid(const uint32_t& packetId);
+		std::vector<char> Serialize(const google::protobuf::Message& packet);
+		std::shared_ptr<google::protobuf::Message> Deserialize(const size_t& packetId, const Network::PacketSegment& segment);
+		uint32_t Resolve(const google::protobuf::Message& packet);
+		bool IsValid(const uint32_t& packetId);
 	};
 
 	class ProtocolHelper final {

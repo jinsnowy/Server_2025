@@ -1,41 +1,18 @@
 syntax = "proto3";
 
-package User;
+package user;
 
-import "Struct.proto";
+import "types.proto";
 
-message Heartbeat {
-	uint64 sessionId = 1;
-	int64 time = 2;
-}
-
-message Test {
-	bytes text = 1;
-}
-
-message LoginRequest {
+message LoginReq {
+	option (types.message_id) = kLoginReq;
 	string username = 1;
 	string password = 2;
 }
 
-message CreateAccountRequest {
-	string username = 1;
-	string password = 2;
-}
-
-message CreateAccountResponse {
-	enum Result
-	{
-		kSuccess = 0;
-		kFailure = 1;
-	}
-
-	Result result = 1;
-	string username = 2;
-	string password = 3;
-}
-
-message LoginResponse {
+message LoginRes {
+	option (types.message_id) = kLoginReq;
+	
 	enum Result {
 		kSuccess = 0;
 		kFailure = 1;
