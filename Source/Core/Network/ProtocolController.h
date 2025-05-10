@@ -1,21 +1,16 @@
 #pragma once
 
 #include "Core/Network/Protocol.h"
+#include "Core/Network/Packet/Packet.h"
 #include "Core/Network/Packet/PacketHandlerMap.h"
 
 namespace Network {
-
 	template<typename TPacket, typename TSerializer>
 	class ProtocolController : public Protocol {
 	public:
-		ProtocolController(PacketHandlerMap<TPacket>* handler_map)
-			:
-			handler_map_(handler_map) {
-		}
-
-		virtual ~ProtocolController() = default;
-
 		bool ProcessMessage(Session& session, const size_t& packetId, const PacketSegment& segment) override;
+
+		virtual bool HandleMessage(Session& session, const size_t& packetId, const std::shared_ptr<const TPacket>& message) = 0;
 
 	protected:
 		bool IsValid(const uint32_t& packetId) const {
@@ -37,9 +32,6 @@ namespace Network {
 		size_t GetPacketId(const TPacket& packet) const {
 			return TSerializer::Resolve(packet);
 		}
-
-	private:
-		PacketHandlerMap<TPacket>* handler_map_;
 	};
 
 	template<typename TPacket, typename TSerializer>
@@ -54,6 +46,6 @@ namespace Network {
 			return true;
 		}
 
-		return handler_map_->HandleMessage(session, packetId, packet);
+		return HandleMessage(session, packetId, packet);
 	}
 }

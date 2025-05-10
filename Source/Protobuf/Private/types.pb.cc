@@ -35,23 +35,23 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 const char descriptor_table_protodef_types_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\013types.proto\022\005types\032 google/protobuf/de"
-    "scriptor.proto*\316\003\n\010protocol\022\014\n\010kInvalid\020"
+    "scriptor.proto*\300\003\n\010protocol\022\014\n\010kInvalid\020"
     "\000\022\013\n\006kHello\020\201 \022\r\n\010kPingReq\020\202 \022\r\n\010kPingRe"
     "s\020\203 \022\025\n\020kContentReadyReq\020\204 \022\025\n\020kContentR"
-    "eadyRes\020\205 \022\030\n\023kLightContentNotify\020\206 \022\030\n\023"
-    "kHeavyContentNotify\020\207 \022\020\n\013kMapTestReq\020\212 "
-    "\022\030\n\023kCreateCharacterReq\020\213 \022\030\n\023kCreateCha"
-    "racterRes\020\214 \022\031\n\024kGetCharacterListReq\020\215 \022"
-    "\031\n\024kGetCharacterListRes\020\216 \022\034\n\027kChangeCha"
-    "racterNameReq\020\217 \022\034\n\027kChangeCharacterName"
-    "Res\020\220 \022\016\n\tkLoginReq\020\221 \022\016\n\tkLoginRes\020\222 \022\031"
-    "\n\024kKeyValueStorage_Put\020\223 \022\034\n\027kKeyValueSt"
-    "orage_Delete\020\224 \022\026\n\021kCreateItemNotify\020\225 *"
-    "s\n\006Result\022\014\n\010kSuccess\020\000\022\014\n\010kUnknown\020\001\022\023\n"
-    "\017kInvalidRequest\020\002\022\025\n\021kInvalidParameter\020"
-    "\003\022\r\n\tkNotFound\020\004\022\022\n\016kInternalError\020\005:H\n\n"
-    "message_id\022\037.google.protobuf.MessageOpti"
-    "ons\030\351\007 \001(\0162\017.types.protocol\210\001\001b\006proto3"
+    "eadyRes\020\205 \022\021\n\014kHelloClient\020\206 \022\021\n\014kHelloS"
+    "erver\020\207 \022\020\n\013kMapTestReq\020\212 \022\030\n\023kCreateCha"
+    "racterReq\020\213 \022\030\n\023kCreateCharacterRes\020\214 \022\031"
+    "\n\024kGetCharacterListReq\020\215 \022\031\n\024kGetCharact"
+    "erListRes\020\216 \022\034\n\027kChangeCharacterNameReq\020"
+    "\217 \022\034\n\027kChangeCharacterNameRes\020\220 \022\016\n\tkLog"
+    "inReq\020\221 \022\016\n\tkLoginRes\020\222 \022\031\n\024kKeyValueSto"
+    "rage_Put\020\223 \022\034\n\027kKeyValueStorage_Delete\020\224"
+    " \022\026\n\021kCreateItemNotify\020\225 *s\n\006Result\022\014\n\010k"
+    "Success\020\000\022\014\n\010kUnknown\020\001\022\023\n\017kInvalidReque"
+    "st\020\002\022\025\n\021kInvalidParameter\020\003\022\r\n\tkNotFound"
+    "\020\004\022\022\n\016kInternalError\020\005:H\n\nmessage_id\022\037.g"
+    "oogle.protobuf.MessageOptions\030\351\007 \001(\0162\017.t"
+    "ypes.protocol\210\001\001b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_types_2eproto_deps[1] =
     {
@@ -61,7 +61,7 @@ static ::absl::once_flag descriptor_table_types_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_types_2eproto = {
     false,
     false,
-    718,
+    704,
     descriptor_table_protodef_types_2eproto,
     "types.proto",
     &descriptor_table_types_2eproto_once,

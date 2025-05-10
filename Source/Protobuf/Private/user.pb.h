@@ -20,6 +20,7 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
+#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -54,6 +55,12 @@ struct TableStruct_user_2eproto {
 extern const ::google::protobuf::internal::DescriptorTable
     descriptor_table_user_2eproto;
 namespace user {
+class HelloClient;
+struct HelloClientDefaultTypeInternal;
+extern HelloClientDefaultTypeInternal _HelloClient_default_instance_;
+class HelloServer;
+struct HelloServerDefaultTypeInternal;
+extern HelloServerDefaultTypeInternal _HelloServer_default_instance_;
 class LoginReq;
 struct LoginReqDefaultTypeInternal;
 extern LoginReqDefaultTypeInternal _LoginReq_default_instance_;
@@ -527,6 +534,296 @@ class LoginReq final : public ::google::protobuf::Message
   union { Impl_ _impl_; };
   friend struct ::TableStruct_user_2eproto;
 };
+// -------------------------------------------------------------------
+
+class HelloServer final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:user.HelloServer) */ {
+ public:
+  inline HelloServer() : HelloServer(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(HelloServer* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(HelloServer));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR HelloServer(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline HelloServer(const HelloServer& from) : HelloServer(nullptr, from) {}
+  inline HelloServer(HelloServer&& from) noexcept
+      : HelloServer(nullptr, std::move(from)) {}
+  inline HelloServer& operator=(const HelloServer& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HelloServer& operator=(HelloServer&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HelloServer& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HelloServer* internal_default_instance() {
+    return reinterpret_cast<const HelloServer*>(
+        &_HelloServer_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 2;
+  friend void swap(HelloServer& a, HelloServer& b) { a.Swap(&b); }
+  inline void Swap(HelloServer* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HelloServer* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HelloServer* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<HelloServer>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const HelloServer& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const HelloServer& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "user.HelloServer"; }
+
+ protected:
+  explicit HelloServer(::google::protobuf::Arena* arena);
+  HelloServer(::google::protobuf::Arena* arena, const HelloServer& from);
+  HelloServer(::google::protobuf::Arena* arena, HelloServer&& from) noexcept
+      : HelloServer(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:user.HelloServer)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const HelloServer& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_user_2eproto;
+};
+// -------------------------------------------------------------------
+
+class HelloClient final : public ::google::protobuf::internal::ZeroFieldsBase
+/* @@protoc_insertion_point(class_definition:user.HelloClient) */ {
+ public:
+  inline HelloClient() : HelloClient(nullptr) {}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(HelloClient* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(HelloClient));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR HelloClient(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline HelloClient(const HelloClient& from) : HelloClient(nullptr, from) {}
+  inline HelloClient(HelloClient&& from) noexcept
+      : HelloClient(nullptr, std::move(from)) {}
+  inline HelloClient& operator=(const HelloClient& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HelloClient& operator=(HelloClient&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HelloClient& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HelloClient* internal_default_instance() {
+    return reinterpret_cast<const HelloClient*>(
+        &_HelloClient_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(HelloClient& a, HelloClient& b) { a.Swap(&b); }
+  inline void Swap(HelloClient* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HelloClient* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HelloClient* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<HelloClient>(arena);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
+  inline void CopyFrom(const HelloClient& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
+  }
+  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
+  void MergeFrom(const HelloClient& from) {
+    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
+  }
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "user.HelloClient"; }
+
+ protected:
+  explicit HelloClient(::google::protobuf::Arena* arena);
+  HelloClient(::google::protobuf::Arena* arena, const HelloClient& from);
+  HelloClient(::google::protobuf::Arena* arena, HelloClient&& from) noexcept
+      : HelloClient(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  // @@protoc_insertion_point(class_scope:user.HelloClient)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      0, 0, 0,
+      0, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const HelloClient& from_msg);
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  friend struct ::TableStruct_user_2eproto;
+};
 
 // ===================================================================
 
@@ -665,6 +962,14 @@ inline void LoginRes::_internal_set_result(::user::LoginRes_Result value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.result_ = value;
 }
+
+// -------------------------------------------------------------------
+
+// HelloServer
+
+// -------------------------------------------------------------------
+
+// HelloClient
 
 #ifdef __GNUC__
 #pragma GCC diagnostic pop

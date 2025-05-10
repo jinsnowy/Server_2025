@@ -15,29 +15,32 @@ namespace Network {
 		if (send_stream_->buffers.empty()) {
 			send_stream_->buffers.emplace_back(Buffer(Buffer::kDefault));
 		}
+
 		Buffer* send_buffer = &send_stream_->buffers.back();
-		int32_t remainSize = send_buffer->size() - send_buffer->offset();
+		int32_t remainSize = send_buffer->size() - send_buffer->end_pos();
 		if (remainSize == 0) {
 			auto& last = send_stream_->buffers.emplace_back(Buffer(Buffer::kDefault));
 			send_buffer = &last;
 			remainSize = Buffer::kDefault;
 		}
 
-		*data = send_buffer->data();
+		*data = (send_buffer->data() + send_buffer->end_pos());
 		*size = remainSize;
+		send_buffer->set_end_pos(send_buffer->end_pos() + remainSize);
+
 		return true;
 	}
 
 	void OutputStream::BackUp(int32_t count) {
 		auto& last = send_stream_->buffers.back();
-		last.set_offset(last.offset() - count);
+		last.set_end_pos(last.end_pos() - count);
 	}
 
 	int64_t OutputStream::ByteCount() const {
 		if (send_stream_->buffers.empty()) {
 			return 0;
 		}
-		return send_stream_->buffers.back().offset();
+		return send_stream_->buffers.back().end_pos() - send_stream_->buffers.back().start_pos();
 	}
 
 	bool OutputStream::WriteAliasedRaw(const void* data, int32_t size) {
@@ -55,6 +58,7 @@ namespace Network {
 			if (Next(&alloc_buffer, &alloc_size) == false) {
 				return false;
 			}
+
 			int32_t write_size = std::min(alloc_size, size);
 			memcpy_s(alloc_buffer, write_size, reinterpret_cast<const char*>(data) + offset, size);
 

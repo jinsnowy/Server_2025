@@ -29,11 +29,11 @@ public:
 
 protected:
     std::shared_ptr<Connection> connection_;
+
     void InstallProtocol(std::unique_ptr<Protocol> protocol);
 
-    void SetProtocol(std::unique_ptr<Protocol> protocol) {
-        protocol_ = std::move(protocol);
-    }
+    OutputStream GetOutputStream();
+    void FlushSend(bool continueOnWriter = false);
 
 private:
     friend class SessionFactory;
@@ -48,10 +48,10 @@ private:
     bool OnReceived(size_t length);
     bool OnProcessPacket(const PacketSegment& packet_segment);
 
+protected:
     virtual void OnConnected();
     virtual void OnDisconnected();
 
-protected: // internal packet handler;
     virtual void OnMessage(const std::string& message);
 };
 

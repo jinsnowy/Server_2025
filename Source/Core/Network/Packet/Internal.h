@@ -10,7 +10,7 @@ namespace Network {
 		kPing,
 		kPong,
 		kCount,
-	}
+	};
 
 	struct InternalMessage {
 		std::string_view message;

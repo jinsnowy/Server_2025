@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Public">
+      <UniqueIdentifier>{fbf96ee3-f49c-480b-82d8-f59b193b0ad2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Private">
+      <UniqueIdentifier>{1041a061-4f0d-490c-8b45-f4382efafb2f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Private\types.pb.cc">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\user.pb.cc">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufProtocol.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufDescriptor.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufSession.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufSerializer.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Private\types.pb.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\user.pb.h">
+      <Filter>Private</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Types.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtobufProtocol.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtobufDescriptor.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtobufSession.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtobufSerializer.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

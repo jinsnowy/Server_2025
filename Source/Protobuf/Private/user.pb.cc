@@ -80,6 +80,42 @@ struct LoginReqDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 LoginReqDefaultTypeInternal _LoginReq_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR HelloServer::HelloServer(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct HelloServerDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HelloServerDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HelloServerDefaultTypeInternal() {}
+  union {
+    HelloServer _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HelloServerDefaultTypeInternal _HelloServer_default_instance_;
+              template <typename>
+PROTOBUF_CONSTEXPR HelloClient::HelloClient(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(_class_data_.base()){}
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase() {
+}
+#endif  // PROTOBUF_CUSTOM_VTABLE
+struct HelloClientDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR HelloClientDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~HelloClientDefaultTypeInternal() {}
+  union {
+    HelloClient _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HelloClientDefaultTypeInternal _HelloClient_default_instance_;
 }  // namespace user
 static const ::_pb::EnumDescriptor* file_level_enum_descriptors_user_2eproto[1];
 static constexpr const ::_pb::ServiceDescriptor**
@@ -106,16 +142,36 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::user::LoginRes, _impl_.result_),
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::user::HelloServer, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
+        ~0u,  // no _has_bits_
+        PROTOBUF_FIELD_OFFSET(::user::HelloClient, _internal_metadata_),
+        ~0u,  // no _extensions_
+        ~0u,  // no _oneof_case_
+        ~0u,  // no _weak_field_map_
+        ~0u,  // no _inlined_string_donated_
+        ~0u,  // no _split_
+        ~0u,  // no sizeof(Split)
 };
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::user::LoginReq)},
         {10, -1, -1, sizeof(::user::LoginRes)},
+        {19, -1, -1, sizeof(::user::HelloServer)},
+        {27, -1, -1, sizeof(::user::HelloClient)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::user::_LoginReq_default_instance_._instance,
     &::user::_LoginRes_default_instance_._instance,
+    &::user::_HelloServer_default_instance_._instance,
+    &::user::_HelloClient_default_instance_._instance,
 };
 const char descriptor_table_protodef_user_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -123,7 +179,8 @@ const char descriptor_table_protodef_user_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "Req\022\020\n\010username\030\001 \001(\t\022\020\n\010password\030\002 \001(\t:"
     "\004\310>\221 \"]\n\010LoginRes\022%\n\006result\030\001 \001(\0162\025.user"
     ".LoginRes.Result\"$\n\006Result\022\014\n\010kSuccess\020\000"
-    "\022\014\n\010kFailure\020\001:\004\310>\221 b\006proto3"
+    "\022\014\n\010kFailure\020\001:\004\310>\221 \"\023\n\013HelloServer:\004\310>\207"
+    " \"\023\n\013HelloClient:\004\310>\206 b\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_user_2eproto_deps[1] =
     {
@@ -133,13 +190,13 @@ static ::absl::once_flag descriptor_table_user_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_user_2eproto = {
     false,
     false,
-    188,
+    230,
     descriptor_table_protodef_user_2eproto,
     "user.proto",
     &descriptor_table_user_2eproto_once,
     descriptor_table_user_2eproto_deps,
     1,
-    2,
+    4,
     schemas,
     file_default_instances,
     TableStruct_user_2eproto::offsets,
@@ -633,6 +690,212 @@ void LoginRes::InternalSwap(LoginRes* PROTOBUF_RESTRICT other) {
 
 ::google::protobuf::Metadata LoginRes::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class HelloServer::_Internal {
+ public:
+};
+
+HelloServer::HelloServer(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:user.HelloServer)
+}
+HelloServer::HelloServer(
+    ::google::protobuf::Arena* arena,
+    const HelloServer& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  HelloServer* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:user.HelloServer)
+}
+
+inline void* HelloServer::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) HelloServer(arena);
+}
+constexpr auto HelloServer::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(HelloServer),
+                                            alignof(HelloServer));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull HelloServer::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_HelloServer_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &HelloServer::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<HelloServer>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &HelloServer::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<HelloServer>(), &HelloServer::ByteSizeLong,
+            &HelloServer::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(HelloServer, _impl_._cached_size_),
+        false,
+    },
+    &HelloServer::kDescriptorMethods,
+    &descriptor_table_user_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* HelloServer::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> HelloServer::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::user::HelloServer>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata HelloServer::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
+class HelloClient::_Internal {
+ public:
+};
+
+HelloClient::HelloClient(::google::protobuf::Arena* arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(arena_constructor:user.HelloClient)
+}
+HelloClient::HelloClient(
+    ::google::protobuf::Arena* arena,
+    const HelloClient& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::internal::ZeroFieldsBase(arena, _class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  HelloClient* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+
+  // @@protoc_insertion_point(copy_constructor:user.HelloClient)
+}
+
+inline void* HelloClient::PlacementNew_(const void*, void* mem,
+                                        ::google::protobuf::Arena* arena) {
+  return ::new (mem) HelloClient(arena);
+}
+constexpr auto HelloClient::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(HelloClient),
+                                            alignof(HelloClient));
+}
+PROTOBUF_CONSTINIT
+PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::google::protobuf::internal::ClassDataFull HelloClient::_class_data_ = {
+    ::google::protobuf::internal::ClassData{
+        &_HelloClient_default_instance_._instance,
+        &_table_.header,
+        nullptr,  // OnDemandRegisterArenaDtor
+        nullptr,  // IsInitialized
+        &HelloClient::MergeImpl,
+        ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<HelloClient>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+        &HelloClient::SharedDtor,
+        ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<HelloClient>(), &HelloClient::ByteSizeLong,
+            &HelloClient::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+        PROTOBUF_FIELD_OFFSET(HelloClient, _impl_._cached_size_),
+        false,
+    },
+    &HelloClient::kDescriptorMethods,
+    &descriptor_table_user_2eproto,
+    nullptr,  // tracker
+};
+const ::google::protobuf::internal::ClassData* HelloClient::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(_class_data_.tc_table);
+  return _class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<0, 0, 0, 0, 2> HelloClient::_table_ = {
+  {
+    0,  // no _has_bits_
+    0, // no _extensions_
+    0, 0,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967295,  // skipmap
+    offsetof(decltype(_table_), field_names),  // no field_entries
+    0,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    _class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::user::HelloClient>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    {::_pbi::TcParser::MiniParse, {}},
+  }}, {{
+    65535, 65535
+  }},
+  // no field_entries, or aux_entries
+  {{
+  }},
+};
+
+
+
+
+
+
+
+
+::google::protobuf::Metadata HelloClient::GetMetadata() const {
+  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace user

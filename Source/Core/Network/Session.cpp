@@ -56,6 +56,7 @@ namespace Network {
             connection_->Post([](Connection& conn) {
                 conn.Disconnect();
             });
+            connection_ = nullptr;
         }
     }
 
@@ -71,12 +72,20 @@ namespace Network {
 
         InternalMessage packet(message);
 
-        auto header = packet.header();
+        const auto header = packet.header();
         auto outputStream = GetOutputStream();
-        outputStream.WriteAliasedRaw(&header, sizeof(PacketHeader));
-        outputStream.WriteAliasedRaw(packet.data(), packet.length());
+        if (outputStream.WriteAliasedRaw(&header, sizeof(PacketHeader)) == false) {
+            return;
+        }
+        if (outputStream.WriteAliasedRaw(packet.data(), packet.length()) == false) {
+            return;
+        }
 
         FlushSend();
+    }
+
+    OutputStream Session::GetOutputStream() {
+        return OutputStream(*send_stream_);
     }
 
     void Session::FlushSend(bool continueOnWriter) {
@@ -84,23 +93,33 @@ namespace Network {
         if (connection_ == nullptr) {
             return;
         }
+
         if (continueOnWriter == false && send_stream_->is_sending == true) {
             return;
         }
-        if (send_stream_->buffers.empty()) {
+
+        if (send_stream_->buffers.empty() || send_stream_->buffers.front().IsEmpty()) {
             send_stream_->is_sending = false;
             return;
         }
+
+        auto& buffer = send_stream_->buffers.front();
+        if (buffer.GetByteCount() < 0) {
+            LOG_ERROR("[SESSION] FlushSend: invalid buffer size : {}", buffer.GetByteCount());
+            Disconnect();
+            return;
+        }
+
         send_stream_->is_sending = true;
-        connection_->Send(send_stream_->buffers.front());
-        send_stream_->buffers.pop_front();
+        connection_->Send(buffer);
+
+        buffer.set_start_pos(buffer.end_pos());
+        if (buffer.GetRemainingByteCount() <= PacketHeader::Size()) {
+			send_stream_->buffers.pop_front();
+		}
     }
 
     void Session::InstallProtocol(std::unique_ptr<Protocol> protocol) {
-        protocol_ = std::move(protocol);
-    }
-
-    void Session::SetProtocol(std::unique_ptr<Protocol> protocol) {
         protocol_ = std::move(protocol);
     }
 
@@ -113,8 +132,8 @@ namespace Network {
         
         send_stream_->is_sending = false;
         recv_stream_->buffer.Allocate(Buffer::kDefault);
-        BeginReceive();
 
+        BeginReceive();
         OnConnected();
     }
 
@@ -123,7 +142,6 @@ namespace Network {
     }
 
     void Session::OnDisconnected() {
-        connection_ = nullptr;
     }
 
     void Session::OnConnected() {
@@ -132,7 +150,7 @@ namespace Network {
     bool Session::OnReceived(size_t length) {
         DEBUG_ASSERT(IsSynchronized());
 
-        if (length <= PacketHeader::Size()) {
+        if (length < PacketHeader::Size()) {
             LOG_ERROR("[SESSION] OnReceived: invalid length is too small : {}", length);
             return false;
         }
@@ -180,7 +198,7 @@ namespace Network {
                     return true;
                 }
 
-                if (OnProcessPacket(PacketSegment{ data, packetReadableSize }) == false) {
+                if (OnProcessPacket(PacketSegment{ readDataPtr, packetReadableSize }) == false) {
                     return false;
                 }
 
@@ -204,7 +222,7 @@ namespace Network {
                 return false;
             }
 
-            return false;
+            return true;
         }
 
         if (protocol_ == nullptr) {

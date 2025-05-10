@@ -73,6 +73,7 @@ namespace Log {
             if (log_queue_.TryPop(message)) {
                 log_file_ << std::move(message) << std::endl;
                 fprintf_s(stdout, "%s\n", message.c_str());
+                fflush(stdout);
             } else {
                 std::this_thread::sleep_for(std::chrono::milliseconds(100));
             }

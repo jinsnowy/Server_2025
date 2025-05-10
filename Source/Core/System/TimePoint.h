@@ -21,6 +21,8 @@ namespace System {
 
 		static TimePoint Current();
 
+		friend TimePoint::Duration operator-(const TimePoint& lhs, const TimePoint& rhs);
+
 		TimePoint(const std::chrono::steady_clock::time_point& timepoint);
 		
 		TimePoint::Duration operator-(const TimePoint& rhs) const {

@@ -23,8 +23,13 @@
 #include "Core/ThirdParty/BoostAsio.h"
 
 #ifdef _WIN32
+
+#ifndef WIN32_LEAN_AND_MEAN
 #define WIN32_LEAN_AND_MEAN
+#endif // !WIN32_LEAN_AND_MEAN
+#ifndef NOMINMAX
 #define NOMINMAX
+#endif // !NOMINMAX
 #include <sdkddkver.h>
 #include <windows.h>
 #pragma comment(lib, "Ws2_32.lib")

@@ -9,7 +9,7 @@ namespace Network {
 			return sizeof(PacketHeader);
 		}
 
-		static constexpr size_t kMaxSize = 1 << 32;
+		static constexpr size_t kMaxSize = 1ULL << 32;
 
 		size_t id;
 		size_t size;

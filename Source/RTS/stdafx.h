@@ -70,16 +70,10 @@ namespace google {
 #pragma comment(lib, "boost_system-vc143-mt-x64-1_88.lib")
 #pragma comment(lib, "boost_filesystem-vc143-mt-x64-1_88.lib")
 #pragma comment(lib, "boost_locale-vc143-mt-x64-1_88.lib")
-#pragma comment(lib, "libprotobuf.lib")
-#pragma comment(lib, "libprotobuf-lite.lib")
-#pragma comment(lib, "libprotoc.lib")
 #else
 #pragma comment(lib, "boost_system-vc143-mt-gd-x64-1_88.lib")
 #pragma comment(lib, "boost_filesystem-vc143-mt-gd-x64-1_88.lib")
 #pragma comment(lib, "boost_locale-vc143-mt-gd-x64-1_88.lib")
-#pragma comment(lib, "libprotobufd.lib")
-#pragma comment(lib, "libprotobuf-lited.lib")
-#pragma comment(lib, "libprotocd.lib")
 #endif
 
 namespace google::protobuf {

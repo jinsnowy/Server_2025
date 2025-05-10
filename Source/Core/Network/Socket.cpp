@@ -80,7 +80,7 @@ namespace Network {
 
 	void Socket::WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			char* data_ptr = buffer.get() + offset;
+			const char* data_ptr = buffer.get() + offset;
 			std::string_view buffer_view(data_ptr, count);
 			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer });
 		}

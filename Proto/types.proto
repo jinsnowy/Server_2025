@@ -11,8 +11,8 @@ enum protocol {
 	kPingRes			= 0x1003;
 	kContentReadyReq	= 0x1004;
 	kContentReadyRes	= 0x1005;
-	kLightContentNotify = 0x1006;
-	kHeavyContentNotify = 0x1007;
+	kHelloClient = 0x1006;
+	kHelloServer = 0x1007;
 	kMapTestReq		= 0x100a;
 	kCreateCharacterReq = 0x100b;
 	kCreateCharacterRes = 0x100c;

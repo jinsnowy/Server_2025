@@ -39,12 +39,14 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\VcpkgDebugLibrary.props" />
+    <Import Project="..\..\protobuf_debug_library.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllDebugCopy.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
     <Import Project="..\..\VcpkgReleaseLibrary.props" />
+    <Import Project="..\..\protobuf_release_library.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllReleaseCopy.props" />
   </ImportGroup>
@@ -103,10 +105,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacketHandler\ClientPacketHandler.cpp" />
     <ClCompile Include="PacketHandler\ServerPacketHandler.cpp" />
-    <ClCompile Include="Protobuf\Protobuf.cpp" />
-    <ClCompile Include="Protobuf\ProtobufDescriptor.cpp" />
-    <ClCompile Include="Protobuf\ProtobufSession.cpp" />
-    <ClCompile Include="Protobuf\ProtoSerializer.cpp" />
+    <ClCompile Include="Protocol\ClientHandlerMap.cpp" />
+    <ClCompile Include="Protocol\ClientProtocol.cpp" />
+    <ClCompile Include="Protocol\ServerHandlerMap.cpp" />
+    <ClCompile Include="Protocol\ServerProtocol.cpp" />
     <ClCompile Include="Session\ClientSession.cpp" />
     <ClCompile Include="Session\ServerSession.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -117,10 +119,10 @@
   <ItemGroup>
     <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
     <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
-    <ClInclude Include="Protobuf\Protobuf.h" />
-    <ClInclude Include="Protobuf\ProtobufDescriptor.h" />
-    <ClInclude Include="Protobuf\ProtobufSession.h" />
-    <ClInclude Include="Protobuf\ProtoSerializer.h" />
+    <ClInclude Include="Protocol\ClientHandlerMap.h" />
+    <ClInclude Include="Protocol\ClientProtocol.h" />
+    <ClInclude Include="Protocol\ServerHandlerMap.h" />
+    <ClInclude Include="Protocol\ServerProtocol.h" />
     <ClInclude Include="Session\ClientSession.h" />
     <ClInclude Include="Session\ServerSession.h" />
     <ClInclude Include="stdafx.h" />
@@ -128,6 +130,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">
       <Project>{4e587711-023b-46e5-a980-e1d4d5c6c398}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Protobuf\Protobuf.vcxproj">
+      <Project>{fd9e0d0a-0a75-4881-b957-27f3be272da9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -59,13 +59,13 @@ namespace Network {
 
 	void Connection::Send(const Buffer& buffer) {
 		DEBUG_ASSERT(IsSynchronized());
-		socket_->WriteAsync(buffer.buffer_shared(), buffer.offset(), buffer.size(), &Connection::OnSendCompleted, shared_from_this());
+		socket_->WriteAsync(buffer.buffer_shared(), buffer.start_pos(), buffer.GetByteCount(), &Connection::OnSendCompleted, shared_from_this());
 	}
 
 	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
-			LOG_ERROR("[CONNECTION] resolve to {} failed {}", ToString(), error.to_string());
+			LOG_ERROR("[CONNECTION] resolve to {} failed by {}", ToString(), error.message());
 			return;
 		}
 
@@ -75,12 +75,12 @@ namespace Network {
 	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
-			LOG_ERROR("[CONNECTION] connect to {} failed {}", ToString(), error.to_string());
+			LOG_ERROR("[CONNECTION] connect to {} failed by {}", ToString(), error.to_string());
 			return;
 		}
 
-		socket_->SetOption(boost::asio::socket_base::keep_alive(true));
-		socket_->SetOption(boost::asio::socket_base::linger(true, 0));
+		socket_->socket().set_option(boost::asio::socket_base::keep_alive(true));
+		socket_->socket().set_option(boost::asio::socket_base::linger(true, 0));
 
 		ip_ = endpoint.address().to_string();
 		port_ = endpoint.port();
@@ -92,18 +92,30 @@ namespace Network {
 
 	void Connection::BeginReceive(std::shared_ptr<char[]> buffer, int32_t size) {
 		DEBUG_ASSERT(IsSynchronized());
+		if (!buffer || size <= 0) {
+			LOG_ERROR("[CONNECTION] BeginReceive: invalid buffer");
+			return;
+		}
+
 		socket_->ReadAsync(buffer, size, &Connection::OnReceived, shared_from_this());
 	}
 
 	void Connection::OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred) {
 		DEBUG_ASSERT(IsSynchronized());
-		if (error) {
-			LOG_ERROR("Error during async_read: {}", error.message());
+
+		if (socket_->IsOpen() == false) {
+			Disconnect();
 			return;
 		}
 
 		if (bytes_transferred == 0) {
 			Disconnect();
+			return;
+		}
+
+		if (error) {
+			Disconnect();
+			LOG_ERROR("Error during async_read: error_code: {}, message: {}", error.value(), error.message());
 			return;
 		}
 
@@ -114,7 +126,12 @@ namespace Network {
 				return;
 			}
 
-			session->OnReceived(bytes_transferred);
+			if (session->OnReceived(bytes_transferred) == false) {
+				LOG_ERROR("[CONNECTION] OnReceived failed");
+				Disconnect();
+				return;
+			}
+
 			session->BeginReceive();
 		}
 		catch (const std::exception& e) {
@@ -141,15 +158,8 @@ namespace Network {
 	void Connection::BeginSession(std::shared_ptr<Session> session) {
 		DEBUG_ASSERT(IsSynchronized());
 		session_ = session;
-		try {
-			session->BeginReceive();
-			ip_ = socket_->address();
-			port_ = socket_->port();
-		}
-		catch (const std::exception& e) {
-			LOG_ERROR("Connection::SetSession() error: {}", e.what());
-			Disconnect();
-		}
+		ip_ = socket_->address();
+		port_ = socket_->port();
 	}
 
 	std::string Connection::ToString() const {

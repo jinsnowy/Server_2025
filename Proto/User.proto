@@ -20,3 +20,11 @@ message LoginRes {
 
 	Result result = 1;
 }
+
+message HelloServer {
+	option (types.message_id) = kHelloServer;
+}
+
+message HelloClient {
+	option (types.message_id) = kHelloClient;
+}

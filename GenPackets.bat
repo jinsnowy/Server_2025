@@ -2,7 +2,7 @@
 
 SET INCLUDE_PATH=../vcpkg/vcpkg/installed/x64-windows/include
 SET PROTO_SRC_PATH=./Proto
-SET OUTPUT_PATH=./Source/Protocol/Private
+SET OUTPUT_PATH=./Source/Protobuf/Private
 
 echo COMPILING PROTO FILES TO %OUTPUT_PATH%/...
 

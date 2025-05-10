@@ -24,9 +24,9 @@ namespace Network {
 
     void Listener::Listen() {
         DEBUG_ASSERT(IsSynchronized());
-        Accept();
         is_listening_ = true;
         acceptor_->Listen();
+        Accept();
     }
 
     void Listener::Stop() {

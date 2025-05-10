@@ -6,15 +6,6 @@
     <ClCompile Include="Session\ServerSession.cpp">
       <Filter>Session</Filter>
     </ClCompile>
-    <ClCompile Include="Protobuf\Protobuf.cpp">
-      <Filter>Protobuf</Filter>
-    </ClCompile>
-    <ClCompile Include="Protobuf\ProtobufDescriptor.cpp">
-      <Filter>Protobuf</Filter>
-    </ClCompile>
-    <ClCompile Include="Protobuf\ProtoSerializer.cpp">
-      <Filter>Protobuf</Filter>
-    </ClCompile>
     <ClCompile Include="Session\ClientSession.cpp">
       <Filter>Session</Filter>
     </ClCompile>
@@ -24,23 +15,23 @@
     <ClCompile Include="PacketHandler\ServerPacketHandler.cpp">
       <Filter>PacketHandler</Filter>
     </ClCompile>
-    <ClCompile Include="Protobuf\ProtobufSession.cpp">
-      <Filter>Protobuf</Filter>
+    <ClCompile Include="Protocol\ClientProtocol.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientHandlerMap.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ServerProtocol.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ServerHandlerMap.cpp">
+      <Filter>Protocol</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Session\ServerSession.h">
       <Filter>Session</Filter>
-    </ClInclude>
-    <ClInclude Include="Protobuf\Protobuf.h">
-      <Filter>Protobuf</Filter>
-    </ClInclude>
-    <ClInclude Include="Protobuf\ProtobufDescriptor.h">
-      <Filter>Protobuf</Filter>
-    </ClInclude>
-    <ClInclude Include="Protobuf\ProtoSerializer.h">
-      <Filter>Protobuf</Filter>
     </ClInclude>
     <ClInclude Include="Session\ClientSession.h">
       <Filter>Session</Filter>
@@ -51,19 +42,28 @@
     <ClInclude Include="PacketHandler\ServerPacketHandler.h">
       <Filter>PacketHandler</Filter>
     </ClInclude>
-    <ClInclude Include="Protobuf\ProtobufSession.h">
-      <Filter>Protobuf</Filter>
+    <ClInclude Include="Protocol\ClientProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientHandlerMap.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ServerProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ServerHandlerMap.h">
+      <Filter>Protocol</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Session">
       <UniqueIdentifier>{1d287964-289e-47df-9105-97b68131d85b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Protobuf">
-      <UniqueIdentifier>{a4c6b4a1-943f-4584-809c-621760e06394}</UniqueIdentifier>
-    </Filter>
     <Filter Include="PacketHandler">
       <UniqueIdentifier>{ed5e0f3b-97e3-47cd-8be0-d1fd33bc2f62}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{a4c6b4a1-943f-4584-809c-621760e06394}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

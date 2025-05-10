@@ -1,34 +1,46 @@
 #include "stdafx.h"
 #include "ServerSession.h"
-#include "Protobuf/Protobuf.h"
-#include "PacketHandler/ServerPacketHandler.h"
+#include "Protocol/ServerProtocol.h"
+#include "Protocol/ServerHandlerMap.h"
+#include "Protobuf/Public/User.h"
 
 namespace RTS {
+	int ServerSession::session_id_counter_ = 1;
+
 	ServerSession::ServerSession(std::shared_ptr<Network::Connection> conn)
 		:
-		Network::Session(std::move(conn)) {
+		Protobuf::ProtobufSession(std::move(conn)) {
 	}
 
 	ServerSession::~ServerSession() {
 	}
 
 	void ServerSession::OnConnected() {
-		InstallProtocol(std::make_unique<ProtobufProtocol>(&ServerPacketHandler::GetInstance()));
-	}
+		session_id_ = session_id_counter_++;
 
-	void ServerSession::Send(const std::shared_ptr<const google::protobuf::Message>& message) {
-		std::string data;
-		if (!message->SerializeToString(&data)) {
-			return;
-		}
+		LOG_INFO("ServerSession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());
 
-		SendMessage(data);
+		InstallProtobuf();
+
+		Send(user::HelloClient{});
 	}
 
 	void ServerSession::OnMessage(const std::string& message) {
 		LOG_INFO("ServerSession::OnMessage: {}", message.c_str());
 
 		SendMessage("Hello, client!");
+	}
+
+	void ServerSession::InstallProtobuf() {
+		InstallProtocol(std::make_unique<ServerProtocol>());
+	}
+
+	static void OnHelloServer(ServerSession& session, const std::shared_ptr<const user::HelloServer>& message) {
+		LOG_INFO("ServerSession::OnHelloServer session_id:{}, address:{}", session.session_id(), session.connection()->ToString());
+	}
+
+	void ServerSession::RegisterHandler(ServerHandlerMap* handler_map) {
+		handler_map->Register(OnHelloServer);
 	}
 }
 

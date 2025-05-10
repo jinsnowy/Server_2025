@@ -2,33 +2,15 @@
 #include "Core/System/Program.h"
 #include "RTS/Session/ServerSession.h"
 #include "RTS/Session/ClientSession.h"
+#include "RTS/Protocol/ServerProtocol.h"
+#include "RTS/Protocol/ClientProtocol.h"
+#include "RTS/Protocol/ServerHandlerMap.h"
+#include "RTS/Protocol/ClientHandlerMap.h"
 
-int session_id_counter_ = 1;
-std::atomic<int> session_id_counter_client_ = 1;
-
-class HelloSession : public RTS::ServerSession {
-public:
-    HelloSession(std::shared_ptr<Network::Connection> conn)
-        :
-        RTS::ServerSession(conn) {
-        session_id_ = session_id_counter_++;
-    }
-
-    void OnConnected() override {
-        LOG_INFO("HelloSession::OnConnect session_id:{}, address:{}", session_id_, connection()->ToString());
-    }
-
-    void OnDisconnected() override {
-        LOG_INFO("HelloSession::OnDisconnect session_id:{}, address:{}", session_id_, connection()->ToString());
-    }
-
-private:
-    int session_id_;
-};
-
+using namespace RTS;
 
 std::shared_ptr<Network::Listener> listener_;
-std::vector<std::shared_ptr<HelloSession>> hello_sessions_;
+std::vector<std::shared_ptr<RTS::ServerSession>> server_sessions_;
 std::vector<std::shared_ptr<RTS::ClientSession>> client_sessions_;
 
 void ConnectMany(int32_t count) {
@@ -42,14 +24,18 @@ void ConnectMany(int32_t count) {
 }
 
 int main() {
+
     System::Scheduler::Launch(32);
 
+    ServerSession::RegisterHandler(&ServerHandlerMap::GetInstance());
+    ClientSession::RegisterHandler(&ClientHandlerMap::GetInstance());
+
     Network::SessionFactory session_factory;
-    session_factory.SetSessionClass<HelloSession>();
+    session_factory.SetSessionClass<RTS::ServerSession>();
     session_factory.OnConnect([](std::shared_ptr<Network::Session> session) {
-        hello_sessions_.push_back(std::static_pointer_cast<HelloSession>(session));
+        server_sessions_.push_back(std::static_pointer_cast<RTS::ServerSession>(session));
         return true;
-    });
+        });
 
     auto& scheduler = System::Scheduler::RoundRobin();
     scheduler.Post([session_factory]() {
@@ -58,9 +44,9 @@ int main() {
         listener_->Bind("0.0.0.0", 8080);
         listener_->Listen();
     });
-  
+
     scheduler.Post([]() {
-        ConnectMany(100);
+        ConnectMany(1);
     });
 
     System::Program::Wait();

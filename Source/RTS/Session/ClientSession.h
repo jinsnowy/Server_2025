@@ -1,35 +1,27 @@
 #pragma once
 
+#include "Protobuf/Public/ProtobufSession.h"
+
 namespace RTS {
-    class ClientSession : public Network::Session {
+    class ClientHandlerMap;
+    class ClientSession : public Protobuf::ProtobufSession {
     public:
-        ClientSession(std::shared_ptr<Network::Connection> conn)
-            :
-            Network::Session(std::move(conn)) {
-        }
+        ClientSession(std::shared_ptr<Network::Connection> conn);
 
-        void OnConnected() override {
-            session_id_ = session_id_counter_++;
-
-            LOG_INFO("ClientSession::OnConnect sesion_id:{}", session_id_);
-
-            SendMessage("Hello, server!");
-
-            InstallProtobuf();
-        }
+        void OnConnected() override ;
 
         void OnDisconnected() override {
-            LOG_INFO("ClientSession::OnDisconnect");
+            LOG_INFO("ClientSession::OnDisconnected session_id:{}, address:{}", session_id_, connection()->ToString());
         }
 
-        void OnMessage(const std::string& message) override {
-            LOG_INFO("ClientSession::OnMessage: {}", message.c_str());
-        }
+        void OnMessage(const std::string& message) override;
 
         int32_t session_id() const { return session_id_; }
 
+        static void RegisterHandler(ClientHandlerMap* handler_map);
+
     private:
-        int session_id_;
+        int session_id_ = 0;
         static int session_id_counter_;
 
         void InstallProtobuf();

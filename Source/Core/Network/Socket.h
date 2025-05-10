@@ -20,11 +20,6 @@ public:
 	bool IsOpen() const;
 	void Close();
 
-	template<typename Option>
-	void SetOption(const Option& option){
-		socket_->set_option(option);
-	}
-
 	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn);
 	void WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn);
 	void ReadAsync(std::shared_ptr<char[]> buffer, int32_t size, ReadCallback callback, std::shared_ptr<Connection> conn);
