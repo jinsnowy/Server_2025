@@ -4,14 +4,12 @@
 #include "Protobuf/Public/Types.h"
 
 namespace Protobuf {
-	std::vector<char> ProtobufSerializer::Serialize(const google::protobuf::Message& packet) {
-		std::vector<char> buffer(packet.ByteSizeLong());
-		if (packet.SerializeToArray(buffer.data(), buffer.size()) == false) {
+	bool ProtobufSerializer::Serialize(const google::protobuf::Message& packet, void** out_buffer, int32_t buffer_size) {
+		if (packet.SerializeToArray(out_buffer, buffer_size) == false) {
 			LOG_ERROR("serialize protobuf failed: {}", packet.GetTypeName());
-			return{};
+			return false;
 		}
-
-		return buffer;
+		return true;
 	}
 
 	std::shared_ptr<google::protobuf::Message> ProtobufSerializer::Deserialize(const size_t& packetId, const Network::PacketSegment& segment) {

@@ -8,9 +8,10 @@ namespace System {
 
 namespace Network {
 class Connection;
+class Session;
 class Socket {
 public:
-	using ConnectCallback = void (Connection::*)(const boost::system::error_code&, const boost::asio::ip::tcp::endpoint&);
+	using ConnectCallback = void (Connection::*)(const boost::system::error_code&, const boost::asio::ip::tcp::endpoint&, std::shared_ptr<Session>);
 	using ReadCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
 	using SendCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
 
@@ -20,7 +21,7 @@ public:
 	bool IsOpen() const;
 	void Close();
 
-	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn);
+	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn, std::shared_ptr<Session> session);
 	void WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn);
 	void ReadAsync(std::shared_ptr<char[]> buffer, int32_t size, ReadCallback callback, std::shared_ptr<Connection> conn);
 
@@ -30,8 +31,8 @@ public:
 	std::shared_ptr<System::Context>& context() { return context_; }
 	const std::shared_ptr<System::Context>& context() const { return context_; }
 
-	boost::asio::ip::tcp::socket& socket() { return *socket_; }
-	const boost::asio::ip::tcp::socket& socket() const { return *socket_; }
+	boost::asio::ip::tcp::socket& raw_socket() { return *socket_; }
+	const boost::asio::ip::tcp::socket& raw_socket() const { return *socket_; }
 
 private:
 	std::unique_ptr<boost::asio::ip::tcp::socket> socket_;

@@ -34,4 +34,28 @@ namespace Network {
 		int32_t end_pos_;
 		int32_t size_;
 	};
+
+	class BufferWriter {
+	public:
+		BufferWriter(Network::Buffer& buffer)
+			:
+			buffer_(buffer) {
+		}
+
+		void Write(const void* data, size_t size) {
+			::memcpy_s(buffer_.data() + buffer_.end_pos(), buffer_.size() - buffer_.end_pos(), data, size);
+			buffer_.set_end_pos(buffer_.end_pos() + size);
+		}
+
+		void* data_ptr() {
+			return buffer_.data() + buffer_.end_pos();
+		}
+
+		size_t remaining_size() const {
+			return buffer_.GetRemainingByteCount();
+		}
+
+	private:
+		Buffer& buffer_;
+	};
 }

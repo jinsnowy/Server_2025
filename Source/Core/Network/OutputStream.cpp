@@ -59,7 +59,7 @@ namespace Network {
 				return false;
 			}
 
-			int32_t write_size = std::min(alloc_size, size);
+			const int32_t write_size = std::min(alloc_size, size);
 			memcpy_s(alloc_buffer, write_size, reinterpret_cast<const char*>(data) + offset, size);
 
 			int32_t remain_size = alloc_size - write_size;

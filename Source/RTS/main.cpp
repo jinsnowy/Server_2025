@@ -16,8 +16,7 @@ std::vector<std::shared_ptr<RTS::ClientSession>> client_sessions_;
 void ConnectMany(int32_t count) {
     auto& scheduler = System::Scheduler::Current();
     for (int32_t i = 0; i < count; ++i) {
-        auto connection = std::make_shared<Network::Connection>(scheduler.GetContext());
-        auto session = std::make_shared<RTS::ClientSession>(connection);
+        auto session = std::make_shared<RTS::ClientSession>();
         session->Connect("127.0.0.1", 8080);
         client_sessions_.push_back(session);
     }
@@ -35,7 +34,7 @@ int main() {
     session_factory.OnConnect([](std::shared_ptr<Network::Session> session) {
         server_sessions_.push_back(std::static_pointer_cast<RTS::ServerSession>(session));
         return true;
-        });
+    });
 
     auto& scheduler = System::Scheduler::RoundRobin();
     scheduler.Post([session_factory]() {

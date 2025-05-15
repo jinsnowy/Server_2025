@@ -35,7 +35,7 @@ namespace Network {
 		auto any_context = any_scheduler.GetContext();
 		auto socket = std::make_unique<Network::Socket>(any_context);
 		auto socket_ptr = socket.get();
-		acceptor_->async_accept(socket_ptr->socket(), [socket=std::move(socket), callback, weak_listener = std::weak_ptr(listener)](const boost::system::error_code& error) mutable {
+		acceptor_->async_accept(socket_ptr->raw_socket(), [socket=std::move(socket), callback, weak_listener = std::weak_ptr(listener)](const boost::system::error_code& error) mutable {
 			auto listener = weak_listener.lock();
 			if (listener == nullptr) {
 				return;

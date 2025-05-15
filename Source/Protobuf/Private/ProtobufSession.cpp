@@ -3,6 +3,8 @@
 #include "Protobuf/Public/ProtobufSerializer.h"
 #include "Protobuf/Public/ProtobufProtocol.h"
 #include "Core/Network/Packet/Packet.h"
+#include "Core/Network/Buffer.h"
+#include "Core/Network/OutputStream.h"
 
 namespace Protobuf {
 	struct ZeroCopyOutputStream  : public google::protobuf::io::ZeroCopyOutputStream {
@@ -43,9 +45,9 @@ namespace Protobuf {
 		Network::Session(context) {
 	}
 	
-	ProtobufSession::ProtobufSession(std::shared_ptr<Network::Connection> connection)
+	ProtobufSession::ProtobufSession()
 		:
-		Network::Session(std::move(connection)) {
+		Network::Session() {
 	}
 
 	void ProtobufSession::OnConnected() {
@@ -54,39 +56,25 @@ namespace Protobuf {
 
 	void ProtobufSession::Send(const google::protobuf::Message& message) {
 		size_t message_id = ProtobufSerializer::Resolve(message);
-		Post([serialized_string = message.SerializeAsString(), message_id](ProtobufSession& session) { // google::protobuf::Message 16bytes
-			auto header = Network::PacketHeader{
-				.id = message_id,
-				.size = serialized_string.size()
-			};
-			auto outputStream = ZeroCopyOutputStream(session.GetOutputStream());
-			outputStream.WriteHeader(header);
-			if (serialized_string.size() > 0) {
-				if (outputStream.WriteAliasedRaw(serialized_string.data(), serialized_string.size()) == false) {
-					LOG_ERROR("[SESSION] Send: WriteAliasedRaw failed");
-					return;
-				}
-			}
-		
-			session.FlushSend();
-		});
+		size_t message_size = message.ByteSizeLong();
+
+		Network::PacketHeader header = Network::PacketHeader{
+			.id = message_id,
+			.size = message_size
+		};
+
+		Network::Buffer buffer(message_size + sizeof(Network::PacketHeader));
+		Network::BufferWriter writer(buffer);
+		writer.Write(&header, sizeof(Network::PacketHeader));
+		if (message.SerializeToArray(writer.data_ptr(), writer.remaining_size()) == false) {
+			LOG_ERROR("[SESSION] Send: SerializeToArray failed");
+			return;
+		}
+		Network::Session::Send(buffer);
 	}
 
 	void ProtobufSession::Send(const std::shared_ptr<const google::protobuf::Message>& message) {
-		Post([message](ProtobufSession& session) {
-			auto header = Network::PacketHeader{
-				.id = ProtobufSerializer::Resolve(*message),
-				.size = message->ByteSizeLong()
-			};
-			
-			auto outputStream = ZeroCopyOutputStream(session.GetOutputStream());
-			outputStream.WriteHeader(header);
-			if (message->SerializeToZeroCopyStream(&outputStream) == false) {
-				LOG_ERROR("[SESSION] Send: SerializeToZeroCopyStream failed");
-				return;
-			}
-			session.FlushSend();
-		});
+		Send(*message);
 	}
 }
 

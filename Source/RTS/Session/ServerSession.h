@@ -10,13 +10,13 @@ namespace RTS {
 	class ServerHandlerMap;
 	class ServerSession : public Protobuf::ProtobufSession {
 	public:
-		ServerSession(std::shared_ptr<Network::Connection> conn);
+		ServerSession();
 		~ServerSession();
 
 		void OnConnected();
 
 		void OnDisconnected() {
-			LOG_INFO("ServerSession::OnDisconnect session_id:{}, address:{}", session_id_, connection()->ToString());
+			LOG_INFO("ServerSession::OnDisconnect session_id:{}", session_id_);
 		}
 
 		void OnMessage(const std::string& message) override;

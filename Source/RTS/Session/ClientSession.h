@@ -6,7 +6,7 @@ namespace RTS {
     class ClientHandlerMap;
     class ClientSession : public Protobuf::ProtobufSession {
     public:
-        ClientSession(std::shared_ptr<Network::Connection> conn);
+        ClientSession();
 
         void OnConnected() override ;
 

@@ -33,8 +33,8 @@ namespace Network {
 	};
 
 	template<typename T, typename TPacket>
-	concept PacketSerializer = requires(T serializer, const TPacket & packet, const size_t & packet_id, const PacketSegment & segment) {
-		{ T::Serialize(packet) } -> std::same_as<std::vector<char>>;
+	concept PacketSerializer = requires(T serializer, const TPacket & packet, const size_t & packet_id, const PacketSegment & segment, void* out_buffer, int32_t buffer_size) {
+		{ T::Serialize(packet, &out_buffer, buffer_size) } -> std::same_as<bool>;
 		{ T::Deserialize(packet_id, segment) } -> std::same_as<std::shared_ptr<TPacket>>;
 		{ T::Resolve(packet) } -> std::same_as<size_t>;
 		{ T::IsValid(packet_id) } -> std::same_as<bool>;

@@ -7,9 +7,8 @@
 namespace RTS {
 	int ServerSession::session_id_counter_ = 1;
 
-	ServerSession::ServerSession(std::shared_ptr<Network::Connection> conn)
-		:
-		Protobuf::ProtobufSession(std::move(conn)) {
+	ServerSession::ServerSession()
+	{
 	}
 
 	ServerSession::~ServerSession() {
@@ -28,7 +27,7 @@ namespace RTS {
 	void ServerSession::OnMessage(const std::string& message) {
 		LOG_INFO("ServerSession::OnMessage: {}", message.c_str());
 
-		SendMessage("Hello, client!");
+		SendInternalMessage("Hello, client!");
 	}
 
 	void ServerSession::InstallProtobuf() {
