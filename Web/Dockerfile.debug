@@ -1,0 +1,19 @@
+FROM golang:1.24.3
+# Install delve
+RUN go install github.com/go-delve/delve/cmd/dlv@latest
+
+# Set working directory
+WORKDIR /app
+
+# Copy Go modules and download dependencies
+COPY go.mod go.sum ./
+RUN go mod download
+
+# Copy the rest of the app
+COPY . .
+
+# Build the Go app
+RUN go build -o main .
+
+# Command to run the app in debug mode
+CMD ["dlv", "exec", "./main", "--headless", "--listen=:2345", "--api-version=2", "--accept-multiclient"]

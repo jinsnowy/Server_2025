@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Docker Go App",
+      "type": "go",
+      "request": "attach",
+      "mode": "remote",
+      "remotePath": "/app",
+      "port": 2345,
+      "host": "localhost",
+      "apiVersion": 2,
+      "cwd": "${workspaceFolder}",
+      "trace": "verbose",
+      "preLaunchTask": "Docker Compose Up",
+    }
+  ]
+}
