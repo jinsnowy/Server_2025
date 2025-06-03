@@ -18,14 +18,14 @@ namespace Container {
 		SPSCQueue()
 		{
 			FNode* Node = new FNode();
-			Tail.store(Node, std::memory_order_relaxed);
-			Head = First = TailCopy = Node;
+			tail_.store(Node, std::memory_order_relaxed);
+			head_ = first_ = tail_copy_ = Node;
 		}
 
 		~SPSCQueue()
 		{
-			FNode* Node = First;
-			FNode* LocalTail = Tail.load(std::memory_order_relaxed);
+			FNode* Node = first_;
+			FNode* LocalTail = tail_.load(std::memory_order_relaxed);
 
 			// Delete all nodes which are the sentinel or unoccupied
 			bool bContinue = false;
@@ -53,14 +53,14 @@ namespace Container {
 			FNode* Node = AllocNode();
 			new(&Node->Value) ElementType(std::forward<ArgTypes>(Args)...);
 
-			Head->Next.store(Node, std::memory_order_release);
-			Head = Node;
+			head_->Next.store(Node, std::memory_order_release);
+			head_ = Node;
 		}
 
 		// returns empty TOptional if queue is empty 
 		std::optional<ElementType> Dequeue()
 		{
-			FNode* LocalTail = Tail.load(std::memory_order_relaxed);
+			FNode* LocalTail = tail_.load(std::memory_order_relaxed);
 			FNode* LocalTailNext = LocalTail->Next.load(std::memory_order_acquire);
 			if (LocalTailNext == nullptr)
 			{
@@ -71,7 +71,7 @@ namespace Container {
 			std::optional<ElementType> Value{ std::move(*TailNextValue) };
 			DestructItem(TailNextValue);
 
-			Tail.store(LocalTailNext, std::memory_order_release);
+			tail_.store(LocalTailNext, std::memory_order_release);
 			return Value;
 		}
 
@@ -89,7 +89,7 @@ namespace Container {
 
 		bool IsEmpty() const
 		{
-			FNode* LocalTail = Tail.load(std::memory_order_relaxed);
+			FNode* LocalTail = tail_.load(std::memory_order_relaxed);
 			FNode* LocalTailNext = LocalTail->Next.load(std::memory_order_acquire);
 			return LocalTailNext == nullptr;
 		}
@@ -99,7 +99,7 @@ namespace Container {
 		// there's no overload with TOptional as it doesn't support references
 		ElementType* Peek() const
 		{
-			FNode* LocalTail = Tail.load(std::memory_order_relaxed);
+			FNode* LocalTail = tail_.load(std::memory_order_relaxed);
 			FNode* LocalTailNext = LocalTail->Next.load(std::memory_order_acquire);
 
 			if (LocalTailNext == nullptr)
@@ -145,19 +145,19 @@ namespace Container {
 
 			auto AllocFromCache = [this]()
 				{
-					FNode* Node = First;
-					First = First->Next;
+					FNode* Node = first_;
+					first_ = first_->Next;
 					Node->Next.store(nullptr, std::memory_order_relaxed);
 					return Node;
 				};
 
-			if (First != TailCopy)
+			if (first_ != tail_copy_)
 			{
 				return AllocFromCache();
 			}
 
-			TailCopy = Tail.load(std::memory_order_acquire);
-			if (First != TailCopy)
+			tail_copy_ = tail_.load(std::memory_order_acquire);
+			if (first_ != tail_copy_)
 			{
 				return AllocFromCache();
 			}
@@ -166,9 +166,9 @@ namespace Container {
 		}
 
 	private:
-		std::atomic<FNode*> Tail; // tail of the queue 
-		FNode* Head; // head of the queue
-		FNode* First; // last unused node (tail of node cache) 
-		FNode* TailCopy; // helper (points somewhere between First and Tail)
+		std::atomic<FNode*> tail_; // tail of the queue 
+		FNode* head_; // head of the queue
+		FNode* first_; // last unused node (tail of node cache) 
+		FNode* tail_copy_; // helper (points somewhere between first_ and tail_)
 	};
 }
