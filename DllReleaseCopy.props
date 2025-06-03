@@ -5,7 +5,10 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)..\..\vcpkg\vcpkg\installed\x64-windows\bin\*.dll $(OutDir) /Y /D</Command>
+      <Command>xcopy $(SolutionDir)..\Library\bin\*.dll $(OutDir) /Y /D
+xcopy $(SolutionDir)..\Library\bin\*.pdb $(OutDir) /Y /D
+xcopy $(SolutionDir)..\Library\source\protobuf\build\bin\Release\*.dll $(OutDir) /Y /D
+xcopy $(SolutionDir)..\Library\source\protobuf\build\bin\Release\*.lib $(SolutionDir)Library /Y /D</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />

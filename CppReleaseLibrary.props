@@ -4,7 +4,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <LibraryPath>C:\Users\yoon\Desktop\CppProject\Library\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\yoon\Desktop\CppProject\Library\include;$(IncludePath)</IncludePath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <ExternalIncludePath>C:\Users\yoon\Desktop\CppProject\Library\include;$(ExternalIncludePath)</ExternalIncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup />
   <ItemGroup />

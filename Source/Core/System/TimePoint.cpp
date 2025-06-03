@@ -8,9 +8,8 @@ namespace System {
 	{
 	}
 
-	System::DateTime TimePoint::ToDateTime() const
-	{
-		return System::DateTime();
+	System::DateTime TimePoint::ToDateTime() const {
+		return System::DateTime(time_point_);
 	}
 
 	TimePoint TimePoint::Current() {

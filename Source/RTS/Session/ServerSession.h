@@ -19,18 +19,15 @@ namespace RTS {
 			LOG_INFO("ServerSession::OnDisconnect session_id:{}", session_id_);
 		}
 
-		void OnMessage(const std::string& message) override;
+		std::unique_ptr<Network::Protocol> CreateProtocol() override;
 
 		int32_t session_id() const { return session_id_; }
-
 
 		static void RegisterHandler(ServerHandlerMap* handler_map);
 
 	private:
 		int session_id_ = 0;
 		static int session_id_counter_;
-
-		void InstallProtobuf();
 	};
 }
 

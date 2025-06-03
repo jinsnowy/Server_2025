@@ -27,6 +27,9 @@
     <ClCompile Include="Protocol\ServerHandlerMap.cpp">
       <Filter>Protocol</Filter>
     </ClCompile>
+    <ClCompile Include="Authenticator\Authenticator.cpp">
+      <Filter>Authorization</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stdafx.h" />
@@ -54,6 +57,9 @@
     <ClInclude Include="Protocol\ServerHandlerMap.h">
       <Filter>Protocol</Filter>
     </ClInclude>
+    <ClInclude Include="Authenticator.h">
+      <Filter>Authorization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Session">
@@ -64,6 +70,9 @@
     </Filter>
     <Filter Include="Protocol">
       <UniqueIdentifier>{a4c6b4a1-943f-4584-809c-621760e06394}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Authorization">
+      <UniqueIdentifier>{e746e16a-4f19-4add-8399-167c6409e31a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

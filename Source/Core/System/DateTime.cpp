@@ -4,19 +4,33 @@
 namespace System {
 
     DateTime::DateTime() 
-    :
-    year_(1970),
-    month_(1),
-    day_(1),
-    hour_(0),
-    day_of_week_(DayOfWeek::Thursday),
-    minute_(0),
-    second_(0),
-    millisecond_(0) {
+        :
+        year_(1970),
+        month_(1),
+        day_(1),
+        hour_(0),
+        day_of_week_(DayOfWeek::Thursday),
+        minute_(0),
+        second_(0),
+        millisecond_(0) {
     }
 
-    DateTime::DateTime(const TimePoint& time_point)
-    {
+    DateTime::DateTime(const TimePoint& time_point) {
+        const int64_t& posix_milliseconds = 
+            std::chrono::duration_cast<std::chrono::milliseconds>(time_point.internal_time_point().time_since_epoch()).count();
+		
+        time_t time_t_value = static_cast<time_t>(posix_milliseconds / 1000LL); // Convert milliseconds to seconds
+		tm time_info;
+		localtime_s(&time_info, &time_t_value);
+
+		year_ = time_info.tm_year + 1900; 
+		month_ = time_info.tm_mon + 1;
+		day_ = time_info.tm_mday;
+		hour_ = time_info.tm_hour;
+		minute_ = time_info.tm_min;
+		second_ = time_info.tm_sec;
+		day_of_week_ = static_cast<DayOfWeek>(time_info.tm_wday);
+		millisecond_ = posix_milliseconds % 1000;
     }
 
     DateTime DateTime::Now() {

@@ -10,6 +10,7 @@ namespace System {
 			: 
 			context_(context) {
 		}
+
 		~Channel() = default;
 
 		Channel(const Channel&) = default;
@@ -17,9 +18,9 @@ namespace System {
 
 		bool IsSynchronized() const;
 
-		void Post(std::function<void()> func);
-		void Post(std::unique_ptr<Callable> callable);
-		void Post(Callable* callable);
+		void Post(std::function<void()> func) const;
+		void Post(std::unique_ptr<Callable> callable) const;
+		void Post(Callable* callable) const;
 
 		std::shared_ptr<Context>& GetContext() { return context_; }
 		const std::shared_ptr<Context>& GetContext() const { return context_; }

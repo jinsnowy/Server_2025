@@ -41,7 +41,7 @@ namespace Network {
 				return;
 			}
 
-			listener->Post([socket=std::move(socket), callback, error](Listener& listener) mutable {
+			Ctrl(*listener).Post([socket=std::move(socket), callback, error](Listener& listener) mutable {
 				(listener.*callback)(std::move(socket), error);
 			});
 		});

@@ -38,15 +38,13 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgDebugLibrary.props" />
-    <Import Project="..\..\protobuf_debug_library.props" />
+    <Import Project="..\..\CppDebugLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllDebugCopy.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgReleaseLibrary.props" />
-    <Import Project="..\..\protobuf_release_library.props" />
+    <Import Project="..\..\CppReleaseLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
     <Import Project="..\..\DllReleaseCopy.props" />
   </ImportGroup>
@@ -54,22 +52,16 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
     <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <OutDir>$(SolutionDir)\Bin\$(Configuration)\</OutDir>
     <IntDir>$(Configuration)\</IntDir>
-    <IncludePath>$(SolutionDir);$(IncludePath)</IncludePath>
-    <ExternalIncludePath>$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
       <PrecompiledHeader>Use</PrecompiledHeader>
@@ -79,9 +71,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PostBuildEvent />
-    <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)..\vcpkg\vcpkg\installed\x64-windows\debug\bin\*.dll $(OutDir) /Y /D</Command>
-    </PostBuildEvent>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -102,6 +92,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Authenticator\Authenticator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="PacketHandler\ClientPacketHandler.cpp" />
     <ClCompile Include="PacketHandler\ServerPacketHandler.cpp" />
@@ -117,6 +108,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Authenticator.h" />
     <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
     <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\ClientHandlerMap.h" />

@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Concurrency">
-      <UniqueIdentifier>{c57c0169-0e2b-4e68-bf69-9a9ad71bc5c4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System">
       <UniqueIdentifier>{23e8fbdb-508c-4939-9166-d577dca27f78}</UniqueIdentifier>
     </Filter>
@@ -19,11 +16,14 @@
     <Filter Include="Logging">
       <UniqueIdentifier>{4547e68c-718d-4bbe-bd01-76c25092bb06}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{f8070a8b-8dfe-4eb8-9b87-3175d186bb91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{c57c0169-0e2b-4e68-bf69-9a9ad71bc5c4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Concurrency\MPSC.cpp">
-      <Filter>Concurrency</Filter>
-    </ClCompile>
     <ClCompile Include="Network\Connection.cpp">
       <Filter>Network</Filter>
     </ClCompile>
@@ -112,11 +112,29 @@
     <ClCompile Include="System\TimePoint.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Misc\ApplyVariants.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\BufferPool.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ThreadLocalStorage.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\MPSC.cpp">
+      <Filter>Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\SPSC.cpp">
+      <Filter>Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\CircularBuffer.cpp">
+      <Filter>Container</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\BufferMemory.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Concurrency\MPSC.h">
-      <Filter>Concurrency</Filter>
-    </ClInclude>
     <ClInclude Include="Network\Connection.h">
       <Filter>Network</Filter>
     </ClInclude>
@@ -211,6 +229,36 @@
     </ClInclude>
     <ClInclude Include="System\TimePoint.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\ApplyVariants.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Interface.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Interface.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Protobuf.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\BufferPool.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ThreadLocalStorage.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\MPSC.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\SPSC.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\CircularBuffer.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\BufferMemory.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

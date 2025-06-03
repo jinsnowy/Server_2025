@@ -27,7 +27,7 @@ namespace Network {
             }
         }
         
-        connection->Post([session](Connection& connection) {
+        Ctrl(*connection).Post([session](Connection& connection) {
             connection.OnConnected(boost::system::error_code{}, connection.socket()->raw_socket().remote_endpoint(), session);
         });
     }

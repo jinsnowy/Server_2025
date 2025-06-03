@@ -15,19 +15,17 @@
     <ClCompile Include="Private\ProtobufDescriptor.cpp" />
     <ClCompile Include="Private\ProtobufSession.cpp" />
     <ClCompile Include="Private\ProtobufSerializer.cpp" />
-    <ClCompile Include="Private\types.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="Private\user.pb.cc">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
-    </ClCompile>
+    <ClCompile Include="Private\Protos\types.pb.cc" />
+    <ClCompile Include="Private\Protos\user.pb.cc" />
+    <ClCompile Include="Private\Types.cpp" />
+    <ClCompile Include="Private\User.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Private\types.pb.h" />
-    <ClInclude Include="Private\user.pb.h" />
+    <ClInclude Include="Private\Protos\types.pb.h" />
+    <ClInclude Include="Private\Protos\user.pb.h" />
     <ClInclude Include="Public\ProtobufProtocol.h" />
     <ClInclude Include="Public\ProtobufDescriptor.h" />
     <ClInclude Include="Public\ProtobufSession.h" />
@@ -35,6 +33,10 @@
     <ClInclude Include="Public\Types.h" />
     <ClInclude Include="Public\User.h" />
     <ClInclude Include="stdafx.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Proto\types.proto" />
+    <None Include="..\..\Proto\user.proto" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -64,21 +66,21 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgDebugLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
+    <Import Project="..\..\CppDebugLibrary.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgReleaseLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
+    <Import Project="..\..\CppReleaseLibrary.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>
@@ -92,8 +94,8 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>
     <Link>
       <SubSystem>

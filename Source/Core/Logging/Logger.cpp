@@ -15,7 +15,13 @@ namespace Log {
             auto today_date = System::DateTime::Now();
             std::string today_date_formatted = std::format("{:04}-{:02}-{:02}_{:02}-{:02}-{:02}",
                 today_date.year(), today_date.month(), today_date.day(), today_date.hour(), today_date.minute(), today_date.second());
+
             std::filesystem::path log_file_path = std::filesystem::path(current_working_dir);
+            log_file_path.append("logs");
+            if (!std::filesystem::exists(log_file_path)) {
+				std::filesystem::create_directory(log_file_path);
+			}
+
             std::wstring file_name = FORMAT(L"{}_{}.log", System::String::Convert(program_name), System::String::Convert(today_date_formatted));
             log_file_path.append(file_name);
             

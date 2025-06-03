@@ -13,18 +13,7 @@ enum protocol {
 	kContentReadyRes	= 0x1005;
 	kHelloClient = 0x1006;
 	kHelloServer = 0x1007;
-	kMapTestReq		= 0x100a;
-	kCreateCharacterReq = 0x100b;
-	kCreateCharacterRes = 0x100c;
-	kGetCharacterListReq = 0x100d;
-	kGetCharacterListRes = 0x100e;
-	kChangeCharacterNameReq = 0x100f;
-	kChangeCharacterNameRes = 0x1010;
-	kLoginReq = 0x1011;
-	kLoginRes = 0x1012;
-	kKeyValueStorage_Put = 0x1013;
-	kKeyValueStorage_Delete = 0x1014;
-	kCreateItemNotify = 0x1015;
+	kDisconnectAlertNotify = 0x1008;
 }
 
 extend google.protobuf.MessageOptions {

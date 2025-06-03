@@ -26,7 +26,7 @@ namespace Network {
 				return;
 			}
 
-			conn->Post([callback, error, results = std::move(results), session](Connection& conn) mutable {
+			Ctrl(*conn).Post([callback, error, results = std::move(results), session](Connection& conn) mutable {
 				(conn.*callback)(error, results, session);
 			});
 		});

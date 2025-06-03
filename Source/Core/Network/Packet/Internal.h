@@ -1,9 +1,9 @@
-#pragma 
+#pragma once
 
 #include "Core/Network/Packet/Packet.h"
 
 namespace Network {
-	enum InternalPacketId : uint32_t
+	enum class InternalPacketId : uint32_t
 	{
 		kHello = 0,
 		kMessage,
@@ -12,12 +12,14 @@ namespace Network {
 		kCount,
 	};
 
+#define INTERNAL_PACKET_ID(id) static_cast<uint32_t>(InternalPacketId::id)
+
 	struct InternalMessage {
 		std::string_view message;
 
 		PacketHeader header() const {
 			return PacketHeader{
-				.id = InternalPacketId::kMessage,
+				.id = INTERNAL_PACKET_ID(kMessage),
 				.size = length()
 			};
 		}
@@ -35,7 +37,7 @@ namespace Network {
 
 		PacketHeader header() const {
 			return PacketHeader{
-				.id = InternalPacketId::kPing,
+				.id = INTERNAL_PACKET_ID(kPing),
 				.size = length()
 			};
 		}
@@ -54,7 +56,7 @@ namespace Network {
 
 		PacketHeader header() const {
 			return PacketHeader{
-				.id = InternalPacketId::kPing,
+				.id = INTERNAL_PACKET_ID(kPong),
 				.size = length()
 			};
 		}
@@ -67,6 +69,11 @@ namespace Network {
 			return sizeof(InternalPong);
 		}
 	};
+
+	using InternalPacket = std::variant<InternalMessage, InternalPing, InternalPong>;
+
+#undef INTERNAL_PACKET_ID
 }
+
 
 

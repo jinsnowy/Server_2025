@@ -7,6 +7,9 @@ namespace System {
 } // namespace System
 
 namespace Network {
+class BufferMemory;
+class BufferView;
+class Buffer;
 class Connection;
 class Session;
 class Socket {
@@ -22,8 +25,8 @@ public:
 	void Close();
 
 	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn, std::shared_ptr<Session> session);
-	void WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn);
-	void ReadAsync(std::shared_ptr<char[]> buffer, int32_t size, ReadCallback callback, std::shared_ptr<Connection> conn);
+	void WriteAsync(const BufferView& buffer, SendCallback callback, std::shared_ptr<Connection> conn);
+	void ReadAsync(Buffer& buffer, ReadCallback callback, std::shared_ptr<Connection> conn);
 
 	std::string address() const { return socket_->remote_endpoint().address().to_string(); }
 	uint16_t port() const { return socket_->remote_endpoint().port(); }

@@ -2,21 +2,23 @@
 
 #include "Core/Network/Packet/Packet.h"
 #include "Core/Network/Buffer.h"
+#include "Core/Network/OutputStream.h"
 
 namespace Network {
-	struct SendNetworkStream {
-		bool is_sending = false;
-		std::list<Buffer> buffers;
-	};
 
 	struct PendingStream {
-		PacketHeader header;
+		std::optional<PacketHeader> header;
 		std::vector<char> packetBuffer;
 		uint32_t remainSegmentLength;
 	};
 
 	struct RecvNetworkStream {
-		Buffer buffer;
+		std::unique_ptr<Buffer> buffer;
 		std::optional<PendingStream> pending;
+	};
+
+	struct SendNetworkStream {
+		std::atomic<bool> is_sending = false;
+		std::list<BufferView> pending_buffers;
 	};
 }

@@ -2,29 +2,20 @@
 #include "Buffer.h"
 
 namespace Network {
-	Buffer::Buffer()
+
+	Buffer::Buffer(std::shared_ptr<BufferMemory> source)
 		:
-		buffer_(nullptr),
+		source_(source),
 		start_pos_(0),
-		end_pos_(0),
-		size_(0)
+		end_pos_(0)
 	{
 	}
 
-	Buffer::Buffer(int32_t alloc_size)
-		:
-		buffer_(new char[alloc_size]),
-		start_pos_(0),
-		end_pos_(0),
-		size_(alloc_size)
+	Buffer::~Buffer()
 	{
 	}
 
-	void Buffer::Allocate(int32_t alloc_size) {
-		buffer_.reset(new char[alloc_size]());
-		start_pos_= 0;
-		end_pos_ = 0;
-		size_ = alloc_size;
+	BufferView Buffer::AsView() const {
+		return BufferView(source_, start_pos_, GetByteCount());
 	}
-
 }

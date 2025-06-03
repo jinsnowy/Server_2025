@@ -16,11 +16,11 @@ namespace System {
 	Context::Context(Context&&) = default;
 	Context& Context::operator=(Context&&) = default;
 
-	void Context::Post(std::function<void()> func) {
+	void Context::Post(std::function<void()> func) const {
 		boost::asio::post(*io_context_, std::move(func));
 	}
 
-	void Context::Post(std::unique_ptr<Callable> callable) {
+	void Context::Post(std::unique_ptr<Callable> callable) const {
 		boost::asio::post(*io_context_, CallableWrapper(std::move(callable)));
 	}
 

@@ -6,12 +6,9 @@
 
 namespace System {
 	class Channel;
-
-	template<typename T>
-	class Actor : public std::enable_shared_from_this<T> {
+	class Actor : public std::enable_shared_from_this<Actor> {
 	public:
-		using ActorClass = Actor<T>;
-		
+
 		Actor();
 		Actor(const Channel& channel);
 		
@@ -20,68 +17,95 @@ namespace System {
 		bool IsSynchronized() const;
 		Channel GetChannel() const;
 
-		template<typename F>
-		void Post(F&& func);
+		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
+		std::shared_ptr<T> GetShared() {
+			return std::static_pointer_cast<T>(shared_from_this());
+		}
 
-		std::shared_ptr<T> Get() {
-			return std::enable_shared_from_this<T>::shared_from_this();
+		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
+		std::shared_ptr<T> GetShared(T* ptr) {
+			return std::static_pointer_cast<T>(ptr->shared_from_this());
 		}
 
 	private:
 		Channel channel_;
 	};
 
-	template<typename T>
-	inline Actor<T>::Actor()
+	inline Actor::Actor()
 		:
 		channel_(Channel()) {
 	}
 
-	template<typename T>
-	inline Actor<T>::Actor(const Channel& channel)
+	inline Actor::Actor(const Channel& channel)
 		:
 		channel_(channel) {
 	}
 
-	template<typename T>
-	inline bool Actor<T>::IsSynchronized() const {
+	inline bool Actor::IsSynchronized() const {
 		return channel_.IsSynchronized();
 	}
 
-	template<typename T>
-	inline Channel Actor<T>::GetChannel() const {
+	inline Channel Actor::GetChannel() const {
 		return Channel(channel_.GetContext());
 	}
 
-	template<typename F,
-		typename A, 
-		typename FArg = typename std::tuple_element<0, typename FuncTraits<F>::FArgsType>::type,
-		typename = std::enable_if_t<std::is_base_of_v<A, std::remove_reference_t<FArg>>>>
-	class PostMessage : public Callable {
-	public:
-		PostMessage(F&& f, std::shared_ptr<A> a) 
-			:
-			func_(std::forward<F>(f)),
-			actor_(std::move(a)) {
-		}
+	namespace Detail {
+		template<typename F,
+			typename A,
+			typename FArg = typename std::tuple_element<0, typename FuncTraits<F>::FArgsType>::type,
+			typename = std::enable_if_t<std::is_base_of_v<A, std::remove_reference_t<FArg>>>>
+			class PostMessage : public Callable {
+			public:
+				PostMessage(F&& f, const std::shared_ptr<A>& a)
+					:
+					func_(std::forward<F>(f)),
+					actor_(std::move(a)) {
+				}
 
-		void operator()() override {
-			(func_)(static_cast<FArg&>(*actor_));
-		}
-	private:
-		F func_;
-		std::shared_ptr<A> actor_;
-	};
+				void operator()() override {
+					(func_)(static_cast<FArg&>(*actor_));
+				}
 
-	template<typename T>
-	template<typename F>
-	inline void Actor<T>::Post(F&& func) {
-		if (channel_.IsSynchronized()) {
-			PostMessage{ std::forward<F>(func), Get() }();
-		}
-		else {
-			channel_.Post(std::make_unique<PostMessage<F, T>>(std::forward<F>(func), Get()));
-		}
+			private:
+				F func_;
+				std::shared_ptr<A> actor_;
+		};
 	}
 
+	template<typename A>
+	struct ActorController {
+		A& actor;
+
+		ActorController(A& a);
+
+		std::shared_ptr<A> GetShared();
+
+		template<typename F>
+		void Post(F&& func);
+	};
+
+	template<typename A>
+	inline ActorController<A>::ActorController(A& a)
+		:
+		actor(a) {
+	}
+
+	template<typename A>
+	inline std::shared_ptr<A> ActorController<A>::GetShared() {
+		return actor.GetShared<A>();
+	}
+
+	template<typename A>
+	template<typename F>
+	inline void ActorController<A>::Post(F&& func) {
+		const Channel& channel = actor.GetChannel();
+		if (channel.IsSynchronized()) {
+			Detail::PostMessage<F, A>{ std::forward<F>(func), GetShared() }();
+		}
+		else {
+			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), GetShared()));
+		}
+	}
 }
+
+#define Ctrl System::ActorController

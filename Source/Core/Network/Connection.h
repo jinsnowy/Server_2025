@@ -14,9 +14,11 @@ namespace Network {
 	class Resolver;
 	class Session;
 	class Buffer;
+	class Protocol;
+	class BufferView;
 	struct RecvNetworkStream;
 	struct SendNetworkStream;
-	class Connection final : public System::Actor<Connection> {
+	class Connection final : public System::Actor {
 	public:
 		Connection(std::unique_ptr<Socket> socket);
 		Connection(std::shared_ptr<System::Context> context);
@@ -26,17 +28,19 @@ namespace Network {
 		void Disconnect();
 	
 		bool IsConnected() const;
-		void Send(const Buffer& buffer);
+		void Send(const BufferView& buffer);
+		bool IsSendInProgress() const;
 
 		std::string ToString() const;
 		const std::unique_ptr<Socket>& socket() const { return socket_; }
-
+	
 	private:
 		friend class SessionFactory;
 
 		std::unique_ptr<Socket> socket_;
 		std::unique_ptr<Resolver> resolver_;
 		std::weak_ptr<Session> session_;
+		std::shared_ptr<Protocol> protocol_;
 
 		std::unique_ptr<SendNetworkStream> send_stream_;
 		std::unique_ptr<RecvNetworkStream> recv_stream_;
@@ -50,10 +54,10 @@ namespace Network {
 		void OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint, std::shared_ptr<Session> session);
 		void OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred);
 		void OnSendCompleted(const boost::system::error_code& error, std::size_t bytes_transferred);
+		void FlushSend(bool continueOnWriter = false);
 
 		bool ReceiveImpl(const size_t length);
-
-		void FlushSend(bool continueOnWriter = false);
-		void SendImpl(const Buffer& buffer);
+		void SendImpl(const BufferView& buffer);
+	
 	};
 }

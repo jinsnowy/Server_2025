@@ -31,6 +31,10 @@ namespace System {
 
 		System::DateTime ToDateTime() const;
 
+		const std::chrono::steady_clock::time_point& internal_time_point() const {
+			return time_point_;
+		}
+
 	private:
 		std::chrono::steady_clock::time_point time_point_;
 	};

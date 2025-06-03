@@ -3,10 +3,19 @@
 #include "ServerHandlerMap.h"
 
 namespace RTS {
-	bool ServerProtocol::HandleMessage(Network::Session& session, const size_t& packetId, const std::shared_ptr<const google::protobuf::Message>& message) {
-		if (ServerHandlerMap::GetInstance().HandleMessage(session, packetId, message) == false) {
-			LOG_ERROR("ServerProtocol::HandleMessage: Failed to handle message with packetId: {}", packetId);
+
+	bool ServerProtocol::ProcessMessage(Network::Session& session)
+	{
+		if (Protobuf::ProtobufProtocol::ProcessMessage(session) == false)
+		{
 			return false;
+		}
+
+		for (auto pair = packet_messages_.Dequeue(); pair.has_value(); pair = packet_messages_.Dequeue()) {
+			if (ServerHandlerMap::GetInstance().HandleMessage(session, pair.value().first, pair.value().second) == false) {
+				LOG_ERROR("ServerProtocol::HandleMessage: Failed to handle message with packetId: {}", pair.value().first);
+				return false;
+			}
 		}
 
 		return true;

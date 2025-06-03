@@ -14,28 +14,24 @@ namespace RTS {
 	ServerSession::~ServerSession() {
 	}
 
+	std::unique_ptr<Network::Protocol> ServerSession::CreateProtocol()
+	{
+		return std::make_unique<ServerProtocol>();
+	}
+
 	void ServerSession::OnConnected() {
+		ProtobufSession::OnConnected();
+
 		session_id_ = session_id_counter_++;
-
 		LOG_INFO("ServerSession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());
-
-		InstallProtobuf();
 
 		Send(user::HelloClient{});
 	}
 
-	void ServerSession::OnMessage(const std::string& message) {
-		LOG_INFO("ServerSession::OnMessage: {}", message.c_str());
-
-		SendInternalMessage("Hello, client!");
-	}
-
-	void ServerSession::InstallProtobuf() {
-		InstallProtocol(std::make_unique<ServerProtocol>());
-	}
-
 	static void OnHelloServer(ServerSession& session, const std::shared_ptr<const user::HelloServer>& message) {
-		LOG_INFO("ServerSession::OnHelloServer session_id:{}, address:{}", session.session_id(), session.connection()->ToString());
+		std::string serialized_string = message->SerializeAsString();
+		LOG_INFO("ServerSession::OnHelloServer session_id:{}, address:{}, user_id:{}, access_token:{}",
+			session.session_id(), session.connection()->ToString(), message->user_id(), message->access_token());
 	}
 
 	void ServerSession::RegisterHandler(ServerHandlerMap* handler_map) {

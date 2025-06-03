@@ -5,8 +5,13 @@
   <PropertyGroup />
   <ItemDefinitionGroup>
     <PostBuildEvent>
-      <Command>xcopy $(SolutionDir)..\..\vcpkg\vcpkg\installed\x64-windows\debug\bin\*.dll $(OutDir) /Y /D</Command>
+      <Command>xcopy $(SolutionDir)..\Library\bin\Debug\*.dll $(OutDir) /Y /D
+xcopy $(SolutionDir)..\Library\bin\Debug\*.pdb $(OutDir) /Y /D</Command>
     </PostBuildEvent>
+    <PreBuildEvent>
+      <Command>xcopy $(SolutionDir)..\Library\lib\Debug\*.lib $(SolutionDir)Library /Y /D
+xcopy $(SolutionDir)..\Library\lib\Debug\*.pdb $(SolutionDir)Library /Y /D</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

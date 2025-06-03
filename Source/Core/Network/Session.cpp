@@ -6,18 +6,22 @@
 #include "Core/Network/Protocol.h"
 #include "Core/Network/Buffer.h"
 #include "Core/Network/NetworkStream.h"
+#include "Core/Network/OutputStream.h"
+
 
 namespace Network {
     Session::Session(const std::shared_ptr<System::Context>& context)
         :
-        ActorClass(System::Channel(context))
+        Actor(System::Channel(context)),
+        output_stream_(std::make_unique<OutputStream>())
     {
     }
 
     Session::Session()
         :
-        ActorClass(System::Channel()),
-        connection_(nullptr)
+        Actor(System::Channel()),
+        connection_(nullptr),
+        output_stream_(std::make_unique<OutputStream>())
     {
     }
 
@@ -32,7 +36,7 @@ namespace Network {
         }
 
         connection_ = std::make_shared<Connection>(GetChannel().GetContext());
-        connection_->Post([ip, port, session = shared_from_this()](Connection& connection) {
+        Ctrl(*connection_).Post([ip, port, session = GetShared<Session>()](Connection& connection) {
             connection.Connect(ip, port, session);
         });
     }
@@ -45,52 +49,29 @@ namespace Network {
     void Session::Disconnect() {
         auto connection = connection_;
         if (connection != nullptr) {
-            connection->Post([](Connection& conn) {
+            Ctrl(*connection).Post([](Connection& conn) {
                 conn.Disconnect();
             });
             connection_ = nullptr;
         }
     }
 
+    void Session::FlushToSendStream() {
+        DEBUG_ASSERT(IsSynchronized());
 
-    template<typename InternalPacket>
-    static Buffer CreateBuffer(const InternalPacket& packet) {
-        Buffer buffer(packet.length() + sizeof(PacketHeader));
-        const PacketHeader& header = packet.header();
-        BufferWriter writer(buffer);
-        writer.Write(&header, sizeof(PacketHeader));
-        writer.Write(packet.data(), packet.length());
-        return buffer;
-    }
+        auto next = output_stream_->Flush();
+        if (next.has_value() == false) {
+            return;
+        }
 
-    void Session::Send(const Network::Buffer& buffer) {
         auto connection = connection_;
         if (connection == nullptr) {
             return;
         }
-        if (connection->IsSynchronized()) {
-            connection->Send(buffer);
-			return;
-        }
-        connection->Post([buffer](Connection& connection) {
+
+        Ctrl(*connection).Post([buffer = next.value()](Connection& connection) {
             connection.Send(buffer);
         });
-    }
-
-    void Session::SendInternalMessage(const std::string& message) {
-        if (message.size() > PacketHeader::kMaxSize) {
-            LOG_ERROR("[SESSION] Send: message size is too large : {}", message.size());
-            return;
-        }
-
-        InternalMessage packet(message);
-        Buffer send_buffer = CreateBuffer(packet);
-        Send(send_buffer);
-    }
-
-    void Session::InstallProtocol(std::unique_ptr<Protocol> protocol) {
-        DEBUG_ASSERT(IsSynchronized());
-        protocol_ = std::move(protocol);
     }
 
     void Session::OnDisconnected() {
@@ -99,32 +80,15 @@ namespace Network {
     void Session::OnConnected() {
     }
 
-    void Session::OnProcessPacket(const PacketSegment& packet_segment) {
-        DEBUG_ASSERT(IsSynchronized());
-        const size_t packetId = packet_segment.header().id;
-        if (packetId <= InternalPacketId::kCount) {
-            switch (packetId) {
-            case InternalPacketId::kMessage:
-                OnMessage(std::string(packet_segment.body(), packet_segment.body_length()));
-                break;
-            default:
-                LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", packetId);
-                break;
-            }
-
-            return;
-        }
-
-        if (protocol_ == nullptr) {
-            return;
-        }
-
-        if (protocol_->ProcessMessage(*this, packetId, packet_segment) == false) {
-            LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", packetId);
-            Disconnect();
-        }
+    std::unique_ptr<Protocol> Session::CreateProtocol()
+    {
+        return std::unique_ptr<Protocol>();
     }
 
-    void Session::OnMessage(const std::string& ){
+    void Session::OnProcessPacket(const std::shared_ptr<Protocol> protocol) {
+        DEBUG_ASSERT(IsSynchronized());
+        if (protocol->ProcessMessage(*this) == false) {
+            Disconnect();
+        }
     }
 }

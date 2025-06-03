@@ -2,67 +2,63 @@
 #include "OutputStream.h"
 #include "Core/Network/Buffer.h"
 #include "Core/Network/NetworkStream.h"
+#include "Core/Network/Buffer.h"
+#include "Core/Network/BufferPool.h"
 
 namespace Network {
 
-	OutputStream::OutputStream(SendNetworkStream& send_stream)
-		:
-		send_stream_(&send_stream)
-	{
+	OutputStream::OutputStream()
+		: 
+		buffer_(RequestSendBuffer()) {
 	}
 
-	bool OutputStream::Next(void** data, int32_t* size) {
-		if (send_stream_->buffers.empty()) {
-			send_stream_->buffers.emplace_back(Buffer(Buffer::kDefault));
+	bool OutputStream::Next(void** data, int* size) {
+		if (buffer_.GetRemainingByteCount() <= 0) {
+			return false;
 		}
 
-		Buffer* send_buffer = &send_stream_->buffers.back();
-		int32_t remainSize = send_buffer->size() - send_buffer->end_pos();
-		if (remainSize == 0) {
-			auto& last = send_stream_->buffers.emplace_back(Buffer(Buffer::kDefault));
-			send_buffer = &last;
-			remainSize = Buffer::kDefault;
-		}
-
-		*data = (send_buffer->data() + send_buffer->end_pos());
-		*size = remainSize;
-		send_buffer->set_end_pos(send_buffer->end_pos() + remainSize);
+		*data = buffer_.GetFreePtr();
+		*size = buffer_.GetRemainingByteCount();
+		buffer_.set_end_pos(buffer_.end_pos() + *size);
 
 		return true;
 	}
 
-	void OutputStream::BackUp(int32_t count) {
-		auto& last = send_stream_->buffers.back();
-		last.set_end_pos(last.end_pos() - count);
+	void OutputStream::BackUp(int count) {
+		if (buffer_.GetByteCount() < count) {
+			LOG_ERROR("[OutputStream] BackUp: Not enough data to back up");
+			return;
+		}
+
+		buffer_.set_end_pos(buffer_.end_pos() - count);
 	}
 
 	int64_t OutputStream::ByteCount() const {
-		if (send_stream_->buffers.empty()) {
-			return 0;
-		}
-		return send_stream_->buffers.back().end_pos() - send_stream_->buffers.back().start_pos();
+		return buffer_.GetByteCount();
 	}
 
-	bool OutputStream::WriteAliasedRaw(const void* data, int32_t size) {
-		if (size == 0) {
-			return false;
-		}
-		if (size >= Buffer::kDefault) {
-			send_stream_->buffers.emplace_back(Buffer(size));
-		}
+	int32_t OutputStream::RemainingByteCount() const {
+		return buffer_.GetRemainingByteCount();
+	}
 
-		void* alloc_buffer = nullptr;
-		int32_t alloc_size = 0;
+	bool OutputStream::WriteAliasedRaw(const void* Data, int32_t Size) {
+		return WriteRaw(Data, Size);
+	}
+
+	bool OutputStream::WriteRaw(const void* data, int64_t size) {
+		void* buffer_out = nullptr;
+		int32_t buffer_size = 0;
 		int32_t offset = 0;
+
 		while (size > 0) {
-			if (Next(&alloc_buffer, &alloc_size) == false) {
+			if (Next(&buffer_out, &buffer_size) == false) {
 				return false;
 			}
 
-			const int32_t write_size = std::min(alloc_size, size);
-			memcpy_s(alloc_buffer, write_size, reinterpret_cast<const char*>(data) + offset, size);
+			const int32_t write_size = static_cast<int32_t>(std::min(static_cast<int64_t>(buffer_size), size));
+			std::memcpy(buffer_out, reinterpret_cast<const char*>(data) + offset, write_size);
 
-			int32_t remain_size = alloc_size - write_size;
+			int32_t remain_size = buffer_size - write_size;
 			if (remain_size > 0) {
 				BackUp(remain_size);
 			}
@@ -74,8 +70,68 @@ namespace Network {
 		return true;
 	}
 
+	std::optional<BufferView> OutputStream::Flush() {
+		if (pending_buffers_.empty() == false) {
+			Buffer front = pending_buffers_.front();
+			pending_buffers_.pop_front();
+			return front.AsView();
+		}
+		if (buffer_.GetByteCount() > 0) {
+			auto buffer_view = buffer_.AsView();
+			buffer_.set_start_pos(buffer_.end_pos());
+			return buffer_view;
+		}
+		return std::nullopt;
+	}
+
 	bool OutputStream::AllowsAliasing() const {
 		return true;
 	}
 
+	bool StreamWriter::WriteMessage(const size_t message_id, const void* data, const size_t size) {
+		PacketHeader header = {.id = message_id, .size = size};
+		AssureWriteCapcity(header);
+
+		if (!output_stream_.WriteRaw(&header, sizeof(PacketHeader))) {
+			return false;
+		}
+
+		if (size > 0 && !output_stream_.WriteRaw(data, static_cast<int64_t>(size))) {
+			return false;
+		}
+
+		return true;
+	}
+
+	bool StreamWriter::WriteMessage(const size_t message_id, const google::protobuf::Message& message) {
+		size_t size = message.ByteSizeLong();
+		PacketHeader header = { .id = message_id, .size = size };
+		AssureWriteCapcity(header);
+
+		if (!output_stream_.WriteRaw(&header, sizeof(PacketHeader))) {
+			return false;
+		}
+
+		if (size > 0 && !message.SerializeToZeroCopyStream(&output_stream_)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	void StreamWriter::AssureWriteCapcity(const PacketHeader& header) {
+		// Ensure that the output stream has enough capacity to write the header and the packet data.st
+		const size_t SizeCheckOnAllocation = header.size + sizeof(PacketHeader);
+
+		if (output_stream_.RemainingByteCount() < sizeof(PacketHeader)
+			|| SizeCheckOnAllocation > kSendBufferChunkSize) {
+			const size_t alloc_size = std::max(kSendBufferChunkSize, SizeCheckOnAllocation);
+			if (alloc_size != kSendBufferChunkSize) {
+				output_stream_.SetBuffer(RequestBuffer(alloc_size));
+			}
+			else {
+				output_stream_.SetBuffer(RequestSendBuffer());
+			}
+		}
+	}
 };

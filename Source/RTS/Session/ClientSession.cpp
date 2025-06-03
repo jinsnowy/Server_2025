@@ -12,6 +12,11 @@ namespace RTS {
 		Protobuf::ProtobufSession() {
 	}
 
+	std::unique_ptr<Network::Protocol> ClientSession::CreateProtocol()
+	{
+		return std::make_unique<ClientProtocol>();
+	}
+
 	void ClientSession::OnConnected()
 	{
 		{
@@ -19,21 +24,18 @@ namespace RTS {
 
 			LOG_INFO("ClientSession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());
 
-			InstallProtobuf();
+			user::HelloServer hello_server;
+			hello_server.set_user_id("1001");
+			hello_server.set_access_token("example_access_token");
 
-			SendInternalMessage("Hello, server!");
+			Send(hello_server);
 
-			Send(user::HelloServer{});
+			for (size_t i = 0; i < 1000; ++i) {
+				Send(user::HelloServer{});
+			}
 		}
 	}
 
-	void ClientSession::OnMessage(const std::string& message) {
-		LOG_INFO("ClientSession::OnMessage: {}", message.c_str());
-	}
-
-	void ClientSession::InstallProtobuf() {
-		InstallProtocol(std::make_unique<ClientProtocol>());
-	}
 
 	static void OnHelloClient(ClientSession& session, const std::shared_ptr<const user::HelloClient>& message) {
 		LOG_INFO("ClientSession::OnHelloClient session_id:{}, address:{}", session.session_id(), session.connection()->ToString());

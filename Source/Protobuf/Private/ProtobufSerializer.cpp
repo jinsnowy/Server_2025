@@ -12,7 +12,7 @@ namespace Protobuf {
 		return true;
 	}
 
-	std::shared_ptr<google::protobuf::Message> ProtobufSerializer::Deserialize(const size_t& packetId, const Network::PacketSegment& segment) {
+	std::shared_ptr<google::protobuf::Message> ProtobufSerializer::Deserialize(const size_t& packetId, const void* data, const size_t& data_size) {
 		auto* descriptor = ProtobufDescriptor::GetDescriptor(packetId);
 		if (descriptor == nullptr) {
 			LOG_ERROR("cannot get descriptor packet_id: {}", packetId);
@@ -21,7 +21,7 @@ namespace Protobuf {
 
 		const auto* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
 		std::shared_ptr<google::protobuf::Message> message(prototype->New());
-		if (message->ParseFromArray(segment.body(), segment.body_length()) == false) {
+		if (message->ParseFromArray(data, data_size) == false) {
 			LOG_ERROR("parse failed packet_id: {}, name: {}", packetId, prototype->GetTypeName());
 			return nullptr;
 		}

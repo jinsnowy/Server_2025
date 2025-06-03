@@ -45,7 +45,7 @@ namespace Network {
     }
 
     void Listener::AcceptInternal() {
-        acceptor_->AcceptAsync(&Listener::OnAccept, shared_from_this());
+        acceptor_->AcceptAsync(&Listener::OnAccept, GetShared(this));
     }
 
     void Listener::OnAccept(std::unique_ptr<Socket> socket, const boost::system::error_code& error) {

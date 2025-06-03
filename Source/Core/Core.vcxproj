@@ -40,12 +40,12 @@
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgDebugLibrary.props" />
+    <Import Project="..\..\CppDebugLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
-    <Import Project="..\..\VcpkgReleaseLibrary.props" />
+    <Import Project="..\..\CppReleaseLibrary.props" />
     <Import Project="..\..\RTSLibrary.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
@@ -80,9 +80,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Concurrency\MPSC.cpp" />
+    <ClCompile Include="Container\CircularBuffer.cpp" />
+    <ClCompile Include="Container\MPSC.cpp" />
+    <ClCompile Include="Container\SPSC.cpp" />
     <ClCompile Include="Logging\Logger.cpp" />
+    <ClCompile Include="Misc\ApplyVariants.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
+    <ClCompile Include="Network\BufferMemory.cpp" />
+    <ClCompile Include="Network\BufferPool.cpp" />
     <ClCompile Include="Network\Connection.cpp" />
     <ClCompile Include="Network\Listener.cpp" />
     <ClCompile Include="Network\OutputStream.cpp" />
@@ -113,14 +118,21 @@
     <ClCompile Include="System\Scheduler.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
     <ClCompile Include="System\String.cpp" />
+    <ClCompile Include="System\ThreadLocalStorage.cpp" />
     <ClCompile Include="System\TimePoint.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Concurrency\MPSC.h" />
+    <ClInclude Include="Container\CircularBuffer.h" />
+    <ClInclude Include="Container\MPSC.h" />
+    <ClInclude Include="Container\SPSC.h" />
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="Logging\Logger.h" />
+    <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Network\Acceptor.h" />
+    <ClInclude Include="Network\BufferMemory.h" />
+    <ClInclude Include="Network\BufferPool.h" />
     <ClInclude Include="Network\Connection.h" />
+    <ClInclude Include="Network\Interface.h" />
     <ClInclude Include="Network\Listener.h" />
     <ClInclude Include="Network\OutputStream.h" />
     <ClInclude Include="Network\Packet\Internal.h" />
@@ -142,14 +154,17 @@
     <ClInclude Include="System\DateTime.h" />
     <ClInclude Include="System\Diagnostics.h" />
     <ClInclude Include="System\FuncTraits.h" />
+    <ClInclude Include="System\Interface.h" />
     <ClInclude Include="System\Macro.h" />
     <ClInclude Include="System\Path.h" />
     <ClInclude Include="System\Program.h" />
     <ClInclude Include="System\Scheduler.h" />
     <ClInclude Include="System\Singleton.h" />
     <ClInclude Include="System\String.h" />
+    <ClInclude Include="System\ThreadLocalStorage.h" />
     <ClInclude Include="System\TimePoint.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
+    <ClInclude Include="ThirdParty\Protobuf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -14,7 +14,7 @@ namespace RTS {
             LOG_INFO("ClientSession::OnDisconnected session_id:{}, address:{}", session_id_, connection()->ToString());
         }
 
-        void OnMessage(const std::string& message) override;
+        std::unique_ptr<Network::Protocol> CreateProtocol() override;
 
         int32_t session_id() const { return session_id_; }
 
@@ -23,7 +23,5 @@ namespace RTS {
     private:
         int session_id_ = 0;
         static int session_id_counter_;
-
-        void InstallProtobuf();
     };
 }

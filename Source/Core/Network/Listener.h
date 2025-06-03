@@ -12,7 +12,7 @@ namespace Network {
     class Acceptor;
     class Socket;
     class SessionFactory;
-    class Listener : public System::Actor<Listener> {
+    class Listener : public System::Actor {
     public:
         Listener(std::shared_ptr<System::Context> context, SessionFactory session_factory);
         ~Listener();

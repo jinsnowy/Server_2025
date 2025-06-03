@@ -17,8 +17,8 @@ namespace System {
 		Context(Context&&);
 		Context& operator=(Context&&);
 
-		void Post(std::function<void()> func);
-		void Post(std::unique_ptr<Callable> callable);
+		void Post(std::function<void()> func) const;
+		void Post(std::unique_ptr<Callable> callable) const;
 
 		boost::asio::io_context& io_context() { return *io_context_; }
 		const boost::asio::io_context& io_context() const { return *io_context_; }

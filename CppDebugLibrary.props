@@ -7,6 +7,14 @@
     <ExternalIncludePath>C:\Users\yoon\Desktop\CppProject\Library\include;$(ExternalIncludePath)</ExternalIncludePath>
     <LibraryPath>C:\Users\yoon\Desktop\CppProject\Library\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
-  <ItemDefinitionGroup />
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <DisableSpecificWarnings>4251;4244;4819;4267;4018</DisableSpecificWarnings>
+      <PreprocessorDefinitions>PROTOBUF_USE_DLLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>abseil_dll.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemGroup />
 </Project>

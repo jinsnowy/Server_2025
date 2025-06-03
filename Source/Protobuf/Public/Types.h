@@ -1,3 +1,3 @@
 #pragma once
 
-#include "Protobuf/Private/types.pb.h"
+#include "Protobuf/Private/Protos/types.pb.h"

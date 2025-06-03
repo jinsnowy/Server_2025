@@ -4,27 +4,17 @@ package user;
 
 import "types.proto";
 
-message LoginReq {
-	option (types.message_id) = kLoginReq;
-	string username = 1;
-	string password = 2;
-}
-
-message LoginRes {
-	option (types.message_id) = kLoginReq;
-	
-	enum Result {
-		kSuccess = 0;
-		kFailure = 1;
-	}
-
-	Result result = 1;
-}
-
 message HelloServer {
 	option (types.message_id) = kHelloServer;
+	string access_token = 1;
+	string user_id = 2;
 }
 
 message HelloClient {
 	option (types.message_id) = kHelloClient;
+}
+
+message DisconnectAlertNotify {
+	option (types.message_id) = kDisconnectAlertNotify;
+	string reason = 1;
 }

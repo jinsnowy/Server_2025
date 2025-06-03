@@ -18,10 +18,8 @@
 
 #include <thread>
 
-#include <google/protobuf/message.h>
-#include <google/protobuf/message_lite.h>
-#include <google/protobuf/timestamp.pb.h>
-#include <google/protobuf/util/time_util.h>
-
+#include "google/protobuf/message.h"
+#include "google/protobuf/timestamp.pb.h"
+#include "google/protobuf/util/time_util.h"
 
 #include "Core/CoreMinimal.h"

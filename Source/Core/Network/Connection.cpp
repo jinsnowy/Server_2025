@@ -6,12 +6,14 @@
 #include "Core/Network/Resolver.h"
 #include "Core/Network/Socket.h"
 #include "Core/Network/Buffer.h"
+#include "Core/Network/BufferPool.h"
 #include "Core/Network/NetworkStream.h"
+#include "Core/Network/Protocol.h"
 
 namespace Network {
 	Connection::Connection(std::unique_ptr<Socket> socket) 
 		:
-		System::Actor<Connection>(System::Channel(socket->context())),
+		System::Actor(System::Channel(socket->context())),
 		socket_(std::move(socket)),
 		resolver_(std::make_unique<Resolver>(socket_->context())),
 		send_stream_(std::make_unique<SendNetworkStream>()),
@@ -39,7 +41,7 @@ namespace Network {
 		ip_ = ip;
 		port_ = port;
 		session_ = session;
-		resolver_->Resolve(ip_, port_, &Connection::OnResolved, shared_from_this(), session);
+		resolver_->Resolve(ip_, port_, &Connection::OnResolved, GetShared(this), session);
 	}
 
 	void Connection::Disconnect() {
@@ -59,6 +61,18 @@ namespace Network {
 		return socket_->IsOpen();
 	}
 
+	void Connection::Send(const BufferView& buffer) {
+		DEBUG_ASSERT(IsSynchronized());
+		send_stream_->pending_buffers.push_back(buffer);
+		if (send_stream_->is_sending == false) {
+			FlushSend(false);
+		}
+	}
+
+	bool Connection::IsSendInProgress() const {
+		return send_stream_->is_sending.load();
+	}
+
 	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results, std::shared_ptr<Session> session) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
@@ -66,7 +80,7 @@ namespace Network {
 			return;
 		}
 
-		socket_->ConnectAsync(results, &Connection::OnConnected, shared_from_this(), session);
+		socket_->ConnectAsync(results, &Connection::OnConnected, GetShared(this), session);
 	}
 
 	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint, std::shared_ptr<Session> session) {
@@ -82,13 +96,14 @@ namespace Network {
 		ip_ = endpoint.address().to_string();
 		port_ = endpoint.port();
 		session_ = session;
+		protocol_ = session->CreateProtocol();
 
 		send_stream_->is_sending = false;
-		recv_stream_->buffer.Allocate(Buffer::kDefault);
+		recv_stream_->buffer.reset(new Buffer(RequestRecvBuffer()));
 
 		BeginReceive();
 
-		session->Post([conn = shared_from_this()](Session& session) {
+		Ctrl(*session).Post([conn = GetShared(this)](Session& session) {
 			session.set_connection(conn);
 			session.OnConnected();
 		});
@@ -96,7 +111,7 @@ namespace Network {
 
 	void Connection::BeginReceive() {
 		DEBUG_ASSERT(IsSynchronized());
-		socket_->ReadAsync(recv_stream_->buffer.buffer_shared(), recv_stream_->buffer.size(), &Connection::OnReceived, shared_from_this());
+		socket_->ReadAsync(*recv_stream_->buffer, &Connection::OnReceived, GetShared(this));
 	}
 
 	void Connection::OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred) {
@@ -152,21 +167,24 @@ namespace Network {
 		if (session == nullptr) {
 			return false;
 		}
+
+		if (protocol_ == nullptr) {
+			return false;
+		}
 		
-		if (length < PacketHeader::Size()) {
-			LOG_ERROR("[SESSION] OnReceived: invalid length is too small : {}", length);
+		if (recv_stream_->buffer->GetBufferSize() < length) {
+			LOG_ERROR("[SESSION] OnReceived: invalid length is too large : {}", length);
 			return false;
 		}
 
 		std::list<PacketSegment> completionPackets;
 
-		const char* data = recv_stream_->buffer.data();
+		const char* data = recv_stream_->buffer->GetBufferPtr();
 		uint32_t dataLength = static_cast<uint32_t>(length);
 		uint32_t readOffset = 0;
 		while (dataLength > 0) {
 			const char* readDataPtr = data + readOffset;
-
-			if (recv_stream_->pending.has_value()) {
+			if (recv_stream_->pending.has_value())  {
 				auto& pendingStream = recv_stream_->pending.value();
 				uint32_t currentReadableSize = std::min(pendingStream.remainSegmentLength, dataLength);
 				uint32_t currentPacketBufferOffset = pendingStream.packetBuffer.size() - pendingStream.remainSegmentLength;
@@ -181,6 +199,11 @@ namespace Network {
 				readOffset += currentReadableSize;
 			}
 			else {
+				if (dataLength < PacketHeader::Size()) {
+					LOG_ERROR("[SESSION] OnReceived: invalid length is too small : {}", dataLength);
+					return false;
+				}
+
 				const PacketHeader* header = PacketHeader::Peek(readDataPtr);
 				if (header->size >= PacketHeader::kMaxSize) {
 					LOG_ERROR("[SESSION] OnReceived: invalid length is too large : {}", header->size);
@@ -191,7 +214,6 @@ namespace Network {
 				if (packetReadableSize > dataLength) {
 					std::vector<char> packetBuffer(packetReadableSize);
 					memcpy_s(packetBuffer.data(), packetReadableSize, readDataPtr, dataLength);
-
 					recv_stream_->pending.emplace(PendingStream{
 						.header = *header,
 						.packetBuffer = std::move(packetBuffer),
@@ -209,31 +231,18 @@ namespace Network {
 		}
 
 		if (completionPackets.empty() == false) {
-			session->Post([completionPackets = std::move(completionPackets)](Session& session) {
-				for (const auto& completion_packet : completionPackets) {
-					session.OnProcessPacket(completion_packet);
+			for (const auto& completion_packet : completionPackets) {
+				if (protocol_->ProcessReceiveData(completion_packet) == false) {
+					LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
+					return false;
 				}
+			}
+			Ctrl(*session).Post([protocol = protocol_](Session& session) {
+				session.OnProcessPacket(protocol);
 			});
 		}
 
 		return true;
-	}
-
-	void Connection::Send(const Buffer& buffer) {
-		DEBUG_ASSERT(IsSynchronized());
-		if (buffer.IsEmpty()) {
-			return;
-		}
-
-		if (buffer.GetByteCount() > PacketHeader::kMaxSize) {
-			LOG_ERROR("[SESSION] Send: buffer size is too large : {}", buffer.GetByteCount());
-			return;
-		}
-
-		send_stream_->buffers.push_back(buffer);
-		if (send_stream_->is_sending == false) {
-			FlushSend();
-		}
 	}
 
 	std::string Connection::ToString() const {
@@ -246,29 +255,24 @@ namespace Network {
 			return;
 		}
 
-		if (send_stream_->buffers.empty() || send_stream_->buffers.front().IsEmpty()) {
+		if (send_stream_->pending_buffers.empty()) {
 			send_stream_->is_sending = false;
-			return;
-		}
-
-		auto& buffer = send_stream_->buffers.front();
-		if (buffer.GetByteCount() < 0) {
-			LOG_ERROR("[SESSION] FlushSend: invalid buffer size : {}", buffer.GetByteCount());
-			Disconnect();
+			auto session = session_.lock();
+			if (session != nullptr) {
+				Ctrl(*session).Post([](Session& session) {
+					session.FlushToSendStream();
+				});
+			}
 			return;
 		}
 
 		send_stream_->is_sending = true;
-		SendImpl(buffer);
-
-		buffer.set_start_pos(buffer.end_pos());
-		if (buffer.GetRemainingByteCount() <= PacketHeader::Size()) {
-			send_stream_->buffers.pop_front();
-		}
+		SendImpl(send_stream_->pending_buffers.front());
+		send_stream_->pending_buffers.pop_front();
 	}
 
-	void Connection::SendImpl(const Buffer& buffer) {
+	void Connection::SendImpl(const BufferView& buffer) {
 		DEBUG_ASSERT(IsSynchronized());
-		socket_->WriteAsync(buffer.buffer_shared(), buffer.start_pos(), buffer.GetByteCount(), &Connection::OnSendCompleted, shared_from_this());
+		socket_->WriteAsync(buffer, &Connection::OnSendCompleted, GetShared(this));
 	}
 }

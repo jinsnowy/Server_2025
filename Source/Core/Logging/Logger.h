@@ -1,7 +1,7 @@
 #pragma once
 
 #include "Core/System/Singleton.h"
-#include "Core/Concurrency/MPSC.h"
+#include "Core/Container/MPSC.h"
 
 namespace Log {
 
@@ -55,7 +55,7 @@ public:
 private:
     friend class System::Singleton<Logger>;
     bool is_running_ = true;
-    Concurrency::MPSCQueue<std::string> log_queue_;
+    Container::MPSCQueue<std::string> log_queue_;
 
     Logger();
 

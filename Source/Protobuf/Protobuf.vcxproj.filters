@@ -14,10 +14,16 @@
     <ClCompile Include="Private\ProtobufSession.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="Private\types.pb.cc">
+    <ClCompile Include="Private\Protos\types.pb.cc">
+      <Filter>Private\Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\user.pb.cc">
+      <Filter>Private\Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\User.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="Private\user.pb.cc">
+    <ClCompile Include="Private\Types.cpp">
       <Filter>Private</Filter>
     </ClCompile>
   </ItemGroup>
@@ -35,16 +41,16 @@
     <ClInclude Include="Public\ProtobufDescriptor.h">
       <Filter>Public</Filter>
     </ClInclude>
-    <ClInclude Include="Private\user.pb.h">
-      <Filter>Private</Filter>
+    <ClInclude Include="Private\Protos\types.pb.h">
+      <Filter>Private\Protos</Filter>
     </ClInclude>
-    <ClInclude Include="Private\types.pb.h">
-      <Filter>Private</Filter>
-    </ClInclude>
-    <ClInclude Include="Public\Types.h">
-      <Filter>Public</Filter>
+    <ClInclude Include="Private\Protos\user.pb.h">
+      <Filter>Private\Protos</Filter>
     </ClInclude>
     <ClInclude Include="Public\User.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\Types.h">
       <Filter>Public</Filter>
     </ClInclude>
   </ItemGroup>
@@ -55,5 +61,19 @@
     <Filter Include="Private">
       <UniqueIdentifier>{26b5eac8-5ca0-43a2-b7ff-8fd126f7f7b6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Private\Protos">
+      <UniqueIdentifier>{6beddea9-629c-46be-8dda-29155e10027d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Proto">
+      <UniqueIdentifier>{a01210c2-77e9-49e7-8777-f6be3cecb444}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Proto\types.proto">
+      <Filter>Proto</Filter>
+    </None>
+    <None Include="..\..\Proto\user.proto">
+      <Filter>Proto</Filter>
+    </None>
   </ItemGroup>
 </Project>

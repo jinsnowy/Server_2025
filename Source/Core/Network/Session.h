@@ -15,7 +15,9 @@ struct PacketSegment;
 class Protocol;
 class Connection;
 class Buffer;
-class Session : public System::Actor<Session> {
+class BufferView;
+class OutputStream;
+class Session : public System::Actor {
 public:
     Session(const std::shared_ptr<System::Context>& context);
     Session();
@@ -24,31 +26,26 @@ public:
     void Connect(const std::string& ip, const uint16_t& port);
     bool IsConnected() const;
     void Disconnect();
-    
-    void Send(const Network::Buffer& buffer);
-    void SendInternalMessage(const std::string& message);
-    
+
     std::shared_ptr<Connection> connection() const { return connection_; }
     void set_connection(std::shared_ptr<Connection> connection) { connection_ = connection; }
+    void FlushToSendStream();
 
 protected:
     std::shared_ptr<Connection> connection_;
+    std::unique_ptr<OutputStream> output_stream_;
 
-    void InstallProtocol(std::unique_ptr<Protocol> protocol);
+    virtual std::unique_ptr<Protocol> CreateProtocol() = 0;
 
 private:
     friend class SessionFactory;
     friend class Connection;
 
-    std::unique_ptr<Protocol> protocol_;
-
-    void OnProcessPacket(const PacketSegment& packet_segment);
+    void OnProcessPacket(const std::shared_ptr<Protocol> protocol);
 
 protected:
     virtual void OnConnected();
     virtual void OnDisconnected();
-
-    virtual void OnMessage(const std::string& message);
 };
 
 }  

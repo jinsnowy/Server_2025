@@ -2,6 +2,8 @@
 #include "Socket.h"
 #include "Core/System/Context.h"
 #include "Core/Network/Connection.h"
+#include "Core/Network/BufferMemory.h"
+#include "Core/Network/Buffer.h"
 
 namespace Network {
 	Socket::Socket(const std::shared_ptr<System::Context>& context)
@@ -48,7 +50,7 @@ namespace Network {
 				return;
 			}
 		
-			conn->Post([callback=this->callback, error, endpoint, session](Connection& conn) {
+			Ctrl(*conn).Post([callback=this->callback, error, endpoint, session](Connection& conn) {
 				(conn.*callback)(error, endpoint, session);
 			});
 		}
@@ -71,23 +73,24 @@ namespace Network {
 	struct WriteCompletionEvent {
 		Socket::SendCallback callback;
 		std::weak_ptr<Connection> weak_conn;
-		std::shared_ptr<char[]> buffer;
+		std::shared_ptr<BufferMemory> buffer;
+
 		void operator()(const boost::system::error_code& error, std::size_t bytes_transferred) {
 			auto conn = weak_conn.lock();
 			if (!conn) {
 				return;
 			}
-			conn->Post([callback = this->callback, error, bytes_transferred](Connection& conn) {
+			Ctrl(*conn).Post([callback = this->callback, error, bytes_transferred](Connection& conn) {
 				(conn.*callback)(error, bytes_transferred);
 			});
 		}
 	};
 
-	void Socket::WriteAsync(std::shared_ptr<char[]> buffer, int32_t offset, int32_t count, SendCallback callback, std::shared_ptr<Connection> conn) {
+	void Socket::WriteAsync(const BufferView& buffer, SendCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			const char* data_ptr = buffer.get() + offset;
-			std::string_view buffer_view(data_ptr, count);
-			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer });
+			std::string_view buffer_view(buffer.data(), buffer.length());
+			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer.source()});
+			LOG_INFO("[SOCKET] write async: {} bytes", buffer.length());
 		}
 		catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] write error: {}", e.what());
@@ -100,20 +103,22 @@ namespace Network {
 		}
 	}
 
-	void Socket::ReadAsync(std::shared_ptr<char[]> buffer, int32_t size, ReadCallback callback, std::shared_ptr<Connection> conn) {
+	void Socket::ReadAsync(Buffer& buffer, ReadCallback callback, std::shared_ptr<Connection> conn) {
 		try {
 			boost::asio::async_read(*socket_,
-			boost::asio::buffer(buffer.get(), size),
-			boost::asio::transfer_at_least(PacketHeader::Size()),
-			[buffer, callback, weak_conn = std::weak_ptr(conn)](const boost::system::error_code& error, std::size_t bytes_transferred) {
+			boost::asio::buffer(buffer.GetBufferPtr(), buffer.GetBufferSize()),
+			boost::asio::transfer_at_least(1),
+			[buffer_shared = buffer.source(), callback, weak_conn = std::weak_ptr(conn)](const boost::system::error_code& error, std::size_t bytes_transferred) {
 				auto conn = weak_conn.lock();
 				if (conn == nullptr) {
 					return;
 				}
 
-				conn->Post([callback, error, bytes_transferred](Connection& conn) {
+				Ctrl(*conn).Post([callback, error, bytes_transferred](Connection& conn) {
 					(conn.*callback)(error, bytes_transferred);
 				});
+
+				LOG_INFO("[SOCKET] read async: {} bytes", bytes_transferred);
 			});
 		}
 		catch (const boost::system::system_error& e) {
