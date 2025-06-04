@@ -11,3 +11,5 @@
 #include "Core/System/String.h"
 #include "Core/System/DateTime.h"
 #include "Core/System/Singleton.h"
+#include "Core/System/Exceptions.h"
+#include "Core/System/Future.h"
