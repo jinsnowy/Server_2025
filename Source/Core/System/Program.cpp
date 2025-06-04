@@ -1,6 +1,5 @@
 #include "stdafx.h"
 #include "Program.h"
-#include <csignal>
 
 namespace System {
 	static void SignalHandler(int signum);

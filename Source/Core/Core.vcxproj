@@ -167,6 +167,7 @@
     <ClInclude Include="System\Exceptions.h" />
     <ClInclude Include="System\FuncTraits.h" />
     <ClInclude Include="System\Future.h" />
+    <ClInclude Include="System\Future.hpp" />
     <ClInclude Include="System\Interface.h" />
     <ClInclude Include="System\Macro.h" />
     <ClInclude Include="System\Path.h" />
@@ -176,6 +177,7 @@
     <ClInclude Include="System\SingletonActor.h" />
     <ClInclude Include="System\String.h" />
     <ClInclude Include="System\Thenable.h" />
+    <ClInclude Include="System\Thenable.hpp" />
     <ClInclude Include="System\ThreadLocalStorage.h" />
     <ClInclude Include="System\TimePoint.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />

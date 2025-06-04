@@ -311,5 +311,11 @@
     <ClInclude Include="System\Actor.hpp">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="System\Thenable.hpp">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Future.hpp">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

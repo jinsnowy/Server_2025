@@ -5,6 +5,7 @@
 #include <cstring>
 #include <climits>
 #include <cassert>
+#include <csignal>
 
 #include <iostream>
 #include <iomanip>
@@ -71,3 +72,5 @@
 #include "Core/System/DateTime.h"
 #include "Core/System/TimePoint.h"
 #include "Core/Network/Packet/Packet.h"
+#include "Core/System/Actor.h"
+#include "Core/System/Actor.hpp"

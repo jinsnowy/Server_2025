@@ -16,8 +16,7 @@ namespace RTS {
 	ServerSession::~ServerSession() {
 	}
 
-	std::unique_ptr<Network::Protocol> ServerSession::CreateProtocol()
-	{
+	std::unique_ptr<Network::Protocol> ServerSession::CreateProtocol() {
 		return std::make_unique<ServerProtocol>();
 	}
 
@@ -37,10 +36,14 @@ namespace RTS {
 
 		Ctrl(Authenticator::GetInstance()).Async([message](Authenticator& authenticator) mutable {
 			return authenticator.ValidateAccessToken(message->access_token());
-		}).Then([message](bool result) {
+		}).Then([message, session_ptr = Shared(&session)](bool result) {
 			if (result == false) {
 				LOG_ERROR("Invalid access token for user_id: {}", message->user_id());
 			}
+			return session_ptr;
+		}).ThenPost([](ServerSession& session) {
+			DEBUG_ASSERT(session.IsSynchronized());
+			LOG_INFO("Session {} authenticated successfully.", session.session_id());
 		});
 	}
 

@@ -4,10 +4,10 @@
 #include "Core/System/Exceptions.h"
 
 namespace System {
-	template<typename R>
-	class Thenable;
-	
 	namespace Detail {
+		template<typename R>
+		class Thenable;
+
 		struct FutureBase {
 			std::function<void(const std::exception&)> exception_callback_;
 			virtual ~FutureBase() = default;
@@ -112,7 +112,7 @@ namespace System {
 		};
 
 		template<typename T, typename R, typename Func>
-		static std::function<void(T)> WhenResult(std::shared_ptr<FutureState<R>> thenable_state, Func&& func) {
+		static inline std::function<void(T)> WhenResult(std::shared_ptr<FutureState<R>> thenable_state, Func&& func) {
 			return[thenable_state, func = std::forward<Func>(func)](T result) mutable {
 				if constexpr (std::is_void_v<T>) {
 					if constexpr (std::is_void_v<R>) {
@@ -158,12 +158,10 @@ namespace System {
 			}
 
 			template<typename Func>
-			decltype(auto) Then(Func&& func) {
-				using R_ = typename FuncReturn<Func>::Type;
-				Thenable<R_> thenable(thenable_state_);
-				thenable_state_->callback_ = Detail::WhenResult<R, R_>(thenable, std::forward<Func>(func));
-				return thenable;
-			}
+			Thenable<typename FuncReturn<Func>::Type> Then(Func&& func);
+
+			template<typename Func>
+			Thenable<typename FuncReturn<Func>::Type> ThenPost(Func&& func);
 
 			std::shared_ptr<FutureState<R>> thenable_state() const {
 				return thenable_state_;
@@ -173,5 +171,5 @@ namespace System {
 			std::shared_ptr<FutureBase> waiting_state_;
 			std::shared_ptr<FutureState<R>> thenable_state_ = std::make_shared<FutureState<R>>();
 		};
-	}
+	} // namespace Detail
 }

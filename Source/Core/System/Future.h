@@ -25,17 +25,14 @@ namespace System {
 		}
 
 		template<typename Func>
-		decltype(auto) Then(Func&& func) {
-			using R = typename FuncReturn<Func>::Type;
-			Detail::Thenable<R> thenable(state_);
-			state_->callback_ = Detail::WhenResult<T, R>(thenable.thenable_state(), std::forward<Func>(func));
-			return thenable;
-		}
+		Detail::Thenable<typename FuncReturn<Func>::Type> Then(Func&& func);
+
+		template<typename Func>
+		Detail::Thenable<typename FuncReturn<Func>::Type> ThenPost(Func&& func);
 
 	private:
 		std::shared_ptr<Detail::FutureState<T>> state_;
 	};
-
 
 	template<>
 	class Future<void> {

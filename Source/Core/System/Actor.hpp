@@ -8,6 +8,28 @@ namespace System {
 		template<
 		typename F,
 		typename A,
+		typename FArg = typename std::tuple_element<0, typename FuncTraits<F>::FArgsType>::type,
+		typename = std::enable_if_t<std::is_base_of_v<A, std::remove_reference_t<FArg>>>>
+		class PostMessage : public Callable {
+		public:
+			PostMessage(F&& f, const std::shared_ptr<A>& a)
+				:
+				func_(std::forward<F>(f)),
+				actor_(std::move(a)) {
+			}
+
+			void operator()() override {
+				(func_)(static_cast<FArg&>(*actor_));
+			}
+
+		private:
+			F func_;
+			std::shared_ptr<A> actor_;
+		};
+
+		template<
+		typename F,
+		typename A,
 		typename R,
 		typename FArg = typename std::tuple_element<0, typename FuncTraits<F>::FArgsType>::type,
 		typename = std::enable_if_t<std::is_base_of_v<A, std::remove_reference_t<FArg>>>>
@@ -46,6 +68,31 @@ namespace System {
 			std::shared_ptr<A> actor_;
 			Future<R> future_;
 		};
+	}
+
+	template<typename A>
+	inline ActorController<A>::ActorController(A& a)
+		:
+		actor(a) {
+	}
+
+	template<typename A>
+	template<typename F>
+	inline void ActorController<A>::Post(F&& func) {
+		const Channel& channel = actor.GetChannel();
+		channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), Actor::GetShared(&actor)));
+	}
+
+	template<typename A>
+	template<typename F>
+	inline void ActorController<A>::Patch(F&& func) {
+		const Channel& channel = actor.GetChannel();
+		if (channel.IsSynchronized()) {
+			func(actor);
+		}
+		else {
+			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), Actor::GetShared(&actor)));
+		}
 	}
 
 	template<typename A>
