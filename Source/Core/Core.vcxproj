@@ -158,6 +158,7 @@
     <ClInclude Include="Network\Socket.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="System\Actor.h" />
+    <ClInclude Include="System\Actor.hpp" />
     <ClInclude Include="System\Callable.h" />
     <ClInclude Include="System\Channel.h" />
     <ClInclude Include="System\Context.h" />

@@ -35,13 +35,9 @@ namespace RTS {
 		LOG_INFO("ServerSession::OnHelloServer session_id:{}, address:{}, user_id:{}, access_token:{}",
 			session.session_id(), session.connection()->ToString(), message->user_id(), message->access_token());
 
-		System::Future<bool> future;
-
-		Ctrl(Authenticator::GetInstance()).Post([message, future](Authenticator& authenticator) mutable {
-			future.SetResult(authenticator.ValidateAccessToken(message->access_token()));
-		});
-
-		future.Then([message](bool result) {
+		Ctrl(Authenticator::GetInstance()).Async([message](Authenticator& authenticator) mutable {
+			return authenticator.ValidateAccessToken(message->access_token());
+		}).Then([message](bool result) {
 			if (result == false) {
 				LOG_ERROR("Invalid access token for user_id: {}", message->user_id());
 			}

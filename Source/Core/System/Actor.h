@@ -49,6 +49,9 @@ namespace System {
 		};
 	}
 
+	template<typename T>
+	class Future;
+
 	template<typename A>
 	struct ActorController {
 		A& actor;
@@ -59,6 +62,12 @@ namespace System {
 
 		template<typename F>
 		void Post(F&& func);
+
+		template<typename F>
+		void Patch(F&& func);
+
+		template<typename F>
+		Future<typename FuncTraits<F>::ReturnType> Async(F&& func);
 	};
 
 	template<typename A>
@@ -77,6 +86,18 @@ namespace System {
 	inline void ActorController<A>::Post(F&& func) {
 		const Channel& channel = actor.GetChannel();
 		channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), GetShared()));
+	}
+
+	template<typename A>
+	template<typename F>
+	inline void ActorController<A>::Patch(F&& func) {
+		const Channel& channel = actor.GetChannel();
+		if (channel.IsSynchronized()) {
+			func(actor);
+		}
+		else {
+			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), GetShared()));
+		}
 	}
 }
 
