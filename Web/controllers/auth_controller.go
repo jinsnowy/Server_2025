@@ -224,3 +224,19 @@ func GetAccessToken(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"access_token": access_token, "expiry": exipry.Seconds()})
 }
+
+func ValidateAccessToken(c *gin.Context) {
+	accessToken := c.GetHeader("Authorization")
+	if accessToken == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "missing access_token"})
+		return
+	}
+
+	value, err := repo.GetValue(accessToken)
+	if err != nil || value == "" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid or expired access_token"})
+		return
+	}
+
+	c.JSON(http.StatusOK, gin.H{"valid": true, "user_id": value})
+}

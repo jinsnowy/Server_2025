@@ -36,7 +36,7 @@ namespace Network {
         }
 
         connection_ = std::make_shared<Connection>(GetChannel().GetContext());
-        Ctrl(*connection_).Post([ip, port, session = GetShared<Session>()](Connection& connection) {
+        Ctrl(*connection_).Post([ip, port, session = GetShared(this)](Connection& connection) {
             connection.Connect(ip, port, session);
         });
     }

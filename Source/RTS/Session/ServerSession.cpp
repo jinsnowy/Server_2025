@@ -4,6 +4,8 @@
 #include "Protocol/ServerHandlerMap.h"
 #include "Protobuf/Public/User.h"
 
+#include "RTS/Authenticator/Authenticator.h"
+
 namespace RTS {
 	int ServerSession::session_id_counter_ = 1;
 
@@ -32,6 +34,18 @@ namespace RTS {
 		std::string serialized_string = message->SerializeAsString();
 		LOG_INFO("ServerSession::OnHelloServer session_id:{}, address:{}, user_id:{}, access_token:{}",
 			session.session_id(), session.connection()->ToString(), message->user_id(), message->access_token());
+
+		System::Future<bool> future;
+
+		Ctrl(Authenticator::GetInstance()).Post([message, future](Authenticator& authenticator) mutable {
+			future.SetResult(authenticator.ValidateAccessToken(message->access_token()));
+		});
+
+		future.Then([message](bool result) {
+			if (result == false) {
+				LOG_ERROR("Invalid access token for user_id: {}", message->user_id());
+			}
+		});
 	}
 
 	void ServerSession::RegisterHandler(ServerHandlerMap* handler_map) {

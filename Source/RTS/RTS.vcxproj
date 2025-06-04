@@ -108,7 +108,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Authenticator.h" />
+    <ClInclude Include="Authenticator\Authenticator.h" />
     <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
     <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\ClientHandlerMap.h" />

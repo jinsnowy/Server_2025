@@ -22,6 +22,9 @@
     <Filter Include="Container">
       <UniqueIdentifier>{c57c0169-0e2b-4e68-bf69-9a9ad71bc5c4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Http">
+      <UniqueIdentifier>{5b8ac38d-fbe9-4c3e-bcb2-1fe4a25f77fc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Network\Connection.cpp">
@@ -132,6 +135,27 @@
     </ClCompile>
     <ClCompile Include="Network\BufferMemory.cpp">
       <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Http\HttpRequest.cpp">
+      <Filter>Http</Filter>
+    </ClCompile>
+    <ClCompile Include="Http\HttpEnums.cpp">
+      <Filter>Http</Filter>
+    </ClCompile>
+    <ClCompile Include="Http\HttpResponse.cpp">
+      <Filter>Http</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Future.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Exceptions.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Thenable.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\SingletonActor.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +283,30 @@
     </ClInclude>
     <ClInclude Include="Network\BufferMemory.h">
       <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Http\HttpRequest.h">
+      <Filter>Http</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Curl.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Http\HttpEnums.h">
+      <Filter>Http</Filter>
+    </ClInclude>
+    <ClInclude Include="Http\HttpResponse.h">
+      <Filter>Http</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Future.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Exceptions.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Thenable.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\SingletonActor.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

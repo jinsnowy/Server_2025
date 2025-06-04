@@ -70,17 +70,6 @@ namespace Network {
 	public:
 	};
 
-	class NullBufferPool : public System::SingletonShared<NullBufferPool>, public BufferOwner {
-	public:
-		void OnBufferReleased(std::unique_ptr<char[]> buffer, size_t buffer_size) override {
-			// Null buffer pool does not release buffers
-		}
-
-		std::weak_ptr<BufferOwner> GetOwner() {
-			return shared_from_this();
-		}
-	};
-
 	Buffer RequestSendBuffer() {
 		auto& pool = SendBufferPool::GetInstance();
 		auto buffer = pool.RequestBuffer();
@@ -96,8 +85,7 @@ namespace Network {
 	}
 
 	Buffer RequestBuffer(size_t BufferSize) {
-		auto& pool = NullBufferPool::GetInstance();
 		std::unique_ptr<char[]> buffer = std::make_unique<char[]>(BufferSize);
-		return std::make_shared<BufferMemory>(std::move(buffer), BufferSize, pool.GetOwner());
+		return std::make_shared<BufferMemory>(std::move(buffer), BufferSize, std::weak_ptr<Network::BufferOwner>{});
 	}
 }

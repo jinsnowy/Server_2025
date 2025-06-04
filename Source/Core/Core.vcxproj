@@ -83,6 +83,9 @@
     <ClCompile Include="Container\CircularBuffer.cpp" />
     <ClCompile Include="Container\MPSC.cpp" />
     <ClCompile Include="Container\SPSC.cpp" />
+    <ClCompile Include="Http\HttpEnums.cpp" />
+    <ClCompile Include="Http\HttpRequest.cpp" />
+    <ClCompile Include="Http\HttpResponse.cpp" />
     <ClCompile Include="Logging\Logger.cpp" />
     <ClCompile Include="Misc\ApplyVariants.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
@@ -112,12 +115,16 @@
     <ClCompile Include="System\Context.cpp" />
     <ClCompile Include="System\DateTime.cpp" />
     <ClCompile Include="System\Diagnostics.cpp" />
+    <ClCompile Include="System\Exceptions.cpp" />
     <ClCompile Include="System\FuncTraits.cpp" />
+    <ClCompile Include="System\Future.cpp" />
     <ClCompile Include="System\Path.cpp" />
     <ClCompile Include="System\Program.cpp" />
     <ClCompile Include="System\Scheduler.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
+    <ClCompile Include="System\SingletonActor.cpp" />
     <ClCompile Include="System\String.cpp" />
+    <ClCompile Include="System\Thenable.cpp" />
     <ClCompile Include="System\ThreadLocalStorage.cpp" />
     <ClCompile Include="System\TimePoint.cpp" />
   </ItemGroup>
@@ -126,6 +133,9 @@
     <ClInclude Include="Container\MPSC.h" />
     <ClInclude Include="Container\SPSC.h" />
     <ClInclude Include="CoreMinimal.h" />
+    <ClInclude Include="Http\HttpEnums.h" />
+    <ClInclude Include="Http\HttpRequest.h" />
+    <ClInclude Include="Http\HttpResponse.h" />
     <ClInclude Include="Logging\Logger.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Network\Acceptor.h" />
@@ -153,17 +163,22 @@
     <ClInclude Include="System\Context.h" />
     <ClInclude Include="System\DateTime.h" />
     <ClInclude Include="System\Diagnostics.h" />
+    <ClInclude Include="System\Exceptions.h" />
     <ClInclude Include="System\FuncTraits.h" />
+    <ClInclude Include="System\Future.h" />
     <ClInclude Include="System\Interface.h" />
     <ClInclude Include="System\Macro.h" />
     <ClInclude Include="System\Path.h" />
     <ClInclude Include="System\Program.h" />
     <ClInclude Include="System\Scheduler.h" />
     <ClInclude Include="System\Singleton.h" />
+    <ClInclude Include="System\SingletonActor.h" />
     <ClInclude Include="System\String.h" />
+    <ClInclude Include="System\Thenable.h" />
     <ClInclude Include="System\ThreadLocalStorage.h" />
     <ClInclude Include="System\TimePoint.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
+    <ClInclude Include="ThirdParty\Curl.h" />
     <ClInclude Include="ThirdParty\Protobuf.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -57,7 +57,7 @@
     <ClInclude Include="Protocol\ServerHandlerMap.h">
       <Filter>Protocol</Filter>
     </ClInclude>
-    <ClInclude Include="Authenticator.h">
+    <ClInclude Include="Authenticator\Authenticator.h">
       <Filter>Authorization</Filter>
     </ClInclude>
   </ItemGroup>

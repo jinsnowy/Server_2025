@@ -38,6 +38,8 @@
 #include <thread>
 #include <condition_variable>
 #include <future>
+#include <variant>
+#include <exception>
 
 // C++17/C++2x
 #include <any>

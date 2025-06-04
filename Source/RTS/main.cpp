@@ -6,6 +6,7 @@
 #include "RTS/Protocol/ClientProtocol.h"
 #include "RTS/Protocol/ServerHandlerMap.h"
 #include "RTS/Protocol/ClientHandlerMap.h"
+#include "RTS/Authenticator/Authenticator.h"
 
 using namespace RTS;
 
@@ -37,6 +38,8 @@ int main() {
 
     auto& scheduler = System::Scheduler::RoundRobin();
     scheduler.Post([session_factory]() {
+        Authenticator::GetInstance().Initialize("http://localhost:8080");
+
         auto& current = System::Scheduler::Current();
         listener_ = std::make_shared<Network::Listener>(current.GetContext(), session_factory);
         listener_->Bind("0.0.0.0", 9911);
@@ -44,7 +47,7 @@ int main() {
     });
 
     scheduler.Post([]() {
-        ConnectMany(1);
+        ConnectMany(100);
      });
 
     System::Program::Wait();

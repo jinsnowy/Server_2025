@@ -18,36 +18,13 @@ namespace System {
 		Channel GetChannel() const;
 
 		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
-		std::shared_ptr<T> GetShared() {
-			return std::static_pointer_cast<T>(shared_from_this());
-		}
-
-		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
-		std::shared_ptr<T> GetShared(T* ptr) {
+		static std::shared_ptr<T> GetShared(T* ptr) {
 			return std::static_pointer_cast<T>(ptr->shared_from_this());
 		}
 
 	private:
 		Channel channel_;
 	};
-
-	inline Actor::Actor()
-		:
-		channel_(Channel()) {
-	}
-
-	inline Actor::Actor(const Channel& channel)
-		:
-		channel_(channel) {
-	}
-
-	inline bool Actor::IsSynchronized() const {
-		return channel_.IsSynchronized();
-	}
-
-	inline Channel Actor::GetChannel() const {
-		return Channel(channel_.GetContext());
-	}
 
 	namespace Detail {
 		template<typename F,
@@ -92,19 +69,14 @@ namespace System {
 
 	template<typename A>
 	inline std::shared_ptr<A> ActorController<A>::GetShared() {
-		return actor.GetShared<A>();
+		return Actor::GetShared(&actor);
 	}
 
 	template<typename A>
 	template<typename F>
 	inline void ActorController<A>::Post(F&& func) {
 		const Channel& channel = actor.GetChannel();
-		if (channel.IsSynchronized()) {
-			Detail::PostMessage<F, A>{ std::forward<F>(func), GetShared() }();
-		}
-		else {
-			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), GetShared()));
-		}
+		channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), GetShared()));
 	}
 }
 

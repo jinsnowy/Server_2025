@@ -13,7 +13,7 @@
       <PreprocessorDefinitions>PROTOBUF_USE_DLLS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>abseil_dll.lib;libprotobufd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>abseil_dll.lib;libprotobufd.lib;libcurl-d.lib;zlibd.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup />

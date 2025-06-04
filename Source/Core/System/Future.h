@@ -9,7 +9,7 @@ namespace System {
 	public:
 		Future() 
 			: 
-			state_(std::make_shared<FutureState<T>>()) {
+			state_(std::make_shared<Detail::FutureState<T>>()) {
 		}
 
 		void SetResult(const T& result) {
@@ -27,13 +27,13 @@ namespace System {
 		template<typename Func>
 		decltype(auto) Then(Func&& func) {
 			using R = typename FuncReturn<Func>::Type;
-			Thenable<R> thenable(state_);
+			Detail::Thenable<R> thenable(state_);
 			state_->callback_ = Detail::WhenResult<T, R>(thenable.thenable_state(), std::forward<Func>(func));
 			return thenable;
 		}
 
 	private:
-		std::shared_ptr<FutureState<T>> state_;
+		std::shared_ptr<Detail::FutureState<T>> state_;
 	};
 
 
@@ -42,7 +42,7 @@ namespace System {
 	private:
 		Future()
 			: 
-			state_(std::make_shared<FutureState<void>>()) {
+			state_(std::make_shared<Detail::FutureState<void>>()) {
 		}
 
 		void SetResult() {
@@ -55,7 +55,7 @@ namespace System {
 
 	private:
 	
-		std::shared_ptr<FutureState<void>> state_;
+		std::shared_ptr<Detail::FutureState<void>> state_;
 	};
 
 }

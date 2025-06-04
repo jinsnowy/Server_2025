@@ -9,10 +9,13 @@ import (
 func SetupRouter() *gin.Engine {
 	r := gin.Default()
 
+	r.GET("/ping", controllers.Ping)
+
 	r.GET("/auth/access_token", controllers.GetAccessToken)
 	r.GET("/auth/google", controllers.GoogleLogin)
 	r.GET("/auth/google/callback", controllers.GoogleLoginCallback)
 	r.POST("/auth/session/status", controllers.GetSessionStatus)
+	r.POST("/auth/validate_token", controllers.ValidateAccessToken)
 
 	r.POST("/login/create_account", controllers.CreateAccountWithUserNameAndPassword)
 	r.POST("/login", controllers.LoginWithUserNameAndPassword)

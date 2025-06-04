@@ -29,10 +29,6 @@ namespace RTS {
 			hello_server.set_access_token("example_access_token");
 
 			Send(hello_server);
-
-			for (size_t i = 0; i < 1000; ++i) {
-				Send(user::HelloServer{});
-			}
 		}
 	}
 
