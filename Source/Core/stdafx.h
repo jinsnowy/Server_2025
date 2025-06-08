@@ -21,6 +21,8 @@
 #include <random>
 #include <functional>
 #include <utility>
+#include <codecvt>
+#include <regex>
 
 #include <array>
 #include <bitset>
@@ -56,7 +58,8 @@
 #undef PostMessage
 #endif 
 
-#include <boost/asio.hpp>
+#include "Core/ThirdParty/BoostAsio.h"
+
 #include "Core/Logging/Logger.h"
 #include "Core/System/Macro.h"
 #include "Core/System/FuncTraits.h"

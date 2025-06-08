@@ -7,59 +7,38 @@
 #include "Server/Protocol/ServerHandlerMap.h"
 #include "Server/Protocol/ClientHandlerMap.h"
 #include "Server/Authenticator/Authenticator.h"
-#include <grpcpp/grpcpp.h>
-
-#include "Protobuf/Private/Protos/Grpc/helloworld.grpc.pb.h"
+#include "InterServer/GrpcService.h"
+#include "InterServer/HelloWorldGreeterService.h"
 
 // The service implementation
-class GreeterServiceImpl final : public helloworld::Greeter::Service {
-public:
-    grpc::Status SayHello(grpc::ServerContext* context, const helloworld::HelloRequest* request, helloworld::HelloReply* reply) override {
-        std::string prefix = "Hello, ";
-        reply->set_message(prefix + request->name());
-        return grpc::Status::OK;
-    }
-};
 
-void RunServer() {
-    std::string server_address("0.0.0.0:50051");
-    GreeterServiceImpl service;
-
-    grpc::ServerBuilder builder;
-    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
-    builder.RegisterService(&service);
-
-    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-    std::cout << "Server listening on " << server_address << std::endl;
-
-    server->Wait();
-}
-
-using namespace RTS;
+using namespace Server;
 
 std::shared_ptr<Network::Listener> listener_;
-std::vector<std::shared_ptr<RTS::ServerSession>> server_sessions_;
-std::vector<std::shared_ptr<RTS::ClientSession>> client_sessions_;
+std::vector<std::shared_ptr<Server::ServerSession>> server_sessions_;
+std::vector<std::shared_ptr<Server::ClientSession>> client_sessions_;
+std::wstring dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=DESKTOP-5DKI3L6;Trusted_Connection=Yes;Database=GameDB;";
 
 void ConnectMany(int32_t count) {
-    auto& scheduler = System::Scheduler::Current();
+    //auto& scheduler = System::Scheduler::Current();
     for (int32_t i = 0; i < count; ++i) {
-        auto session = std::make_shared<RTS::ClientSession>();
+        auto session = std::make_shared<Server::ClientSession>();
         session->Connect("127.0.0.1", 9911);
         client_sessions_.push_back(session);
     }
 }
 
+
 int main() {
-    System::Scheduler::Launch(32);
+    System::Scheduler::CreateThreadPool(32);
 
     ServerSession::RegisterHandler(&ServerHandlerMap::GetInstance());
     ClientSession::RegisterHandler(&ClientHandlerMap::GetInstance());
 
     Network::SessionFactory session_factory;
-    session_factory.SetSessionClass<RTS::ServerSession>();
+    session_factory.SetSessionClass<Server::ServerSession>();
     session_factory.OnConnect([](std::shared_ptr<Network::Session> session) {
-        server_sessions_.push_back(std::static_pointer_cast<RTS::ServerSession>(session));
+        server_sessions_.push_back(std::static_pointer_cast<Server::ServerSession>(session));
         return true;
     });
 
@@ -77,9 +56,11 @@ int main() {
         ConnectMany(100);
      });
 
-    RunServer();
+    Server::RunGrpcService<Server::HelloWorldGreeterService>("0.0.0.0:51001");
 
     System::Program::Wait();
+
+    google::protobuf::ShutdownProtobufLibrary();
 
     return 0;
 }

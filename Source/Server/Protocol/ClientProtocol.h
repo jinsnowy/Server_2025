@@ -2,7 +2,7 @@
 
 #include "Protobuf/Public/ProtobufProtocol.h"
 
-namespace RTS {
+namespace Server {
 	class ClientProtocol : public Protobuf::ProtobufProtocol {
 	public:
 		bool ProcessMessage(Network::Session& session);

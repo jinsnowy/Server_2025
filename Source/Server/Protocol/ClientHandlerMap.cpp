@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "ClientHandlerMap.h"
 
-namespace RTS {
+namespace Server {
 	ClientHandlerMap::ClientHandlerMap()
 	{
 	}

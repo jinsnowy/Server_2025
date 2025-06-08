@@ -2,7 +2,7 @@
 
 #include "Protobuf/Public/ProtobufSession.h"
 
-namespace RTS {
+namespace Server {
     class ClientHandlerMap;
     class ClientSession : public Protobuf::ProtobufSession {
     public:

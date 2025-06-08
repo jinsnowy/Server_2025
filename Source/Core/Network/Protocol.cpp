@@ -23,10 +23,12 @@ namespace Network
             return true;
         }
 
+        //
+
         return false;
     }
 
-    bool Protocol::ProcessMessage(Session& session)
+    bool Protocol::ProcessMessage(Session&)
     {
         for (auto message = internal_messages_.Dequeue(); message.has_value(); message = internal_messages_.Dequeue()) {
             Misc::Apply(

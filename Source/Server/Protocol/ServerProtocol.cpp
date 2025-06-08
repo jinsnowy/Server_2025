@@ -2,7 +2,7 @@
 #include "ServerProtocol.h"
 #include "ServerHandlerMap.h"
 
-namespace RTS {
+namespace Server {
 
 	bool ServerProtocol::ProcessMessage(Network::Session& session)
 	{

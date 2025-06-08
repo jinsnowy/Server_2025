@@ -1,16 +1,96 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Server\main.cpp">
-      <Filter>Source Files</Filter>
+    <Filter Include="Protocol">
+      <UniqueIdentifier>{09598e3f-b557-475a-bddb-bf49e0c02063}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Session">
+      <UniqueIdentifier>{a558c9b0-57af-439c-b9c6-8fa44ab20ece}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PacketHandler">
+      <UniqueIdentifier>{f4eee6b4-cbc9-474c-a46f-fe7c798a8c4f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Authenticator">
+      <UniqueIdentifier>{250668dd-2318-4377-a28b-7da8f3565a55}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="InterServer">
+      <UniqueIdentifier>{e81b0837-9f70-47a6-9042-7d637dbd2e30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Section">
+      <UniqueIdentifier>{d83d22f0-bf5d-42a3-b298-f133d6d20e37}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Authenticator\Authenticator.cpp">
+      <Filter>Authenticator</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandler\ClientPacketHandler.cpp">
+      <Filter>PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketHandler\ServerPacketHandler.cpp">
+      <Filter>PacketHandler</Filter>
+    </ClCompile>
+    <ClCompile Include="Session\ClientSession.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Session\ServerSession.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientHandlerMap.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ClientProtocol.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ServerHandlerMap.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="Protocol\ServerProtocol.cpp">
+      <Filter>Protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="InterServer\HelloWorldGreeterService.cpp">
+      <Filter>InterServer</Filter>
+    </ClCompile>
+    <ClCompile Include="InterServer\GrpcService.cpp">
+      <Filter>InterServer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Server\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{DFAA7540-48BB-3E70-AA08-504C096DDE20}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Authenticator\Authenticator.h">
+      <Filter>Authenticator</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler\ClientPacketHandler.h">
+      <Filter>PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketHandler\ServerPacketHandler.h">
+      <Filter>PacketHandler</Filter>
+    </ClInclude>
+    <ClInclude Include="Session\ClientSession.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Session\ServerSession.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientHandlerMap.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ClientProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ServerHandlerMap.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="Protocol\ServerProtocol.h">
+      <Filter>Protocol</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="InterServer\HelloWorldGreeterService.h">
+      <Filter>InterServer</Filter>
+    </ClInclude>
+    <ClInclude Include="InterServer\GrpcService.h">
+      <Filter>InterServer</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -2,7 +2,7 @@
 
 #include "Protobuf/Public/ProtobufProtocol.h"
 
-namespace RTS {
+namespace Server {
 	class ServerHandlerMap : public Protobuf::ProtobufHandlerMap, public System::Singleton<ServerHandlerMap> {
 	public:
 		ServerHandlerMap();

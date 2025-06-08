@@ -6,7 +6,7 @@ namespace google::protobuf {
 	class Message;
 } // namespace google::protobuf
 
-namespace RTS {
+namespace Server {
 	class ServerHandlerMap;
 	class ServerSession : public Protobuf::ProtobufSession {
 	public:

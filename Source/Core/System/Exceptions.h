@@ -1,7 +1,6 @@
 #pragma once
 
 namespace System {
-
 	class FutureNoResultException : public std::exception {
 	public:
 		FutureNoResultException() noexcept
@@ -10,6 +9,16 @@ namespace System {
 
 		const char* what() const noexcept override {
 			return "Future does not have a result";
+		}
+	};
+
+	class ActorNullException : public std::exception {
+	public:
+		ActorNullException() noexcept
+			: std::exception("Actor is null") {
+		}
+		const char* what() const noexcept override {
+			return "Actor is null";
 		}
 	};
 }

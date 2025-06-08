@@ -28,4 +28,13 @@ do {\
 	__assume(expr);\
 } while (false)
 
+#define DEBUG_BREAK \
+if (IsDebuggerPresent()) {\
+			__debugbreak();\
+}
+
 #define FORMAT(...) std::format(__VA_ARGS__)
+
+#define NO_COPY_AND_ASSIGN(Class)\
+Class(const Class&) = delete;\
+Class& operator=(const Class&) = delete;

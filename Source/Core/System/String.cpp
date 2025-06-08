@@ -2,8 +2,7 @@
 #include "String.h"
 #include <boost/locale/encoding.hpp>
 
-namespace System
-{
+namespace System {
 	std::string String::Convert(const std::wstring_view& wstr) {
 		return boost::locale::conv::utf_to_utf<char>(wstr.data());
 	}

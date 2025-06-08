@@ -15,7 +15,7 @@ namespace Network {
 #define INTERNAL_PACKET_ID(id) static_cast<uint32_t>(InternalPacketId::id)
 
 	struct InternalMessage {
-		std::string_view message;
+		std::string message;
 
 		PacketHeader header() const {
 			return PacketHeader{

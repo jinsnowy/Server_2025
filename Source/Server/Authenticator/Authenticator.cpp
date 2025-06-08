@@ -3,7 +3,7 @@
 
 #include "Core/Http/HttpRequest.h"
 
-namespace RTS {
+namespace Server {
 	Authenticator::Authenticator() {
 	}
 

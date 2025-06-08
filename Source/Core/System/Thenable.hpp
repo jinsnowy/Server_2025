@@ -46,6 +46,10 @@ namespace System {
 			static_assert(std::is_base_of_v<Actor, typename SharedPtrWrapper<T>::Type>, "T must not be an std::shared_ptr<Actor> for WhenResultAndPatch");
 			using A = typename SharedPtrWrapper<T>::Type;
 			return[thenable_state, func = std::forward<F>(func)](T shared_actor) mutable {
+				if (!shared_actor) {
+					thenable_state->SetException(std::make_exception_ptr(ActorNullException()));
+					return;
+				}
 				System::ActorController<A>(*shared_actor).Patch(WhenResultAndPatchMessage<F, A, R>(thenable_state, std::forward<F>(func)));
 			};
 		}

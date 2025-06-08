@@ -1,330 +1,420 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\cmake_pch.cxx">
-      <Filter>Source Files</Filter>
+    <Filter Include="Container">
+      <UniqueIdentifier>{1f422514-9f76-4c85-b7e4-ec3fc26e13b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Http">
+      <UniqueIdentifier>{0ab96e1e-99c4-4097-bd34-cda0de504433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{e1710894-e07c-493e-b1c1-863ea42fb946}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Misc">
+      <UniqueIdentifier>{9439229e-673f-48ea-9ac6-480bdf6345dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network">
+      <UniqueIdentifier>{375c3db3-3986-4496-a7b1-9aaf323ba1ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{ee7d5c22-83ea-452b-b8d0-3ad0789b09f7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{66baeb75-d346-4ef3-bfb4-c84ccd4c2882}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThirdParty">
+      <UniqueIdentifier>{f111d487-1dfa-41b8-ae76-9b2c7667f9c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Network\Packet">
+      <UniqueIdentifier>{af6bdd12-c31d-4428-8d43-11f3ea6f344f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Cryptography">
+      <UniqueIdentifier>{7d179437-cc61-48cb-9800-e7153103d7ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sql">
+      <UniqueIdentifier>{9b170ce7-a1e5-416a-9873-b8c3650cfcdc}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Container\CircularBuffer.cpp">
+      <Filter>Container</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Container\MPSC.cpp">
+      <Filter>Container</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\MPSC.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Container\SPSC.cpp">
+      <Filter>Container</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\SPSC.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Http\HttpEnums.cpp">
+      <Filter>Http</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Http\HttpRequest.cpp">
+      <Filter>Http</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Http\HttpResponse.cpp">
+      <Filter>Http</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Logging\Logger.cpp">
+      <Filter>Logging</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Logging\Logger.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Misc\ApplyVariants.cpp">
+      <Filter>Misc</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Acceptor.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Buffer.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Buffer.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\BufferMemory.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\BufferPool.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Connection.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Connection.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Listener.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Listener.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\NetworkStream.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\OutputStream.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Protocol.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\ProtocolController.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Resolver.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Session.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Protocol.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\SessionFactory.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Socket.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Resolver.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Packet\Internal.cpp">
+      <Filter>Network\Packet</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Session.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Packet\Packet.cpp">
+      <Filter>Network\Packet</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Network\Packet\PacketHandlerMap.cpp">
+      <Filter>Network\Packet</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Socket.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Actor.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Callable.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Callable.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Channel.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Channel.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Context.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Context.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\DateTime.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\DateTime.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Diagnostics.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Exceptions.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Exceptions.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\FuncTraits.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Future.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Path.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Path.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Program.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Program.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Scheduler.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Scheduler.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Singleton.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Singleton.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\SingletonActor.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\String.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\String.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\Thenable.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\ThreadLocalStorage.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="System\TimePoint.cpp">
+      <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\TimePoint.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="stdafx.cpp" />
+    <ClCompile Include="Sql\Agent.cpp">
+      <Filter>Sql</Filter>
     </ClCompile>
-    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\stdafx.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Sql\Column.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\Conn.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\Database.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\Param.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\Pool.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\SqlTypes.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\Stmt.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="Sql\StmtImpl.cpp">
+      <Filter>Sql</Filter>
+    </ClCompile>
+    <ClCompile Include="ThirdParty\Sql.cpp">
+      <Filter>ThirdParty</Filter>
+    </ClCompile>
+    <ClCompile Include="Container\SList.cpp">
+      <Filter>Container</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Time.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Cast.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Elapse.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Container\CircularBuffer.h">
+      <Filter>Container</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\MPSC.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Container\MPSC.h">
+      <Filter>Container</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\SPSC.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Container\SPSC.h">
+      <Filter>Container</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CoreMinimal.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Http\HttpEnums.h">
+      <Filter>Http</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Http\HttpRequest.h">
+      <Filter>Http</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Http\HttpResponse.h">
+      <Filter>Http</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Logging\Logger.h">
+      <Filter>Logging</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Logging\Logger.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Misc\ApplyVariants.h">
+      <Filter>Misc</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Acceptor.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Buffer.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Buffer.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\BufferMemory.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\BufferPool.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Connection.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Connection.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Interface.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Interface.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Listener.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Listener.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\NetworkStream.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\OutputStream.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Protocol.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\ProtocolController.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Resolver.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Session.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Protocol.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\SessionFactory.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Socket.h">
+      <Filter>Network</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Resolver.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Packet\Internal.h">
+      <Filter>Network\Packet</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Session.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Packet\Packet.h">
+      <Filter>Network\Packet</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Network\Packet\PacketHandlerMap.h">
+      <Filter>Network\Packet</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Socket.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ThirdParty\BoostAsio.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ThirdParty\Curl.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ThirdParty\Protobuf.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Callable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="ThirdParty\WarningMacros.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Channel.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Actor.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Context.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Actor.hpp">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\DateTime.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Callable.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Channel.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Exceptions.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Context.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\DateTime.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Diagnostics.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Exceptions.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Interface.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\FuncTraits.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Macro.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Future.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Path.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Future.hpp">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Program.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Interface.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Scheduler.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Macro.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Singleton.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Path.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Program.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\String.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Scheduler.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Singleton.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.hpp">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\SingletonActor.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\String.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\TimePoint.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Thenable.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\BoostAsio.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\Thenable.hpp">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\Curl.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\ThreadLocalStorage.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\Protobuf.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="System\TimePoint.h">
+      <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\stdafx.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Platform\Windows.h">
+      <Filter>Platform</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Debug\cmake_pch.hxx">
-      <Filter>Precompile Header File</Filter>
+    <ClInclude Include="CoreMinimal.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="OpenSsl.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Release\cmake_pch.hxx">
-      <Filter>Precompile Header File</Filter>
+    <ClInclude Include="ThirdParty\Sql.h">
+      <Filter>ThirdParty</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\MinSizeRel\cmake_pch.hxx">
-      <Filter>Precompile Header File</Filter>
+    <ClInclude Include="Sql\Agent.h">
+      <Filter>Sql</Filter>
     </ClInclude>
-    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\RelWithDebInfo\cmake_pch.hxx">
-      <Filter>Precompile Header File</Filter>
+    <ClInclude Include="Sql\Column.h">
+      <Filter>Sql</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <CustomBuild Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeLists.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{1A14C9F8-1A7B-36E4-9793-D57C9A4FA0DF}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Precompile Header File">
-      <UniqueIdentifier>{1CD97A05-93CC-345C-BA0B-9A76EB56D202}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{DFAA7540-48BB-3E70-AA08-504C096DDE20}</UniqueIdentifier>
-    </Filter>
+    <ClInclude Include="Sql\Conn.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\Database.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\Param.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\Pool.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\SqlTypes.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\Stmt.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="Container\SList.h">
+      <Filter>Container</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Time.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Cast.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Elapse.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

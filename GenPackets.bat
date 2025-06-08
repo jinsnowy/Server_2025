@@ -7,7 +7,7 @@ SET PROTO_GRPC_SRC_PATH=./Proto/Grpc
 SET OUTPUT_PATH=./Source/Protobuf/Private/Protos
 SET OUTPUT_GRPC_PATH=./Source/Protobuf/Private/Protos/Grpc
 
-SET UE_PROJECT_PATH=C:\Users\yoon\Documents\Unreal Projects\ChroniclesOfAetheria\Source\ChroniclesOfAetheria\Protocol
+SET UE_PROJECT_PATH=C:\Users\hyojiny1\Documents\Unreal Projects\ChroniclesOfAetheria\Source\ChroniclesOfAetheria\Protocol
 
 if not exist "%OUTPUT_PATH%" (
     mkdir "%OUTPUT_PATH%"
@@ -29,7 +29,7 @@ SET PROTOC_GEN_GRPC=%CD%\Bin\grpc_cpp_plugin.exe
 
 echo COPY PROTO FILES %OUTPUT_PATH% TO "%UE_PROJECT_PATH%
 
-@rem xcopy "%OUTPUT_PATH%" "%UE_PROJECT_PATH%" /Y /D
+xcopy "%OUTPUT_PATH%" "%UE_PROJECT_PATH%" /Y /D
 
 echo FINISHED
 

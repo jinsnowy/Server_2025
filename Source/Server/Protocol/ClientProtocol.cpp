@@ -2,7 +2,7 @@
 #include "ClientProtocol.h"
 #include "ClientHandlerMap.h"
 
-namespace RTS {
+namespace Server {
 	bool ClientProtocol::ProcessMessage(Network::Session& session)
 	{
 		if (Protobuf::ProtobufProtocol::ProcessMessage(session) == false)

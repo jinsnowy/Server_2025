@@ -6,7 +6,7 @@
 
 #include "Server/Authenticator/Authenticator.h"
 
-namespace RTS {
+namespace Server {
 	int ServerSession::session_id_counter_ = 1;
 
 	ServerSession::ServerSession()
@@ -36,9 +36,10 @@ namespace RTS {
 
 		Ctrl(Authenticator::GetInstance()).Async([message](Authenticator& authenticator) mutable {
 			return authenticator.ValidateAccessToken(message->access_token());
-		}).Then([message, session_ptr = Shared(&session)](bool result) {
+		}).Then([message, session_ptr = Shared(&session)](bool result) -> std::shared_ptr<Server::ServerSession> {
 			if (result == false) {
 				LOG_ERROR("Invalid access token for user_id: {}", message->user_id());
+				return {};
 			}
 			return session_ptr;
 		}).ThenPost([](ServerSession& session) {

@@ -60,3 +60,19 @@ PROTOBUF_IGNORE_WARNINGS_POP
 namespace google::protobuf {
 	class Message;
 } // namespace google::protobuf
+
+#ifdef _WIN32
+
+#pragma comment(lib, "boost_system-vc143-mt-gd-x64-1_88.lib")
+#pragma comment(lib, "boost_filesystem-vc143-mt-gd-x64-1_88.lib")
+#pragma comment(lib, "boost_locale-vc143-mt-gd-x64-1_88.lib")
+#pragma comment(lib, "abseil_dll.lib")
+#pragma comment(lib, "libprotobufd.lib")
+#pragma comment(lib, "libcurl-d.lib")
+#pragma comment(lib, "zlibd.lib")
+#pragma comment(lib, "gpr.lib")
+#pragma comment(lib, "grpc.lib")
+#pragma comment(lib, "grpc++.lib")
+#pragma comment(lib, "grpc++_unsecure.lib")
+
+#endif

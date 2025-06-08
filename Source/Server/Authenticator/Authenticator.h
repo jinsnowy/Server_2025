@@ -2,7 +2,7 @@
 
 #include "Core/System/SingletonActor.h"
 
-namespace RTS {
+namespace Server {
 	class Authenticator : public System::SingletonActor<Authenticator> {
 	public:
 		Authenticator();

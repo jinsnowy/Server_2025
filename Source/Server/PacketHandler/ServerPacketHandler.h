@@ -2,7 +2,7 @@
 
 #include "Core/Network/Packet/PacketHandlerMap.h"
 
-namespace RTS {
+namespace Server {
 
 }
 

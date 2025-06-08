@@ -1,4 +1,5 @@
 #pragma once
+
 namespace System {
     enum class DayOfWeek : uint8_t {
 		Sunday = 0,
@@ -10,12 +11,14 @@ namespace System {
 		Saturday
 	};
 
-    class TimePoint;
+    class Time;
     class DateTime final {
     public:
         DateTime();
-        DateTime(const TimePoint& time_point);
+        DateTime(const Time& time);
+        DateTime(const uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second, uint16_t millisecond);
 
+        static DayOfWeek GetDayOfWeek(const uint16_t year, uint8_t month, uint8_t day);
         static DateTime Now();
         static DateTime UtcNow();
 
@@ -29,6 +32,9 @@ namespace System {
         uint16_t millisecond() const;
 
         std::string ToString() const;
+
+        int64_t GetPosixMilliseconds() const;
+        int64_t GetPosixSeconds() const;
 
     private:
         uint16_t year_;

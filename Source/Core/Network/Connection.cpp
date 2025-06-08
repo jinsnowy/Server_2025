@@ -148,7 +148,7 @@ namespace Network {
 		}
 	}
 
-	void Connection::OnSendCompleted(const boost::system::error_code& error, std::size_t bytes_transferred) {
+	void Connection::OnSendCompleted(const boost::system::error_code& error, std::size_t /*bytes_transferred*/) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
 			LOG_ERROR("Error during async_write: {}", error.message());

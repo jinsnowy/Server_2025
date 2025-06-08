@@ -10,11 +10,14 @@ public:
     Scheduler();
     ~Scheduler();
 
-    static void Launch(int thread_count = std::thread::hardware_concurrency());
+    static void CreateThreadPool(int thread_count = std::thread::hardware_concurrency());
+	static void CreateThread(std::function<void()> task);
     static void Destroy();
+
     static Scheduler& RoundRobin();
     static Scheduler& Current();
     static int32_t ThreadId();
+	static bool IsThreadPool();
 
     void Post(std::function<void()> task);
 

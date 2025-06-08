@@ -26,6 +26,11 @@ public:
             element.scheduler->Stop();
             element.thread.join();
         }
+        for (auto& thread : standalone_threads_) {
+            if (thread.joinable()) {
+                thread.join();
+            }
+		}
     }
 
     void AddScheduler(std::unique_ptr<Scheduler> scheduler, std::thread thread) {
@@ -47,10 +52,18 @@ public:
         return GetSchedulerByIndex(index);
     }
 
+    void AddStandaloneThread(std::thread thread) {
+		std::lock_guard<std::mutex> lock(mutex_);
+        standalone_threads_.emplace_back(std::move(thread));
+	}
+
 private:
     std::atomic<int> counter_;
     std::atomic<int> round_robin_index_;
     std::array<SchedulerThreadPair, 1024> schedulers_;
+
+	std::mutex mutex_;
+	std::vector<std::thread> standalone_threads_;
 };
 
 Scheduler::Scheduler() 
@@ -62,7 +75,7 @@ Scheduler::~Scheduler() {
     Stop();
 }
 
-void Scheduler::Launch(int thread_count) {
+void Scheduler::CreateThreadPool(int thread_count) {
     LOG_INFO("Scheduler::Launch thread_count: {}", thread_count);
     for (int i = 0; i < thread_count; ++i) {
         std::promise<std::unique_ptr<Scheduler>> promise;
@@ -77,6 +90,14 @@ void Scheduler::Launch(int thread_count) {
         auto scheduler = promise.get_future().get();
         SchedulerStorage::GetInstance().AddScheduler(std::move(scheduler), std::move(thread));
     }
+}
+
+void Scheduler::CreateThread(std::function<void()> task) {
+    auto thread = std::thread([task = std::move(task)]() mutable {
+        current_scheduler_ = nullptr;
+        task();
+	});
+	SchedulerStorage::GetInstance().AddStandaloneThread(std::move(thread));
 }
 
 void Scheduler::Destroy() {
@@ -100,6 +121,10 @@ int32_t Scheduler::ThreadId() {
         return 0;
     }
     return current_scheduler_->thread_id_;
+}
+
+bool Scheduler::IsThreadPool() {
+    return current_scheduler_ != nullptr;
 }
 
 void Scheduler::Run() {

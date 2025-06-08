@@ -59,11 +59,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\Debug\</OutDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Protobuf.dir\Debug\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Protobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Protobuf.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Protobuf</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
@@ -78,26 +74,26 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;4267;4100;4127;4189;4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x0A00;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x0A00;CMAKE_INTDIR="Debug";PROTOBUF_USE_DLLS;GRP_DLL_IMPORTS;GRPC_DLL_IMPORTS;GRPCXX_DLL_IMPORTS;ABSL_CONSUME_DLL</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -119,21 +115,23 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;4267;4100;4127;4189;4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -164,18 +162,20 @@
       <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
-      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;4267;4100;4127;4189;4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -207,18 +207,20 @@
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <DisableSpecificWarnings>4244</DisableSpecificWarnings>
+      <DisableSpecificWarnings>4251;4267;4100;4127;4189;4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -243,145 +245,44 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeLists.txt">
-      <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeLists.txt</Message>
-      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/generate.stamp
-if %errorlevel% neq 0 goto :cmEnd
-:cmEnd
-endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
-:cmErrorLevel
-exit /b %1
-:cmDone
-if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\generate.stamp</Outputs>
-      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
-    </CustomBuild>
+    <ClInclude Include="Private\Protos\Grpc\helloworld.grpc.pb.h" />
+    <ClInclude Include="Private\Protos\Grpc\helloworld.pb.h" />
+    <ClInclude Include="Private\Protos\types.pb.h" />
+    <ClInclude Include="Private\Protos\user.pb.h" />
+    <ClInclude Include="Public\GrpcHeader.h" />
+    <ClInclude Include="Public\HelloWorld.h" />
+    <ClInclude Include="Public\ProtobufDescriptor.h" />
+    <ClInclude Include="Public\ProtobufProtocol.h" />
+    <ClInclude Include="Public\ProtobufSerializer.h" />
+    <ClInclude Include="Public\ProtobufSession.h" />
+    <ClInclude Include="Public\Types.h" />
+    <ClInclude Include="Public\User.h" />
+    <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\Protobuf.dir\cmake_pch.cxx">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClCompile Include="Private\GrpcHeader.cpp" />
+    <ClCompile Include="Private\HelloWorld.cpp" />
+    <ClCompile Include="Private\ProtobufDescriptor.cpp" />
+    <ClCompile Include="Private\ProtobufProtocol.cpp" />
+    <ClCompile Include="Private\ProtobufSerializer.cpp" />
+    <ClCompile Include="Private\ProtobufSession.cpp" />
+    <ClCompile Include="Private\Protos\Grpc\helloworld.grpc.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\Grpc\helloworld.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\types.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\user.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Private\Types.cpp" />
+    <ClCompile Include="Private\User.cpp" />
+    <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/Protobuf.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\ProtobufDescriptor.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\ProtobufProtocol.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\ProtobufSerializer.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\ProtobufSession.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\Protos\types.pb.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\Protos\user.pb.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\Types.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Private\User.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\ProtobufDescriptor.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\ProtobufProtocol.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\ProtobufSerializer.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\ProtobufSession.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\Types.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\Public\User.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\stdafx.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Protobuf/CMakeFiles/Protobuf.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-    </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\stdafx.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\Protobuf.dir\Debug\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\Protobuf.dir\Release\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\Protobuf.dir\MinSizeRel\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf\CMakeFiles\Protobuf.dir\RelWithDebInfo\cmake_pch.hxx" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\ncsoft\Desktop\CppProject\RTS\ZERO_CHECK.vcxproj">
-      <Project>{A535A649-CB9F-3FC9-8CF5-37C05F2F60B7}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
