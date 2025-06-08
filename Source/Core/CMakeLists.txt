@@ -33,6 +33,8 @@ target_precompile_headers(Core
         stdafx.h
 )
 
+target_compile_definitions(Core PUBLIC PROTOBUF_USE_DLLS)
+
 if(MSVC)
 target_include_directories(Core
     PRIVATE

@@ -9,43 +9,42 @@ else()
     find_package(Boost REQUIRED)
 endif()
 
-# ¼Ò½º ÆÄÀÏ ÀÚµ¿ Å½»ö
+# ï¿½Ò½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Úµï¿½ Å½ï¿½ï¿½
 file(GLOB_RECURSE PROTOBUF_SOURCES 
     "*.cpp"
     "*.cc"
+    ""
     "*.h"
     "*.hpp"
 )
 
-# ÇÁ¸®ÄÄÆÄÀÏµÈ Çì´õ ÆÄÀÏ Á¦¿Ü
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 list(FILTER PROTOBUF_SOURCES EXCLUDE REGEX "stdafx\\.cpp$")
 list(FILTER PROTOBUF_SOURCES EXCLUDE REGEX "stdafx\\.h$")
 
-# Core ¶óÀÌºê·¯¸® ¼³Á¤
+# Core ï¿½ï¿½ï¿½Ìºê·¯ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 add_library(Protobuf STATIC
     ${PROTOBUF_SOURCES}
     stdafx.cpp
     stdafx.h
 )
 
-# ÇÁ¸®ÄÄÆÄÀÏµÈ Çì´õ ¼³Á¤
+# ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ïµï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 target_precompile_headers(Protobuf 
     PRIVATE
         stdafx.h
 )
 
-# ÄÄÆÄÀÏ ¿É¼Ç
-target_compile_definitions(Protobuf PRIVATE PROTOBUF_USE_DLLS)
+target_compile_definitions(Protobuf PUBLIC PROTOBUF_USE_DLLS GRP_DLL_IMPORTS GRPC_DLL_IMPORTS GRPCXX_DLL_IMPORTS ABSL_CONSUME_DLL)
 
 if(MSVC)
-target_compile_options(Protobuf PRIVATE /wd4251)
-  
 target_include_directories(Protobuf
     PRIVATE
         ${CMAKE_SOURCE_DIR}/Source
         ${CMAKE_CURRENT_SOURCE_DIR}
         ${SHARED_LIBRARY_DIRS}/include
 )
+target_compile_options(Protobuf PUBLIC /wd4251)
 else()
 
 target_include_directories(Protobuf
@@ -56,7 +55,7 @@ target_include_directories(Protobuf
 )
 endif()
 
-# Ãâ·Â µð·ºÅä¸® ¼³Á¤
+# ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ä¸® ï¿½ï¿½ï¿½ï¿½
 set_target_properties(Protobuf PROPERTIES
     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
     ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"

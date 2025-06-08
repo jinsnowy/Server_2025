@@ -11,6 +11,11 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+if(MSVC)
+    # Set the target Windows version to Windows 10
+    add_definitions(-D_WIN32_WINNT=0x0A00)  # 0x0A00 corresponds to Windows 10
+endif()
+
 add_subdirectory(Source/Core)
 add_subdirectory(Source/Protobuf)
 add_subdirectory(Source/Server)

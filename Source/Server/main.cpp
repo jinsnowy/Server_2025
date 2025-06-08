@@ -7,6 +7,33 @@
 #include "Server/Protocol/ServerHandlerMap.h"
 #include "Server/Protocol/ClientHandlerMap.h"
 #include "Server/Authenticator/Authenticator.h"
+#include <grpcpp/grpcpp.h>
+
+#include "Protobuf/Private/Protos/Grpc/helloworld.grpc.pb.h"
+
+// The service implementation
+class GreeterServiceImpl final : public helloworld::Greeter::Service {
+public:
+    grpc::Status SayHello(grpc::ServerContext* context, const helloworld::HelloRequest* request, helloworld::HelloReply* reply) override {
+        std::string prefix = "Hello, ";
+        reply->set_message(prefix + request->name());
+        return grpc::Status::OK;
+    }
+};
+
+void RunServer() {
+    std::string server_address("0.0.0.0:50051");
+    GreeterServiceImpl service;
+
+    grpc::ServerBuilder builder;
+    builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
+    builder.RegisterService(&service);
+
+    std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+    std::cout << "Server listening on " << server_address << std::endl;
+
+    server->Wait();
+}
 
 using namespace RTS;
 
@@ -49,6 +76,8 @@ int main() {
     scheduler.Post([]() {
         ConnectMany(100);
      });
+
+    RunServer();
 
     System::Program::Wait();
 

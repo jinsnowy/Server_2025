@@ -59,26 +59,26 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\lib\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Core.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Core</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\lib\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\lib\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Core.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Core</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\lib\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\lib\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Core.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Core</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -86,14 +86,16 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>Disabled</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -103,10 +105,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_DEBUG;_WINDOWS;_WIN32_WINNT=0x0A00;CMAKE_INTDIR=\"Debug\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -119,21 +121,23 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -145,10 +149,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0A00;CMAKE_INTDIR=\"Release\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -161,21 +165,23 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -187,10 +193,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0A00;CMAKE_INTDIR=\"MinSizeRel\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -203,7 +209,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -211,14 +217,16 @@
       <ExceptionHandling>Sync</ExceptionHandling>
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <LanguageStandard>stdcpp20</LanguageStandard>
-      <MinimalRebuild></MinimalRebuild>
+      <MinimalRebuild>
+      </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <SupportJustMyCode></SupportJustMyCode>
+      <SupportJustMyCode>
+      </SupportJustMyCode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
@@ -228,10 +236,10 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;_WIN32_WINNT=0x0A00;CMAKE_INTDIR=\"RelWithDebInfo\"</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <Midl>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core;C:\Users\ncsoft\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\hyojiny1\Desktop\CppProject\RTS;C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core;C:\Users\hyojiny1\Desktop\CppProject\RTS\..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -243,11 +251,11 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeLists.txt">
+    <CustomBuild Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeLists.txt">
       <UseUtf8Encoding>Always</UseUtf8Encoding>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/hyojiny1/Desktop/CppProject/RTS -BC:/Users/hyojiny1/Desktop/CppProject/RTS --check-stamp-file C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -256,11 +264,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/hyojiny1/Desktop/CppProject/RTS -BC:/Users/hyojiny1/Desktop/CppProject/RTS --check-stamp-file C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -269,11 +277,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/hyojiny1/Desktop/CppProject/RTS -BC:/Users/hyojiny1/Desktop/CppProject/RTS --check-stamp-file C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -282,11 +290,11 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/ncsoft/Desktop/CppProject/RTS -BC:/Users/ncsoft/Desktop/CppProject/RTS --check-stamp-file C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/hyojiny1/Desktop/CppProject/RTS -BC:/Users/hyojiny1/Desktop/CppProject/RTS --check-stamp-file C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -295,361 +303,353 @@ exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
       <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\cmake_pch.cxx">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\cmake_pch.cxx">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/Debug/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/Core.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
     </ClCompile>
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\MPSC.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\CircularBuffer.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\MPSC.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\MPSC.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\SPSC.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\MPSC.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\SPSC.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Container\SPSC.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CoreMinimal.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Container\SPSC.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CoreMinimal.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpEnums.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpRequest.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Logging\Logger.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Http\HttpResponse.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Logging\Logger.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Logging\Logger.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Logging\Logger.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Misc\ApplyVariants.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Buffer.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Acceptor.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Buffer.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Buffer.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Buffer.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferMemory.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Connection.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\BufferPool.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Connection.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Connection.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Interface.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Listener.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Connection.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Interface.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Listener.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Listener.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Listener.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\NetworkStream.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\OutputStream.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Internal.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\Packet.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Protocol.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Packet\PacketHandlerMap.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Protocol.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Protocol.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Protocol.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Resolver.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\ProtocolController.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Resolver.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Resolver.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Session.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Resolver.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Session.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Session.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Session.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Socket.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\SessionFactory.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Socket.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\Network\Socket.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Actor.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\Network\Socket.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Actor.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Actor.hpp" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Callable.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Actor.hpp" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Callable.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Callable.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Channel.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Callable.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Channel.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Channel.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Context.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Channel.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Context.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Context.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\DateTime.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Context.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\DateTime.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\DateTime.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\DateTime.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Exceptions.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Diagnostics.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Exceptions.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Exceptions.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Exceptions.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Future.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\FuncTraits.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Future.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Future.hpp" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Interface.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Macro.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Path.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Future.hpp" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Interface.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Macro.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Path.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Path.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Program.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Path.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Program.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Program.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Scheduler.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Program.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Scheduler.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Scheduler.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Singleton.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Scheduler.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Singleton.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Singleton.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Singleton.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\String.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\SingletonActor.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\String.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\String.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Thenable.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\String.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Thenable.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\Thenable.hpp" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\Thenable.hpp" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\TimePoint.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\ThreadLocalStorage.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\TimePoint.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\System\TimePoint.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\ThirdParty\BoostAsio.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\ThirdParty\Curl.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\ThirdParty\Protobuf.h" />
-    <ClCompile Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\stdafx.cpp">
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
-      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/ncsoft/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\System\TimePoint.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\BoostAsio.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\Curl.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\ThirdParty\Protobuf.h" />
+    <ClCompile Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\stdafx.cpp">
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Debug/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
+      <ForcedIncludeFiles Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx;%(ForcedIncludeFiles)</ForcedIncludeFiles>
     </ClCompile>
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\stdafx.h" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Debug\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Release\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\MinSizeRel\cmake_pch.hxx" />
-    <ClInclude Include="C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\RelWithDebInfo\cmake_pch.hxx" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\stdafx.h" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Debug\cmake_pch.hxx" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\Release\cmake_pch.hxx" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\MinSizeRel\cmake_pch.hxx" />
+    <ClInclude Include="C:\Users\hyojiny1\Desktop\CppProject\RTS\Source\Core\CMakeFiles\Core.dir\RelWithDebInfo\cmake_pch.hxx" />
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <ProjectReference Include="C:\Users\ncsoft\Desktop\CppProject\RTS\ZERO_CHECK.vcxproj">
-      <Project>{A535A649-CB9F-3FC9-8CF5-37C05F2F60B7}</Project>
-      <Name>ZERO_CHECK</Name>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

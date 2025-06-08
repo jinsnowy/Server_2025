@@ -70,11 +70,28 @@ if(MSVC)
             libprotobufd
             libcurl-d
             zlibd
+            gpr
+            grpc
+            grpc++
+            grpc++_unsecure
         )
+
+        file(GLOB DLL_FILES "${SHARED_LIBRARY_DIRS}/bin/Debug/*.dll")
+
+       foreach(DLL ${DLL_FILES})
+        add_custom_command(
+            TARGET Server POST_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                "${DLL}"
+                "$<TARGET_FILE_DIR:Server>"
+            COMMENT "Copying ${DLL} to output directory"
+        )
+        endforeach()
+
     else()
         target_link_directories(Server PRIVATE 
 			${CMAKE_BINARY_DIR}/lib
-			${SHARED_LIBRARY_DIRS}/lib/Debug
+			${SHARED_LIBRARY_DIRS}/lib
 		)
         target_link_libraries(Server PRIVATE 
             Core 
@@ -86,18 +103,23 @@ if(MSVC)
             libprotobuf
             libcurl
             zlib
+            gpr
+            grpc
+            grpc++
+            grpc++_unsecure
         )
+
+        file(GLOB DLL_FILES "${SHARED_LIBRARY_DIRS}/bin/*.dll")
+
+        foreach(DLL ${DLL_FILES})
+            message(SelectLibraryConfigurations "Copying DLL: ${DLL}")
+            add_custom_command(TARGET Server prebuild
+                COMMAND ${CMAKE_COMMAND} -E copy_if_different
+                    "${DLL}"
+                    "$<TARGET_FILE_DIR:Server>"
+            )
+        endforeach()
     endif()
-
-    file(GLOB DLL_FILES "${SHARED_LIBRARY_DIRS}/bin/Debug/*.dll")
-
-    foreach(DLL ${DLL_FILES})
-    add_custom_command(TARGET Server POST_BUILD
-        COMMAND ${CMAKE_COMMAND} -E copy_if_different
-            "${DLL}"
-            "$<TARGET_FILE_DIR:Server>"
-    )
-    endforeach()
 
 else()
 endif()
