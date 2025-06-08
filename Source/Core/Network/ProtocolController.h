@@ -13,7 +13,7 @@ namespace Network {
 
 
 	protected:
-		bool IsValid(const uint32_t& packetId) const {
+		bool IsValid(const size_t& packetId) const {
 			return TSerializer::IsValid(packetId);
 		}
 
@@ -25,7 +25,7 @@ namespace Network {
 			return TSerializer::Serialize(*packet);
 		}
 
-		std::shared_ptr<TPacket> Parse(const int32_t& packetId, const void* data, const size_t& data_size) const {
+		std::shared_ptr<TPacket> Parse(const size_t& packetId, const void* data, const size_t& data_size) const {
 			return TSerializer::Deserialize(packetId, data, data_size);
 		}
 

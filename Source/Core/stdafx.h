@@ -35,9 +35,7 @@
 
 #include <atomic>
 #include <mutex>
-#include <shared_mutex>
 #include <thread>
-#include <condition_variable>
 #include <future>
 #include <variant>
 #include <exception>
@@ -53,18 +51,12 @@
 #include <format>
 
 #ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <sdkddkver.h>
-#include <windows.h>
-
 #undef CreateDirectory
 #undef SendMessage
 #undef PostMessage
-
 #endif 
 
-#include "boost/asio.hpp"
+#include <boost/asio.hpp>
 #include "Core/Logging/Logger.h"
 #include "Core/System/Macro.h"
 #include "Core/System/FuncTraits.h"

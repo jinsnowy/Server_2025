@@ -17,24 +17,24 @@ namespace Network {
 		const char* GetDataPtr() const { return source_->GetBufferPtr() + start_pos_; }
 		char* GetFreePtr() { return source_->GetBufferPtr() + end_pos_; }
 
-		int32_t GetBufferSize() const { return source_->GetBufferSize(); }
+		size_t GetBufferSize() const { return source_->GetBufferSize(); }
 
-		int32_t start_pos() const { return start_pos_; }
-		void set_start_pos(int32_t offset) { start_pos_ = offset; }
+		size_t start_pos() const { return start_pos_; }
+		void set_start_pos(size_t offset) { start_pos_ = offset; }
 
-		int32_t end_pos() const { return end_pos_; }
-		void set_end_pos(int32_t offset) { end_pos_ = offset; }
+		size_t end_pos() const { return end_pos_; }
+		void set_end_pos(size_t offset) { end_pos_ = offset; }
 
-		int32_t GetByteCount() const { return end_pos_ - start_pos_; }
-		int32_t GetRemainingByteCount() const { return GetBufferSize() - end_pos_; }
+		size_t GetByteCount() const { return end_pos_ - start_pos_; }
+		size_t GetRemainingByteCount() const { return GetBufferSize() - end_pos_; }
 
 		bool IsEmpty() const { return end_pos_ == start_pos_; }
 		BufferView AsView() const;
 
 	private:
 		std::shared_ptr<BufferMemory> source_;
-		int32_t start_pos_;
-		int32_t end_pos_;
+		size_t start_pos_;
+		size_t end_pos_;
 	};
 
 	class BufferView final {

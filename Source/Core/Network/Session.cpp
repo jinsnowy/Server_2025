@@ -80,8 +80,7 @@ namespace Network {
     void Session::OnConnected() {
     }
 
-    std::unique_ptr<Protocol> Session::CreateProtocol()
-    {
+    std::unique_ptr<Protocol> Session::CreateProtocol() {
         return std::unique_ptr<Protocol>();
     }
 

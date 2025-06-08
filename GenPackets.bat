@@ -1,7 +1,7 @@
 @echo off
 
 SET CURRENT_PATH=%CD%
-SET INCLUDE_PATH=../Library/source/protobuf/src
+SET INCLUDE_PATH=../Library/include
 SET PROTO_SRC_PATH=./Proto
 SET OUTPUT_PATH=./Source/Protobuf/Private/Protos
 
@@ -13,7 +13,7 @@ echo COMPILING PROTO FILES TO %OUTPUT_PATH%/...
 
 echo COPY PROTO FILES %OUTPUT_PATH% TO "%UE_PROJECT_PATH%
 
-xcopy "%OUTPUT_PATH%" "%UE_PROJECT_PATH%" /Y /D
+@rem xcopy "%OUTPUT_PATH%" "%UE_PROJECT_PATH%" /Y /D
 
 echo FINISHED
 

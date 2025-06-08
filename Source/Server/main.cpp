@@ -1,12 +1,12 @@
 #include "stdafx.h"
 #include "Core/System/Program.h"
-#include "RTS/Session/ServerSession.h"
-#include "RTS/Session/ClientSession.h"
-#include "RTS/Protocol/ServerProtocol.h"
-#include "RTS/Protocol/ClientProtocol.h"
-#include "RTS/Protocol/ServerHandlerMap.h"
-#include "RTS/Protocol/ClientHandlerMap.h"
-#include "RTS/Authenticator/Authenticator.h"
+#include "Server/Session/ServerSession.h"
+#include "Server/Session/ClientSession.h"
+#include "Server/Protocol/ServerProtocol.h"
+#include "Server/Protocol/ClientProtocol.h"
+#include "Server/Protocol/ServerHandlerMap.h"
+#include "Server/Protocol/ClientHandlerMap.h"
+#include "Server/Authenticator/Authenticator.h"
 
 using namespace RTS;
 

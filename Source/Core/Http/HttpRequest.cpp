@@ -45,7 +45,7 @@ namespace Http {
 					base_uri_ << '&';
 				}
 
-				char* escaped_query_value = curl_easy_escape(curl_handle, query_value.c_str(), query_value.size());
+				char* escaped_query_value = curl_easy_escape(curl_handle, query_value.c_str(), static_cast<int32_t>(query_value.size()));
 				if (!escaped_query_value) {
 					return HttpResponse::Error(HttpStatusCode::kInternalServerError, "Failed to escape query value: " + query_value);
 				}

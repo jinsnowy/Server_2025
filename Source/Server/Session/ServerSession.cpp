@@ -4,7 +4,7 @@
 #include "Protocol/ServerHandlerMap.h"
 #include "Protobuf/Public/User.h"
 
-#include "RTS/Authenticator/Authenticator.h"
+#include "Server/Authenticator/Authenticator.h"
 
 namespace RTS {
 	int ServerSession::session_id_counter_ = 1;

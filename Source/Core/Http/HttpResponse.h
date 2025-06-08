@@ -1,5 +1,7 @@
 #pragma once
 
+#include "Core/Http/HttpEnums.h"
+
 namespace Http {
 	class HttpResponse {
 	public:

@@ -180,14 +180,14 @@ namespace Network {
 		std::list<PacketSegment> completionPackets;
 
 		const char* data = recv_stream_->buffer->GetBufferPtr();
-		uint32_t dataLength = static_cast<uint32_t>(length);
-		uint32_t readOffset = 0;
+		size_t dataLength = length;
+		size_t readOffset = 0;
 		while (dataLength > 0) {
 			const char* readDataPtr = data + readOffset;
 			if (recv_stream_->pending.has_value())  {
 				auto& pendingStream = recv_stream_->pending.value();
-				uint32_t currentReadableSize = std::min(pendingStream.remainSegmentLength, dataLength);
-				uint32_t currentPacketBufferOffset = pendingStream.packetBuffer.size() - pendingStream.remainSegmentLength;
+				size_t currentReadableSize = std::min(pendingStream.remainSegmentLength, dataLength);
+				size_t currentPacketBufferOffset = pendingStream.packetBuffer.size() - pendingStream.remainSegmentLength;
 				memcpy_s(pendingStream.packetBuffer.data() + currentPacketBufferOffset, pendingStream.remainSegmentLength, readDataPtr, currentReadableSize);
 				pendingStream.remainSegmentLength -= currentReadableSize;
 				if (pendingStream.remainSegmentLength == 0) {
@@ -210,7 +210,7 @@ namespace Network {
 					return false;
 				}
 
-				uint32_t packetReadableSize = PacketHeader::Size() + header->size;
+				size_t packetReadableSize = PacketHeader::Size() + header->size;
 				if (packetReadableSize > dataLength) {
 					std::vector<char> packetBuffer(packetReadableSize);
 					memcpy_s(packetBuffer.data(), packetReadableSize, readDataPtr, dataLength);

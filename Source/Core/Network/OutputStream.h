@@ -17,7 +17,7 @@ namespace Network {
 		bool WriteAliasedRaw(const void* Data, int32_t Size) override;
 		bool AllowsAliasing() const override;
 
-		int32_t RemainingByteCount() const;
+		size_t RemainingByteCount() const;
 
 		bool WriteRaw(const void* Data, int64_t Size);
 

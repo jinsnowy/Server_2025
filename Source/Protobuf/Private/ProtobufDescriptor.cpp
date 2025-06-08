@@ -1,6 +1,6 @@
 #include "stdafx.h"
 #include "Protobuf/Public/ProtobufDescriptor.h"
-#include "Protobuf/Private/Protos/types.pb.h"
+#include "Protobuf/Public/Types.h"
 
 namespace Protobuf {
 	class MessageDescriptorStorage : public System::Singleton<MessageDescriptorStorage> {

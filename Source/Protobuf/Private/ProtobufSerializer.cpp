@@ -19,9 +19,13 @@ namespace Protobuf {
 			return nullptr;
 		}
 
+		if (data_size > std::numeric_limits<int32_t>::max()) {
+			return nullptr;
+		}
+
 		const auto* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
 		std::shared_ptr<google::protobuf::Message> message(prototype->New());
-		if (message->ParseFromArray(data, data_size) == false) {
+		if (message->ParseFromArray(data, static_cast<int32_t>(data_size)) == false) {
 			LOG_ERROR("parse failed packet_id: {}, name: {}", packetId, prototype->GetTypeName());
 			return nullptr;
 		}
@@ -33,6 +37,6 @@ namespace Protobuf {
 	}
 
 	bool ProtobufSerializer::IsValid(const size_t& packetId) {
-		return types::protocol_IsValid(packetId);
+		return types::protocol_IsValid(static_cast<int32_t>(packetId));
 	}
 }

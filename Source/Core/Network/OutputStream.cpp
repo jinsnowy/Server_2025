@@ -17,8 +17,10 @@ namespace Network {
 			return false;
 		}
 
+		static constexpr size_t kMaxInt = std::numeric_limits<int32_t>::max();
+
 		*data = buffer_.GetFreePtr();
-		*size = buffer_.GetRemainingByteCount();
+		*size = static_cast<int32_t>(std::min(buffer_.GetRemainingByteCount(), kMaxInt));
 		buffer_.set_end_pos(buffer_.end_pos() + *size);
 
 		return true;
@@ -37,7 +39,7 @@ namespace Network {
 		return buffer_.GetByteCount();
 	}
 
-	int32_t OutputStream::RemainingByteCount() const {
+	size_t OutputStream::RemainingByteCount() const {
 		return buffer_.GetRemainingByteCount();
 	}
 

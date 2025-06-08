@@ -44,27 +44,19 @@
 #include <ranges>
 #include <format>
 
-#ifdef _WIN32
-#define WIN32_LEAN_AND_MEAN
-#define NOMINMAX
-#include <sdkddkver.h>
-#include <windows.h>
-#undef SendMessage
-#undef PostMessage
-#endif 
-
+#include "Core/Platform/Windows.h"
 #include "Core/CoreMinimal.h"
+#include "Core/ThirdParty/Protobuf.h"
+
+PROTOBUF_IGNORE_WARNINGS_PUSH
 
 #include <google/protobuf/message.h>
 #include <google/protobuf/message_lite.h>
 #include <google/protobuf/timestamp.pb.h>
 #include <google/protobuf/util/time_util.h>
 
-namespace google {
-	namespace protobuf {
-		class Message; 
-} // namespace protobuf
-} // namespace google
+PROTOBUF_IGNORE_WARNINGS_POP
+
 
 #ifdef NDEBUG
 #pragma comment(lib, "boost_system-vc143-mt-x64-1_88.lib")

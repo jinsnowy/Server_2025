@@ -4,8 +4,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_PropertySheetDisplayName>CppDebugLibrary</_PropertySheetDisplayName>
-    <ExternalIncludePath>C:\Users\yoon\Desktop\CppProject\Library\include;$(ExternalIncludePath)</ExternalIncludePath>
-    <LibraryPath>C:\Users\yoon\Desktop\CppProject\Library\lib\Debug;$(LibraryPath)</LibraryPath>
+    <ExternalIncludePath>$(SolutionDir)..\Library\include;$(ExternalIncludePath)</ExternalIncludePath>
+    <LibraryPath>$(SolutionDir)..\Library\lib\Debug;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>

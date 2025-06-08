@@ -9,7 +9,7 @@ namespace Network {
 	struct PendingStream {
 		std::optional<PacketHeader> header;
 		std::vector<char> packetBuffer;
-		uint32_t remainSegmentLength;
+		size_t remainSegmentLength;
 	};
 
 	struct RecvNetworkStream {
