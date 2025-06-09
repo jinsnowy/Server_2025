@@ -3,7 +3,8 @@ cmake_minimum_required(VERSION 3.10)
 project(Core VERSION 1.0.0 LANGUAGES CXX)
 
 if(MSVC)
-    set(SHARED_LIBRARY_DIRS "${CMAKE_SOURCE_DIR}\\..\\Library")
+    get_filename_component(ROOT_DIR "${CMAKE_SOURCE_DIR}" DIRECTORY)
+    set(SHARED_LIBRARY_DIRS "${ROOT_DIR}/Library")
 else()
     find_package(Boost REQUIRED)
 endif()
@@ -35,9 +36,9 @@ target_precompile_headers(Core
 if(MSVC)
 target_include_directories(Core
     PRIVATE
-        ${CMAKE_SOURCE_DIR}\\Source
+        ${CMAKE_SOURCE_DIR}/Source
         ${CMAKE_CURRENT_SOURCE_DIR}
-        ${SHARED_LIBRARY_DIRS}\\include
+        ${SHARED_LIBRARY_DIRS}/include
 )
 else()
 target_include_directories(Core
@@ -53,7 +54,6 @@ message(STATUS "SHARED_LIBRARY_DIRS:" ${SHARED_LIBRARY_DIRS})
 message(STATUS "CMAKE_SOURCE_DIR: ${CMAKE_SOURCE_DIR}")
 message(STATUS "CMAKE_CURRENT_SOURCE_DIR": ${CMAKE_CURRENT_SOURCE_DIR})
 message(STATUS "CMAKE_BINARY_DIR": ${CMAKE_BINARY_DIR})
-
 
 # 출력 디렉토리 설정
 set_target_properties(Core PROPERTIES
