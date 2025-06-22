@@ -13,14 +13,14 @@
     <Filter Include="Authenticator">
       <UniqueIdentifier>{250668dd-2318-4377-a28b-7da8f3565a55}</UniqueIdentifier>
     </Filter>
-    <Filter Include="InterServer">
-      <UniqueIdentifier>{e81b0837-9f70-47a6-9042-7d637dbd2e30}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Section">
       <UniqueIdentifier>{d83d22f0-bf5d-42a3-b298-f133d6d20e37}</UniqueIdentifier>
     </Filter>
     <Filter Include="Model">
       <UniqueIdentifier>{aea1a945-b71e-4193-a036-1a637491a8b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="RPC">
+      <UniqueIdentifier>{e81b0837-9f70-47a6-9042-7d637dbd2e30}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -54,10 +54,16 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="InterServer\HelloWorldGreeterService.cpp">
-      <Filter>InterServer</Filter>
+      <Filter>RPC</Filter>
     </ClCompile>
     <ClCompile Include="InterServer\GrpcService.cpp">
-      <Filter>InterServer</Filter>
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Account.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Character.cpp">
+      <Filter>Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -90,10 +96,16 @@
     </ClInclude>
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="InterServer\HelloWorldGreeterService.h">
-      <Filter>InterServer</Filter>
+      <Filter>RPC</Filter>
     </ClInclude>
     <ClInclude Include="InterServer\GrpcService.h">
-      <Filter>InterServer</Filter>
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Account.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Character.h">
+      <Filter>Model</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

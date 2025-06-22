@@ -10,6 +10,8 @@ namespace Sql {
 
 		Stmt CreateStmt();
 
+		NO_COPY_AND_ASSIGN(Agent);
+
 	private:
 		std::shared_ptr<Conn> _conn;
 	};

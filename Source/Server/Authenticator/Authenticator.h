@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core/System/SingletonActor.h"
+#include "Server/Model/Account.h"
 
 namespace Server {
 	class Authenticator : public System::SingletonActor<Authenticator> {
@@ -9,7 +10,7 @@ namespace Server {
 	
 		void Initialize(const std::string& server_url);
 
-		bool ValidateAccessToken(const std::string& access_token);
+		std::optional<Model::AccountTokenInfo> ConsumeToken(const std::string& access_token);
 
 	private:
 		std::string server_url_;

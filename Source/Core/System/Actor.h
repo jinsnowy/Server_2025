@@ -44,7 +44,17 @@ namespace System {
 		template<typename F>
 		Future<typename FuncTraits<F>::ReturnType> Async(F&& func);
 	};
+
+	template<typename A>
+	static std::shared_ptr<A> MakeShared(A* ptr) {
+		return std::static_pointer_cast<A>(ptr->shared_from_this());
+	}
+
+	template<typename A>
+	static std::shared_ptr<A> MakeShared(A& inst) {
+		return std::static_pointer_cast<A>(inst.shared_from_this());
+	}
 }
 
 #define Ctrl System::ActorController
-#define Shared System::Actor::GetShared
+

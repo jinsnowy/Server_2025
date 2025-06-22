@@ -425,9 +425,6 @@
     <ClInclude Include="Json\Json.h">
       <Filter>Json</Filter>
     </ClInclude>
-    <ClInclude Include="Json\JsonFwd.h">
-      <Filter>Json</Filter>
-    </ClInclude>
     <ClInclude Include="System\Thenable.h">
       <Filter>System</Filter>
     </ClInclude>

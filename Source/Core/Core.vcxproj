@@ -75,7 +75,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\vcpkg-build\dll\include;$(SolutionDir)..\Library\source-build\static-md\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -318,7 +318,6 @@
     <ClInclude Include="Http\HttpRequest.h" />
     <ClInclude Include="Http\HttpResponse.h" />
     <ClInclude Include="Json\Json.h" />
-    <ClInclude Include="Json\JsonFwd.h" />
     <ClInclude Include="Logging\Logger.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Network\Acceptor.h" />

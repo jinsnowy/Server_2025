@@ -2,6 +2,7 @@
 #include "Authenticator.h"
 
 #include "Core/Http/HttpRequest.h"
+#include "Core/Json/Json.h"
 
 namespace Server {
 	Authenticator::Authenticator() {
@@ -22,7 +23,7 @@ namespace Server {
 		}
 	}
 
-	bool Authenticator::ValidateAccessToken(const std::string& access_token) {
+	std::optional<Model::AccountTokenInfo> Authenticator::ConsumeToken(const std::string& access_token) {
 		Http::HttpRequest request(server_url_);
 		request.Uri("/auth/validate_token")
 			.Method(Http::HttpMethod::kPost)
@@ -31,11 +32,28 @@ namespace Server {
 			.AddHeader("Authorization", access_token);
 
 		Http::HttpResponse response = request.Send();
-		if (response.status_code() == Http::HttpStatusCode::kOk) {
-			return true;
+		if (response.status_code() != Http::HttpStatusCode::kOk) {
+			return std::nullopt;
 		}
 
-		return false;
+		auto json_doc = Json::JDocument::TryParse(response.body());
+		if (!json_doc.has_value()) {
+			LOG_ERROR("Failed to parse JSON response: {}", response.body());
+			return std::nullopt;
+		}
+
+		auto user_id_opt = json_doc->GetValue<std::string>("user_id");
+		if (!user_id_opt.has_value()) {
+			LOG_ERROR("Missing user_id in response: {}", response.body());
+			return std::nullopt;
+		}
+		auto user_name_opt = json_doc->GetValue<std::string>("username");
+		if (!user_name_opt.has_value()) {
+			LOG_ERROR("Missing username in response: {}", response.body());
+			return std::nullopt;
+		}
+
+		return Model::AccountTokenInfo(user_id_opt.value(), user_name_opt.value());
 	}
 
 }

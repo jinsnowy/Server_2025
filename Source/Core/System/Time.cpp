@@ -69,4 +69,9 @@ namespace System {
 		return lhs.operator-(rhs);
 	}
 
+	std::string Time::ToString() const {
+
+		return "";
+	}
+
 }

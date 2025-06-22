@@ -1,7 +1,7 @@
 @echo off
 
 SET CURRENT_PATH=%CD%
-SET INCLUDE_PATH=../Library/include
+SET INCLUDE_PATH=../Library/source-build/static-md/include
 SET PROTO_SRC_PATH=./Proto
 SET PROTO_GRPC_SRC_PATH=./Proto/Grpc
 SET OUTPUT_PATH=./Source/Protobuf/Private/Protos

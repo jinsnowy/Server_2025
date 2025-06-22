@@ -24,7 +24,6 @@
 #include <grpcpp/support/status.h>
 #include <grpcpp/support/stub_options.h>
 #include <grpcpp/support/sync_stream.h>
-#include <grpcpp/ports_def.inc>
 
 namespace helloworld {
 
@@ -242,5 +241,4 @@ class Greeter final {
 }  // namespace helloworld
 
 
-#include <grpcpp/ports_undef.inc>
 #endif  // GRPC_helloworld_2eproto__INCLUDED

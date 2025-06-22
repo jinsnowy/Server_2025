@@ -86,7 +86,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\vcpkg-build\dll\include;$(SolutionDir)..\Library\source-build\static-md\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -123,18 +123,18 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Library\debug\lib;$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(SolutionDir)..\Library\vcpkg-build\dll\debug\lib;$(SolutionDir)..\Library\source-build\static-md\debug\lib;$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)..\Library\source-build\static-md\debug\lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
     <PreBuildEvent>
-      <Command>xcopy $(SolutionDir)..\Library\debug\bin\*.dll $(OutDir) /Y /D</Command>
+      <Command>xcopy $(SolutionDir)..\Library\vcpkg-build\dll\debug\bin\*.dll $(OutDir) /Y /D</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -296,6 +296,8 @@
     <ClCompile Include="InterServer\GrpcService.cpp" />
     <ClCompile Include="InterServer\HelloWorldGreeterService.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model\Account.cpp" />
+    <ClCompile Include="Model\Character.cpp" />
     <ClCompile Include="PacketHandler\ClientPacketHandler.cpp" />
     <ClCompile Include="PacketHandler\ServerPacketHandler.cpp" />
     <ClCompile Include="Protocol\ClientHandlerMap.cpp" />
@@ -312,6 +314,8 @@
     <ClInclude Include="Authenticator\Authenticator.h" />
     <ClInclude Include="InterServer\GrpcService.h" />
     <ClInclude Include="InterServer\HelloWorldGreeterService.h" />
+    <ClInclude Include="Model\Account.h" />
+    <ClInclude Include="Model\Character.h" />
     <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
     <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
     <ClInclude Include="Protocol\ClientHandlerMap.h" />

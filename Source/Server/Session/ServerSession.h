@@ -6,7 +6,14 @@ namespace google::protobuf {
 	class Message;
 } // namespace google::protobuf
 
+
 namespace Server {
+
+	namespace Model {
+		class Account;
+		struct AccountTokenInfo;
+	}
+
 	class ServerHandlerMap;
 	class ServerSession : public Protobuf::ProtobufSession {
 	public:
@@ -25,9 +32,20 @@ namespace Server {
 
 		static void RegisterHandler(ServerHandlerMap* handler_map);
 
+		bool LoadAccount(const Model::AccountTokenInfo& account_token_info);
+
+		const Model::Account& account() const {
+			return *account_;
+		}
+
+
 	private:
 		int session_id_ = 0;
+
 		static int session_id_counter_;
+
+
+		std::unique_ptr<Model::Account> account_;
 	};
 }
 

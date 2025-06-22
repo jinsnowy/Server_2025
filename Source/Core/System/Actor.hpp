@@ -80,7 +80,7 @@ namespace System {
 	template<typename F>
 	inline void ActorController<A>::Post(F&& func) {
 		const Channel& channel = actor.GetChannel();
-		channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), Actor::GetShared(&actor)));
+		channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), MakeShared(&actor)));
 	}
 
 	template<typename A>
@@ -91,7 +91,7 @@ namespace System {
 			func(actor);
 		}
 		else {
-			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), Actor::GetShared(&actor)));
+			channel.Post(std::make_unique<Detail::PostMessage<F, A>>(std::forward<F>(func), MakeShared(&actor)));
 		}
 	}
 
@@ -101,7 +101,7 @@ namespace System {
 		using R = typename FuncTraits<F>::ReturnType;
 		Future<typename FuncTraits<F>::ReturnType> future;
 		const Channel& channel = actor.GetChannel();
-		channel.Post(std::make_unique<Detail::AsyncMessage<F, A, R>>(std::forward<F>(func), Actor::GetShared(&actor), future));
+		channel.Post(std::make_unique<Detail::AsyncMessage<F, A, R>>(std::forward<F>(func), MakeShared(&actor), future));
 		return future;
 	}
 }
