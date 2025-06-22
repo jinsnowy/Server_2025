@@ -14,6 +14,7 @@ namespace Network {
     class SessionFactory;
     class Listener : public System::Actor {
     public:
+        static constexpr size_t kAcceptQueueSize = 128;
         Listener(std::shared_ptr<System::Context> context, SessionFactory session_factory);
         ~Listener();
 

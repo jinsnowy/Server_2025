@@ -6,7 +6,7 @@
 namespace Protobuf {
 	bool ProtobufSerializer::Serialize(const google::protobuf::Message& packet, void** out_buffer, int32_t buffer_size) {
 		if (packet.SerializeToArray(out_buffer, buffer_size) == false) {
-			LOG_ERROR("serialize protobuf failed: {}", packet.GetTypeName());
+			LOG_ERROR("serialize protobuf failed: packet_id:{}", Resolve(packet));
 			return false;
 		}
 		return true;
@@ -26,7 +26,7 @@ namespace Protobuf {
 		const auto* prototype = google::protobuf::MessageFactory::generated_factory()->GetPrototype(descriptor);
 		std::shared_ptr<google::protobuf::Message> message(prototype->New());
 		if (message->ParseFromArray(data, static_cast<int32_t>(data_size)) == false) {
-			LOG_ERROR("parse failed packet_id: {}, name: {}", packetId, prototype->GetTypeName());
+			LOG_ERROR("parse failed packet_id: {}", packetId);
 			return nullptr;
 		}
 		return message;

@@ -13,9 +13,9 @@ type User struct {
 	LastLoginTime    string            `bson:"last_login,omitempty"`
 }
 
-type UserLoginToken struct {
-	UserId string `bson:"user_id"`
-	Token  string `bson:"token"`
+type UserAccessToken struct {
+	UserId      string `bson:"user_id"`
+	AccessToken string `bson:"token"`
 }
 
 type ExternalAccount struct {
@@ -28,9 +28,9 @@ type UserSessionRequest struct {
 }
 
 type UserSessionResponse struct {
-	Status string `json:"status"`
-	UserId string `json:"user_id,omitempty"`
-	Token  string `json:"access_token,omitempty"`
+	Status      string `json:"status"`
+	UserId      string `json:"user_id,omitempty"`
+	AccessToken string `json:"access_token,omitempty"`
 }
 
 type UserLoginRequest struct {
@@ -39,8 +39,8 @@ type UserLoginRequest struct {
 }
 
 type UserLoginResponse struct {
-	UserId string `json:"user_id"`
-	Token  string `json:"access_token"`
+	UserId      string `json:"user_id"`
+	AccessToken string `json:"access_token"`
 }
 
 type UserCreateRequest struct {
@@ -53,7 +53,7 @@ type UserCreateResponse struct {
 	Success  bool   `json:"success"`
 }
 
-func CreateLoginToken() (string, error) {
+func CreateAccessToken() (string, error) {
 	b := make([]byte, 32) // 32 bytes
 	_, err := rand.Read(b)
 	if err != nil {

@@ -11,7 +11,7 @@ namespace System {
 
 		template<typename T>
 		struct SharedPtrWrapper<std::shared_ptr<T>> {
-			using Type = T;
+			using Type = std::remove_cvref_t<T>;
 		};
 
 		template<typename F, typename A, typename R>
@@ -45,7 +45,7 @@ namespace System {
 		static inline std::function<void(T)> WhenResultAndPatch(std::shared_ptr<FutureState<R>> thenable_state, F&& func) {
 			static_assert(std::is_base_of_v<Actor, typename SharedPtrWrapper<T>::Type>, "T must not be an std::shared_ptr<Actor> for WhenResultAndPatch");
 			using A = typename SharedPtrWrapper<T>::Type;
-			return[thenable_state, func = std::forward<F>(func)](T shared_actor) mutable {
+			return[thenable_state, func = std::forward<F>(func)](std::shared_ptr<A> shared_actor) mutable {
 				if (!shared_actor) {
 					thenable_state->SetException(std::make_exception_ptr(ActorNullException()));
 					return;
@@ -55,20 +55,20 @@ namespace System {
 		}
 
 		template<typename R>
-		template<typename Func>
-		inline Thenable<typename FuncReturn<Func>::Type> Thenable<R>::Then(Func&& func) {
-			using R_ = typename FuncReturn<Func>::Type;
+		template<typename F>
+		inline Thenable<typename FuncTraits<F>::ReturnType> Thenable<R>::Then(F&& func) {
+			using R_ = typename FuncTraits<F>::ReturnType;
 			Thenable<R_> thenable(thenable_state_);
-			thenable_state_->callback_ = Detail::WhenResult<R, R_>(thenable, std::forward<Func>(func));
+			thenable_state_->callback_ = Detail::WhenResult<R, R_>(thenable, std::forward<F>(func));
 			return thenable;
 		}
 
 		template<typename R>
-		template<typename Func>
-		inline Thenable<typename FuncReturn<Func>::Type> Thenable<R>::ThenPost(Func&& func) {
-			using R_ = typename FuncReturn<Func>::Type;
+		template<typename F>
+		inline Thenable<typename FuncTraits<F>::ReturnType> Thenable<R>::ThenPost(F&& func) {
+			using R_ = typename FuncTraits<F>::ReturnType;
 			Thenable<R_> thenable(thenable_state_);
-			thenable_state_->callback_ = Detail::WhenResultAndPatch<R, R_>(thenable.thenable_state(), std::forward<Func>(func));
+			thenable_state_->callback_ = Detail::WhenResultAndPatch<R, R_>(thenable.thenable_state(), std::forward<F>(func));
 			return thenable;
 		}
 	}

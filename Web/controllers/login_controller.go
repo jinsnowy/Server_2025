@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"coa-web-app/models"
-	"coa-web-app/repo"
+	"coa-web-app/repo/user_repository"
 	"coa-web-app/utils"
 	"log"
 	"net/http"
@@ -52,7 +52,7 @@ func CreateAccountWithUserNameAndPassword(c *gin.Context) {
 		LastLoginTime: utils.GetTimeNow(),
 	}
 
-	exists, err := repo.GetUserByUserName(user.Username)
+	exists, err := user_repository.GetUserByUserName(user.Username)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to check if user exists"})
 		return
@@ -66,7 +66,7 @@ func CreateAccountWithUserNameAndPassword(c *gin.Context) {
 		return
 	}
 
-	if err := repo.InsertUser(user); err != nil {
+	if err := user_repository.InsertUser(user); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user"})
 		return
 	}
@@ -84,7 +84,7 @@ func LoginWithUserNameAndPassword(c *gin.Context) {
 		return
 	}
 
-	user, err := repo.GetUserByUserName(userLoginRequest.UserName)
+	user, err := user_repository.GetUserByUserName(userLoginRequest.UserName)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get user"})
 		return
@@ -112,15 +112,16 @@ func LoginWithUserNameAndPassword(c *gin.Context) {
 		return
 	}
 
-	loginToken, createErr := models.CreateLoginToken()
+	access_token, createErr := models.CreateAccessToken()
 	if createErr != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create login token"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create access token"})
+		return
 	}
 
-	repo.InsertOrUpdateLoginToken(user.UserId, loginToken)
+	user_repository.InsertOrUpdateAccessToken(user.UserId, access_token)
 	c.JSON(http.StatusOK, models.UserLoginResponse{
-		UserId: user.UserId,
-		Token:  loginToken,
+		UserId:      user.UserId,
+		AccessToken: access_token,
 	})
 }
 
@@ -131,7 +132,7 @@ func DeleteAccountByUserName(c *gin.Context) {
 		return
 	}
 
-	repo.DeleteUserByUserName(userName)
+	user_repository.DeleteUserByUserName(userName)
 
 	c.JSON(http.StatusOK, gin.H{"message": "user deleted successfully"})
 }

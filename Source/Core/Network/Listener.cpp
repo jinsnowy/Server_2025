@@ -15,7 +15,6 @@ namespace Network {
     }
 
     Listener::~Listener() {
-        Stop();
     }
 
     void Listener::Bind(const std::string& ip, const uint16_t& port) {
@@ -26,7 +25,10 @@ namespace Network {
         DEBUG_ASSERT(IsSynchronized());
         is_listening_ = true;
         acceptor_->Listen();
-        Accept();
+
+        for (size_t i = 0; i < kAcceptQueueSize; ++i) {
+            Accept();
+        }
     }
 
     void Listener::Stop() {

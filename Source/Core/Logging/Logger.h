@@ -52,6 +52,8 @@ public:
         LogInternal(logLevel, function, line, message);
     }
 
+    static void Destroy();
+
 private:
     friend class System::Singleton<Logger>;
     bool is_running_ = true;

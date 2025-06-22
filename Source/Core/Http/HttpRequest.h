@@ -6,6 +6,10 @@
 namespace Http {
 	class HttpRequest {
 	public:
+		HttpRequest() = default;
+		HttpRequest(const HttpRequest&);
+		HttpRequest& operator=(const HttpRequest&);
+
 		HttpRequest(const std::string& base_uri)
 			:
 			base_uri_() {
@@ -64,11 +68,12 @@ namespace Http {
 			return *this;
 		}
 
-		HttpResponse Send();
-
 		std::string GetUri() const {
 			return base_uri_.str();
 		}
+
+		HttpResponse Send();
+		System::Future<HttpResponse> SendAsync();
 
 	private:
 		std::stringstream base_uri_;
@@ -76,6 +81,9 @@ namespace Http {
 		std::optional<std::map<std::string, std::string>> queries_;
 		std::map<std::string, std::string> headers_;
 		std::string body_;
+		int32_t timeout_ = 10;
+
+		static void SendInternal(HttpRequest& request, HttpResponse& response);
 	};
 
 #pragma init_seg(user)

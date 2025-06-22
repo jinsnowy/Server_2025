@@ -85,4 +85,12 @@ namespace Log {
             }
         }
     }
+
+    void Logger::Destroy() {
+		auto& logger = Logger::GetInstance();
+        do {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        } while (logger.log_queue_.IsEmpty() == false);
+        logger.is_running_ = false;
+	}
 }

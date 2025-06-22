@@ -18,7 +18,7 @@ namespace Server {
 	}
 
 	void ClientSession::OnConnected()
-	{
+	{ 
 		session_id_ = session_id_counter_++;
 
 		LOG_INFO("ClientSession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());

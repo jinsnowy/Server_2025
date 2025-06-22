@@ -5,6 +5,8 @@
 
 namespace Server 
 {
+    static std::vector<std::shared_ptr<grpc::Server>> sevices;
+
 	template<typename TService>
 	static void RunGrpcService(std::string server_address) {
         System::Scheduler::CreateThread([server_address]() {
@@ -13,8 +15,11 @@ namespace Server
             builder.AddListeningPort(server_address, grpc::InsecureServerCredentials());
             builder.RegisterService(&service);
 
-            auto server = builder.BuildAndStart();
+            auto server = std::shared_ptr<grpc::Server>(builder.BuildAndStart().release());
+			sevices.push_back(server);
             server->Wait();
         });
 	}
+
+    void StopGrpcService();
 }

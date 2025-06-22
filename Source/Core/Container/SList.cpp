@@ -66,7 +66,7 @@ namespace System {
 			::InterlockedPushEntrySList(reinterpret_cast<SListHeaderPointer>(&header_), reinterpret_cast<SListEntryPointer>(node));
 		}
 
-		void* SListImpl::SListImpl::Request() {
+		void* SListImpl::Request() {
 			SListEntryPointer node = ::InterlockedPopEntrySList(reinterpret_cast<SListHeaderPointer>(&header_));
 			if (node == nullptr) {
 				return nullptr;

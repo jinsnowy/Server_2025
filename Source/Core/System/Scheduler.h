@@ -2,6 +2,7 @@
 
 #include "Core/Container/MPSC.h"
 #include "Core/System/Context.h"
+#include "Core/System/Future.h"
 
 namespace System {
 class Context;
@@ -20,6 +21,13 @@ public:
 	static bool IsThreadPool();
 
     void Post(std::function<void()> task);
+
+    template<typename F>
+    Future<typename FuncTraits<F>::ReturnType> Async(F&& func) {
+        auto item = Detail::FutureFactory::Create(std::forward<F>(func));
+        Post(std::move(item.second));
+        return item.first;
+    }
 
     int32_t thread_id() const { return thread_id_; }
     int32_t scheduler_index() const { return scheduler_index_; }

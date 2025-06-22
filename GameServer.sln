@@ -1,16 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36203.30 d17.14
+VisualStudioVersion = 17.14.36203.30
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Core", "Source\Core\Core.vcxproj", "{B88EF573-4E03-3311-9645-670F4CCC280B}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Protobuf", "Source\Protobuf\Protobuf.vcxproj", "{69F4E9AA-D7F1-3E71-8DD9-D157F44AD9DF}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Server", "Source\Server\Server.vcxproj", "{0E8267FB-5F0F-3D73-AB70-ABA5739DB2AD}"
-	ProjectSection(ProjectDependencies) = postProject
-		{69F4E9AA-D7F1-3E71-8DD9-D157F44AD9DF} = {69F4E9AA-D7F1-3E71-8DD9-D157F44AD9DF}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

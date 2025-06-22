@@ -98,8 +98,8 @@ namespace System {
 	template<typename A>
 	template<typename F>
 	inline Future<typename FuncTraits<F>::ReturnType> ActorController<A>::Async(F&& func) {
-		using R = typename FuncReturn<F>::Type;
-		Future<R> future;
+		using R = typename FuncTraits<F>::ReturnType;
+		Future<typename FuncTraits<F>::ReturnType> future;
 		const Channel& channel = actor.GetChannel();
 		channel.Post(std::make_unique<Detail::AsyncMessage<F, A, R>>(std::forward<F>(func), Actor::GetShared(&actor), future));
 		return future;

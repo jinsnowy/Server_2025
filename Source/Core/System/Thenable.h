@@ -11,7 +11,9 @@ namespace System {
 		struct FutureBase {
 			std::function<void(const std::exception&)> exception_callback_;
 			virtual ~FutureBase() = default;
+
 			void OnException(const std::exception& e) const;
+			void OnExceptionNoThrow(const std::exception& e) const;
 		};
 
 		template<typename T>
@@ -19,6 +21,15 @@ namespace System {
 			std::variant<T, std::exception_ptr> result_;
 			std::function<void(T)> callback_;
 
+			FutureState() = default;
+			FutureState(T&& result)
+				:
+				result_(std::move(result)) {
+			}
+			FutureState(const T& result)
+				:
+				result_(result) {
+			}
 			~FutureState();
 
 			void SetResult(const T& result) {
@@ -65,13 +76,19 @@ namespace System {
 				try {
 					std::rethrow_exception(std::get<std::exception_ptr>(result_));
 				}
+				catch (const ActorNullException& e) {
+					OnExceptionNoThrow(e);
+				}
 				catch (const std::exception& e) {
 					OnException(e);
 				}
 			}
 			else {
-				if (exception_callback_) {
-					exception_callback_(FutureNoResultException{});
+				try {
+					throw FutureNoResultException();
+				}
+				catch (const FutureNoResultException& e) {
+					OnExceptionNoThrow(e);
 				}
 			}
 		}
@@ -91,13 +108,19 @@ namespace System {
 					try {
 						std::rethrow_exception(std::get<std::exception_ptr>(result_));
 					}
+					catch (const ActorNullException& e) {
+						OnExceptionNoThrow(e);
+					}
 					catch (const std::exception& e) {
 						OnException(e);
 					}
 				}
 				else {
-					if (exception_callback_) {
-						exception_callback_(FutureNoResultException{});
+					try {
+						throw FutureNoResultException();
+					}
+					catch (const FutureNoResultException& e) {
+						OnExceptionNoThrow(e);
 					}
 				}
 			}
@@ -157,11 +180,11 @@ namespace System {
 				return *this;
 			}
 
-			template<typename Func>
-			Thenable<typename FuncReturn<Func>::Type> Then(Func&& func);
+			template<typename F>
+			Thenable<typename FuncTraits<F>::ReturnType> Then(F&& func);
 
-			template<typename Func>
-			Thenable<typename FuncReturn<Func>::Type> ThenPost(Func&& func);
+			template<typename F>
+			Thenable<typename FuncTraits<F>::ReturnType> ThenPost(F&& func);
 
 			std::shared_ptr<FutureState<R>> thenable_state() const {
 				return thenable_state_;
@@ -171,5 +194,7 @@ namespace System {
 			std::shared_ptr<FutureBase> waiting_state_;
 			std::shared_ptr<FutureState<R>> thenable_state_ = std::make_shared<FutureState<R>>();
 		};
+
+	
 	} // namespace Detail
 }

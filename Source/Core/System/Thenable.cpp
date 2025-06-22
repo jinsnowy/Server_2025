@@ -8,7 +8,13 @@ namespace System::Detail {
 		}
 		else {
 			LOG_ERROR("Unhandled exception in FutureBase: {}", e.what());
-			throw;
+			DEBUG_BREAK;
+		}
+	}
+
+	void FutureBase::OnExceptionNoThrow(const std::exception& e) const {
+		if (exception_callback_) {
+			exception_callback_(e);
 		}
 	}
 }

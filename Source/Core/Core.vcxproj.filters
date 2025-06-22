@@ -34,6 +34,9 @@
     <Filter Include="Sql">
       <UniqueIdentifier>{9b170ce7-a1e5-416a-9873-b8c3650cfcdc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{44ed2df0-1ad6-4f24-9cb9-c793198fe669}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\CircularBuffer.cpp">
@@ -156,9 +159,6 @@
     <ClCompile Include="System\String.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="System\Thenable.cpp">
-      <Filter>System</Filter>
-    </ClCompile>
     <ClCompile Include="System\ThreadLocalStorage.cpp">
       <Filter>System</Filter>
     </ClCompile>
@@ -206,6 +206,12 @@
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="System\Elapse.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Json\Json.cpp">
+      <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Thenable.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -357,12 +363,6 @@
     <ClInclude Include="System\String.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="System\Thenable.h">
-      <Filter>System</Filter>
-    </ClInclude>
-    <ClInclude Include="System\Thenable.hpp">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="System\ThreadLocalStorage.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -414,6 +414,24 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="System\Elapse.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Sql\Sql.h">
+      <Filter>Sql</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Json.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\Json.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="Json\JsonFwd.h">
+      <Filter>Json</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Thenable.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Thenable.hpp">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>

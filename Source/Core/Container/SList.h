@@ -6,8 +6,7 @@ namespace System {
 		class ISList {
 		public:
 			virtual ~ISList() = default;
-
-			virtual void* Request();
+			virtual void* Request() = 0;
 			virtual void* Alloc() = 0;
 			virtual void Enqueue(void* buffer) = 0;
 		};

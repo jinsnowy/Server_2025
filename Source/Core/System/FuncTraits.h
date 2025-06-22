@@ -43,11 +43,6 @@ namespace System {
         using FArgsType = typename FuncTraits<decltype(&T::operator())>::ArgsType;
     };
 
-    template<typename F>
-    struct FuncReturn {
-        using Type = typename FuncTraits<F>::ReturnType;
-    };
-
     template<typename T, size_t>
     struct TupleArg {
     };

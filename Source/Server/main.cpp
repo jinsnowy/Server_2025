@@ -1,4 +1,5 @@
 #include "stdafx.h"
+#include "Core/Logging/Logger.h"
 #include "Core/System/Program.h"
 #include "Server/Session/ServerSession.h"
 #include "Server/Session/ClientSession.h"
@@ -9,8 +10,9 @@
 #include "Server/Authenticator/Authenticator.h"
 #include "InterServer/GrpcService.h"
 #include "InterServer/HelloWorldGreeterService.h"
-
+#include "Protobuf/Public/User.h"
 // The service implementation
+
 
 using namespace Server;
 
@@ -52,14 +54,13 @@ int main() {
         listener_->Listen();
     });
 
-    scheduler.Post([]() {
-        ConnectMany(100);
-     });
-
     Server::RunGrpcService<Server::HelloWorldGreeterService>("0.0.0.0:51001");
 
     System::Program::Wait();
 
+    Server::StopGrpcService();
+    System::Scheduler::Destroy();
+	Log::Logger::Destroy();
     google::protobuf::ShutdownProtobufLibrary();
 
     return 0;

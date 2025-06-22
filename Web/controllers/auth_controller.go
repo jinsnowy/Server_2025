@@ -3,7 +3,8 @@ package controllers
 import (
 	"coa-web-app/config"
 	"coa-web-app/models"
-	"coa-web-app/repo"
+	"coa-web-app/repo/token_repository"
+	"coa-web-app/repo/user_repository"
 	"coa-web-app/utils"
 	"crypto/rand"
 	"encoding/base64"
@@ -24,7 +25,7 @@ func GoogleLoginCallback(c *gin.Context) {
 		return
 	}
 
-	_, get_token_error := repo.GetValue(state)
+	_, get_token_error := token_repository.GetValue(state)
 	if get_token_error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get token"})
 		return
@@ -54,7 +55,7 @@ func GoogleLoginCallback(c *gin.Context) {
 	}
 
 	// get user id if exists from external accounts
-	prevUser, err := repo.GetUserByExternalAccount(google.Provider, user["email"].(string))
+	prevUser, err := user_repository.GetUserByExternalAccount(google.Provider, user["email"].(string))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get user"})
 		return
@@ -63,13 +64,13 @@ func GoogleLoginCallback(c *gin.Context) {
 	exipry := config.GetAuthProviderConfig().TempSessionExpiry
 
 	if prevUser != nil {
-		err = repo.SetUserLogined(prevUser.UserId)
+		err = user_repository.SetUserLogined(prevUser.UserId)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to update user"})
 			return
 		}
 
-		err = repo.SetKeyValue(state, prevUser.UserId, exipry)
+		err = token_repository.SetKeyValue(state, prevUser.UserId, exipry)
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to set token"})
 			return
@@ -93,32 +94,33 @@ func GoogleLoginCallback(c *gin.Context) {
 		LastLoginTime: utils.GetTimeNow(),
 	}
 
-	err = repo.InsertUser(&newUser)
+	err = user_repository.InsertUser(&newUser)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create user"})
 		return
 	}
 
-	err = repo.SetKeyValue(state, newUserId, exipry)
+	err = token_repository.SetKeyValue(state, newUserId, exipry)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to set token"})
 		return
 	}
 
-	loginToken, createErr := models.CreateLoginToken()
+	accessToken, createErr := models.CreateAccessToken()
 	if createErr != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create login token"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create access token"})
 		return
 	}
 
-	upsertErr := repo.InsertOrUpdateLoginToken(newUserId, loginToken)
+	upsertErr := user_repository.InsertOrUpdateAccessToken(newUserId, accessToken)
 	if upsertErr != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert login token"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert access token"})
+		return
 	}
 
 	c.JSON(http.StatusOK, models.UserLoginResponse{
-		UserId: newUserId,
-		Token:  loginToken,
+		UserId:      newUserId,
+		AccessToken: accessToken,
 	})
 }
 
@@ -139,7 +141,7 @@ func GoogleLogin(c *gin.Context) {
 		return
 	}
 
-	_, err := repo.GetValue(session_id)
+	_, err := token_repository.GetValue(session_id)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "failed to get token"})
 		return
@@ -152,14 +154,13 @@ func GoogleLogin(c *gin.Context) {
 }
 
 func GetSessionStatus(c *gin.Context) {
-
 	var sessionRequest models.UserSessionRequest
 	if err := c.ShouldBindJSON(&sessionRequest); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "invalid request body"})
 		return
 	}
 
-	value, err := repo.GetValue(sessionRequest.SessionId)
+	value, err := token_repository.GetValue(sessionRequest.SessionId)
 	if err != nil {
 		c.JSON(http.StatusNotFound, gin.H{"error": "failed to get token"})
 		return
@@ -172,27 +173,28 @@ func GetSessionStatus(c *gin.Context) {
 		return
 	}
 
-	user, err := repo.GetUserByUserId(value)
+	user, err := user_repository.GetUserByUserId(value)
 	if user == nil || err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get user"})
 		return
 	}
 
-	loginToken, createErr := models.CreateLoginToken()
+	access_token, createErr := models.CreateAccessToken()
 	if createErr != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create login token"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to create access token"})
 		return
 	}
 
-	upsertErr := repo.InsertOrUpdateLoginToken(user.UserId, loginToken)
+	upsertErr := user_repository.InsertOrUpdateAccessToken(user.UserId, access_token)
 	if upsertErr != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert login token"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert access token"})
+		return
 	}
 
 	c.JSON(http.StatusOK, models.UserSessionResponse{
-		Status: "done",
-		UserId: value,
-		Token:  loginToken,
+		Status:      "done",
+		UserId:      value,
+		AccessToken: access_token,
 	})
 }
 
@@ -208,7 +210,7 @@ func GetAccessToken(c *gin.Context) {
 			return
 		}
 
-		_, err = repo.GetValue(access_token)
+		_, err = token_repository.GetValue(access_token)
 		if err != nil {
 			break
 		}
@@ -216,7 +218,7 @@ func GetAccessToken(c *gin.Context) {
 
 	exipry := config.GetAuthProviderConfig().TempSessionExpiry
 
-	err = repo.SetKeyValue(access_token, "", exipry)
+	err = token_repository.SetKeyValue(access_token, "", exipry)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to set state"})
 		return
@@ -232,11 +234,11 @@ func ValidateAccessToken(c *gin.Context) {
 		return
 	}
 
-	value, err := repo.GetValue(accessToken)
-	if err != nil || value == "" {
+	user, err := user_repository.ConsumeAccessToken(accessToken)
+	if err != nil || user == nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "invalid or expired access_token"})
 		return
 	}
 
-	c.JSON(http.StatusOK, gin.H{"valid": true, "user_id": value})
+	c.JSON(http.StatusOK, gin.H{"user_id": user.UserId, "username": user.Username})
 }

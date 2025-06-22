@@ -11,8 +11,6 @@
 #include "Core/System/Scheduler.h"
 #include "Core/System/String.h"
 #include "Core/System/DateTime.h"
-#include "Core/System/Singleton.h"
-#include "Core/System/Exceptions.h"
 #include "Core/System/Thenable.h"
 #include "Core/System/Thenable.hpp"
 #include "Core/System/Future.h"

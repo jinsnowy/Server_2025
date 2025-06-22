@@ -19,6 +19,9 @@
     <Filter Include="Section">
       <UniqueIdentifier>{d83d22f0-bf5d-42a3-b298-f133d6d20e37}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Model">
+      <UniqueIdentifier>{aea1a945-b71e-4193-a036-1a637491a8b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp">
