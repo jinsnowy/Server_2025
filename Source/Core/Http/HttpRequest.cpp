@@ -23,7 +23,9 @@ namespace Http {
 		method_(rhs.method_),
 		queries_(rhs.queries_ ? std::make_optional(*rhs.queries_) : std::nullopt),
 		headers_(rhs.headers_),
-		body_(rhs.body_) {
+		body_(rhs.body_),
+		timeout_(rhs.timeout_)
+	{
 	}
 
 	HttpRequest& HttpRequest::operator=(const HttpRequest& rhs) {
@@ -33,6 +35,7 @@ namespace Http {
 			queries_ = rhs.queries_ ? std::make_optional(*rhs.queries_) : std::nullopt;
 			headers_ = rhs.headers_;
 			body_ = rhs.body_;
+			timeout_ = rhs.timeout_;
 		}
 		return *this;
 	}
@@ -184,6 +187,12 @@ namespace Http {
 
 		// timeout
 		code = curl_easy_setopt(curl_handle, CURLOPT_TIMEOUT, request.timeout_);
+		if (code != CURLE_OK) {
+			response.SetError(HttpStatusCode::kInternalServerError, code, "Failed to set timeout");
+			return;
+		}
+
+		code = curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, request.timeout_);
 		if (code != CURLE_OK) {
 			response.SetError(HttpStatusCode::kInternalServerError, code, "Failed to set timeout");
 			return;
