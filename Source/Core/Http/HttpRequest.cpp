@@ -194,7 +194,13 @@ namespace Http {
 
 		code = curl_easy_setopt(curl_handle, CURLOPT_CONNECTTIMEOUT, request.timeout_);
 		if (code != CURLE_OK) {
-			response.SetError(HttpStatusCode::kInternalServerError, code, "Failed to set timeout");
+			response.SetError(HttpStatusCode::kInternalServerError, code, "Failed to set connetion timeout");
+			return;
+		}
+
+		code = curl_easy_setopt(curl_handle, CURLOPT_NOSIGNAL, 1L);
+		if (code != CURLE_OK) {
+			response.SetError(HttpStatusCode::kInternalServerError, code, "Failed to set nosignal");
 			return;
 		}
 

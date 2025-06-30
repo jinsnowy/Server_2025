@@ -6,11 +6,24 @@ namespace Sql  {
 	class Conn;
 	class Pool;
 
-	void Initialize(const std::wstring& connectionString, uint32_t connectionCount);
+	class Database final {
+	public:
+		Database(std::string db_name);
 
-	void Destroy();
+		~Database();
 
-	Pool& GetPool();
+		bool Initialize(const std::wstring& db_dsn, uint32_t db_pool_size);
 
-	Agent GetAgent();
+		Pool& GetPool() {
+			return *_conn_pool;
+		}
+
+		Agent GetAgent();
+
+		void Destroy();
+
+	private:
+		std::string _db_name;
+		std::unique_ptr<Pool> _conn_pool;
+	};
 }

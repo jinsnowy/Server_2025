@@ -118,7 +118,12 @@ func LoginWithUserNameAndPassword(c *gin.Context) {
 		return
 	}
 
-	user_repository.InsertOrUpdateAccessToken(user.UserId, access_token)
+	upsertErr := user_repository.InsertOrUpdateAccessToken(user.UserId, access_token)
+	if upsertErr != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert access token"})
+		return
+	}
+
 	c.JSON(http.StatusOK, models.UserLoginResponse{
 		UserId:      user.UserId,
 		AccessToken: access_token,

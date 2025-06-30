@@ -5,7 +5,7 @@ services:
     container_name: mssql
     environment:
       - ACCEPT_EULA=Y
-      - SA_PASSWORD=admin:pass
+      - SA_PASSWORD=StrongPass1!
     ports:
       - "1433:1433"
     restart: unless-stopped

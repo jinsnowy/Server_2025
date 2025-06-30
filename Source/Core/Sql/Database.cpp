@@ -4,24 +4,10 @@
 #include "Core/Sql/Agent.h"
 
 namespace Sql  {
-    class Database final : public System::Singleton<Database> {
-    public:
-        Database();
-
-        ~Database();
-
-        bool Initialize(const std::wstring& db_dsn, uint32_t db_pool_size);
-
-        Pool& GetPool() {
-			return *_conn_pool;
-		}
-
-    private:
-        std::unique_ptr<Pool> _conn_pool;
-    };
-
-    Database::Database()
+ 
+    Database::Database(std::string db_name)
         :
+        _db_name(db_name),
         _conn_pool(std::make_unique<Pool>())
     {
     }
@@ -39,24 +25,12 @@ namespace Sql  {
         return true;
     }
 
-
-    void Initialize(const std::wstring& connectionString, uint32_t connectionCount) {
-        if (Database::GetInstance().Initialize(connectionString, connectionCount) == false) {
-			throw std::runtime_error("Failed to initialize database");
-		}
+    void Database::Destroy() {
+        _conn_pool->Clear();
+        _conn_pool = nullptr;
     }
 
-    void Destroy() {
-        GetPool().Clear();
+    Agent Database::GetAgent() {
+        return Agent(GetPool().Dequeue());
     }
-
-    Pool& GetPool() {
-        return Database::GetInstance().GetPool();
-    }
-
-    Agent GetAgent() {
-        return Agent(Database::GetInstance().GetPool().Dequeue());
-    }
-
-
 }

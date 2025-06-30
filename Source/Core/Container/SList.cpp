@@ -26,7 +26,7 @@ namespace System {
 			SListHeader header_;
 
 			SListEntryPointer AsNode(void* data);
-			void* AsData(SListEntryPointer node);
+			void* AsData(void* node);
 			void Destroy(SListEntryPointer node);
 		};
 
@@ -58,12 +58,12 @@ namespace System {
 			return reinterpret_cast<SListEntryPointer>(data) - 1;
 		}
 
-		void* SListImpl::AsData(SListEntryPointer node) {
-			return node + 1;
+		void* SListImpl::AsData(void* node) {
+			return reinterpret_cast<SListEntryPointer>(node) + 1;
 		}
 
-		void SListImpl::Enqueue(void* node) {
-			::InterlockedPushEntrySList(reinterpret_cast<SListHeaderPointer>(&header_), reinterpret_cast<SListEntryPointer>(node));
+		void SListImpl::Enqueue(void* data) {
+			::InterlockedPushEntrySList(reinterpret_cast<SListHeaderPointer>(&header_), AsNode(data));
 		}
 
 		void* SListImpl::Request() {
@@ -75,7 +75,7 @@ namespace System {
 		}
 
 		void* SListImpl::Alloc() {
-			return _aligned_malloc(node_size_, MEMORY_ALLOCATION_ALIGNMENT);
+			return AsData(_aligned_malloc(node_size_, MEMORY_ALLOCATION_ALIGNMENT));
 		}
 
 		std::unique_ptr<ISList> CreateSListImpl(size_t allocation_size, void(*destructor)(void*)) {

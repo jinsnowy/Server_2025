@@ -7,10 +7,12 @@
 #include "Server/Protocol/ClientProtocol.h"
 #include "Server/Protocol/ServerHandlerMap.h"
 #include "Server/Protocol/ClientHandlerMap.h"
+#include "Core/Sql/Database.h"
 #include "Server/Authenticator/Authenticator.h"
 #include "InterServer/GrpcService.h"
 #include "InterServer/HelloWorldGreeterService.h"
 #include "Protobuf/Public/User.h"
+#include "Database/DB.h"
 // The service implementation
 
 
@@ -19,7 +21,6 @@ using namespace Server;
 std::shared_ptr<Network::Listener> listener_;
 std::vector<std::shared_ptr<Server::ServerSession>> server_sessions_;
 std::vector<std::shared_ptr<Server::ClientSession>> client_sessions_;
-std::wstring dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=DESKTOP-5DKI3L6;Trusted_Connection=Yes;Database=GameDB;";
 
 void ConnectMany(int32_t count) {
     //auto& scheduler = System::Scheduler::Current();
@@ -30,9 +31,19 @@ void ConnectMany(int32_t count) {
     }
 }
 
+DBConfig GetDBConfig() {
+    DBConfig config;
+    config.lobby_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=LobbyDB;";
+    config.game_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=GameDB;";
+    return config;
+}
 
 int main() {
     System::Scheduler::CreateThreadPool(32);
+  
+	DB::GetInstance().Initialize(GetDBConfig());
+
+    LOBBYDB.GetAgent();
 
     ServerSession::RegisterHandler(&ServerHandlerMap::GetInstance());
     ClientSession::RegisterHandler(&ClientHandlerMap::GetInstance());

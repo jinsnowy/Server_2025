@@ -5,6 +5,8 @@ import (
 	"coa-web-app/repo"
 	"coa-web-app/utils"
 	"context"
+	"errors"
+	"log"
 
 	"go.mongodb.org/mongo-driver/mongo"
 )
@@ -125,18 +127,32 @@ func InsertOrUpdateAccessToken(userId string, token string) error {
 		AccessToken: token,
 	}
 
+	log.Println("Inserting or updating access token for user: {}, token:{} ", userId, token)
+
 	if existingToken != nil {
 		// Update the existing token
 		filter := map[string]interface{}{
 			"user_id": userId,
 		}
-		update := map[string]interface{}{
-			"$set": accessToken.AccessToken,
+		// set token field to the new access token
+		if existingToken.AccessToken == token {
+			// No need to update if the token is the same
+			return nil
 		}
 
-		_, err := collection.UpdateOne(context.Background(), filter, update)
+		// Update the access token in the database
+		update := map[string]interface{}{
+			"$set": map[string]interface{}{
+				"token": accessToken.AccessToken,
+			},
+		}
+
+		updateResult, err := collection.UpdateOne(context.Background(), filter, update)
 		if err != nil {
 			return err
+		}
+		if updateResult.MatchedCount == 0 {
+			return errors.New("no matching access token found for user")
 		}
 		return nil
 	} else {
@@ -152,7 +168,7 @@ func InsertOrUpdateAccessToken(userId string, token string) error {
 func ConsumeAccessToken(access_token string) (*models.User, error) {
 	collection := repo.AccountDb.Collection("access_tokens")
 	filter := map[string]interface{}{
-		"access_token": access_token,
+		"token": access_token,
 	}
 
 	var accessToken models.UserAccessToken

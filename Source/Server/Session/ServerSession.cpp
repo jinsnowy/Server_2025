@@ -1,9 +1,11 @@
 #include "stdafx.h"
 #include "ServerSession.h"
+#include "Core/Sql/Database.h"
 #include "Protocol/ServerProtocol.h"
 #include "Protocol/ServerHandlerMap.h"
 #include "Protobuf/Public/User.h"
 
+#include "Server/Database/DB.h"
 #include "Server/Authenticator/Authenticator.h"
 
 namespace Server {
@@ -51,7 +53,9 @@ namespace Server {
 				return MakeShared(session);
 			}).ThenPost([](ServerSession& session) {
 				DEBUG_ASSERT(session.IsSynchronized());
+
 				LOG_INFO("[LOGIN] account: {} logined", session.account().ToString());
+
 				//session_ptr->Send(user::HelloClientAck{});
 			});
 
@@ -72,7 +76,7 @@ namespace Server {
 
 		account_->set_last_login_time(System::Time::GetCurrent());
 		
-		auto agent = Sql::GetAgent();
+		auto agent = LOBBYDB.GetAgent();
 		if (account_->UpsertToDb(agent) == false) {
 			LOG_ERROR("Failed to upsert account to database for user_id: {}", account_token_info.user_id);
 			return false;

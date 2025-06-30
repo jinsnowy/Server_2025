@@ -293,6 +293,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp" />
+    <ClCompile Include="Database\DB.cpp" />
     <ClCompile Include="InterServer\GrpcService.cpp" />
     <ClCompile Include="InterServer\HelloWorldGreeterService.cpp" />
     <ClCompile Include="main.cpp" />
@@ -312,6 +313,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h" />
+    <ClInclude Include="Database\DB.h" />
     <ClInclude Include="InterServer\GrpcService.h" />
     <ClInclude Include="InterServer\HelloWorldGreeterService.h" />
     <ClInclude Include="Model\Account.h" />
@@ -335,6 +337,10 @@
       <Project>{69f4e9aa-d7f1-3e71-8dd9-d157f44ad9df}</Project>
       <LinkLibraryDependencies>true</LinkLibraryDependencies>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\SQL\docker-compose.yml" />
+    <None Include="..\..\SQL\Lobby.Sql" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
