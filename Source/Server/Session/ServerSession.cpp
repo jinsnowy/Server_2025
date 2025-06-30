@@ -74,7 +74,7 @@ namespace Server {
 			account_->set_username(account_token_info.username);
 		}
 
-		account_->set_last_login_time(System::Time::GetCurrent());
+		account_->set_last_login_time(System::Time::UtcNow());
 		
 		auto agent = LOBBYDB.GetAgent();
 		if (account_->UpsertToDb(agent) == false) {

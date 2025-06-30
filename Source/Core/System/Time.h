@@ -6,8 +6,8 @@ namespace System {
 	class DateTime;
 	class Time {
 	public:
-		static Time GetCurrent() { return Time(std::chrono::system_clock::time_point()); }
-		static Time GetCurrentLocal();
+		static Time UtcNow();
+		static Time Now();
 
 		static const Time kMinValue;
 		static const Time kMaxValue;

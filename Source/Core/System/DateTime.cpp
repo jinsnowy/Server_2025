@@ -21,7 +21,7 @@ namespace System {
 		
         time_t time_t_value = static_cast<time_t>(posix_milliseconds / 1000LL); // Convert milliseconds to seconds
 		tm time_info;
-		localtime_s(&time_info, &time_t_value);
+		gmtime_s(&time_info, &time_t_value);
 
 		year_ = time_info.tm_year + 1900; 
 		month_ = time_info.tm_mon + 1;
@@ -50,12 +50,11 @@ namespace System {
     }
 
     DateTime DateTime::Now() {
-        std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-        std::time_t now_time = std::chrono::system_clock::to_time_t(now);
-        
+        Time time = Time::UtcNow();
+        time_t time_t_value = time.ToTimeT();
         DateTime date_time;
         tm time_info;
-        localtime_s(&time_info, &now_time);
+        localtime_s(&time_info, &time_t_value);
 
         date_time.year_ = time_info.tm_year + 1900; 
         date_time.month_ = time_info.tm_mon + 1;
@@ -64,13 +63,13 @@ namespace System {
         date_time.minute_ = time_info.tm_min;
         date_time.second_ = time_info.tm_sec;
         date_time.day_of_week_ = static_cast<DayOfWeek>(time_info.tm_wday);
-        date_time.millisecond_ = std::chrono::duration_cast<std::chrono::milliseconds>(now.time_since_epoch()).count() % 1000;
+        date_time.millisecond_ = time.GetPosixTimeMilliSeconds() % 1000;
 
         return date_time;
     }
 
     DateTime DateTime::UtcNow() {
-        Time time = Time::GetCurrent();
+        Time time = Time::UtcNow();
         time_t time_t_value = time.ToTimeT();
         DateTime date_time;
         tm time_info;

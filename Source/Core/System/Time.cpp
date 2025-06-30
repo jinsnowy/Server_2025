@@ -7,7 +7,11 @@ namespace System {
 	const Time Time::kMinValue = Time(std::chrono::system_clock::time_point::min());
 	const Time Time::kMaxValue = Time(std::chrono::system_clock::time_point::max());
 
-	Time Time::GetCurrentLocal() {
+	Time Time::UtcNow() {
+		return Time(std::chrono::system_clock::now());
+	}
+
+	Time Time::Now() {
 		auto now = std::chrono::system_clock::now();
 		auto local = std::chrono::zoned_time{ std::chrono::current_zone(), now };
 		return Time(local.get_sys_time());
@@ -70,8 +74,7 @@ namespace System {
 	}
 
 	std::string Time::ToString() const {
-
-		return "";
+		return DateTime(*this).ToString();
 	}
 
 }

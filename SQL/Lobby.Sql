@@ -26,7 +26,7 @@ GO
 DROP PROCEDURE IF EXISTS dbo.usp_InsertAccount
 GO
 
-CREATE PROCEDURE dbo.usp_InsertAccount
+CREATE PROCEDURE dbo.usp_UpsertAccount
 (
     @p_UserId NVARCHAR(64),
     @p_Username NVARCHAR(64),
