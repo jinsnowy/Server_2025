@@ -16,7 +16,7 @@ namespace Sql {
 
 		Param() = default;
 
-		template<typename T>
+		template<typename T, typename = std::enable_if_t<!std::is_pointer_v<std::remove_cvref_t<T>>>>
 		Param& Set(T&& value, SQLSMALLINT valueType, SQLSMALLINT paramType) {
 			_value = std::forward<T>(value);
 			_valueType = valueType;
@@ -34,6 +34,17 @@ namespace Sql {
 			_paramSize = paramSize;
 			_valuePtr = value;
 			_strLenOrIndex = value == nullptr ? SQL_NULL_DATA : strLenOrIndex;
+			return *this;
+		}
+
+		template<typename T>
+		Param& Set(T* value, SQLSMALLINT valueType, SQLSMALLINT paramType) {
+			_value = value;
+			_valueType = valueType;
+			_paramType = paramType;
+			_paramSize = sizeof(T);
+			_valuePtr = value;
+			_strLenOrIndex = value == nullptr ? SQL_NULL_DATA : sizeof(T);
 			return *this;
 		}
 

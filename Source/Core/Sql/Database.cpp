@@ -8,7 +8,7 @@ namespace Sql  {
     Database::Database(std::string db_name)
         :
         _db_name(db_name),
-        _conn_pool(std::make_unique<Pool>())
+        _conn_pool(std::make_shared<Pool>())
     {
     }
 
@@ -30,7 +30,7 @@ namespace Sql  {
         _conn_pool = nullptr;
     }
 
-    Agent Database::GetAgent() {
-        return Agent(GetPool().Dequeue());
+    std::unique_ptr<Agent> Database::GetAgent() {
+        return std::unique_ptr<Agent>(new Agent(GetPool().Dequeue(), _conn_pool));
     }
 }

@@ -20,7 +20,9 @@ namespace Sql  {
 
 		bool Success() const { return GetResult() == 0; }
 
-		std::wstring error_message();
+		std::wstring error_message() const;
+
+		std::string GetLastErrorMessage();
 
 		bool FetchResult();
 
@@ -94,6 +96,7 @@ namespace Sql  {
 	protected:
 		bool		   _eof = false;
 		bool		   _fetch_ready = false;
+		int32_t		   _return_value;
 		SQLHSTMT	   _stmt;
 		std::wstring   _error_message;
 		std::vector<Param>  _params;

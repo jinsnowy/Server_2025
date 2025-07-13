@@ -18,12 +18,12 @@ namespace Sql  {
 			return *_conn_pool;
 		}
 
-		Agent GetAgent();
+		std::unique_ptr<Agent> GetAgent();
 
 		void Destroy();
 
 	private:
 		std::string _db_name;
-		std::unique_ptr<Pool> _conn_pool;
+		std::shared_ptr<Pool> _conn_pool;
 	};
 }

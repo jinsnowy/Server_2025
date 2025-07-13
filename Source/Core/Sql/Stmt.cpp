@@ -14,6 +14,7 @@ namespace Sql  {
 		:
 		_eof(false),
 		_stmt(stmt),
+		_return_value(0),
 		_fetch_ready(false),
 		_params{},
 		_columns{}
@@ -76,6 +77,10 @@ namespace Sql  {
 		}
 	}
 
+	std::string Stmt::GetLastErrorMessage() {
+		return System::String::Convert(_error_message);
+	}
+
 	bool Stmt::FetchResult() {
 		if (_fetch_ready == false) {
 			SQLSMALLINT columnSize = static_cast<SQLSMALLINT>(_columns.size());
@@ -132,23 +137,22 @@ namespace Sql  {
 		_fetch_ready = false;
 		_params.clear();
 		_columns.clear();
+		_return_value = 0;
 		BindReturnValue();
 	}
 
-	int32_t Stmt::GetResult() const { return _params.at(0).Get<int32_t>(); }
+	int32_t Stmt::GetResult() const { return _return_value; }
 
 	SQLHSTMT Stmt::GetHandle() {
 		return _stmt;
 	}
 
-	std::wstring Stmt::error_message() {
+	std::wstring Stmt::error_message() const {
 		return _error_message;
 	}
 
 	void Stmt::BindReturnValue() {
-		auto& param = _params.emplace_back();
-		param.Set(0, SQL_C_SLONG, SQL_INTEGER);
-		BindParamInternal(_params.size(), param, SQL_PARAM_OUTPUT);
+		BindOutParam(&_return_value);
 	}
 
 	void Stmt::UpdateOnFetchResult() {
