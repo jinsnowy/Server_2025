@@ -23,12 +23,31 @@ namespace System {
 		time_point_ += std::chrono::milliseconds(rhs.millisecond());
 	}
 
+	int64_t Time::GetPosixTimeMicroSeconds() const {
+		return std::chrono::duration_cast<std::chrono::microseconds>(time_point_.time_since_epoch()).count();
+	}
+
 	int64_t Time::GetPosixTimeMilliSeconds() const {
 		return std::chrono::duration_cast<std::chrono::milliseconds>(time_point_.time_since_epoch()).count();
 	}
 
 	int64_t Time::GetPosixTimeSeconds() const {
 		return std::chrono::duration_cast<std::chrono::seconds>(time_point_.time_since_epoch()).count();
+	}
+
+	Time Time::FromPosixTimeMicroSeconds(const int64_t& rhs) {
+		std::chrono::system_clock::time_point posix_base = std::chrono::system_clock::from_time_t(0);
+		return Time(posix_base + std::chrono::microseconds(rhs));
+	}
+
+	Time Time::FromPosixTimeMilliSeconds(const int64_t& rhs) {
+		std::chrono::system_clock::time_point posix_base = std::chrono::system_clock::from_time_t(0);
+		return Time(posix_base + std::chrono::milliseconds(rhs));
+	}
+
+	Time Time::FromPosixTimeSeconds(const int64_t& rhs) {
+		std::chrono::system_clock::time_point posix_base = std::chrono::system_clock::from_time_t(0);
+		return Time(posix_base + std::chrono::seconds(rhs));
 	}
 
 	time_t Time::ToTimeT() const {
@@ -59,18 +78,6 @@ namespace System {
 
 	Duration Time::operator-(const Time& rhs) const {
 		return Duration(std::chrono::duration_cast<std::chrono::milliseconds>(time_point_ - rhs.time_point_).count());
-	}
-
-	Duration operator-(const Time& lhs, const Time& rhs) {
-		return Duration(std::chrono::duration_cast<std::chrono::milliseconds>(lhs.time_point_ - rhs.time_point_).count());
-	}
-
-	Time operator+(const Time& lhs, const Duration& rhs) {
-		return lhs.operator+(rhs);
-	}
-
-	Time operator-(const Time& lhs, const Duration& rhs) {
-		return lhs.operator-(rhs);
 	}
 
 	std::string Time::ToString() const {

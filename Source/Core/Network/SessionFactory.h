@@ -5,6 +5,7 @@
 namespace Network {
     class Connection;
     class Session;
+	class Protocol;
     class SessionFactory final {
     public:
         SessionFactory();
@@ -22,6 +23,10 @@ namespace Network {
             on_connect_ = on_connect;
             return *this;
         }
+
+        bool is_empty() const {
+            return session_factory_ == nullptr;
+		}
 
     private:
         friend class Listener;

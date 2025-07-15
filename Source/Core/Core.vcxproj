@@ -24,7 +24,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{B88EF573-4E03-3311-9645-670F4CCC280B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>Core</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -261,6 +261,7 @@
     <ClCompile Include="Network\BufferMemory.cpp" />
     <ClCompile Include="Network\BufferPool.cpp" />
     <ClCompile Include="Network\Connection.cpp" />
+    <ClCompile Include="Network\IPAddress.cpp" />
     <ClCompile Include="Network\Listener.cpp" />
     <ClCompile Include="Network\NetworkStream.cpp" />
     <ClCompile Include="Network\OutputStream.cpp" />
@@ -287,7 +288,9 @@
     </ClCompile>
     <ClCompile Include="System\Actor.cpp" />
     <ClCompile Include="System\Callable.cpp" />
-    <ClCompile Include="System\Cast.cpp" />
+    <ClCompile Include="System\Enum.cpp" />
+    <ClCompile Include="System\ExecutionContext.cpp" />
+    <ClCompile Include="System\LexicalCast.cpp" />
     <ClCompile Include="System\Channel.cpp" />
     <ClCompile Include="System\Context.cpp" />
     <ClCompile Include="System\DateTime.cpp" />
@@ -297,6 +300,7 @@
     <ClCompile Include="System\FuncTraits.cpp" />
     <ClCompile Include="System\Future.cpp" />
     <ClCompile Include="System\Path.cpp" />
+    <ClCompile Include="System\PeriodicTimer.cpp" />
     <ClCompile Include="System\Program.cpp" />
     <ClCompile Include="System\Scheduler.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
@@ -305,7 +309,8 @@
     <ClCompile Include="System\Thenable.cpp" />
     <ClCompile Include="System\ThreadLocalStorage.cpp" />
     <ClCompile Include="System\Time.cpp" />
-    <ClCompile Include="System\TimePoint.cpp" />
+    <ClCompile Include="System\Tick.cpp" />
+    <ClCompile Include="System\TimerContext.cpp" />
     <ClCompile Include="ThirdParty\Sql.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -326,6 +331,7 @@
     <ClInclude Include="Network\BufferPool.h" />
     <ClInclude Include="Network\Connection.h" />
     <ClInclude Include="Network\Interface.h" />
+    <ClInclude Include="Network\IPAddress.h" />
     <ClInclude Include="Network\Listener.h" />
     <ClInclude Include="Network\NetworkStream.h" />
     <ClInclude Include="Network\OutputStream.h" />
@@ -353,7 +359,9 @@
     <ClInclude Include="System\Actor.h" />
     <ClInclude Include="System\Actor.hpp" />
     <ClInclude Include="System\Callable.h" />
-    <ClInclude Include="System\Cast.h" />
+    <ClInclude Include="System\Enum.h" />
+    <ClInclude Include="System\ExecutionContext.h" />
+    <ClInclude Include="System\LexicalCast.h" />
     <ClInclude Include="System\Channel.h" />
     <ClInclude Include="System\Context.h" />
     <ClInclude Include="System\DateTime.h" />
@@ -366,6 +374,7 @@
     <ClInclude Include="System\Interface.h" />
     <ClInclude Include="System\Macro.h" />
     <ClInclude Include="System\Path.h" />
+    <ClInclude Include="System\PeriodicTimer.h" />
     <ClInclude Include="System\Program.h" />
     <ClInclude Include="System\Scheduler.h" />
     <ClInclude Include="System\Singleton.h" />
@@ -375,10 +384,16 @@
     <ClInclude Include="System\Thenable.hpp" />
     <ClInclude Include="System\ThreadLocalStorage.h" />
     <ClInclude Include="System\Time.h" />
-    <ClInclude Include="System\TimePoint.h" />
+    <ClInclude Include="System\Tick.h" />
+    <ClInclude Include="System\TimerContext.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
     <ClInclude Include="ThirdParty\Curl.h" />
     <ClInclude Include="ThirdParty\Json.h" />
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum.hpp" />
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_containers.hpp" />
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_format.hpp" />
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_fuse.hpp" />
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_switch.hpp" />
     <ClInclude Include="ThirdParty\Protobuf.h" />
     <ClInclude Include="ThirdParty\Sql.h" />
     <ClInclude Include="ThirdParty\WarningMacros.h" />

@@ -29,8 +29,4 @@ namespace Protobuf {
 		};
 	};
 
-	//using ProtocolController = Tcp::Packet::ProtocolController<google::protobuf::Message>;
-
-	//google::protobuf::Timestamp ToTimestamp(const System::Time& timepoint);
-	//System::Time FromTimestamp(const google::protobuf::Timestamp& timestamp);
 }

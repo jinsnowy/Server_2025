@@ -37,6 +37,12 @@
     <Filter Include="Json">
       <UniqueIdentifier>{44ed2df0-1ad6-4f24-9cb9-c793198fe669}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ThirdParty\MagicEnum">
+      <UniqueIdentifier>{23316c9d-d378-49f0-b11d-78d527226a41}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{90566651-9d75-494a-85f5-807b6c1c54bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\CircularBuffer.cpp">
@@ -162,7 +168,7 @@
     <ClCompile Include="System\ThreadLocalStorage.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="System\TimePoint.cpp">
+    <ClCompile Include="System\Tick.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
@@ -202,7 +208,7 @@
     <ClCompile Include="System\Time.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="System\Cast.cpp">
+    <ClCompile Include="System\LexicalCast.cpp">
       <Filter>System</Filter>
     </ClCompile>
     <ClCompile Include="System\Elapse.cpp">
@@ -212,6 +218,21 @@
       <Filter>Json</Filter>
     </ClCompile>
     <ClCompile Include="System\Thenable.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\IPAddress.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Enum.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\TimerContext.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ExecutionContext.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\PeriodicTimer.cpp">
       <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
@@ -366,7 +387,7 @@
     <ClInclude Include="System\ThreadLocalStorage.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="System\TimePoint.h">
+    <ClInclude Include="System\Tick.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Windows.h">
@@ -410,7 +431,7 @@
     <ClInclude Include="System\Time.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="System\Cast.h">
+    <ClInclude Include="System\LexicalCast.h">
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="System\Elapse.h">
@@ -429,6 +450,36 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="System\Thenable.hpp">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\IPAddress.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Enum.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum.hpp">
+      <Filter>ThirdParty\MagicEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_containers.hpp">
+      <Filter>ThirdParty\MagicEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_format.hpp">
+      <Filter>ThirdParty\MagicEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_fuse.hpp">
+      <Filter>ThirdParty\MagicEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\MagicEnum\magic_enum_switch.hpp">
+      <Filter>ThirdParty\MagicEnum</Filter>
+    </ClInclude>
+    <ClInclude Include="System\TimerContext.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ExecutionContext.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\PeriodicTimer.h">
       <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>

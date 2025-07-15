@@ -3,6 +3,7 @@
 #include "Core/Network/Socket.h"
 #include "Core/Network/Session.h"
 #include "Core/Network/Connection.h"
+#include "Core/Network/Protocol.h"
 
 namespace Network {
     SessionFactory::SessionFactory()
@@ -28,7 +29,8 @@ namespace Network {
         }
         
         Ctrl(*connection).Post([session](Connection& connection) {
-            connection.OnConnected(boost::system::error_code{}, connection.socket()->raw_socket().remote_endpoint(), session);
+			connection.set_session(session);
+            connection.OnConnected(boost::system::error_code{}, connection.socket()->raw_socket().remote_endpoint());
         });
     }
 }

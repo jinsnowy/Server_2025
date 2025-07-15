@@ -1,0 +1,29 @@
+syntax = "proto3";
+
+package world;
+
+import "types.proto";
+
+message RegisterServerReq {
+	option (types.message_id) = kRegisterServerReq;
+	string server_address = 1;
+	types.ServerType server_type = 2;
+	string level_map_name =3;
+}
+
+message RegisterServerRes {
+	option (types.message_id) = kRegisterServerRes;
+	types.Result result = 1;
+	int32 server_id = 2;
+}
+
+message ServerPingReq {
+	option (types.message_id) = kServerPingReq;
+	int32 server_id = 1;
+}
+
+message ServerPingRes {
+	option (types.message_id) = kServerPingReq;
+	types.Result result =1;
+	int32 server_id = 2;
+}

@@ -9,6 +9,9 @@
 #include <fstream>
 
 #include <algorithm>
+#include <vector>
+#include <queue>
+#include <deque>
 #include <atomic>
 #include <mutex>
 #include <thread>

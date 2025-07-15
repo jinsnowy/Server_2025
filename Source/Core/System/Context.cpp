@@ -2,13 +2,17 @@
 #include "Context.h"
 
 #include "Core/ThirdParty/BoostAsio.h"
+#include "Core/System/TimerContext.h"
+#include "Core/System/ExecutionContext.h"
 
 namespace System {
 	thread_local Context* Context::current_context = nullptr;
 
 	Context::Context() 
 		:
-		io_context_(std::make_unique<boost::asio::io_context>()) {
+		io_context_(std::make_unique<boost::asio::io_context>()),
+		timer_context_(std::make_unique<TimerContext>(this)),
+		execution_context_(std::make_unique<ExecutionContext>()) {
 	}
 
 	Context::~Context() = default;
@@ -25,15 +29,11 @@ namespace System {
 	}
 
 	void Context::Run() {
-		current_context = this;
 		io_context_->run();
-		current_context = nullptr;
 	}
 
 	size_t Context::RunFor(int32_t milliseconds) {
-		current_context = this;
 		size_t count = io_context_->run_for(std::chrono::milliseconds(milliseconds));
-		current_context = nullptr;
 		return count;
 	}
 

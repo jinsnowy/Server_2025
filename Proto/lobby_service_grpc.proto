@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package lobby_service;
+
+import "types.proto";
+
+service LobbyService {
+  // Sends a greeting
+  rpc RegisterServer (RegisterServerRequest) returns (RegisterServerReponse);
+}
+
+// The request message containing the user's name.
+message RegisterServerRequest {
+	string server_address = 1;
+	types.ServerType server_type = 2;
+}
+
+// The response message containing the greetings.
+message RegisterServerReponse {
+  	types.Result result = 1;
+	int32 server_id = 2;
+}

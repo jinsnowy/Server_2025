@@ -19,8 +19,13 @@ namespace System {
 		constexpr Time(const std::chrono::system_clock::time_point& time_point) : time_point_(time_point) {}
 		Time(const DateTime& rhs);
 
+		int64_t GetPosixTimeMicroSeconds() const;
 		int64_t GetPosixTimeMilliSeconds() const;
 		int64_t GetPosixTimeSeconds() const;
+
+		static Time FromPosixTimeMicroSeconds(const int64_t& rhs);
+		static Time FromPosixTimeMilliSeconds(const int64_t& rhs);
+		static Time FromPosixTimeSeconds(const int64_t& rhs);
 
 		time_t ToTimeT() const;
 		static Time FromTimeT(const time_t& rhs);
@@ -36,10 +41,7 @@ namespace System {
 		const std::chrono::system_clock::time_point& internal() const { time_point_; }
 
 	private:
-		friend Duration operator-(const Time& lhs, const Time& rhs);
-		friend Time operator+(const Time& lhs, const Duration& rhs);
-		friend Time operator-(const Time& lhs, const Duration& rhs);
-
+		friend class Duration;
 		friend constexpr std::strong_ordering operator<=>(const Time& lhs, const Time& rhs) { return lhs.time_point_ <=> rhs.time_point_; }
 		friend constexpr bool operator==(const Time& lhs, const Time& rhs) { return lhs.time_point_ == rhs.time_point_; }
 

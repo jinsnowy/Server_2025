@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "ClientSession.h"
-#include "Protocol/ClientHandlerMap.h"
-#include "Protocol/ClientProtocol.h"
 #include "Protobuf/Public/User.h"
+#include "Server/Service/ClientServiceDef.h"
 
 namespace Server {
 	int ClientSession::session_id_counter_ = 1;
@@ -12,13 +11,11 @@ namespace Server {
 		Protobuf::ProtobufSession() {
 	}
 
-	std::unique_ptr<Network::Protocol> ClientSession::CreateProtocol()
-	{
+	std::unique_ptr<Network::Protocol> ClientSession::CreateProtocol() {
 		return std::make_unique<ClientProtocol>();
 	}
 
-	void ClientSession::OnConnected()
-	{ 
+	void ClientSession::OnConnected() { 
 		session_id_ = session_id_counter_++;
 
 		LOG_INFO("ClientSession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());

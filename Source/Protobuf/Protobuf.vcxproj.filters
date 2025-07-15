@@ -10,12 +10,9 @@
     <Filter Include="Private\Protos">
       <UniqueIdentifier>{828ccc04-2e8d-4575-8b64-86f0589203ab}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Private\Protos\Grpc">
-      <UniqueIdentifier>{3d8830aa-af8f-4cdc-a584-a741942c7026}</UniqueIdentifier>
-    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Public\HelloWorld.h">
+    <ClInclude Include="Public\LobbyService.h">
       <Filter>Public</Filter>
     </ClInclude>
     <ClInclude Include="Public\ProtobufDescriptor.h">
@@ -46,11 +43,20 @@
     <ClInclude Include="Public\GrpcHeader.h">
       <Filter>Public</Filter>
     </ClInclude>
-    <ClInclude Include="Private\Protos\Grpc\helloworld.grpc.pb.h">
-      <Filter>Private\Protos\Grpc</Filter>
+    <ClInclude Include="Private\Protos\world.pb.h">
+      <Filter>Private\Protos</Filter>
     </ClInclude>
-    <ClInclude Include="Private\Protos\Grpc\helloworld.pb.h">
-      <Filter>Private\Protos\Grpc</Filter>
+    <ClInclude Include="Public\World.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtoUtils.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Protos\lobby_service_grpc.grpc.pb.h">
+      <Filter>Private\Protos</Filter>
+    </ClInclude>
+    <ClInclude Include="Private\Protos\lobby_service_grpc.pb.h">
+      <Filter>Private\Protos</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -85,11 +91,20 @@
     <ClCompile Include="Private\GrpcHeader.cpp">
       <Filter>Private</Filter>
     </ClCompile>
-    <ClCompile Include="Private\Protos\Grpc\helloworld.grpc.pb.cc">
-      <Filter>Private\Protos\Grpc</Filter>
+    <ClCompile Include="Private\Protos\world.pb.cc">
+      <Filter>Private\Protos</Filter>
     </ClCompile>
-    <ClCompile Include="Private\Protos\Grpc\helloworld.pb.cc">
-      <Filter>Private\Protos\Grpc</Filter>
+    <ClCompile Include="Private\World.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtoUtils.cpp">
+      <Filter>Private\Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\lobby_service_grpc.grpc.pb.cc">
+      <Filter>Private\Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\Protos\lobby_service_grpc.pb.cc">
+      <Filter>Private\Protos</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

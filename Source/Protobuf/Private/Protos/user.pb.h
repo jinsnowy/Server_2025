@@ -32,6 +32,7 @@
 #include <google/protobuf/extension_set.h>  // IWYU pragma: export
 #include <google/protobuf/unknown_field_set.h>
 #include "types.pb.h"
+#include <google/protobuf/timestamp.pb.h>
 // @@protoc_insertion_point(includes)
 #include <google/protobuf/port_def.inc>
 #define PROTOBUF_INTERNAL_EXPORT_user_2eproto
@@ -53,6 +54,9 @@ extern DisconnectAlertNotifyDefaultTypeInternal _DisconnectAlertNotify_default_i
 class HelloClient;
 struct HelloClientDefaultTypeInternal;
 extern HelloClientDefaultTypeInternal _HelloClient_default_instance_;
+class HelloClientAck;
+struct HelloClientAckDefaultTypeInternal;
+extern HelloClientAckDefaultTypeInternal _HelloClientAck_default_instance_;
 class HelloServer;
 struct HelloServerDefaultTypeInternal;
 extern HelloServerDefaultTypeInternal _HelloServer_default_instance_;
@@ -60,6 +64,7 @@ extern HelloServerDefaultTypeInternal _HelloServer_default_instance_;
 PROTOBUF_NAMESPACE_OPEN
 template<> ::user::DisconnectAlertNotify* Arena::CreateMaybeMessage<::user::DisconnectAlertNotify>(Arena*);
 template<> ::user::HelloClient* Arena::CreateMaybeMessage<::user::HelloClient>(Arena*);
+template<> ::user::HelloClientAck* Arena::CreateMaybeMessage<::user::HelloClientAck>(Arena*);
 template<> ::user::HelloServer* Arena::CreateMaybeMessage<::user::HelloServer>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace user {
@@ -504,6 +509,246 @@ class DisconnectAlertNotify final :
   union { Impl_ _impl_; };
   friend struct ::TableStruct_user_2eproto;
 };
+// -------------------------------------------------------------------
+
+class HelloClientAck final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:user.HelloClientAck) */ {
+ public:
+  inline HelloClientAck() : HelloClientAck(nullptr) {}
+  ~HelloClientAck() override;
+  explicit PROTOBUF_CONSTEXPR HelloClientAck(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  HelloClientAck(const HelloClientAck& from);
+  HelloClientAck(HelloClientAck&& from) noexcept
+    : HelloClientAck() {
+    *this = ::std::move(from);
+  }
+
+  inline HelloClientAck& operator=(const HelloClientAck& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline HelloClientAck& operator=(HelloClientAck&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const HelloClientAck& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const HelloClientAck* internal_default_instance() {
+    return reinterpret_cast<const HelloClientAck*>(
+               &_HelloClientAck_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(HelloClientAck& a, HelloClientAck& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(HelloClientAck* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(HelloClientAck* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  HelloClientAck* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<HelloClientAck>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const HelloClientAck& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const HelloClientAck& from) {
+    HelloClientAck::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(HelloClientAck* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "user.HelloClientAck";
+  }
+  protected:
+  explicit HelloClientAck(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 2,
+    kUsernameFieldNumber = 3,
+    kLastLoginTimeFieldNumber = 4,
+    kLastLogoutTimeFieldNumber = 5,
+    kCreatedAtFieldNumber = 6,
+    kAccountIdFieldNumber = 1,
+  };
+  // string user_id = 2;
+  void clear_user_id();
+  const std::string& user_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_id();
+  PROTOBUF_NODISCARD std::string* release_user_id();
+  void set_allocated_user_id(std::string* user_id);
+  private:
+  const std::string& _internal_user_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
+  std::string* _internal_mutable_user_id();
+  public:
+
+  // string username = 3;
+  void clear_username();
+  const std::string& username() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_username(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_username();
+  PROTOBUF_NODISCARD std::string* release_username();
+  void set_allocated_username(std::string* username);
+  private:
+  const std::string& _internal_username() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_username(const std::string& value);
+  std::string* _internal_mutable_username();
+  public:
+
+  // .google.protobuf.Timestamp last_login_time = 4;
+  bool has_last_login_time() const;
+  private:
+  bool _internal_has_last_login_time() const;
+  public:
+  void clear_last_login_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_login_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_login_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_login_time();
+  void set_allocated_last_login_time(::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_login_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_login_time();
+  public:
+  void unsafe_arena_set_allocated_last_login_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_login_time();
+
+  // .google.protobuf.Timestamp last_logout_time = 5;
+  bool has_last_logout_time() const;
+  private:
+  bool _internal_has_last_logout_time() const;
+  public:
+  void clear_last_logout_time();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_logout_time() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_logout_time();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_logout_time();
+  void set_allocated_last_logout_time(::PROTOBUF_NAMESPACE_ID::Timestamp* last_logout_time);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_logout_time() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_logout_time();
+  public:
+  void unsafe_arena_set_allocated_last_logout_time(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_logout_time);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_logout_time();
+
+  // .google.protobuf.Timestamp created_at = 6;
+  bool has_created_at() const;
+  private:
+  bool _internal_has_created_at() const;
+  public:
+  void clear_created_at();
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at() const;
+  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_at();
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_at();
+  void set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  private:
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_at() const;
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
+  public:
+  void unsafe_arena_set_allocated_created_at(
+      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
+
+  // int64 account_id = 1;
+  void clear_account_id();
+  int64_t account_id() const;
+  void set_account_id(int64_t value);
+  private:
+  int64_t _internal_account_id() const;
+  void _internal_set_account_id(int64_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:user.HelloClientAck)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr username_;
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_time_;
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_logout_time_;
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
+    int64_t account_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_user_2eproto;
+};
 // ===================================================================
 
 
@@ -673,9 +918,390 @@ inline void DisconnectAlertNotify::set_allocated_reason(std::string* reason) {
   // @@protoc_insertion_point(field_set_allocated:user.DisconnectAlertNotify.reason)
 }
 
+// -------------------------------------------------------------------
+
+// HelloClientAck
+
+// int64 account_id = 1;
+inline void HelloClientAck::clear_account_id() {
+  _impl_.account_id_ = int64_t{0};
+}
+inline int64_t HelloClientAck::_internal_account_id() const {
+  return _impl_.account_id_;
+}
+inline int64_t HelloClientAck::account_id() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.account_id)
+  return _internal_account_id();
+}
+inline void HelloClientAck::_internal_set_account_id(int64_t value) {
+  
+  _impl_.account_id_ = value;
+}
+inline void HelloClientAck::set_account_id(int64_t value) {
+  _internal_set_account_id(value);
+  // @@protoc_insertion_point(field_set:user.HelloClientAck.account_id)
+}
+
+// string user_id = 2;
+inline void HelloClientAck::clear_user_id() {
+  _impl_.user_id_.ClearToEmpty();
+}
+inline const std::string& HelloClientAck::user_id() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.user_id)
+  return _internal_user_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void HelloClientAck::set_user_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:user.HelloClientAck.user_id)
+}
+inline std::string* HelloClientAck::mutable_user_id() {
+  std::string* _s = _internal_mutable_user_id();
+  // @@protoc_insertion_point(field_mutable:user.HelloClientAck.user_id)
+  return _s;
+}
+inline const std::string& HelloClientAck::_internal_user_id() const {
+  return _impl_.user_id_.Get();
+}
+inline void HelloClientAck::_internal_set_user_id(const std::string& value) {
+  
+  _impl_.user_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* HelloClientAck::_internal_mutable_user_id() {
+  
+  return _impl_.user_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* HelloClientAck::release_user_id() {
+  // @@protoc_insertion_point(field_release:user.HelloClientAck.user_id)
+  return _impl_.user_id_.Release();
+}
+inline void HelloClientAck::set_allocated_user_id(std::string* user_id) {
+  if (user_id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.user_id_.SetAllocated(user_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.user_id_.IsDefault()) {
+    _impl_.user_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:user.HelloClientAck.user_id)
+}
+
+// string username = 3;
+inline void HelloClientAck::clear_username() {
+  _impl_.username_.ClearToEmpty();
+}
+inline const std::string& HelloClientAck::username() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.username)
+  return _internal_username();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void HelloClientAck::set_username(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.username_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:user.HelloClientAck.username)
+}
+inline std::string* HelloClientAck::mutable_username() {
+  std::string* _s = _internal_mutable_username();
+  // @@protoc_insertion_point(field_mutable:user.HelloClientAck.username)
+  return _s;
+}
+inline const std::string& HelloClientAck::_internal_username() const {
+  return _impl_.username_.Get();
+}
+inline void HelloClientAck::_internal_set_username(const std::string& value) {
+  
+  _impl_.username_.Set(value, GetArenaForAllocation());
+}
+inline std::string* HelloClientAck::_internal_mutable_username() {
+  
+  return _impl_.username_.Mutable(GetArenaForAllocation());
+}
+inline std::string* HelloClientAck::release_username() {
+  // @@protoc_insertion_point(field_release:user.HelloClientAck.username)
+  return _impl_.username_.Release();
+}
+inline void HelloClientAck::set_allocated_username(std::string* username) {
+  if (username != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.username_.SetAllocated(username, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.username_.IsDefault()) {
+    _impl_.username_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:user.HelloClientAck.username)
+}
+
+// .google.protobuf.Timestamp last_login_time = 4;
+inline bool HelloClientAck::_internal_has_last_login_time() const {
+  return this != internal_default_instance() && _impl_.last_login_time_ != nullptr;
+}
+inline bool HelloClientAck::has_last_login_time() const {
+  return _internal_has_last_login_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::_internal_last_login_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.last_login_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::last_login_time() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.last_login_time)
+  return _internal_last_login_time();
+}
+inline void HelloClientAck::unsafe_arena_set_allocated_last_login_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_login_time_);
+  }
+  _impl_.last_login_time_ = last_login_time;
+  if (last_login_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.HelloClientAck.last_login_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::release_last_login_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_login_time_;
+  _impl_.last_login_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::unsafe_arena_release_last_login_time() {
+  // @@protoc_insertion_point(field_release:user.HelloClientAck.last_login_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_login_time_;
+  _impl_.last_login_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::_internal_mutable_last_login_time() {
+  
+  if (_impl_.last_login_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    _impl_.last_login_time_ = p;
+  }
+  return _impl_.last_login_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::mutable_last_login_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_login_time();
+  // @@protoc_insertion_point(field_mutable:user.HelloClientAck.last_login_time)
+  return _msg;
+}
+inline void HelloClientAck::set_allocated_last_login_time(::PROTOBUF_NAMESPACE_ID::Timestamp* last_login_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_login_time_);
+  }
+  if (last_login_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_login_time));
+    if (message_arena != submessage_arena) {
+      last_login_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_login_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.last_login_time_ = last_login_time;
+  // @@protoc_insertion_point(field_set_allocated:user.HelloClientAck.last_login_time)
+}
+
+// .google.protobuf.Timestamp last_logout_time = 5;
+inline bool HelloClientAck::_internal_has_last_logout_time() const {
+  return this != internal_default_instance() && _impl_.last_logout_time_ != nullptr;
+}
+inline bool HelloClientAck::has_last_logout_time() const {
+  return _internal_has_last_logout_time();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::_internal_last_logout_time() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.last_logout_time_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::last_logout_time() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.last_logout_time)
+  return _internal_last_logout_time();
+}
+inline void HelloClientAck::unsafe_arena_set_allocated_last_logout_time(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_logout_time) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_logout_time_);
+  }
+  _impl_.last_logout_time_ = last_logout_time;
+  if (last_logout_time) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.HelloClientAck.last_logout_time)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::release_last_logout_time() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_logout_time_;
+  _impl_.last_logout_time_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::unsafe_arena_release_last_logout_time() {
+  // @@protoc_insertion_point(field_release:user.HelloClientAck.last_logout_time)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_logout_time_;
+  _impl_.last_logout_time_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::_internal_mutable_last_logout_time() {
+  
+  if (_impl_.last_logout_time_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    _impl_.last_logout_time_ = p;
+  }
+  return _impl_.last_logout_time_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::mutable_last_logout_time() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_logout_time();
+  // @@protoc_insertion_point(field_mutable:user.HelloClientAck.last_logout_time)
+  return _msg;
+}
+inline void HelloClientAck::set_allocated_last_logout_time(::PROTOBUF_NAMESPACE_ID::Timestamp* last_logout_time) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_logout_time_);
+  }
+  if (last_logout_time) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_logout_time));
+    if (message_arena != submessage_arena) {
+      last_logout_time = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, last_logout_time, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.last_logout_time_ = last_logout_time;
+  // @@protoc_insertion_point(field_set_allocated:user.HelloClientAck.last_logout_time)
+}
+
+// .google.protobuf.Timestamp created_at = 6;
+inline bool HelloClientAck::_internal_has_created_at() const {
+  return this != internal_default_instance() && _impl_.created_at_ != nullptr;
+}
+inline bool HelloClientAck::has_created_at() const {
+  return _internal_has_created_at();
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::_internal_created_at() const {
+  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
+      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
+}
+inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& HelloClientAck::created_at() const {
+  // @@protoc_insertion_point(field_get:user.HelloClientAck.created_at)
+  return _internal_created_at();
+}
+inline void HelloClientAck::unsafe_arena_set_allocated_created_at(
+    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  if (GetArenaForAllocation() == nullptr) {
+    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.created_at_);
+  }
+  _impl_.created_at_ = created_at;
+  if (created_at) {
+    
+  } else {
+    
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.HelloClientAck.created_at)
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::release_created_at() {
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
+  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
+  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  if (GetArenaForAllocation() == nullptr) { delete old; }
+#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
+  if (GetArenaForAllocation() != nullptr) {
+    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
+  }
+#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::unsafe_arena_release_created_at() {
+  // @@protoc_insertion_point(field_release:user.HelloClientAck.created_at)
+  
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  return temp;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::_internal_mutable_created_at() {
+  
+  if (_impl_.created_at_ == nullptr) {
+    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
+    _impl_.created_at_ = p;
+  }
+  return _impl_.created_at_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::Timestamp* HelloClientAck::mutable_created_at() {
+  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:user.HelloClientAck.created_at)
+  return _msg;
+}
+inline void HelloClientAck::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
+  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
+  if (message_arena == nullptr) {
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.created_at_);
+  }
+  if (created_at) {
+    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at));
+    if (message_arena != submessage_arena) {
+      created_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
+          message_arena, created_at, submessage_arena);
+    }
+    
+  } else {
+    
+  }
+  _impl_.created_at_ = created_at;
+  // @@protoc_insertion_point(field_set_allocated:user.HelloClientAck.created_at)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

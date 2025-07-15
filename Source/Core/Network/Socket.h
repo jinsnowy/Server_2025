@@ -14,7 +14,7 @@ class Connection;
 class Session;
 class Socket {
 public:
-	using ConnectCallback = void (Connection::*)(const boost::system::error_code&, const boost::asio::ip::tcp::endpoint&, std::shared_ptr<Session>);
+	using ConnectCallback = void (Connection::*)(const boost::system::error_code&, const boost::asio::ip::tcp::endpoint&);
 	using ReadCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
 	using SendCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
 
@@ -24,7 +24,7 @@ public:
 	bool IsOpen() const;
 	void Close();
 
-	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn, std::shared_ptr<Session> session);
+	void ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn);
 	void WriteAsync(const BufferView& buffer, SendCallback callback, std::shared_ptr<Connection> conn);
 	void ReadAsync(Buffer& buffer, ReadCallback callback, std::shared_ptr<Connection> conn);
 

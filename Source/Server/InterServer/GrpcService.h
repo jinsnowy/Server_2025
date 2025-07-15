@@ -7,6 +7,7 @@ namespace Server
 {
     static std::vector<std::shared_ptr<grpc::Server>> sevices;
 
+
 	template<typename TService>
 	static void RunGrpcService(std::string server_address) {
         System::Scheduler::CreateThread([server_address]() {

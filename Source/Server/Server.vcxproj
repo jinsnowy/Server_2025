@@ -24,10 +24,10 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{0E8267FB-5F0F-3D73-AB70-ABA5739DB2AD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>Server</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
@@ -106,7 +106,7 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;CMAKE_INTDIR="Debug"</PreprocessorDefinitions>
+      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -128,7 +128,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(SolutionDir)..\Library\source-build\static-md\debug\lib\*.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>$(SolutionDir)..\Library\source-build\static-md\debug\lib\*.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ws2_32.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -295,18 +295,26 @@
     <ClCompile Include="Authenticator\Authenticator.cpp" />
     <ClCompile Include="Database\DB.cpp" />
     <ClCompile Include="InterServer\GrpcService.cpp" />
-    <ClCompile Include="InterServer\HelloWorldGreeterService.cpp" />
+    <ClCompile Include="InterServer\LobbyGrpcService.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\Account.cpp" />
     <ClCompile Include="Model\Character.cpp" />
-    <ClCompile Include="PacketHandler\ClientPacketHandler.cpp" />
-    <ClCompile Include="PacketHandler\ServerPacketHandler.cpp" />
-    <ClCompile Include="Protocol\ClientHandlerMap.cpp" />
-    <ClCompile Include="Protocol\ClientProtocol.cpp" />
-    <ClCompile Include="Protocol\ServerHandlerMap.cpp" />
-    <ClCompile Include="Protocol\ServerProtocol.cpp" />
+    <ClCompile Include="Model\Server.cpp" />
+    <ClCompile Include="Model\UniqueId.cpp" />
+    <ClCompile Include="Section\Section.cpp" />
+    <ClCompile Include="Section\SectionRepository.cpp" />
+    <ClCompile Include="Service\ClientServiceDef.cpp" />
+    <ClCompile Include="Service\HandlerMap.cpp" />
+    <ClCompile Include="Service\Protocol.cpp" />
+    <ClCompile Include="Service\LobbyServiceDef.cpp" />
+    <ClCompile Include="Service\Service.cpp" />
+    <ClCompile Include="Service\ServiceBuilder.cpp" />
+    <ClCompile Include="Service\WorldService.cpp" />
+    <ClCompile Include="Service\WorldServiceDef.cpp" />
     <ClCompile Include="Session\ClientSession.cpp" />
-    <ClCompile Include="Session\ServerSession.cpp" />
+    <ClCompile Include="Session\LobbySession.cpp" />
+    <ClCompile Include="Session\SessionId.cpp" />
+    <ClCompile Include="Session\WorldSession.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
@@ -315,17 +323,25 @@
     <ClInclude Include="Authenticator\Authenticator.h" />
     <ClInclude Include="Database\DB.h" />
     <ClInclude Include="InterServer\GrpcService.h" />
-    <ClInclude Include="InterServer\HelloWorldGreeterService.h" />
+    <ClInclude Include="InterServer\LobbyGrpcService.h" />
     <ClInclude Include="Model\Account.h" />
     <ClInclude Include="Model\Character.h" />
-    <ClInclude Include="PacketHandler\ClientPacketHandler.h" />
-    <ClInclude Include="PacketHandler\ServerPacketHandler.h" />
-    <ClInclude Include="Protocol\ClientHandlerMap.h" />
-    <ClInclude Include="Protocol\ClientProtocol.h" />
-    <ClInclude Include="Protocol\ServerHandlerMap.h" />
-    <ClInclude Include="Protocol\ServerProtocol.h" />
+    <ClInclude Include="Model\Server.h" />
+    <ClInclude Include="Model\UniqueId.h" />
+    <ClInclude Include="Section\Section.h" />
+    <ClInclude Include="Section\SectionRepository.h" />
+    <ClInclude Include="Service\ClientServiceDef.h" />
+    <ClInclude Include="Service\HandlerMap.h" />
+    <ClInclude Include="Service\Protocol.h" />
+    <ClInclude Include="Service\LobbyServiceDef.h" />
+    <ClInclude Include="Service\Service.h" />
+    <ClInclude Include="Service\ServiceBuilder.h" />
+    <ClInclude Include="Service\WorldService.h" />
+    <ClInclude Include="Service\WorldServiceDef.h" />
     <ClInclude Include="Session\ClientSession.h" />
-    <ClInclude Include="Session\ServerSession.h" />
+    <ClInclude Include="Session\LobbySession.h" />
+    <ClInclude Include="Session\SessionId.h" />
+    <ClInclude Include="Session\WorldSession.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>

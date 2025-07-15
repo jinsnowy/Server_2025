@@ -50,6 +50,7 @@
 #include "Core/ThirdParty/Protobuf.h"
 #include "Core/ThirdParty/Sql.h"
 #include "Core/Sql/Sql.h"
+#include "Protobuf/Public/ProtoUtils.h"
 
 PROTOBUF_IGNORE_WARNINGS_PUSH
 
@@ -77,10 +78,6 @@ namespace google::protobuf {
 
 // ODBC
 #pragma comment(lib, "odbc32.lib")
-
-// GameServer Dependent Project
-#pragma comment(lib, "Core.lib")
-#pragma comment(lib, "Protobuf.lib")
 
 #endif
 

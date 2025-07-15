@@ -26,7 +26,7 @@ namespace Sql {
 			param._paramSize,
 			decimalDigits,
 			param._valuePtr,
-			0,
+			param._bufferLength,
 			const_cast<SQLLEN*>(&param._strLenOrIndex));
 		if (ret != SQL_SUCCESS && ret != SQL_SUCCESS_WITH_INFO) {
 			LOG_ERROR("[Sql] bind param failed: {}", GetErrorMessage(ret, SQL_HANDLE_STMT, _stmt));
@@ -128,21 +128,33 @@ namespace Sql {
 	void Stmt::BindInParam(const ByteArray& data) {
 		const SQLULEN strlen = data.GetLength();
 		auto& param = _params.emplace_back();
-		param.Set(const_cast<BYTE*>(data.GetBuffer()), SQL_C_BINARY, strlen > Constant::kMaxVarBinary ? SQL_LONGVARBINARY : SQL_VARBINARY, strlen, strlen);
+		param._valuePtr = std::get<ByteArray>(param._value).GetBuffer();
+		param._valueType = SQL_C_BINARY;
+		param._paramType = strlen > Constant::kMaxVarBinary ? SQL_LONGVARBINARY : SQL_VARBINARY;
+		param._paramSize = strlen;
+		param._strLenOrIndex = strlen;
 		BindParamInternal(_params.size(), param, SQL_PARAM_INPUT);
 	}
 
 	void Stmt::BindInParam(const CharArray& data) {
 		const SQLULEN strlen = data.GetLength() + 1;
 		auto& param = _params.emplace_back();
-		param.Set(const_cast<CHAR*>(data.GetBuffer()), SQL_C_CHAR, strlen > Constant::kMaxVarchar ? SQL_LONGVARCHAR : SQL_VARCHAR, strlen, SQL_NTSL);
+		param._valuePtr = const_cast<char*>(data.GetBuffer());
+		param._valueType = SQL_C_CHAR;
+		param._paramType = strlen > Constant::kMaxVarchar ? SQL_LONGVARCHAR : SQL_VARCHAR;
+		param._paramSize = strlen;
+		param._strLenOrIndex = SQL_NTSL;
 		BindParamInternal(_params.size(), param, SQL_PARAM_INPUT);
 	}
 
 	void Stmt::BindInParam(const WCharArray& data) {
-		const SQLULEN strlen = (data.GetLength() + 1) * 2;
+		const SQLULEN strlen = data.GetLength() + 1;
 		auto& param = _params.emplace_back();
-		param.Set(const_cast<WCHAR*>(data.GetBuffer()), SQL_C_WCHAR, strlen > Constant::kMaxVarchar ? SQL_WLONGVARCHAR : SQL_WVARCHAR, strlen, SQL_NTSL);
+		param._valuePtr = const_cast<wchar_t*>(data.GetBuffer());
+		param._valueType = SQL_C_WCHAR;
+		param._paramType = strlen > Constant::kMaxVarchar ? SQL_WLONGVARCHAR : SQL_WVARCHAR;
+		param._paramSize = strlen;
+		param._strLenOrIndex = SQL_NTSL;
 		BindParamInternal(_params.size(), param, SQL_PARAM_INPUT);
 	}
 
@@ -171,7 +183,7 @@ namespace Sql {
 	}
 
 	void Stmt::BindInParam(WCharArray&& data) {
-		const SQLULEN strlen = (data.GetLength() + 1) * 2;
+		const SQLULEN strlen = data.GetLength() + 1;
 		auto& param = _params.emplace_back();
 		param._value = std::move(data);
 		param._valuePtr = std::get<WCharArray>(param._value).GetBuffer();
@@ -278,6 +290,7 @@ namespace Sql {
 		param._valueType = SQL_C_CHAR;
 		param._paramType = data->GetLength() > Constant::kMaxVarchar ? SQL_LONGVARCHAR : SQL_VARCHAR;
 		param._paramSize = data->GetLength();
+		param._bufferLength = data->GetLength() + 1; // +1 for null terminator
 		param._strLenOrIndex = data->GetLength();
 		BindParamInternal(_params.size(), param, SQL_PARAM_OUTPUT);
 	}
@@ -289,6 +302,7 @@ namespace Sql {
 		param._valueType = SQL_C_WCHAR;
 		param._paramType = data->GetLength() > Constant::kMaxVarchar ? SQL_WLONGVARCHAR : SQL_WVARCHAR;
 		param._paramSize = data->GetLength();
+		param._bufferLength = 2 * (data->GetLength() + 1); // WCHAR is 2 bytes
 		param._strLenOrIndex = data->GetLength();
 		BindParamInternal(_params.size(), param, SQL_PARAM_OUTPUT);
 	}

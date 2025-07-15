@@ -1,0 +1,49 @@
+#pragma once
+
+#include "Core/System/Elapse.h"
+#include "Core/System/DateTime.h"
+
+namespace System {
+	class Tick {
+	public:
+		static Tick Current();
+
+		constexpr Tick()
+			:
+			time_point_{}
+		{
+		}
+
+		Tick(const Tick&) = default;
+		Tick& operator=(const Tick&) = default;
+
+		Elapse operator-(const Tick& rhs) const;
+	
+		// to epoch milliseconds
+		int64_t GetEpocMilliseconds () const {
+			return std::chrono::duration_cast<std::chrono::milliseconds>(time_point_.time_since_epoch()).count();
+		}
+
+		Tick AddMilliseconds(int64_t milliseconds) const {
+			return Tick(time_point_ + std::chrono::milliseconds(milliseconds));
+		}
+
+		static Tick FromEpocMilliseconds(int64_t milliseconds) {
+			return Tick(std::chrono::steady_clock::time_point(std::chrono::milliseconds(milliseconds)));
+		}
+
+		const std::chrono::steady_clock::time_point& internal_time_point() const {
+			return time_point_;
+		}
+
+	private:
+		friend Elapse operator-(const Tick& lhs, const Tick& rhs);
+
+		std::chrono::steady_clock::time_point time_point_;
+
+		Tick(const std::chrono::steady_clock::time_point& Tick);
+	};
+
+	Elapse operator-(const Tick& lhs, const Tick& rhs);
+}
+

@@ -9,6 +9,7 @@ import (
 	"crypto/rand"
 	"encoding/base64"
 	"encoding/json"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -233,6 +234,8 @@ func ValidateAccessToken(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "missing access_token"})
 		return
 	}
+
+	log.Printf("Validating access token: %s\n", accessToken)
 
 	user, err := user_repository.ConsumeAccessToken(accessToken)
 	if err != nil || user == nil {

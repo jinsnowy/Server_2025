@@ -3,9 +3,9 @@
 SET CURRENT_PATH=%CD%
 SET INCLUDE_PATH=../Library/source-build/static-md/include
 SET PROTO_SRC_PATH=./Proto
-SET PROTO_GRPC_SRC_PATH=./Proto/Grpc
+SET PROTO_GRPC_SRC_PATH=./Proto
 SET OUTPUT_PATH=./Source/Protobuf/Private/Protos
-SET OUTPUT_GRPC_PATH=./Source/Protobuf/Private/Protos/Grpc
+SET OUTPUT_GRPC_PATH=./Source/Protobuf/Private/Protos
 
 SET UE_PROJECT_PATH=C:\Users\hyojiny1\Documents\Unreal Projects\ChroniclesOfAetheria\Source\ChroniclesOfAetheria\Protocol
 
@@ -25,7 +25,7 @@ SET PROTOC=%CD%\Bin\protoc.exe
 SET PROTOC_GEN_GRPC=%CD%\Bin\grpc_cpp_plugin.exe
 
 %PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_SRC_PATH% --cpp_out=%OUTPUT_PATH% ./Proto/*.proto
-%PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_GRPC_SRC_PATH% --cpp_out=%OUTPUT_PATH%/Grpc --grpc_out=%OUTPUT_PATH%/Grpc --plugin=protoc-gen-grpc=%PROTOC_GEN_GRPC% ./Proto/Grpc/*.proto
+%PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_GRPC_SRC_PATH% --grpc_out=%OUTPUT_PATH% --plugin=protoc-gen-grpc=%PROTOC_GEN_GRPC% ./Proto/*grpc.proto
 
 echo COPY PROTO FILES %OUTPUT_PATH% TO "%UE_PROJECT_PATH%
 

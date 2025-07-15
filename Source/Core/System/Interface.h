@@ -16,3 +16,6 @@
 #include "Core/System/Thenable.hpp"
 #include "Core/System/Future.h"
 #include "Core/System/Future.hpp"
+#include "Core/System/Enum.h"
+#include "Core/System/TimerContext.h"
+#include "Core/System/PeriodicTimer.h"

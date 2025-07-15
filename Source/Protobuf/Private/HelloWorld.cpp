@@ -1,2 +1,2 @@
 #include "stdafx.h"
-#include "Protobuf/Public/HelloWorld.h"
+#include "Protobuf/Public/LobbyService.h"

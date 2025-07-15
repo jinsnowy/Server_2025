@@ -25,13 +25,13 @@ namespace Json {
 
 		template<typename T>
 		std::optional<T> GetValue(const char* key) const {
-			static_assert(false, "not implemented for this type");
+			//static_assert(false, "not implemented for this type");
 			return {};
 		}
 
 		template<typename T>
 		T TryGetValue(const char* key, T default_value) const {
-			static_assert(false, "not implemented for this type");
+			//static_assert(false, "not implemented for this type");
 			return {};
 		}
 

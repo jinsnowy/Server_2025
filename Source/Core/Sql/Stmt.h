@@ -91,7 +91,12 @@ namespace Sql  {
 		void BindColumn(CharArray* data);
 		void BindColumn(WCharArray* data);
 
+		SQLHSTMT GetHandle() const {
+			return _stmt;
+		}
+
 		NO_COPY_AND_ASSIGN(Stmt);
+
 
 	protected:
 		bool		   _eof = false;

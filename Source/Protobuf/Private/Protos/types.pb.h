@@ -58,12 +58,17 @@ enum protocol : int {
   kHelloClient = 4102,
   kHelloServer = 4103,
   kDisconnectAlertNotify = 4104,
+  kRegisterServerReq = 4105,
+  kRegisterServerRes = 4106,
+  kServerPingReq = 4107,
+  kServerPingRes = 4108,
+  kHelloClientAck = 4109,
   protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool protocol_IsValid(int value);
 constexpr protocol protocol_MIN = kInvalid;
-constexpr protocol protocol_MAX = kDisconnectAlertNotify;
+constexpr protocol protocol_MAX = kHelloClientAck;
 constexpr int protocol_ARRAYSIZE = protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* protocol_descriptor();
@@ -87,12 +92,13 @@ enum Result : int {
   kInvalidParameter = 3,
   kNotFound = 4,
   kInternalError = 5,
+  kDatabaseError = 6,
   Result_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Result_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Result_IsValid(int value);
 constexpr Result Result_MIN = kSuccess;
-constexpr Result Result_MAX = kInternalError;
+constexpr Result Result_MAX = kDatabaseError;
 constexpr int Result_ARRAYSIZE = Result_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Result_descriptor();
@@ -108,6 +114,31 @@ inline bool Result_Parse(
     ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, Result* value) {
   return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<Result>(
     Result_descriptor(), name, value);
+}
+enum ServerType : int {
+  kUnknownServer = 0,
+  kDedicatedServer = 1,
+  ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
+  ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
+};
+bool ServerType_IsValid(int value);
+constexpr ServerType ServerType_MIN = kUnknownServer;
+constexpr ServerType ServerType_MAX = kDedicatedServer;
+constexpr int ServerType_ARRAYSIZE = ServerType_MAX + 1;
+
+const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ServerType_descriptor();
+template<typename T>
+inline const std::string& ServerType_Name(T enum_t_value) {
+  static_assert(::std::is_same<T, ServerType>::value ||
+    ::std::is_integral<T>::value,
+    "Incorrect type passed to function ServerType_Name.");
+  return ::PROTOBUF_NAMESPACE_ID::internal::NameOfEnum(
+    ServerType_descriptor(), enum_t_value);
+}
+inline bool ServerType_Parse(
+    ::PROTOBUF_NAMESPACE_ID::ConstStringParam name, ServerType* value) {
+  return ::PROTOBUF_NAMESPACE_ID::internal::ParseNamedEnum<ServerType>(
+    ServerType_descriptor(), name, value);
 }
 // ===================================================================
 
@@ -144,6 +175,11 @@ template <> struct is_proto_enum< ::types::Result> : ::std::true_type {};
 template <>
 inline const EnumDescriptor* GetEnumDescriptor< ::types::Result>() {
   return ::types::Result_descriptor();
+}
+template <> struct is_proto_enum< ::types::ServerType> : ::std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor< ::types::ServerType>() {
+  return ::types::ServerType_descriptor();
 }
 
 PROTOBUF_NAMESPACE_CLOSE

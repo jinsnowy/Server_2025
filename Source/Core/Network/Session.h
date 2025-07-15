@@ -31,11 +31,13 @@ public:
     void set_connection(std::shared_ptr<Connection> connection) { connection_ = connection; }
     void FlushToSendStream();
 
+	virtual std::unique_ptr<Protocol> CreateProtocol() = 0;
+
+    std::string GetConnectionString() const;
+
 protected:
     std::shared_ptr<Connection> connection_;
     std::unique_ptr<OutputStream> output_stream_;
-
-    virtual std::unique_ptr<Protocol> CreateProtocol() = 0;
 
 private:
     friend class SessionFactory;

@@ -65,7 +65,7 @@
 #include "Core/System/FuncTraits.h"
 #include "Core/System/Callable.h"
 #include "Core/System/DateTime.h"
-#include "Core/System/TimePoint.h"
+#include "Core/System/Tick.h"
 #include "Core/Network/Packet/Packet.h"
 #include "Core/System/Actor.h"
 #include "Core/System/Actor.hpp"

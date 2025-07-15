@@ -31,15 +31,10 @@ namespace Network {
 	struct ConnectCompletionEvent {
 		std::weak_ptr<Connection> weak_conn;
 		Socket::ConnectCallback callback;
-		std::weak_ptr<Session> weak_session;
 
 		void operator()(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
 			auto conn = weak_conn.lock();
 			if (!conn) {
-				return;
-			}
-			auto session = weak_session.lock();
-			if (!session) {
 				return;
 			}
 			if (error == boost::asio::error::operation_aborted) {
@@ -50,15 +45,15 @@ namespace Network {
 				return;
 			}
 		
-			Ctrl(*conn).Post([callback=this->callback, error, endpoint, session](Connection& conn) {
-				(conn.*callback)(error, endpoint, session);
+			Ctrl(*conn).Post([callback=this->callback, error, endpoint](Connection& conn) {
+				(conn.*callback)(error, endpoint);
 			});
 		}
 	};
 
-	void Socket::ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn, std::shared_ptr<Session> session) {
+	void Socket::ConnectAsync(const boost::asio::ip::tcp::resolver::results_type& results, ConnectCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			boost::asio::async_connect(*socket_, results, ConnectCompletionEvent{conn, callback, session });
+			boost::asio::async_connect(*socket_, results, ConnectCompletionEvent{conn, callback });
 		}catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] connect error: {}", e.what());
 		}

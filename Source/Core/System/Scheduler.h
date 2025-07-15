@@ -6,6 +6,7 @@
 
 namespace System {
 class Context;
+class Tick;
 class Scheduler {
 public:
     Scheduler();
@@ -18,10 +19,16 @@ public:
     static Scheduler& RoundRobin();
     static Scheduler& Current();
     static int32_t ThreadId();
+
+	static void Any(std::function<void(Scheduler&)> func);
+    static void ForEach(std::function<void(Scheduler&)> func);
+    static void Reserve(int32_t milliseconds, std::function<void()> functor);
+    static void ReserveAt(const Tick& tick, std::function<void()> functor);
+
 	static bool IsThreadPool();
 
     void Post(std::function<void()> task);
-
+  
     template<typename F>
     Future<typename FuncTraits<F>::ReturnType> Async(F&& func) {
         auto item = Detail::FutureFactory::Create(std::forward<F>(func));
@@ -31,6 +38,8 @@ public:
 
     int32_t thread_id() const { return thread_id_; }
     int32_t scheduler_index() const { return scheduler_index_; }
+	Context& context() { return *context_; }
+	const Context& context() const { return *context_; }
 
     std::shared_ptr<Context> GetContext() { return context_; }
     const std::shared_ptr<Context>& GetContext() const { return context_; }

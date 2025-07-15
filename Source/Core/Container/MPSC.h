@@ -48,12 +48,14 @@ namespace Container {
 			buffer_node_t* node = new buffer_node_t(std::move(input));
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
+			_unsafe_size.fetch_add(1, std::memory_order_relaxed);
 		}
 
 		void Push(const T& input) {
 			buffer_node_t* node = new buffer_node_t(input);
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
+			_unsafe_size.fetch_add(1, std::memory_order_relaxed);
 		}
 
 		bool TryPop(T& output) {
@@ -66,6 +68,7 @@ namespace Container {
 
 			output = std::move(next->data);
 			_tail.store(next, std::memory_order_release);
+			_unsafe_size.fetch_sub(1, std::memory_order_relaxed);
 			delete tail;
 		
 			return true;
@@ -82,13 +85,7 @@ namespace Container {
 		}
 
 		size_t UnsafeSize() const {
-			size_t size = 0;
-			buffer_node_t* node = _tail.load();
-			while (node->next.load() != nullptr) {
-				node = node->next.load();
-				size++;
-			}
-			return size;
+			return _unsafe_size;
 		}
 
 	private:
@@ -106,6 +103,7 @@ namespace Container {
 		std::atomic<buffer_node_t*> _head;
 		char 					    _cache_padding[kCacheLineSize - sizeof(std::atomic<buffer_node_t*>)];
 		std::atomic<buffer_node_t*> _tail;
+		std::atomic<size_t> _unsafe_size = 0;
 
 		MPSCQueue(const MPSCQueue&) {}
 		void operator=(const MPSCQueue&) {}

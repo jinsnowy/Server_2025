@@ -24,7 +24,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{69F4E9AA-D7F1-3E71-8DD9-D157F44AD9DF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <WindowsTargetPlatformVersion>10.0.26100.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.22621.0</WindowsTargetPlatformVersion>
     <Platform>x64</Platform>
     <ProjectName>Protobuf</ProjectName>
     <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
@@ -245,18 +245,21 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Private\Protos\Grpc\helloworld.grpc.pb.h" />
-    <ClInclude Include="Private\Protos\Grpc\helloworld.pb.h" />
+    <ClInclude Include="Private\Protos\lobby_service_grpc.grpc.pb.h" />
+    <ClInclude Include="Private\Protos\lobby_service_grpc.pb.h" />
     <ClInclude Include="Private\Protos\types.pb.h" />
     <ClInclude Include="Private\Protos\user.pb.h" />
+    <ClInclude Include="Private\Protos\world.pb.h" />
     <ClInclude Include="Public\GrpcHeader.h" />
-    <ClInclude Include="Public\HelloWorld.h" />
+    <ClInclude Include="Public\LobbyService.h" />
     <ClInclude Include="Public\ProtobufDescriptor.h" />
     <ClInclude Include="Public\ProtobufProtocol.h" />
     <ClInclude Include="Public\ProtobufSerializer.h" />
     <ClInclude Include="Public\ProtobufSession.h" />
+    <ClInclude Include="Public\ProtoUtils.h" />
     <ClInclude Include="Public\Types.h" />
     <ClInclude Include="Public\User.h" />
+    <ClInclude Include="Public\World.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
@@ -266,11 +269,17 @@
     <ClCompile Include="Private\ProtobufProtocol.cpp" />
     <ClCompile Include="Private\ProtobufSerializer.cpp" />
     <ClCompile Include="Private\ProtobufSession.cpp" />
-    <ClCompile Include="Private\Protos\Grpc\helloworld.grpc.pb.cc">
+    <ClCompile Include="Private\Protos\lobby_service_grpc.grpc.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Private\Protos\Grpc\helloworld.pb.cc">
+    <ClCompile Include="Private\Protos\lobby_service_grpc.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Private\Protos\types.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
@@ -278,8 +287,18 @@
     <ClCompile Include="Private\Protos\user.pb.cc">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Private\Protos\world.pb.cc">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">NotUsing</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Private\ProtoUtils.cpp" />
     <ClCompile Include="Private\Types.cpp" />
     <ClCompile Include="Private\User.cpp" />
+    <ClCompile Include="Private\World.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
+    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>

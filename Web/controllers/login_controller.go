@@ -124,6 +124,8 @@ func LoginWithUserNameAndPassword(c *gin.Context) {
 		return
 	}
 
+	log.Printf("login with access token: %s", access_token)
+
 	c.JSON(http.StatusOK, models.UserLoginResponse{
 		UserId:      user.UserId,
 		AccessToken: access_token,

@@ -3,6 +3,9 @@
 #include "Core/System/Singleton.h"
 #include "Core/System/Channel.h"
 #include "Core/System/Context.h"
+#include "Core/System/TimerContext.h"
+#include "Core/System/ExecutionContext.h"
+#include "Core/System/Tick.h"
 
 namespace System {
 
@@ -86,7 +89,7 @@ namespace System {
                 promise.set_value(std::move(scheduler));
                 current_scheduler_->Run();
                 current_scheduler_ = nullptr;
-                });
+            });
             auto scheduler = promise.get_future().get();
             SchedulerStorage::GetInstance().AddScheduler(std::move(scheduler), std::move(thread));
         }
@@ -127,11 +130,48 @@ namespace System {
         return current_scheduler_ != nullptr;
     }
 
+    void Scheduler::ForEach(std::function<void(Scheduler&)> func) {
+        int32_t scheduler_count = SchedulerStorage::GetInstance().GetSchedulerCount();
+        for (int32_t i = 0; i < scheduler_count; ++i) {
+            SchedulerStorage::GetInstance().GetSchedulerByIndex(i).Post([func = func] {
+                func(Scheduler::Current());
+            });
+        }
+	}
+
+    void Scheduler::Any(std::function<void(Scheduler&)> func) {
+        RoundRobin().Post([func = std::move(func)]() {
+            func(Current());
+        });
+	}
+
+    void Scheduler::Reserve(int32_t milliseconds, std::function<void()> functor) {
+        if (IsThreadPool() == true) {
+			Current().context().timer_context().Reserve(milliseconds, std::move(functor));
+            return;
+        }
+        RoundRobin().Post([milliseconds, functor = std::move(functor)]() mutable {
+			Current().context().timer_context().Reserve(milliseconds, std::move(functor));
+        });
+	}
+
+    void Scheduler::ReserveAt(const Tick& tick, std::function<void()> functor) {
+        if (IsThreadPool() == true) {
+            Current().context().timer_context().ReserveAt(tick, std::move(functor));
+            return;
+        }
+        RoundRobin().Post([tick, functor = std::move(functor)]() mutable {
+            Current().context().timer_context().ReserveAt(tick, std::move(functor));
+        });
+    }
+
     void Scheduler::Run() {
         while (is_running_) {
-            if (context_->RunFor(60) == 0) {
-                std::this_thread::sleep_for(std::chrono::milliseconds(1));
-            }
+            context_->BeginContext();
+            context_->io_context().run_for(std::chrono::milliseconds(10));
+            context_->timer_context().Flush();
+            context_->execution_context().run_for(20);
+            context_->EndContext();
         }
     }
 

@@ -1,14 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Protocol">
-      <UniqueIdentifier>{09598e3f-b557-475a-bddb-bf49e0c02063}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Session">
       <UniqueIdentifier>{a558c9b0-57af-439c-b9c6-8fa44ab20ece}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="PacketHandler">
-      <UniqueIdentifier>{f4eee6b4-cbc9-474c-a46f-fe7c798a8c4f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Authenticator">
       <UniqueIdentifier>{250668dd-2318-4377-a28b-7da8f3565a55}</UniqueIdentifier>
@@ -28,38 +22,23 @@
     <Filter Include="Database">
       <UniqueIdentifier>{c0012683-1b54-47cf-a8d3-fc5ccb6889a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Service">
+      <UniqueIdentifier>{09598e3f-b557-475a-bddb-bf49e0c02063}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp">
       <Filter>Authenticator</Filter>
     </ClCompile>
-    <ClCompile Include="PacketHandler\ClientPacketHandler.cpp">
-      <Filter>PacketHandler</Filter>
-    </ClCompile>
-    <ClCompile Include="PacketHandler\ServerPacketHandler.cpp">
-      <Filter>PacketHandler</Filter>
-    </ClCompile>
     <ClCompile Include="Session\ClientSession.cpp">
       <Filter>Session</Filter>
     </ClCompile>
-    <ClCompile Include="Session\ServerSession.cpp">
+    <ClCompile Include="Session\LobbySession.cpp">
       <Filter>Session</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientHandlerMap.cpp">
-      <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ClientProtocol.cpp">
-      <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ServerHandlerMap.cpp">
-      <Filter>Protocol</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\ServerProtocol.cpp">
-      <Filter>Protocol</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="InterServer\HelloWorldGreeterService.cpp">
+    <ClCompile Include="InterServer\LobbyGrpcService.cpp">
       <Filter>RPC</Filter>
     </ClCompile>
     <ClCompile Include="InterServer\GrpcService.cpp">
@@ -74,37 +53,61 @@
     <ClCompile Include="Database\DB.cpp">
       <Filter>Database</Filter>
     </ClCompile>
+    <ClCompile Include="Service\ClientServiceDef.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\Protocol.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\LobbyServiceDef.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\HandlerMap.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\WorldServiceDef.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Session\WorldSession.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\ServiceBuilder.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\Service.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Session\SessionId.cpp">
+      <Filter>Session</Filter>
+    </ClCompile>
+    <ClCompile Include="Section\Section.cpp">
+      <Filter>Section</Filter>
+    </ClCompile>
+    <ClCompile Include="Section\SectionRepository.cpp">
+      <Filter>Section</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\UniqueId.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Server.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Service\WorldService.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h">
       <Filter>Authenticator</Filter>
     </ClInclude>
-    <ClInclude Include="PacketHandler\ClientPacketHandler.h">
-      <Filter>PacketHandler</Filter>
-    </ClInclude>
-    <ClInclude Include="PacketHandler\ServerPacketHandler.h">
-      <Filter>PacketHandler</Filter>
-    </ClInclude>
     <ClInclude Include="Session\ClientSession.h">
       <Filter>Session</Filter>
     </ClInclude>
-    <ClInclude Include="Session\ServerSession.h">
+    <ClInclude Include="Session\LobbySession.h">
       <Filter>Session</Filter>
     </ClInclude>
-    <ClInclude Include="Protocol\ClientHandlerMap.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ClientProtocol.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ServerHandlerMap.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ServerProtocol.h">
-      <Filter>Protocol</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="InterServer\HelloWorldGreeterService.h">
+    <ClInclude Include="InterServer\LobbyGrpcService.h">
       <Filter>RPC</Filter>
     </ClInclude>
     <ClInclude Include="InterServer\GrpcService.h">
@@ -118,6 +121,48 @@
     </ClInclude>
     <ClInclude Include="Database\DB.h">
       <Filter>Database</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\ClientServiceDef.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\Protocol.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\LobbyServiceDef.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\HandlerMap.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\WorldServiceDef.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Session\WorldSession.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\ServiceBuilder.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\Service.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Session\SessionId.h">
+      <Filter>Session</Filter>
+    </ClInclude>
+    <ClInclude Include="Section\Section.h">
+      <Filter>Section</Filter>
+    </ClInclude>
+    <ClInclude Include="Section\SectionRepository.h">
+      <Filter>Section</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\UniqueId.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Server.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\WorldService.h">
+      <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

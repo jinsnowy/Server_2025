@@ -38,13 +38,13 @@ namespace Sql {
 		}
 
 		template<typename T>
-		Param& Set(T* value, SQLSMALLINT valueType, SQLSMALLINT paramType) {
-			_value = value;
+		Param& Set(T* valuePtr, SQLSMALLINT valueType, SQLSMALLINT paramType) {
+			_value = {};
 			_valueType = valueType;
 			_paramType = paramType;
-			_paramSize = sizeof(T);
-			_valuePtr = value;
-			_strLenOrIndex = value == nullptr ? SQL_NULL_DATA : sizeof(T);
+			_paramSize = 0;
+			_valuePtr = valuePtr;
+			_strLenOrIndex = 0;
 			return *this;
 		}
 
@@ -72,6 +72,7 @@ namespace Sql {
 		SQLSMALLINT _paramType = 0;
 		SQLULEN		_paramSize = 0;
 		SQLPOINTER	_valuePtr = nullptr;
+		SQLULEN		_bufferLength = 0;
 		SQLLEN		_strLenOrIndex = 0;
 	};
 }

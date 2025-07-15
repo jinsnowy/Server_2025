@@ -1,4 +1,3 @@
-#include "Time.h"
 #pragma once
 
 namespace System {

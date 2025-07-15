@@ -1,25 +1,30 @@
 #include "stdafx.h"
 #include "Core/Logging/Logger.h"
 #include "Core/System/Program.h"
-#include "Server/Session/ServerSession.h"
+#include "Server/Session/LobbySession.h"
 #include "Server/Session/ClientSession.h"
-#include "Server/Protocol/ServerProtocol.h"
-#include "Server/Protocol/ClientProtocol.h"
-#include "Server/Protocol/ServerHandlerMap.h"
-#include "Server/Protocol/ClientHandlerMap.h"
+#include "Server/Session/WorldSession.h"
+#include "Server/Service/LobbyServiceDef.h"
+#include "Server/Service/ClientServiceDef.h"
+#include "Server/Service/WorldServiceDef.h"
+#include "Server/Service/ServiceBuilder.h"
 #include "Core/Sql/Database.h"
 #include "Server/Authenticator/Authenticator.h"
 #include "InterServer/GrpcService.h"
-#include "InterServer/HelloWorldGreeterService.h"
+#include "InterServer/LobbyGrpcService.h"
+#include "Service/WorldService.h"
 #include "Protobuf/Public/User.h"
 #include "Database/DB.h"
+#include "Protobuf/Public/ProtoUtils.h"
 // The service implementation
 
 
 using namespace Server;
 
-std::shared_ptr<Network::Listener> listener_;
-std::vector<std::shared_ptr<Server::ServerSession>> server_sessions_;
+std::unique_ptr<Service> lobby_server;
+std::unique_ptr<WorldService> world_server;
+std::vector<std::shared_ptr<Server::LobbySession>> lobby_sessions;
+std::vector<std::shared_ptr<Server::WorldSession>> world_sessions;
 std::vector<std::shared_ptr<Server::ClientSession>> client_sessions_;
 
 void ConnectMany(int32_t count) {
@@ -31,6 +36,29 @@ void ConnectMany(int32_t count) {
     }
 }
 
+void TimerTest() {
+    srand((uint32_t)time(NULL));
+    for (int64_t i = 0; i < 1000; ++i) {
+        System::Scheduler::ForEach([](System::Scheduler& scheduler) {
+            int32_t random_value = rand() % 30000 + 1; // Random value between 1 and 1000
+            auto expected = System::Time::Now() + System::Duration::FromMilliseconds(random_value);
+            scheduler.context().timer_context().Reserve(random_value, [expected]() {
+                auto current_time = System::Time::Now();
+                auto diff = current_time - expected;
+                LOG_INFO("After Timer Current Time : {}, diff: {}ms", current_time.ToString(), diff.Milliseconds());
+          });
+        });
+    }
+}
+
+void PeriodicTimerTest() {
+    LOG_INFO("Starting Periodic Timer Test : {}", System::Time::Now().ToString());
+    System::PeriodicTimer::Schedule(System::Duration::FromSeconds(5), [](System::PeriodicTimer::Handle&) {
+        auto now = System::Time::Now();
+        LOG_INFO("Current Time: {}", now.ToString());
+    }, true);
+}
+
 DBConfig GetDBConfig() {
     DBConfig config;
     config.lobby_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=LobbyDB;";
@@ -39,33 +67,46 @@ DBConfig GetDBConfig() {
 }
 
 int main() {
-    System::Scheduler::CreateThreadPool(32);
-  
-	DB::GetInstance().Initialize(GetDBConfig());
+    System::Scheduler::CreateThreadPool(1);
+    grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+    grpc::EnableDefaultHealthCheckService(true);
+	//DB::GetInstance().Initialize(GetDBConfig());
 
-    LOBBYDB.GetAgent();
-
-    ServerSession::RegisterHandler(&ServerHandlerMap::GetInstance());
+    LobbySession::RegisterHandler(&LobbyHandlerMap::GetInstance());
     ClientSession::RegisterHandler(&ClientHandlerMap::GetInstance());
-
-    Network::SessionFactory session_factory;
-    session_factory.SetSessionClass<Server::ServerSession>();
-    session_factory.OnConnect([](std::shared_ptr<Network::Session> session) {
-        server_sessions_.push_back(std::static_pointer_cast<Server::ServerSession>(session));
-        return true;
-    });
+	WorldSession::RegisterHandler(&WorldHandlerMap::GetInstance());
 
     auto& scheduler = System::Scheduler::RoundRobin();
-    scheduler.Post([session_factory]() {
+    scheduler.Post([]() {
         Authenticator::GetInstance().Initialize("http://localhost:8080");
 
-        auto& current = System::Scheduler::Current();
-        listener_ = std::make_shared<Network::Listener>(current.GetContext(), session_factory);
-        listener_->Bind("0.0.0.0", 9911);
-        listener_->Listen();
-    });
+		ServiceBuilder lobby_service_builder;
+        lobby_server = lobby_service_builder.SessionClass<Server::LobbySession>()
+            .OnConnect([](std::shared_ptr<Network::Session> session) {
+                lobby_sessions.push_back(std::static_pointer_cast<Server::LobbySession>(session));
+                return true;
+             })
+            .UsePort(9911)
+            .Build();
+        lobby_server->Start();
 
-    Server::RunGrpcService<Server::HelloWorldGreeterService>("0.0.0.0:51001");
+        Server::RunGrpcService<LobbyGrpcService::Service>(LobbyGrpcService::kAddress);
+
+		LOG_INFO("Lobby service started on port 9911");
+
+        ServiceBuilder world_service_builder;
+        world_server = world_service_builder.SessionClass<Server::WorldSession>()
+            .OnConnect([](std::shared_ptr<Network::Session> session) {
+                world_sessions.push_back(std::static_pointer_cast<Server::WorldSession>(session));
+                return true;
+            })
+            .UsePort(9912)
+            .Build<WorldService>();
+        world_server->set_lobby_server_address(LobbyGrpcService::kAddress);
+        world_server->Start();
+
+        LOG_INFO("World service started on port 9912");
+    });
 
     System::Program::Wait();
 

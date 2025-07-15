@@ -18,6 +18,15 @@ namespace Server::Model {
 		const System::Time& last_login_time() const {
 			return last_login_time_;
 		}
+
+		const System::Time& last_logout_time() const {
+			return last_logout_time_;
+		}
+
+		const System::Time& created_at() const {
+			return created_at_;
+		}
+
 		int64_t account_id() const {
 			return account_id_;
 		}
@@ -47,6 +56,8 @@ namespace Server::Model {
 		std::string user_id_;
 		std::string username_;
 		System::Time last_login_time_;
+		System::Time last_logout_time_;
+		System::Time created_at_;
 	};
 
 	struct AccountTokenInfo {

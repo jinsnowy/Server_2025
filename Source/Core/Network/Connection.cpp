@@ -41,7 +41,7 @@ namespace Network {
 		ip_ = ip;
 		port_ = port;
 		session_ = session;
-		resolver_->Resolve(ip_, port_, &Connection::OnResolved, GetShared(this), session);
+		resolver_->Resolve(ip_, port_, &Connection::OnResolved, GetShared(this));
 	}
 
 	void Connection::Disconnect() {
@@ -73,17 +73,17 @@ namespace Network {
 		return send_stream_->is_sending.load();
 	}
 
-	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results, std::shared_ptr<Session> session) {
+	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
 			LOG_ERROR("[CONNECTION] resolve to {} failed by {}", ToString(), error.message());
 			return;
 		}
 
-		socket_->ConnectAsync(results, &Connection::OnConnected, GetShared(this), session);
+		socket_->ConnectAsync(results, &Connection::OnConnected, GetShared(this));
 	}
 
-	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint, std::shared_ptr<Session> session) {
+	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
 			LOG_ERROR("[CONNECTION] connect to {} failed by {}", ToString(), error.to_string());
@@ -95,13 +95,19 @@ namespace Network {
 
 		ip_ = endpoint.address().to_string();
 		port_ = endpoint.port();
-		session_ = session;
-		protocol_ = session->CreateProtocol();
 
 		send_stream_->is_sending = false;
 		recv_stream_->buffer.reset(new Buffer(RequestRecvBuffer()));
 
+		auto session = session_.lock();
+		if (session == nullptr) {
+			LOG_ERROR("[CONNECTION] session is null after connection established");
+			return;
+		}
+
 		BeginReceive();
+
+		protocol_ = session->CreateProtocol();
 
 		Ctrl(*session).Post([conn = GetShared(this)](Session& session) {
 			session.set_connection(conn);

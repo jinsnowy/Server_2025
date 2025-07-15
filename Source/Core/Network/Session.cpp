@@ -80,14 +80,18 @@ namespace Network {
     void Session::OnConnected() {
     }
 
-    std::unique_ptr<Protocol> Session::CreateProtocol() {
-        return std::unique_ptr<Protocol>();
-    }
-
     void Session::OnProcessPacket(const std::shared_ptr<Protocol> protocol) {
         DEBUG_ASSERT(IsSynchronized());
         if (protocol->ProcessMessage(*this) == false) {
             Disconnect();
         }
     }
+
+    std::string Session::GetConnectionString() const {
+        auto connection = connection_;
+        if (connection == nullptr) {
+            return "connection none";
+        }
+        return connection->ToString();
+	}
 }

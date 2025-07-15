@@ -46,11 +46,4 @@ namespace Protobuf {
 		MessageDescriptorStorage::GetInstance().AddDescriptor(messageId, descriptor);
 	}
 
-	//google::protobuf::Timestamp ToTimestamp(const System::Time& timepoint) {
-	//	return google::protobuf::util::TimeUtil::MicrosecondsToTimestamp(timepoint.ToMicroseconds());
-	//}
-
-	//System::Time FromTimestamp(const google::protobuf::Timestamp& timestamp) {
-	//	return System::Time::FromMicroseconds(google::protobuf::util::TimeUtil::TimestampToMicroseconds(timestamp));
-	//}
 }

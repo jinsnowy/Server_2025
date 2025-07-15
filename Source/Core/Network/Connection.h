@@ -33,7 +33,8 @@ namespace Network {
 
 		std::string ToString() const;
 		const std::unique_ptr<Socket>& socket() const { return socket_; }
-	
+		void set_session(std::shared_ptr<Session> session) { session_ = session; }
+
 	private:
 		friend class SessionFactory;
 
@@ -50,8 +51,8 @@ namespace Network {
 
 		void BeginReceive();
 
-		void OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results, std::shared_ptr<Session> session);
-		void OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint, std::shared_ptr<Session> session);
+		void OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results);
+		void OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint);
 		void OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred);
 		void OnSendCompleted(const boost::system::error_code& error, std::size_t bytes_transferred);
 		void FlushSend(bool continueOnWriter = false);

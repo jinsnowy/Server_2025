@@ -14,20 +14,15 @@ namespace Network {
 
 	Resolver::~Resolver() = default;
 
-	void Resolver::Resolve(const std::string& ip, const uint16_t& port, Callback callback, std::shared_ptr<Connection> conn, std::shared_ptr<Session> session) {
-		resolver_->async_resolve(ip, std::to_string(port), [weak_conn=std::weak_ptr(conn), callback, weak_session=std::weak_ptr(session)](const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
+	void Resolver::Resolve(const std::string& ip, const uint16_t& port, Callback callback, std::shared_ptr<Connection> conn) {
+		resolver_->async_resolve(ip, std::to_string(port), [weak_conn=std::weak_ptr(conn), callback](const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
 			auto conn = weak_conn.lock();
 			if (conn == nullptr) {
 				return;
 			}
 
-			auto session = weak_session.lock();
-			if (session == nullptr) {
-				return;
-			}
-
-			Ctrl(*conn).Post([callback, error, results = std::move(results), session](Connection& conn) mutable {
-				(conn.*callback)(error, results, session);
+			Ctrl(*conn).Post([callback, error, results = std::move(results)](Connection& conn) mutable {
+				(conn.*callback)(error, results);
 			});
 		});
 	}

@@ -15,19 +15,19 @@ namespace Container {
 		SPSCQueue& operator=(const SPSCQueue&) = delete;
 
 		SPSCQueue() {
-			FNode* node = new FNode();
+			Node* node = new Node();
 			tail_.store(node, std::memory_order_relaxed);
 			head_ = first_ = tail_copy_ = node;
 		}
 
 		~SPSCQueue() {
-			FNode* node = first_;
-			FNode* local_tail = tail_.load(std::memory_order_relaxed);
+			Node* node = first_;
+			Node* local_tail = tail_.load(std::memory_order_relaxed);
 
 			// Delete all nodes which are the sentinel or unoccupied
 			bool continued = false;
 			do {
-				FNode* next = node->next_.load(std::memory_order_relaxed);
+				Node* next = node->next_.load(std::memory_order_relaxed);
 				continued = node != local_tail;
 				delete node;
 				node = next;
@@ -35,7 +35,7 @@ namespace Container {
 
 			// Delete all nodes which are occupied, destroying the element first
 			while (node != nullptr) {
-				FNode* next = node->next_.load(std::memory_order_relaxed);
+				Node* next = node->next_.load(std::memory_order_relaxed);
 				DestructItem(reinterpret_cast<ElementType*>(&node->value_));
 				delete node;
 				node = next;
@@ -44,7 +44,7 @@ namespace Container {
 
 		template <typename... ArgTypes>
 		void Enqueue(ArgTypes&&... Args) {
-			FNode* node = AllocNode();
+			Node* node = AllocNode();
 			new(&node->value_) ElementType(std::forward<ArgTypes>(Args)...);
 
 			head_->next_.store(node, std::memory_order_release);
@@ -53,8 +53,8 @@ namespace Container {
 
 		// returns empty TOptional if queue is empty 
 		std::optional<ElementType> Dequeue() {
-			FNode* local_tail = tail_.load(std::memory_order_relaxed);
-			FNode* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
+			Node* local_tail = tail_.load(std::memory_order_relaxed);
+			Node* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
 			if (local_tail_next == nullptr) {
 				return {};
 			}
@@ -78,8 +78,8 @@ namespace Container {
 		}
 
 		bool IsEmpty() const {
-			FNode* local_tail = tail_.load(std::memory_order_relaxed);
-			FNode* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
+			Node* local_tail = tail_.load(std::memory_order_relaxed);
+			Node* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
 			return local_tail_next == nullptr;
 		}
 
@@ -87,8 +87,8 @@ namespace Container {
 		// returns a pointer to the tail if the queue is not empty, nullptr otherwise
 		// there's no overload with TOptional as it doesn't support references
 		ElementType* Peek() const {
-			FNode* local_tail = tail_.load(std::memory_order_relaxed);
-			FNode* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
+			Node* local_tail = tail_.load(std::memory_order_relaxed);
+			Node* local_tail_next = local_tail->next_.load(std::memory_order_acquire);
 
 			if (local_tail_next == nullptr) {
 				return nullptr;
@@ -106,8 +106,8 @@ namespace Container {
 			alignas(ElementType) uint8_t Pad[sizeof(ElementType)];
 		};
 
-		struct FNode {
-			std::atomic<FNode*> next_{ nullptr };
+		struct Node {
+			std::atomic<Node*> next_{ nullptr };
 			TTypeCompatibleBytes value_;
 		};
 
@@ -121,7 +121,7 @@ namespace Container {
 			}
 		}
 
-		FNode* AllocNode() {
+		Node* AllocNode() {
 			// first tries to allocate node from internal node cache, 
 			// if attempt fails, allocates node via ::operator new() 
 
@@ -134,20 +134,20 @@ namespace Container {
 				return AllocateFromCache();
 			}
 
-			return new FNode();
+			return new Node();
 		}
 
-		FNode* AllocateFromCache() {
-			FNode* node = first_;
+		Node* AllocateFromCache() {
+			Node* node = first_;
 			first_ = first_->next_;
 			node->next_.store(nullptr, std::memory_order_relaxed);
 			return node;
 		}
 
 	private:
-		std::atomic<FNode*> tail_; // tail of the queue 
-		FNode* head_; // head of the queue
-		FNode* first_; // last unused node (tail of node cache) 
-		FNode* tail_copy_; // helper (points somewhere between first_ and tail_)
+		std::atomic<Node*> tail_; // tail of the queue 
+		Node* head_; // head of the queue
+		Node* first_; // last unused node (tail of node cache) 
+		Node* tail_copy_; // helper (points somewhere between first_ and tail_)
 	};
 }

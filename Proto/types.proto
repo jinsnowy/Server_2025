@@ -5,15 +5,20 @@ import "google/protobuf/descriptor.proto";
 package types;
 
 enum protocol {
-	kInvalid			= 0x0;
-	kHello				= 0x1001;
-	kPingReq			= 0x1002;
-	kPingRes			= 0x1003;
-	kContentReadyReq	= 0x1004;
-	kContentReadyRes	= 0x1005;
-	kHelloClient = 0x1006;
-	kHelloServer = 0x1007;
-	kDisconnectAlertNotify = 0x1008;
+	kInvalid				= 0x0;
+	kHello					= 0x1001;
+	kPingReq				= 0x1002;
+	kPingRes				= 0x1003;
+	kContentReadyReq		= 0x1004;
+	kContentReadyRes		= 0x1005;
+	kHelloClient 			= 0x1006;
+	kHelloServer 			= 0x1007;
+	kDisconnectAlertNotify  = 0x1008;
+	kRegisterServerReq      = 0x1009;
+	kRegisterServerRes 		= 0x100A;
+	kServerPingReq 			= 0x100B;
+	kServerPingRes			= 0x100C;
+	kHelloClientAck 		= 0x100D;
 }
 
 extend google.protobuf.MessageOptions {
@@ -27,4 +32,10 @@ enum Result {
 	kInvalidParameter = 3;
 	kNotFound = 4;
 	kInternalError = 5;
+	kDatabaseError = 6;
+}
+
+enum ServerType {
+	kUnknownServer = 0;
+	kDedicatedServer = 1;
 }

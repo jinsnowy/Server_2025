@@ -9,12 +9,33 @@ namespace Server::Model {
 		stmt.BindInParam(Sql::WCharArray(128, user_id_.c_str()));
 		stmt.BindInParam(Sql::WCharArray(128, username_.c_str()));
 		stmt.BindInParam(last_login_time_);
-		stmt.BindOutParam(&account_id_);
 		if (stmt.Execute(L"usp_UpsertAccount") == false) {
 			LOG_ERROR("Failed to upsert account: user_id: {}, username: {}, last_login_time: {}",
 				user_id_, username_, last_login_time_.ToString());
 			return false;
 		}
+
+		stmt.Reset();
+		stmt.BindInParam(Sql::WCharArray(128, user_id_.c_str()));
+		if (stmt.Execute(L"usp_SelectAccountByUserId") == false) {
+			LOG_ERROR("Failed to get account: user_id: {}, username: {}, last_login_time: {}",
+				user_id_, username_, last_login_time_.ToString());
+			return false;
+		}
+		
+		Sql::WCharArray username_buf(128);
+		stmt.BindColumn(&account_id_);
+		stmt.BindColumn(&username_buf);
+		stmt.BindColumn(&last_login_time_);
+		stmt.BindColumn(&last_logout_time_);
+		stmt.BindColumn(&created_at_);
+		if (stmt.FetchResult() == false) {
+			LOG_ERROR("Failed to fetch account: user_id: {}, username: {}, last_login_time: {}",
+				user_id_, username_, last_login_time_.ToString());
+			return false;
+		}
+		username_ = username_buf.ToString();
+
 		return true;
 	}
 
