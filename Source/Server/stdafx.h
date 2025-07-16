@@ -44,6 +44,7 @@
 #include <coroutine>
 #include <ranges>
 #include <format>
+#include <source_location>
 
 #include "Core/Platform/Windows.h"
 #include "Core/CoreMinimal.h"

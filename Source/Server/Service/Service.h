@@ -3,9 +3,10 @@
 #include "Core/Network/SessionFactory.h"
 #include "Core/Network/IPAddress.h"
 #include "Core/Network/Listener.h"
+#include "Core/System/ServiceInterface.h"
 
 namespace Server {
-	class Service {
+	class Service : public System::SingletonServiceInterface {
 	public:
 		Service() = default;
 		Service(const Network::IPAddress& ipaddress, Network::SessionFactory session_factory)
@@ -13,8 +14,8 @@ namespace Server {
 			ipaddress_(ipaddress),
 			session_factory_(std::move(session_factory)) {
 		}
-		virtual ~Service() = default;
 
+		virtual ~Service() = default;
 		virtual void Start();
 
 		void set_ip_address(const Network::IPAddress& ipaddress) {

@@ -19,3 +19,4 @@
 #include "Core/System/Enum.h"
 #include "Core/System/TimerContext.h"
 #include "Core/System/PeriodicTimer.h"
+#include "Core/System/DependencyInjection.h"

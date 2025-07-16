@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Server/Service/Service.h"
+#include "Core/System/DependencyInjection.h"
 #include "Core/Network/IPAddress.h"
 
 namespace Server {
@@ -36,14 +37,17 @@ namespace Server {
 		}
 
 		template<typename ServiceClass = Service>
-		std::unique_ptr<ServiceClass> Build() {
+		std::shared_ptr<ServiceClass> Build() {
 			if (ip_.empty() || port_ == 0) {
 				throw std::runtime_error("IP and port must be set before building the service.");
 			}
 			if (session_factory_.is_empty()) {
 				throw std::runtime_error("Session class must be set before building the service.");
 			}
-			auto service = std::make_unique<ServiceClass>();
+			System::DependencyInjection::RegisterService<ServiceClass>([]() {
+				return std::make_shared<ServiceClass>();
+			});
+			auto service = System::DependencyInjection::Get<ServiceClass>();
 			service->set_ip_address(Network::IPAddress(ip_, port_));
 			service->set_session_factory(session_factory_);
 			return service;

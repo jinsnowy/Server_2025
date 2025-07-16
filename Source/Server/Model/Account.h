@@ -50,6 +50,7 @@ namespace Server::Model {
 		std::string ToString() const;
 
 		bool UpsertToDb(Sql::Agent& agent);
+		bool LoadFromDb(Sql::Agent& agent);
 
 	private:
 		int64_t account_id_ = 0;

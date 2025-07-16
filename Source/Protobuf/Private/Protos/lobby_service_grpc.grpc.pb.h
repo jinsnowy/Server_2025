@@ -43,12 +43,21 @@ class LobbyService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::RegisterServerReponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::RegisterServerReponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
+    virtual ::grpc::Status Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::lobby_service::PingResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>>(AsyncPingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
       // Sends a greeting
       virtual void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -56,6 +65,8 @@ class LobbyService final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::RegisterServerReponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::RegisterServerReponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -67,11 +78,20 @@ class LobbyService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::RegisterServerReponse>> PrepareAsyncRegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::RegisterServerReponse>>(PrepareAsyncRegisterServerRaw(context, request, cq));
     }
+    ::grpc::Status Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::lobby_service::PingResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>> AsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>>(AsyncPingRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
       void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, std::function<void(::grpc::Status)>) override;
       void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, std::function<void(::grpc::Status)>) override;
+      void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -85,7 +105,10 @@ class LobbyService final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::lobby_service::RegisterServerReponse>* AsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::lobby_service::RegisterServerReponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_RegisterServer_;
+    const ::grpc::internal::RpcMethod rpcmethod_Ping_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -95,6 +118,7 @@ class LobbyService final {
     virtual ~Service();
     // Sends a greeting
     virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response);
+    virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_RegisterServer : public BaseClass {
@@ -116,7 +140,27 @@ class LobbyService final {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_RegisterServer<Service > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_Ping() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPing(::grpc::ServerContext* context, ::lobby_service::PingRequest* request, ::grpc::ServerAsyncResponseWriter< ::lobby_service::PingResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_Ping<Service > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_RegisterServer : public BaseClass {
    private:
@@ -144,7 +188,34 @@ class LobbyService final {
     virtual ::grpc::ServerUnaryReactor* RegisterServer(
       ::grpc::CallbackServerContext* /*context*/, const ::lobby_service::RegisterServerRequest* /*request*/, ::lobby_service::RegisterServerReponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_RegisterServer<Service > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Ping() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::lobby_service::PingRequest, ::lobby_service::PingResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response) { return this->Ping(context, request, response); }));}
+    void SetMessageAllocatorFor_Ping(
+        ::grpc::MessageAllocator< ::lobby_service::PingRequest, ::lobby_service::PingResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::lobby_service::PingRequest, ::lobby_service::PingResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Ping(
+      ::grpc::CallbackServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_Ping<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_RegisterServer : public BaseClass {
@@ -159,6 +230,23 @@ class LobbyService final {
     }
     // disable synchronous version of this method
     ::grpc::Status RegisterServer(::grpc::ServerContext* /*context*/, const ::lobby_service::RegisterServerRequest* /*request*/, ::lobby_service::RegisterServerReponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Ping() {
+      ::grpc::Service::MarkMethodGeneric(1);
+    }
+    ~WithGenericMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -184,6 +272,26 @@ class LobbyService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Ping() {
+      ::grpc::Service::MarkMethodRaw(1);
+    }
+    ~WithRawMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestPing(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -203,6 +311,28 @@ class LobbyService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* RegisterServer(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_Ping() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Ping(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Ping(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -232,9 +362,36 @@ class LobbyService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedRegisterServer(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::lobby_service::RegisterServerRequest,::lobby_service::RegisterServerReponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_RegisterServer<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Ping : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Ping() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::lobby_service::PingRequest, ::lobby_service::PingResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::lobby_service::PingRequest, ::lobby_service::PingResponse>* streamer) {
+                       return this->StreamedPing(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_Ping() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedPing(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::lobby_service::PingRequest,::lobby_service::PingResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_RegisterServer<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<Service > > StreamedService;
 };
 
 }  // namespace lobby_service

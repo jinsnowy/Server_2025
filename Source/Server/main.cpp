@@ -8,6 +8,7 @@
 #include "Server/Service/ClientServiceDef.h"
 #include "Server/Service/WorldServiceDef.h"
 #include "Server/Service/ServiceBuilder.h"
+#include "Server/Service/LobbyService.h"
 #include "Core/Sql/Database.h"
 #include "Server/Authenticator/Authenticator.h"
 #include "InterServer/GrpcService.h"
@@ -21,8 +22,8 @@
 
 using namespace Server;
 
-std::unique_ptr<Service> lobby_server;
-std::unique_ptr<WorldService> world_server;
+std::shared_ptr<Service> lobby_server;
+std::shared_ptr<WorldService> world_server;
 std::vector<std::shared_ptr<Server::LobbySession>> lobby_sessions;
 std::vector<std::shared_ptr<Server::WorldSession>> world_sessions;
 std::vector<std::shared_ptr<Server::ClientSession>> client_sessions_;
@@ -67,10 +68,11 @@ DBConfig GetDBConfig() {
 }
 
 int main() {
+
     System::Scheduler::CreateThreadPool(1);
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     grpc::EnableDefaultHealthCheckService(true);
-	//DB::GetInstance().Initialize(GetDBConfig());
+	DB::GetInstance().Initialize(GetDBConfig());
 
     LobbySession::RegisterHandler(&LobbyHandlerMap::GetInstance());
     ClientSession::RegisterHandler(&ClientHandlerMap::GetInstance());
@@ -87,10 +89,8 @@ int main() {
                 return true;
              })
             .UsePort(9911)
-            .Build();
+            .Build<LobbyService>();
         lobby_server->Start();
-
-        Server::RunGrpcService<LobbyGrpcService::Service>(LobbyGrpcService::kAddress);
 
 		LOG_INFO("Lobby service started on port 9911");
 
@@ -102,7 +102,7 @@ int main() {
             })
             .UsePort(9912)
             .Build<WorldService>();
-        world_server->set_lobby_server_address(LobbyGrpcService::kAddress);
+        world_server->set_lobby_server_address(LobbyGrpcService::kConnectAddress);
         world_server->Start();
 
         LOG_INFO("World service started on port 9912");
@@ -110,7 +110,6 @@ int main() {
 
     System::Program::Wait();
 
-    Server::StopGrpcService();
     System::Scheduler::Destroy();
 	Log::Logger::Destroy();
     google::protobuf::ShutdownProtobufLibrary();

@@ -49,8 +49,30 @@ struct RegisterServerReponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 RegisterServerReponseDefaultTypeInternal _RegisterServerReponse_default_instance_;
+PROTOBUF_CONSTEXPR PingRequest::PingRequest(
+    ::_pbi::ConstantInitialized) {}
+struct PingRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PingRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PingRequestDefaultTypeInternal() {}
+  union {
+    PingRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PingRequestDefaultTypeInternal _PingRequest_default_instance_;
+PROTOBUF_CONSTEXPR PingResponse::PingResponse(
+    ::_pbi::ConstantInitialized) {}
+struct PingResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR PingResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~PingResponseDefaultTypeInternal() {}
+  union {
+    PingResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PingResponseDefaultTypeInternal _PingResponse_default_instance_;
 }  // namespace lobby_service
-static ::_pb::Metadata file_level_metadata_lobby_5fservice_5fgrpc_2eproto[2];
+static ::_pb::Metadata file_level_metadata_lobby_5fservice_5fgrpc_2eproto[4];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_lobby_5fservice_5fgrpc_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_lobby_5fservice_5fgrpc_2eproto = nullptr;
 
@@ -71,15 +93,31 @@ const uint32_t TableStruct_lobby_5fservice_5fgrpc_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _inlined_string_donated_
   PROTOBUF_FIELD_OFFSET(::lobby_service::RegisterServerReponse, _impl_.result_),
   PROTOBUF_FIELD_OFFSET(::lobby_service::RegisterServerReponse, _impl_.server_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::PingRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::PingResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::lobby_service::RegisterServerRequest)},
   { 8, -1, -1, sizeof(::lobby_service::RegisterServerReponse)},
+  { 16, -1, -1, sizeof(::lobby_service::PingRequest)},
+  { 22, -1, -1, sizeof(::lobby_service::PingResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
   &::lobby_service::_RegisterServerRequest_default_instance_._instance,
   &::lobby_service::_RegisterServerReponse_default_instance_._instance,
+  &::lobby_service::_PingRequest_default_instance_._instance,
+  &::lobby_service::_PingResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -88,19 +126,21 @@ const char descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto[] PROTOBUF_S
   "\026\n\016server_address\030\001 \001(\t\022&\n\013server_type\030\002"
   " \001(\0162\021.types.ServerType\"I\n\025RegisterServe"
   "rReponse\022\035\n\006result\030\001 \001(\0162\r.types.Result\022"
-  "\021\n\tserver_id\030\002 \001(\0052l\n\014LobbyService\022\\\n\016Re"
-  "gisterServer\022$.lobby_service.RegisterSer"
-  "verRequest\032$.lobby_service.RegisterServe"
-  "rReponseb\006proto3"
+  "\021\n\tserver_id\030\002 \001(\005\"\r\n\013PingRequest\"\016\n\014Pin"
+  "gResponse2\255\001\n\014LobbyService\022\\\n\016RegisterSe"
+  "rver\022$.lobby_service.RegisterServerReque"
+  "st\032$.lobby_service.RegisterServerReponse"
+  "\022\?\n\004Ping\022\032.lobby_service.PingRequest\032\033.l"
+  "obby_service.PingResponseb\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps[1] = {
   &::descriptor_table_types_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_lobby_5fservice_5fgrpc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_lobby_5fservice_5fgrpc_2eproto = {
-    false, false, 336, descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto,
+    false, false, 433, descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto,
     "lobby_service_grpc.proto",
-    &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once, descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps, 1, 2,
+    &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once, descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps, 1, 4,
     schemas, file_default_instances, TableStruct_lobby_5fservice_5fgrpc_2eproto::offsets,
     file_level_metadata_lobby_5fservice_5fgrpc_2eproto, file_level_enum_descriptors_lobby_5fservice_5fgrpc_2eproto,
     file_level_service_descriptors_lobby_5fservice_5fgrpc_2eproto,
@@ -560,6 +600,86 @@ void RegisterServerReponse::InternalSwap(RegisterServerReponse* other) {
       file_level_metadata_lobby_5fservice_5fgrpc_2eproto[1]);
 }
 
+// ===================================================================
+
+class PingRequest::_Internal {
+ public:
+};
+
+PingRequest::PingRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:lobby_service.PingRequest)
+}
+PingRequest::PingRequest(const PingRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  PingRequest* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:lobby_service.PingRequest)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PingRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PingRequest::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata PingRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_lobby_5fservice_5fgrpc_2eproto_getter, &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once,
+      file_level_metadata_lobby_5fservice_5fgrpc_2eproto[2]);
+}
+
+// ===================================================================
+
+class PingResponse::_Internal {
+ public:
+};
+
+PingResponse::PingResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase(arena, is_message_owned) {
+  // @@protoc_insertion_point(arena_constructor:lobby_service.PingResponse)
+}
+PingResponse::PingResponse(const PingResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase() {
+  PingResponse* const _this = this; (void)_this;
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  // @@protoc_insertion_point(copy_constructor:lobby_service.PingResponse)
+}
+
+
+
+
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData PingResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::CopyImpl,
+    ::PROTOBUF_NAMESPACE_ID::internal::ZeroFieldsBase::MergeImpl,
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PingResponse::GetClassData() const { return &_class_data_; }
+
+
+
+
+
+
+
+::PROTOBUF_NAMESPACE_ID::Metadata PingResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_lobby_5fservice_5fgrpc_2eproto_getter, &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once,
+      file_level_metadata_lobby_5fservice_5fgrpc_2eproto[3]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace lobby_service
 PROTOBUF_NAMESPACE_OPEN
@@ -570,6 +690,14 @@ Arena::CreateMaybeMessage< ::lobby_service::RegisterServerRequest >(Arena* arena
 template<> PROTOBUF_NOINLINE ::lobby_service::RegisterServerReponse*
 Arena::CreateMaybeMessage< ::lobby_service::RegisterServerReponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::lobby_service::RegisterServerReponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::lobby_service::PingRequest*
+Arena::CreateMaybeMessage< ::lobby_service::PingRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::lobby_service::PingRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::lobby_service::PingResponse*
+Arena::CreateMaybeMessage< ::lobby_service::PingResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::lobby_service::PingResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

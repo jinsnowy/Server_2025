@@ -235,7 +235,7 @@ func ValidateAccessToken(c *gin.Context) {
 		return
 	}
 
-	log.Printf("Validating access token: %s\n", accessToken)
+	log.Printf("Validating access token: %s", accessToken)
 
 	user, err := user_repository.ConsumeAccessToken(accessToken)
 	if err != nil || user == nil {

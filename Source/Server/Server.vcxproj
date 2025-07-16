@@ -305,6 +305,7 @@
     <ClCompile Include="Section\SectionRepository.cpp" />
     <ClCompile Include="Service\ClientServiceDef.cpp" />
     <ClCompile Include="Service\HandlerMap.cpp" />
+    <ClCompile Include="Service\LobbyService.cpp" />
     <ClCompile Include="Service\Protocol.cpp" />
     <ClCompile Include="Service\LobbyServiceDef.cpp" />
     <ClCompile Include="Service\Service.cpp" />
@@ -332,6 +333,7 @@
     <ClInclude Include="Section\SectionRepository.h" />
     <ClInclude Include="Service\ClientServiceDef.h" />
     <ClInclude Include="Service\HandlerMap.h" />
+    <ClInclude Include="Service\LobbyService.h" />
     <ClInclude Include="Service\Protocol.h" />
     <ClInclude Include="Service\LobbyServiceDef.h" />
     <ClInclude Include="Service\Service.h" />

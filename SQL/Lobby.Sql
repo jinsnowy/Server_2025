@@ -58,12 +58,15 @@ CREATE PROCEDURE dbo.usp_UpsertAccount
 (
     @p_UserId NVARCHAR(64),
     @p_Username NVARCHAR(64),
-    @p_LastLogin DATETIME
+    @p_LastLogin DATETIME,
+    @p_AccountId BIGINT OUTPUT
 )
 AS
 BEGIN
     DECLARE @v_AccountID BIGINT;
     DECLARE @RETURN INT = 0;
+
+    SET NOCOUNT ON;
 
     BEGIN TRY
         -- Check if the account already exists
@@ -77,18 +80,24 @@ BEGIN
                 SET Username = @p_Username
                 ,   LastLogin = @p_LastLogin
                 WHERE AccountId = @v_AccountID;
+
+                SET @p_AccountId = @v_AccountID;
             END
         ELSE
             BEGIN
                 -- If it does not exist, insert a new account
                 INSERT INTO Account (UserId, Username, LastLogin, LastLogout, CreatedAt)
                 VALUES (@p_UserId, @p_Username, @p_LastLogin, @p_LastLogin, GETUTCDATE());
+
+                SET @p_AccountId = SCOPE_IDENTITY();
             END
 
     END TRY
     BEGIN CATCH
         THROW
     END CATCH
+
+    SET NOCOUNT OFF;
 
     RETURN @RETURN
 END
@@ -148,12 +157,15 @@ CREATE PROCEDURE dbo.usp_UpsertServer
     @p_ServerType TINYINT,
     @p_ServerAddress NVARCHAR(256),
     @p_MapName NVARCHAR(256),
-    @p_CreatedAt DATETIME
+    @p_CreatedAt DATETIME,
+    @p_ServerId INT OUTPUT
 )
 AS
 BEGIN
     DECLARE @v_ServerId INT;
     DECLARE @RETURN INT = 0;
+
+    SET NOCOUNT ON;
 
     BEGIN TRY
         -- Check if the account already exists
@@ -168,18 +180,22 @@ BEGIN
                 ,   MapName    = @p_MapName
                 ,   LastPingTime = GETUTCDATE()
                 WHERE ServerAddress = @p_ServerAddress
+
+                SET @p_ServerId = @v_ServerId;
             END
         ELSE
             BEGIN
                 INSERT INTO dbo.Server (ServerType, ServerAddress, MapName, CreatedAt, LastPingTime)
                 VALUES (@p_ServerType, @p_ServerAddress, @p_MapName, @p_CreatedAt, GETUTCDATE());
 
-                SET @v_ServerId = SCOPE_IDENTITY();
+                SET @p_ServerId = SCOPE_IDENTITY();
             END
     END TRY
     BEGIN CATCH
         THROW
     END CATCH
+
+    SET NOCOUNT OFF;
 
     RETURN @RETURN
 END

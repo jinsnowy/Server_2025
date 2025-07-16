@@ -23,6 +23,7 @@ namespace lobby_service {
 
 static const char* LobbyService_method_names[] = {
   "/lobby_service.LobbyService/RegisterServer",
+  "/lobby_service.LobbyService/Ping",
 };
 
 std::unique_ptr< LobbyService::Stub> LobbyService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -33,6 +34,7 @@ std::unique_ptr< LobbyService::Stub> LobbyService::NewStub(const std::shared_ptr
 
 LobbyService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_RegisterServer_(LobbyService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_Ping_(LobbyService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status LobbyService::Stub::RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::lobby_service::RegisterServerReponse* response) {
@@ -58,6 +60,29 @@ void LobbyService::Stub::async::RegisterServer(::grpc::ClientContext* context, c
   return result;
 }
 
+::grpc::Status LobbyService::Stub::Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::lobby_service::PingResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::lobby_service::PingRequest, ::lobby_service::PingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Ping_, context, request, response);
+}
+
+void LobbyService::Stub::async::Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::lobby_service::PingRequest, ::lobby_service::PingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Ping_, context, request, response, std::move(f));
+}
+
+void LobbyService::Stub::async::Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Ping_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* LobbyService::Stub::PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::lobby_service::PingResponse, ::lobby_service::PingRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Ping_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* LobbyService::Stub::AsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncPingRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 LobbyService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LobbyService_method_names[0],
@@ -69,12 +94,29 @@ LobbyService::Service::Service() {
              ::lobby_service::RegisterServerReponse* resp) {
                return service->RegisterServer(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LobbyService_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LobbyService::Service, ::lobby_service::PingRequest, ::lobby_service::PingResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LobbyService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::lobby_service::PingRequest* req,
+             ::lobby_service::PingResponse* resp) {
+               return service->Ping(ctx, req, resp);
+             }, this)));
 }
 
 LobbyService::Service::~Service() {
 }
 
 ::grpc::Status LobbyService::Service::RegisterServer(::grpc::ServerContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LobbyService::Service::Ping(::grpc::ServerContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response) {
   (void) context;
   (void) request;
   (void) response;

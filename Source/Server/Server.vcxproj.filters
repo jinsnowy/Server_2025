@@ -95,6 +95,9 @@
     <ClCompile Include="Service\WorldService.cpp">
       <Filter>Service</Filter>
     </ClCompile>
+    <ClCompile Include="Service\LobbyService.cpp">
+      <Filter>Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h">
@@ -162,6 +165,9 @@
       <Filter>Model</Filter>
     </ClInclude>
     <ClInclude Include="Service\WorldService.h">
+      <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Service\LobbyService.h">
       <Filter>Service</Filter>
     </ClInclude>
   </ItemGroup>

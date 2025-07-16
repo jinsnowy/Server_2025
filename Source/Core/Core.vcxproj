@@ -255,7 +255,9 @@
     <ClCompile Include="Http\HttpResponse.cpp" />
     <ClCompile Include="Json\Json.cpp" />
     <ClCompile Include="Logging\Logger.cpp" />
+    <ClCompile Include="Math\LinAlg.cpp" />
     <ClCompile Include="Misc\ApplyVariants.cpp" />
+    <ClCompile Include="Misc\Crc32Hash.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
     <ClCompile Include="Network\Buffer.cpp" />
     <ClCompile Include="Network\BufferMemory.cpp" />
@@ -288,6 +290,7 @@
     </ClCompile>
     <ClCompile Include="System\Actor.cpp" />
     <ClCompile Include="System\Callable.cpp" />
+    <ClCompile Include="System\DependencyInjection.cpp" />
     <ClCompile Include="System\Enum.cpp" />
     <ClCompile Include="System\ExecutionContext.cpp" />
     <ClCompile Include="System\LexicalCast.cpp" />
@@ -303,6 +306,7 @@
     <ClCompile Include="System\PeriodicTimer.cpp" />
     <ClCompile Include="System\Program.cpp" />
     <ClCompile Include="System\Scheduler.cpp" />
+    <ClCompile Include="System\ServiceInterface.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
     <ClCompile Include="System\SingletonActor.cpp" />
     <ClCompile Include="System\String.cpp" />
@@ -311,6 +315,7 @@
     <ClCompile Include="System\Time.cpp" />
     <ClCompile Include="System\Tick.cpp" />
     <ClCompile Include="System\TimerContext.cpp" />
+    <ClCompile Include="System\TypeInfo.cpp" />
     <ClCompile Include="ThirdParty\Sql.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -324,7 +329,9 @@
     <ClInclude Include="Http\HttpResponse.h" />
     <ClInclude Include="Json\Json.h" />
     <ClInclude Include="Logging\Logger.h" />
+    <ClInclude Include="Math\LinAlg.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
+    <ClInclude Include="Misc\Crc32Hash.h" />
     <ClInclude Include="Network\Acceptor.h" />
     <ClInclude Include="Network\Buffer.h" />
     <ClInclude Include="Network\BufferMemory.h" />
@@ -344,7 +351,6 @@
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="Network\SessionFactory.h" />
     <ClInclude Include="Network\Socket.h" />
-    <ClInclude Include="OpenSsl.h" />
     <ClInclude Include="Platform\Windows.h" />
     <ClInclude Include="Sql\Agent.h" />
     <ClInclude Include="Sql\Column.h" />
@@ -359,6 +365,7 @@
     <ClInclude Include="System\Actor.h" />
     <ClInclude Include="System\Actor.hpp" />
     <ClInclude Include="System\Callable.h" />
+    <ClInclude Include="System\DependencyInjection.h" />
     <ClInclude Include="System\Enum.h" />
     <ClInclude Include="System\ExecutionContext.h" />
     <ClInclude Include="System\LexicalCast.h" />
@@ -377,6 +384,7 @@
     <ClInclude Include="System\PeriodicTimer.h" />
     <ClInclude Include="System\Program.h" />
     <ClInclude Include="System\Scheduler.h" />
+    <ClInclude Include="System\ServiceInterface.h" />
     <ClInclude Include="System\Singleton.h" />
     <ClInclude Include="System\SingletonActor.h" />
     <ClInclude Include="System\String.h" />
@@ -386,14 +394,17 @@
     <ClInclude Include="System\Time.h" />
     <ClInclude Include="System\Tick.h" />
     <ClInclude Include="System\TimerContext.h" />
+    <ClInclude Include="System\TypeInfo.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
     <ClInclude Include="ThirdParty\Curl.h" />
+    <ClInclude Include="ThirdParty\Glm.h" />
     <ClInclude Include="ThirdParty\Json.h" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum.hpp" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum_containers.hpp" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum_format.hpp" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum_fuse.hpp" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum_switch.hpp" />
+    <ClInclude Include="ThirdParty\OpenSsl.h" />
     <ClInclude Include="ThirdParty\Protobuf.h" />
     <ClInclude Include="ThirdParty\Sql.h" />
     <ClInclude Include="ThirdParty\WarningMacros.h" />

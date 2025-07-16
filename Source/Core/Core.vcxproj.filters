@@ -235,6 +235,19 @@
     <ClCompile Include="System\PeriodicTimer.cpp">
       <Filter>System</Filter>
     </ClCompile>
+    <ClCompile Include="Math\LinAlg.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="System\DependencyInjection.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\ServiceInterface.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="Misc\Crc32Hash.cpp">
+      <Filter>Misc</Filter>
+    </ClCompile>
+    <ClCompile Include="System\TypeInfo.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container\CircularBuffer.h">
@@ -395,9 +408,6 @@
     </ClInclude>
     <ClInclude Include="CoreMinimal.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="OpenSsl.h">
-      <Filter>ThirdParty</Filter>
-    </ClInclude>
     <ClInclude Include="ThirdParty\Sql.h">
       <Filter>ThirdParty</Filter>
     </ClInclude>
@@ -482,5 +492,24 @@
     <ClInclude Include="System\PeriodicTimer.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="Math\LinAlg.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\Glm.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="ThirdParty\OpenSsl.h">
+      <Filter>ThirdParty</Filter>
+    </ClInclude>
+    <ClInclude Include="System\DependencyInjection.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\ServiceInterface.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\Crc32Hash.h">
+      <Filter>Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="System\TypeInfo.h" />
   </ItemGroup>
 </Project>

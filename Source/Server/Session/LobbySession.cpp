@@ -48,6 +48,10 @@ namespace Server {
 			LOG_ERROR("Failed to upsert account to database for user_id: {}", account_token_info.user_id);
 			return false;
 		}
+		if (account_->LoadFromDb(*agent) == false) {
+			LOG_ERROR("Failed to load account from database for user_id: {}", account_token_info.user_id);
+			return false;
+		}
 
 		return true;
 	}

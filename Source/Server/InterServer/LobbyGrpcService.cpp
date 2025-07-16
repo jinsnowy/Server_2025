@@ -12,5 +12,9 @@ namespace Server {
 		res;
 		return ::grpc::Status::OK;
 	}
+
+	::grpc::Status LobbyGrpcService::Ping(::grpc::ServerContext*, const::lobby_service::PingRequest*, ::lobby_service::PingResponse*) {
+		return ::grpc::Status::OK;
+	}
 }
 
