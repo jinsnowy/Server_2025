@@ -9,8 +9,8 @@ namespace Server::Model {
 	enum class ServerType {
 		kUnknown = 0,
 		kDedicatedServer,
-		kLobbyServer,
 		kWorldServer,
+		kLobbyServer,
 	};
 
 	struct Server {

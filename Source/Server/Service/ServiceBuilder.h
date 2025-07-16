@@ -55,7 +55,7 @@ namespace Server {
 
 	private:
 		Network::SessionFactory session_factory_;
-		std::string ip_ = "0.0.0.0";
+		std::string ip_ = "127.0.0.1";
 		uint16_t port_ = 0;
 	};
 

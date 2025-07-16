@@ -118,12 +118,14 @@ inline bool Result_Parse(
 enum ServerType : int {
   kUnknownServer = 0,
   kDedicatedServer = 1,
+  kWorldServer = 2,
+  kLobbyServer = 3,
   ServerType_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   ServerType_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool ServerType_IsValid(int value);
 constexpr ServerType ServerType_MIN = kUnknownServer;
-constexpr ServerType ServerType_MAX = kDedicatedServer;
+constexpr ServerType ServerType_MAX = kLobbyServer;
 constexpr int ServerType_ARRAYSIZE = ServerType_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* ServerType_descriptor();

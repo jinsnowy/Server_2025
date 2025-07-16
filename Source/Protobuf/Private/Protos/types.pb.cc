@@ -41,17 +41,18 @@ const char descriptor_table_protodef_types_2eproto[] PROTOBUF_SECTION_VARIABLE(p
   "lt\022\014\n\010kSuccess\020\000\022\014\n\010kUnknown\020\001\022\023\n\017kInval"
   "idRequest\020\002\022\025\n\021kInvalidParameter\020\003\022\r\n\tkN"
   "otFound\020\004\022\022\n\016kInternalError\020\005\022\022\n\016kDataba"
-  "seError\020\006*6\n\nServerType\022\022\n\016kUnknownServe"
-  "r\020\000\022\024\n\020kDedicatedServer\020\001:H\n\nmessage_id\022"
-  "\037.google.protobuf.MessageOptions\030\351\007 \001(\0162"
-  "\017.types.protocol\210\001\001b\006proto3"
+  "seError\020\006*Z\n\nServerType\022\022\n\016kUnknownServe"
+  "r\020\000\022\024\n\020kDedicatedServer\020\001\022\020\n\014kWorldServe"
+  "r\020\002\022\020\n\014kLobbyServer\020\003:H\n\nmessage_id\022\037.go"
+  "ogle.protobuf.MessageOptions\030\351\007 \001(\0162\017.ty"
+  "pes.protocol\210\001\001b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_types_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_types_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_types_2eproto = {
-    false, false, 627, descriptor_table_protodef_types_2eproto,
+    false, false, 663, descriptor_table_protodef_types_2eproto,
     "types.proto",
     &descriptor_table_types_2eproto_once, descriptor_table_types_2eproto_deps, 1, 0,
     schemas, file_default_instances, TableStruct_types_2eproto::offsets,
@@ -118,6 +119,8 @@ bool ServerType_IsValid(int value) {
   switch (value) {
     case 0:
     case 1:
+    case 2:
+    case 3:
       return true;
     default:
       return false;

@@ -37,7 +37,7 @@ namespace Network {
 		}
 
 		try {
-			boost::asio::io_context& io_context = System::Context::Current()->io_context();
+			boost::asio::io_context io_context;
 			boost::asio::ip::tcp::resolver resolver(io_context);
 			boost::asio::ip::tcp::resolver::results_type results = resolver.resolve(ip_str, boost::lexical_cast<std::string>(port));
 

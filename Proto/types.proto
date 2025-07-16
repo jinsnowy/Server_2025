@@ -38,4 +38,6 @@ enum Result {
 enum ServerType {
 	kUnknownServer = 0;
 	kDedicatedServer = 1;
+	kWorldServer = 2;
+	kLobbyServer = 3;
 }

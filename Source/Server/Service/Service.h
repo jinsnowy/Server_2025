@@ -26,7 +26,7 @@ namespace Server {
 			session_factory_ = std::move(session_factory);
 		}
 
-	private:
+	protected:
 		Network::IPAddress ipaddress_;
 		Network::SessionFactory session_factory_;
 		std::shared_ptr<Network::Listener> listener_;
