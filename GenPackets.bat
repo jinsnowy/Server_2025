@@ -24,12 +24,19 @@ echo COMPILING PROTO FILES TO %OUTPUT_PATH%/...
 SET PROTOC=%CD%\Bin\protoc.exe
 SET PROTOC_GEN_GRPC=%CD%\Bin\grpc_cpp_plugin.exe
 
+echo COMPILING PROTO FILES ...
+
 %PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_SRC_PATH% --cpp_out=%OUTPUT_PATH% ./Proto/*.proto
-%PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_GRPC_SRC_PATH% --grpc_out=%OUTPUT_PATH% --plugin=protoc-gen-grpc=%PROTOC_GEN_GRPC% ./Proto/*grpc.proto
 
 echo COPY PROTO FILES %OUTPUT_PATH% TO "%UE_PROJECT_PATH%
 
 xcopy "%OUTPUT_PATH%" "%UE_PROJECT_PATH%" /Y /D
+
+echo COMPILING GRPC FILES ...
+
+%PROTOC% --proto_path=%INCLUDE_PATH%;%PROTO_GRPC_SRC_PATH% --grpc_out=%OUTPUT_PATH% --plugin=protoc-gen-grpc=%PROTOC_GEN_GRPC% ./Proto/*grpc.proto
+
+
 
 echo FINISHED
 

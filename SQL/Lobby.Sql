@@ -26,31 +26,6 @@ BEGIN
 END
 GO
 
-DROP PROCEDURE IF EXISTS dbo.usp_TestOutput
-GO
-
-CREATE PROCEDURE dbo.usp_TestOutput
-(
-    @p_Input TINYINT,
-    @p_Input2 NVARCHAR(128),
-    @p_Input3 NVARCHAR(128),
-    @p_Input4 DATETIME,
-    @p_Input5 DATETIME,
-    @p_Output BIGINT OUTPUT
-)
-AS
-BEGIN
-    SET NOCOUNT ON;
-    DECLARE @RETURN INT = 0;
-
-    -- Simulate some processing
-    SET @p_Output = @p_Input;
-
-    -- Optionally, you can return a status code
-    RETURN 0;
-END
-GO
-
 DROP PROCEDURE IF EXISTS dbo.usp_UpsertAccount
 GO
 
@@ -130,6 +105,137 @@ BEGIN
 
     RETURN @RETURN
 END
+GO
+
+-- Character Table
+DROP TABLE IF EXISTS dbo.Character
+GO
+
+IF OBJECT_ID(N'dbo.Character', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Character
+    (
+        CharacterId BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        AccountId BIGINT NOT NULL,
+        ServerId INT NOT NULL,
+        Name NVARCHAR(128) NOT NULL UNIQUE,
+        Level INT NOT NULL,
+        Exp BIGINT NOT NULL,
+        LastPlayed DATETIME NOT NULL,
+        CreatedAt DATETIME NOT NULL,
+    )
+END
+GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_CheckCharacterExistsByName
+GO
+
+CREATE PROCEDURE dbo.usp_CheckCharacterExistsByName
+(
+    @p_Name NVARCHAR(128)
+)
+AS
+BEGIN
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+       
+        IF EXISTS (SELECT 1 FROM dbo.Character WHERE Name = @p_Name)
+        BEGIN
+            SET @RETURN = 1;
+        END
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_UpsertCharacter
+GO
+
+CREATE PROCEDURE dbo.usp_UpsertCharacter
+(
+    @p_AccountId BIGINT,
+    @p_ServerId INT,
+    @p_Name NVARCHAR(128),
+    @p_Level INT,
+    @p_Exp BIGINT,
+    @p_LastPlayed DATETIME,
+    @p_CharacterId BIGINT OUTPUT
+)
+AS
+BEGIN
+    DECLARE @v_CharacterId BIGINT;
+    DECLARE @RETURN INT = 0;
+
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        -- Check if the character already exists
+        SELECT @v_CharacterId = CharacterId
+        FROM dbo.Character
+        WHERE AccountId = @p_AccountId AND Name = @p_Name;
+
+        IF @v_CharacterId IS NOT NULL 
+            BEGIN
+                UPDATE dbo.Character
+                SET Level = @p_Level
+                ,   LastPlayed = @p_LastPlayed
+                ,   Exp = @p_Exp
+                ,   ServerId = @p_ServerId
+                WHERE CharacterId = @v_CharacterId;
+
+                SET @p_CharacterId = @v_CharacterId;
+            END
+        ELSE
+            BEGIN
+                INSERT INTO dbo.Character (AccountId, ServerId, Name, Level, Exp, LastPlayed, CreatedAt)
+                VALUES (@p_AccountId, @p_ServerId, @p_Name, @p_Level, @p_Exp, @p_LastPlayed, GETUTCDATE());
+
+                SET @p_CharacterId = SCOPE_IDENTITY();
+            END
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    SET NOCOUNT OFF;
+
+    RETURN @RETURN
+END
+GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_SelectCharacterByAccountIdAndServerId
+GO
+
+CREATE PROCEDURE dbo.usp_SelectCharacterByAccountIdAndServerId  
+(
+    @p_AccountId BIGINT,
+    @p_ServerId INT
+)
+AS
+BEGIN
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+        -- Select all characters for the given account
+        SELECT CharacterId, AccountId, ServerId, Name, Level, Exp, LastPlayed, CreatedAt
+        FROM dbo.Character
+        WHERE AccountId = @p_AccountId AND ServerId = @p_ServerId;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
 
 --- Server Table
 DROP TABLE IF EXISTS dbo.Server
@@ -219,6 +325,35 @@ BEGIN
         SELECT ServerId
         FROM dbo.Server
         WHERE ServerAddress = @p_ServerAddress;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+
+DROP PROCEDURE IF EXISTS dbo.usp_SelectServerByServerType
+GO
+
+CREATE PROCEDURE dbo.usp_SelectServerByServerType
+(
+    @p_ServerType TINYINT
+)
+AS
+BEGIN
+    DECLARE @v_ServerId INT;
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+
+        -- Check if the account already exists
+        SELECT ServerId
+        FROM dbo.Server
+        WHERE ServerType = @p_ServerType;
 
     END TRY
     BEGIN CATCH

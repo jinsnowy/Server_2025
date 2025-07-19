@@ -30,29 +30,35 @@ static constexpr ::_pb::Message* const* file_default_instances = nullptr;
 
 const char descriptor_table_protodef_types_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\013types.proto\022\005types\032 google/protobuf/de"
-  "scriptor.proto*\246\002\n\010protocol\022\014\n\010kInvalid\020"
+  "scriptor.proto*\376\003\n\010protocol\022\014\n\010kInvalid\020"
   "\000\022\013\n\006kHello\020\201 \022\r\n\010kPingReq\020\202 \022\r\n\010kPingRe"
   "s\020\203 \022\025\n\020kContentReadyReq\020\204 \022\025\n\020kContentR"
   "eadyRes\020\205 \022\021\n\014kHelloClient\020\206 \022\021\n\014kHelloS"
   "erver\020\207 \022\033\n\026kDisconnectAlertNotify\020\210 \022\027\n"
   "\022kRegisterServerReq\020\211 \022\027\n\022kRegisterServe"
   "rRes\020\212 \022\023\n\016kServerPingReq\020\213 \022\023\n\016kServerP"
-  "ingRes\020\214 \022\024\n\017kHelloClientAck\020\215 *\207\001\n\006Resu"
-  "lt\022\014\n\010kSuccess\020\000\022\014\n\010kUnknown\020\001\022\023\n\017kInval"
-  "idRequest\020\002\022\025\n\021kInvalidParameter\020\003\022\r\n\tkN"
-  "otFound\020\004\022\022\n\016kInternalError\020\005\022\022\n\016kDataba"
-  "seError\020\006*Z\n\nServerType\022\022\n\016kUnknownServe"
-  "r\020\000\022\024\n\020kDedicatedServer\020\001\022\020\n\014kWorldServe"
-  "r\020\002\022\020\n\014kLobbyServer\020\003:H\n\nmessage_id\022\037.go"
-  "ogle.protobuf.MessageOptions\030\351\007 \001(\0162\017.ty"
-  "pes.protocol\210\001\001b\006proto3"
+  "ingRes\020\214 \022\024\n\017kHelloClientAck\020\215 \022\030\n\023kWorl"
+  "dServerListReq\020\216 \022\030\n\023kWorldServerListRes"
+  "\020\217 \022\030\n\023kCreateCharacterReq\020\220 \022\030\n\023kCreate"
+  "CharacterRes\020\221 \022\031\n\024kGetCharacterListReq\020"
+  "\222 \022\031\n\024kGetCharacterListRes\020\223 \022\033\n\026kPlaySt"
+  "artCharacterReq\020\224 \022\033\n\026kPlayStartCharacte"
+  "rRes\020\225 *\234\001\n\006Result\022\014\n\010kSuccess\020\000\022\014\n\010kUnk"
+  "nown\020\001\022\023\n\017kInvalidRequest\020\002\022\025\n\021kInvalidP"
+  "arameter\020\003\022\r\n\tkNotFound\020\004\022\022\n\016kInternalEr"
+  "ror\020\005\022\022\n\016kDatabaseError\020\006\022\023\n\017kDuplicated"
+  "Name\020\007*Z\n\nServerType\022\022\n\016kUnknownServer\020\000"
+  "\022\024\n\020kDedicatedServer\020\001\022\020\n\014kWorldServer\020\002"
+  "\022\020\n\014kLobbyServer\020\003:H\n\nmessage_id\022\037.googl"
+  "e.protobuf.MessageOptions\030\351\007 \001(\0162\017.types"
+  ".protocol\210\001\001b\006proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_types_2eproto_deps[1] = {
   &::descriptor_table_google_2fprotobuf_2fdescriptor_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_types_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_types_2eproto = {
-    false, false, 663, descriptor_table_protodef_types_2eproto,
+    false, false, 900, descriptor_table_protodef_types_2eproto,
     "types.proto",
     &descriptor_table_types_2eproto_once, descriptor_table_types_2eproto_deps, 1, 0,
     schemas, file_default_instances, TableStruct_types_2eproto::offsets,
@@ -86,6 +92,14 @@ bool protocol_IsValid(int value) {
     case 4107:
     case 4108:
     case 4109:
+    case 4110:
+    case 4111:
+    case 4112:
+    case 4113:
+    case 4114:
+    case 4115:
+    case 4116:
+    case 4117:
       return true;
     default:
       return false;
@@ -105,6 +119,7 @@ bool Result_IsValid(int value) {
     case 4:
     case 5:
     case 6:
+    case 7:
       return true;
     default:
       return false;

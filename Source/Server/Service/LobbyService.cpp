@@ -9,6 +9,8 @@ namespace Server {
     }
 
     void LobbyService::Start() {
+        Service::Start();
+
         System::Scheduler::CreateThread([]() {
             LobbyGrpcService service;
             grpc::ServerBuilder builder;

@@ -19,6 +19,14 @@ enum protocol {
 	kServerPingReq 			= 0x100B;
 	kServerPingRes			= 0x100C;
 	kHelloClientAck 		= 0x100D;
+	kWorldServerListReq		= 0x100E;
+	kWorldServerListRes     = 0x100F;
+	kCreateCharacterReq 	= 0x1010;
+	kCreateCharacterRes 	= 0x1011;
+	kGetCharacterListReq	= 0x1012;
+	kGetCharacterListRes	= 0x1013;
+	kPlayStartCharacterReq	= 0x1014;
+	kPlayStartCharacterRes  = 0x1015;
 }
 
 extend google.protobuf.MessageOptions {
@@ -33,6 +41,7 @@ enum Result {
 	kNotFound = 4;
 	kInternalError = 5;
 	kDatabaseError = 6;
+	kDuplicatedName = 7;
 }
 
 enum ServerType {

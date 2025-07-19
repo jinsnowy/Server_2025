@@ -11,6 +11,7 @@ namespace Server {
 
 	namespace Model {
 		class Account;
+		class Character;
 		struct AccountTokenInfo;
 	}
 
@@ -32,17 +33,25 @@ namespace Server {
 
 		int64_t session_id() const { return session_id_; }
 
-	
 		bool LoadAccount(const Model::AccountTokenInfo& account_token_info);
 
 		const Model::Account& account() const {
 			return *account_;
 		}
 
+		bool IsAccountLoaded() const {
+			return account_ != nullptr;
+		}
+
+		void AddCharacter(std::unique_ptr<Model::Character> character);
+
+		Model::Character* GetCharacter(int64_t character_id);
+
 	private:
 		int64_t session_id_ = 0;
 
 		std::unique_ptr<Model::Account> account_;
+		std::unordered_map<int64_t, std::unique_ptr<Model::Character>> characters_;
 	};
 }
 

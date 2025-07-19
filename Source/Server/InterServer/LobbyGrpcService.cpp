@@ -9,6 +9,7 @@ namespace Server {
 		Model::Server server;
 		server.server_address = req->server_address();
 		server.server_type = static_cast<Model::ServerType>(req->server_type());
+		server.created_at = System::Time::UtcNow();
 		if (server.UpsertToDb(*agent) == false) {
 			LOG_ERROR("Failed to upsert server: server_address: {}, server_type: {}", server.server_address, System::Enums::ToString(server.server_type));
 			res->set_result(types::Result::kDatabaseError);

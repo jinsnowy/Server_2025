@@ -63,12 +63,20 @@ enum protocol : int {
   kServerPingReq = 4107,
   kServerPingRes = 4108,
   kHelloClientAck = 4109,
+  kWorldServerListReq = 4110,
+  kWorldServerListRes = 4111,
+  kCreateCharacterReq = 4112,
+  kCreateCharacterRes = 4113,
+  kGetCharacterListReq = 4114,
+  kGetCharacterListRes = 4115,
+  kPlayStartCharacterReq = 4116,
+  kPlayStartCharacterRes = 4117,
   protocol_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   protocol_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool protocol_IsValid(int value);
 constexpr protocol protocol_MIN = kInvalid;
-constexpr protocol protocol_MAX = kHelloClientAck;
+constexpr protocol protocol_MAX = kPlayStartCharacterRes;
 constexpr int protocol_ARRAYSIZE = protocol_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* protocol_descriptor();
@@ -93,12 +101,13 @@ enum Result : int {
   kNotFound = 4,
   kInternalError = 5,
   kDatabaseError = 6,
+  kDuplicatedName = 7,
   Result_INT_MIN_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::min(),
   Result_INT_MAX_SENTINEL_DO_NOT_USE_ = std::numeric_limits<int32_t>::max()
 };
 bool Result_IsValid(int value);
 constexpr Result Result_MIN = kSuccess;
-constexpr Result Result_MAX = kDatabaseError;
+constexpr Result Result_MAX = kDuplicatedName;
 constexpr int Result_ARRAYSIZE = Result_MAX + 1;
 
 const ::PROTOBUF_NAMESPACE_ID::EnumDescriptor* Result_descriptor();
