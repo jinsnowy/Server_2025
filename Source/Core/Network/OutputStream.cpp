@@ -14,13 +14,11 @@ namespace Network {
 
 	bool OutputStream::Next(void** data, int* size) {
 		if (buffer_.GetRemainingByteCount() <= 0) {
-			return false;
+			RotateBuffer(RequestSendBuffer());
 		}
 
-		static constexpr size_t kMaxInt = std::numeric_limits<int32_t>::max();
-
 		*data = buffer_.GetFreePtr();
-		*size = static_cast<int32_t>(std::min(buffer_.GetRemainingByteCount(), kMaxInt));
+		*size = static_cast<int32_t>(buffer_.GetRemainingByteCount());
 		buffer_.set_end_pos(buffer_.end_pos() + *size);
 
 		return true;
@@ -86,13 +84,20 @@ namespace Network {
 		return std::nullopt;
 	}
 
+	void OutputStream::RotateBuffer(Buffer&& new_buffer) {
+		if (buffer_.GetByteCount() > 0) {
+			pending_buffers_.push_back(std::move(buffer_));
+		}
+		buffer_ = std::move(new_buffer);
+	}
+
 	bool OutputStream::AllowsAliasing() const {
 		return true;
 	}
 
 	bool StreamWriter::WriteMessage(const size_t message_id, const void* data, const size_t size) {
 		PacketHeader header = {.id = message_id, .size = size};
-		AssureWriteCapcity(header);
+		AssureWriteCapcity(sizeof(PacketHeader));
 
 		if (!output_stream_.WriteRaw(&header, sizeof(PacketHeader))) {
 			return false;
@@ -108,7 +113,7 @@ namespace Network {
 	bool StreamWriter::WriteMessage(const size_t message_id, const google::protobuf::Message& message) {
 		size_t size = message.ByteSizeLong();
 		PacketHeader header = { .id = message_id, .size = size };
-		AssureWriteCapcity(header);
+		AssureWriteCapcity(sizeof(PacketHeader));
 
 		if (!output_stream_.WriteRaw(&header, sizeof(PacketHeader))) {
 			return false;
@@ -121,19 +126,9 @@ namespace Network {
 		return true;
 	}
 
-	void StreamWriter::AssureWriteCapcity(const PacketHeader& header) {
-		// Ensure that the output stream has enough capacity to write the header and the packet data.st
-		const size_t SizeCheckOnAllocation = header.size + sizeof(PacketHeader);
-
-		if (output_stream_.RemainingByteCount() < sizeof(PacketHeader)
-			|| SizeCheckOnAllocation > kSendBufferChunkSize) {
-			const size_t alloc_size = std::max(kSendBufferChunkSize, SizeCheckOnAllocation);
-			if (alloc_size != kSendBufferChunkSize) {
-				output_stream_.SetBuffer(RequestBuffer(alloc_size));
-			}
-			else {
-				output_stream_.SetBuffer(RequestSendBuffer());
-			}
+	void StreamWriter::AssureWriteCapcity(size_t size) {
+		if (output_stream_.RemainingByteCount() < size) {
+			output_stream_.RotateBuffer(RequestSendBuffer());
 		}
 	}
 };

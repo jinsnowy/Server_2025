@@ -66,7 +66,13 @@ DBConfig GetDBConfig() {
     config.game_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=GameDB;";
     return config;
 }
+struct Operator {
 
+
+    void operator()(int a) {
+        LOG_INFO("Operator called with value: {}", a);
+    }
+};
 int main() {
 
     System::Scheduler::CreateThreadPool(1);
@@ -107,6 +113,7 @@ int main() {
 
         LOG_INFO("World service started on port 9912");
     });
+
 
     System::Program::Wait();
 

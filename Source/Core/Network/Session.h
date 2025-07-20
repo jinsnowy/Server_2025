@@ -34,6 +34,7 @@ public:
 	virtual std::unique_ptr<Protocol> CreateProtocol() = 0;
 
     std::string GetConnectionString() const;
+	int64_t session_id() const { return session_id_; }
 
 protected:
     std::shared_ptr<Connection> connection_;
@@ -42,6 +43,9 @@ protected:
 private:
     friend class SessionFactory;
     friend class Connection;
+
+	int64_t session_id_ = 0;
+	static std::atomic<int64_t> session_counter_;
 
     void OnProcessPacket(const std::shared_ptr<Protocol> protocol);
 

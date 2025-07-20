@@ -6,6 +6,7 @@
 
 namespace System {
 	class Channel;
+	class Context;
 	class Actor : public std::enable_shared_from_this<Actor> {
 	public:
 
@@ -16,6 +17,7 @@ namespace System {
 
 		bool IsSynchronized() const;
 		Channel GetChannel() const;
+		std::shared_ptr<Context> GetContext() const;
 
 		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
 		static std::shared_ptr<T> GetShared(T* ptr) {

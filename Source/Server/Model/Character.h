@@ -1,7 +1,5 @@
 #pragma once
 
-#include "Protobuf/Public/User.h"
-
 namespace Server::Model {
 	class Character {
 	public:
@@ -26,7 +24,7 @@ namespace Server::Model {
 		void set_last_played(const System::Time& last_played) { last_played_ = last_played; }
 		const System::Time& last_played() const { return last_played_; }
 
-		void WriteTo(user::CharacterInfo* out_character);
+		void WriteTo(types::CharacterInfo* out_character);
 
 	private:
 		int64_t character_id_ = 0;

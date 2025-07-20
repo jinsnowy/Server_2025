@@ -7,25 +7,30 @@ namespace System {
 	namespace Detail {
 		template<typename T>
 		struct SharedPtrWrapper {
+			static constexpr bool value = false;
 		};
 
 		template<typename T>
 		struct SharedPtrWrapper<std::shared_ptr<T>> {
 			using Type = std::remove_cvref_t<T>;
+			static constexpr bool value = true;
 		};
 
-		template<typename F, typename A, typename R>
-		struct WhenResultAndPatchMessage {
+		template<typename T>
+		static constexpr bool IsSharedPtrWrapperV = SharedPtrWrapper<T>::value;
+
+		template<typename F, typename R, typename _Actor>
+		struct WhenResultAndPatchActorMessage {
 			std::shared_ptr<FutureState<R>> thenable_state;
 			F func;
 
-			WhenResultAndPatchMessage(std::shared_ptr<FutureState<R>> state, F&& f)
+			WhenResultAndPatchActorMessage(const std::shared_ptr<FutureState<R>>& state, F&& f)
 				:
-				thenable_state(std::move(state)),
+				thenable_state(state),
 				func(std::forward<F>(f)) {
 			}
 
-			void operator()(A& actor) {
+			void operator()(_Actor& actor) {
 				try {
 					if constexpr (std::is_void_v<R>) {
 						func(actor);
@@ -40,7 +45,7 @@ namespace System {
 				}
 			}
 		};
-
+			
 		template<typename T, typename R, typename F>
 		static inline std::function<void(T)> WhenResultAndPatch(std::shared_ptr<FutureState<R>> thenable_state, F&& func) {
 			static_assert(std::is_base_of_v<Actor, typename SharedPtrWrapper<T>::Type>, "T must not be an std::shared_ptr<Actor> for WhenResultAndPatch");
@@ -50,7 +55,7 @@ namespace System {
 					thenable_state->SetException(std::make_exception_ptr(ActorNullException()));
 					return;
 				}
-				System::ActorController<A>(*shared_actor).Patch(WhenResultAndPatchMessage<F, A, R>(thenable_state, std::forward<F>(func)));
+				System::ActorController<A>(*shared_actor).Patch(WhenResultAndPatchActorMessage<F, R, A>(thenable_state, std::forward<F>(func)));
 			};
 		}
 

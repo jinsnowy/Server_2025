@@ -62,10 +62,12 @@ namespace Protobuf {
 
 		auto connection = connection_;
 		if (connection != nullptr && connection->IsSendInProgress() == false) {
-			Ctrl(*connection).Post([conn = GetShared(this), buffer = writer.Flush()](Network::Connection& connection) {
-				if (buffer.has_value() == false) {
-					return;
-				}
+			auto buffer = writer.Flush();
+			if (buffer.has_value() == false) {
+				return;
+			}
+
+			Ctrl(*connection).Post([conn = GetShared(this), buffer = std::move(buffer)](Network::Connection& connection) {
 				connection.Send(buffer.value());
 			});
 		}

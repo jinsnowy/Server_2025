@@ -18,7 +18,7 @@ namespace System {
 	inline Detail::Thenable<typename FuncTraits<F>::ReturnType> Future<T>::ThenPost(F&& func) {
 		using R = typename FuncTraits<F>::ReturnType;
 		Detail::Thenable<R> thenable(state_);
-		state_->callback_ = Detail::WhenResultAndPatch<T, R>(thenable.thenable_state(), std::forward<F>(func));
+		state_->callback_ = Detail::WhenResultAndPatch<T>(thenable.thenable_state(), std::forward<F>(func));
 		return thenable;
 	}
 }

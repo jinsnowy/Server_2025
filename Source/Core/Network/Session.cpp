@@ -10,10 +10,13 @@
 
 
 namespace Network {
+	std::atomic<int64_t> Session::session_counter_ = 1;
+
     Session::Session(const std::shared_ptr<System::Context>& context)
         :
         Actor(System::Channel(context)),
-        output_stream_(std::make_unique<OutputStream>())
+        output_stream_(std::make_unique<OutputStream>()),
+		session_id_(session_counter_++)
     {
     }
 
@@ -21,7 +24,8 @@ namespace Network {
         :
         Actor(System::Channel()),
         connection_(nullptr),
-        output_stream_(std::make_unique<OutputStream>())
+        output_stream_(std::make_unique<OutputStream>()),
+		session_id_(session_counter_++)
     {
     }
 
@@ -59,15 +63,18 @@ namespace Network {
     void Session::FlushToSendStream() {
         DEBUG_ASSERT(IsSynchronized());
 
+        auto connection = connection_;
+        if (connection == nullptr) {
+            return;
+        }
+
         auto next = output_stream_->Flush();
         if (next.has_value() == false) {
             return;
         }
 
-        auto connection = connection_;
-        if (connection == nullptr) {
-            return;
-        }
+		size_t buffer_size = next.value().length();
+        buffer_size;
 
         Ctrl(*connection).Post([buffer = next.value()](Connection& connection) {
             connection.Send(buffer);

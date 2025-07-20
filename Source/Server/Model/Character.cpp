@@ -52,7 +52,7 @@ namespace Server::Model {
 		return stmt.Execute(L"usp_CheckCharacterExistsByName") == false;
 	}
 
-	void Model::Character::WriteTo(user::CharacterInfo* out_character)
+	void Model::Character::WriteTo(types::CharacterInfo* out_character)
 	{
 		out_character->set_character_id(character_id_);
 		out_character->set_account_id(account_id_);

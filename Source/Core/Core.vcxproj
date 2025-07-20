@@ -247,6 +247,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Container\CircularBuffer.cpp" />
+    <ClCompile Include="Container\LruCache.cpp" />
     <ClCompile Include="Container\MPSC.cpp" />
     <ClCompile Include="Container\SList.cpp" />
     <ClCompile Include="Container\SPSC.cpp" />
@@ -255,7 +256,7 @@
     <ClCompile Include="Http\HttpResponse.cpp" />
     <ClCompile Include="Json\Json.cpp" />
     <ClCompile Include="Logging\Logger.cpp" />
-    <ClCompile Include="Math\LinAlg.cpp" />
+    <ClCompile Include="Math\LinAlgebra.cpp" />
     <ClCompile Include="Misc\ApplyVariants.cpp" />
     <ClCompile Include="Misc\Crc32Hash.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
@@ -320,6 +321,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Container\CircularBuffer.h" />
+    <ClInclude Include="Container\LruCache.h" />
     <ClInclude Include="Container\MPSC.h" />
     <ClInclude Include="Container\SList.h" />
     <ClInclude Include="Container\SPSC.h" />
@@ -329,7 +331,7 @@
     <ClInclude Include="Http\HttpResponse.h" />
     <ClInclude Include="Json\Json.h" />
     <ClInclude Include="Logging\Logger.h" />
-    <ClInclude Include="Math\LinAlg.h" />
+    <ClInclude Include="Math\LinAlgebra.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Misc\Crc32Hash.h" />
     <ClInclude Include="Network\Acceptor.h" />

@@ -25,6 +25,9 @@
     <Filter Include="Service">
       <UniqueIdentifier>{09598e3f-b557-475a-bddb-bf49e0c02063}</UniqueIdentifier>
     </Filter>
+    <Filter Include="World">
+      <UniqueIdentifier>{9fcdd07c-b1d8-4083-a872-3e57cce5fa2d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp">
@@ -77,9 +80,6 @@
     <ClCompile Include="Service\Service.cpp">
       <Filter>Service</Filter>
     </ClCompile>
-    <ClCompile Include="Session\SessionId.cpp">
-      <Filter>Session</Filter>
-    </ClCompile>
     <ClCompile Include="Section\Section.cpp">
       <Filter>Section</Filter>
     </ClCompile>
@@ -97,6 +97,21 @@
     </ClCompile>
     <ClCompile Include="Service\LobbyService.cpp">
       <Filter>Service</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Movable.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="World\PlayerMovableTick.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="World\NeighborsLookup.cpp">
+      <Filter>World</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Player.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="World\PlayerRepository.cpp">
+      <Filter>World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -149,9 +164,6 @@
     <ClInclude Include="Service\Service.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="Session\SessionId.h">
-      <Filter>Session</Filter>
-    </ClInclude>
     <ClInclude Include="Section\Section.h">
       <Filter>Section</Filter>
     </ClInclude>
@@ -169,6 +181,21 @@
     </ClInclude>
     <ClInclude Include="Service\LobbyService.h">
       <Filter>Service</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Movable.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="World\PlayerMovableTick.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="World\NeighborsLookup.h">
+      <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Player.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="World\PlayerRepository.h">
+      <Filter>World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

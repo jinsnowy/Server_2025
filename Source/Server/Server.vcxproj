@@ -299,6 +299,8 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\Account.cpp" />
     <ClCompile Include="Model\Character.cpp" />
+    <ClCompile Include="Model\Movable.cpp" />
+    <ClCompile Include="Model\Player.cpp" />
     <ClCompile Include="Model\Server.cpp" />
     <ClCompile Include="Model\UniqueId.cpp" />
     <ClCompile Include="Section\Section.cpp" />
@@ -314,11 +316,13 @@
     <ClCompile Include="Service\WorldServiceDef.cpp" />
     <ClCompile Include="Session\ClientSession.cpp" />
     <ClCompile Include="Session\LobbySession.cpp" />
-    <ClCompile Include="Session\SessionId.cpp" />
     <ClCompile Include="Session\WorldSession.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="World\NeighborsLookup.cpp" />
+    <ClCompile Include="World\PlayerMovableTick.cpp" />
+    <ClCompile Include="World\PlayerRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h" />
@@ -327,6 +331,8 @@
     <ClInclude Include="InterServer\LobbyGrpcService.h" />
     <ClInclude Include="Model\Account.h" />
     <ClInclude Include="Model\Character.h" />
+    <ClInclude Include="Model\Movable.h" />
+    <ClInclude Include="Model\Player.h" />
     <ClInclude Include="Model\Server.h" />
     <ClInclude Include="Model\UniqueId.h" />
     <ClInclude Include="Section\Section.h" />
@@ -342,9 +348,11 @@
     <ClInclude Include="Service\WorldServiceDef.h" />
     <ClInclude Include="Session\ClientSession.h" />
     <ClInclude Include="Session\LobbySession.h" />
-    <ClInclude Include="Session\SessionId.h" />
     <ClInclude Include="Session\WorldSession.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="World\NeighborsLookup.h" />
+    <ClInclude Include="World\PlayerMovableTick.h" />
+    <ClInclude Include="World\PlayerRepository.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.vcxproj">

@@ -3,6 +3,7 @@ syntax = "proto3";
 package world;
 
 import "types.proto";
+import "google/protobuf/timestamp.proto";
 
 message RegisterServerReq {
 	option (types.message_id) = kRegisterServerReq;
@@ -26,4 +27,67 @@ message ServerPingRes {
 	option (types.message_id) = kServerPingReq;
 	types.Result result =1;
 	int32 server_id = 2;
+}
+
+message HelloWorldServer {
+	option (types.message_id) = kHelloWorldServer;
+	int64 character_id = 1;
+}
+
+message HelloWorldClient {
+	option (types.message_id) = kHelloWorldClient;
+	int32 map_uid = 1;
+}
+
+message ClientEnterMapReq {
+	option (types.message_id) = kClientEnterMapReq;
+	int32 map_uid = 1;
+	types.CharacterPose character_pos = 2;
+}
+
+message ClientEnterMapRes {
+	option (types.message_id) = kClientEnterMapRes;
+	types.Result result = 1;
+	int32 map_uid = 2;
+}
+
+message ClientEnterMapNotify {
+	option (types.message_id) = kClientEnterMapNotify;
+	types.SectionInfo section_info = 1;
+}
+
+message ClientLeaveMapNotify {
+	option (types.message_id) = kClientLeaveMapNotify;
+	types.SectionInfo section_info = 2;
+}
+
+message ClientMoveReq {
+	option (types.message_id) = kClientMoveReq;
+	types.CharacterPose character_pos = 1;
+}
+
+message ClientMoveRes {
+	option (types.message_id) = kClientMoveRes;
+	types.CharacterPose character_pos = 2;
+}
+
+message OtherClientEnterNotify {
+	option (types.message_id) = kOtherClientEnterNotify;
+	int64 character_id = 1;
+	int32 server_id = 2;
+	types.CharacterPose character_pos = 3;
+	types.SectionInfo section_info = 4;
+}
+
+message OtherClientLeaveNotify {
+	option (types.message_id) = kOtherClientLeaveNotify;
+	int64 character_id = 1;
+	types.SectionInfo section_info = 3;
+}
+
+message OtherClientMoveNotify {
+	option (types.message_id) = kOtherClientMoveNotify;
+	int64 character_id = 1;
+	types.CharacterPose character_pos = 2;
+	google.protobuf.Timestamp server_timestamp = 3;
 }

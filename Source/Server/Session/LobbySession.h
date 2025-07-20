@@ -26,12 +26,10 @@ namespace Server {
 		void OnConnected();
 
 		void OnDisconnected() {
-			LOG_INFO("LobbySession::OnDisconnect session_id:{}", session_id_);
+			LOG_INFO("LobbySession::OnDisconnect session_id:{}", session_id());
 		}
 
 		std::unique_ptr<Network::Protocol> CreateProtocol() override;
-
-		int64_t session_id() const { return session_id_; }
 
 		bool LoadAccount(const Model::AccountTokenInfo& account_token_info);
 
@@ -48,8 +46,6 @@ namespace Server {
 		Model::Character* GetCharacter(int64_t character_id);
 
 	private:
-		int64_t session_id_ = 0;
-
 		std::unique_ptr<Model::Account> account_;
 		std::unordered_map<int64_t, std::unique_ptr<Model::Character>> characters_;
 	};

@@ -13,9 +13,6 @@ do{\
 		if (IsDebuggerPresent()) {\
 			__debugbreak();\
 		}\
-		else {\
-			std::abort();\
-		}\
 	}\
 	__assume(expr);\
 } while (false)

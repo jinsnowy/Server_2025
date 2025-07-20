@@ -8,7 +8,7 @@ namespace System {
 		template<
 		typename F,
 		typename A,
-		typename FArg = typename std::tuple_element<0, typename FuncTraits<F>::FArgsType>::type,
+		typename FArg = FuncArgT<F, 0>,
 		typename = std::enable_if_t<std::is_base_of_v<A, std::remove_reference_t<FArg>>>>
 		class PostMessage : public Callable {
 		public:

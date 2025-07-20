@@ -24,12 +24,20 @@ namespace System {
 			return std::chrono::duration_cast<std::chrono::milliseconds>(time_point_.time_since_epoch()).count();
 		}
 
+		int64_t GetEpocMicroseconds() const {
+			return std::chrono::duration_cast<std::chrono::microseconds>(time_point_.time_since_epoch()).count();
+		}
+
 		Tick AddMilliseconds(int64_t milliseconds) const {
 			return Tick(time_point_ + std::chrono::milliseconds(milliseconds));
 		}
 
 		static Tick FromEpocMilliseconds(int64_t milliseconds) {
 			return Tick(std::chrono::steady_clock::time_point(std::chrono::milliseconds(milliseconds)));
+		}
+
+		static Tick FromEpocMicroseconds(int64_t microseconds) {
+			return Tick(std::chrono::steady_clock::time_point(std::chrono::microseconds(microseconds)));
 		}
 
 		const std::chrono::steady_clock::time_point& internal_time_point() const {

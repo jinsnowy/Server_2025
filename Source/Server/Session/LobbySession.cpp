@@ -6,7 +6,6 @@
 #include "Server/Service/LobbyServiceDef.h"
 #include "Server/Database/DB.h"
 #include "Server/Authenticator/Authenticator.h"
-#include "SessionId.h"
 #include "../Model/Character.h"
 #include "../Model/Server.h"
 #include "Core/Network/IPAddress.h"
@@ -27,8 +26,7 @@ namespace Server {
 	void LobbySession::OnConnected() {
 		ProtobufSession::OnConnected();
 
-		session_id_ = SessionId::Issue(SessionType::kLobbySession);
-		LOG_INFO("LobbySession::OnConnected session_id:{}, address:{}", session_id_, connection()->ToString());
+		LOG_INFO("LobbySession::OnConnected session_id:{}, address:{}", session_id(), connection()->ToString());
 
 		Send(user::HelloClient{});
 	}
@@ -83,6 +81,7 @@ namespace Server {
 					session_ptr->Disconnect();
 					return {};
 				}
+
 				Ctrl(*session_ptr).Async([account_token_info = result.value()](LobbySession& session) -> std::shared_ptr<LobbySession> {
 				if (session.LoadAccount(account_token_info) == false) {
 					LOG_ERROR("Failed to load account for user_id: {}", account_token_info.user_id);

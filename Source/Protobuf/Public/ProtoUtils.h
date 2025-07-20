@@ -11,6 +11,9 @@ PROTOBUF_IGNORE_WARNINGS_POP
 
 namespace Protobuf {
 	google::protobuf::Timestamp ToTimestamp(const System::Time& timepoint);
-	System::Time FromTimestamp(const google::protobuf::Timestamp& timestamp);
+	System::Time ToTime(const google::protobuf::Timestamp& timestamp);
+
+	google::protobuf::Timestamp ToTimestamp(const System::Tick& tick);
+	System::Tick ToTick(const google::protobuf::Timestamp& timestamp);
 }
 

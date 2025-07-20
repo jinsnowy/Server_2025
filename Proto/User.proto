@@ -35,27 +35,10 @@ message WorldServerInfoReq {
 	option (types.message_id) = kWorldServerListReq;
 }
 
-message ServerInfo {
-	int32 server_id = 1;
-	string server_address = 2;
-	int32 current_player_num = 4;
-}
-
-message CharacterInfo {
-	int64 character_id = 1;
-	string character_name = 2;
-	int64 account_id = 3;
-	int32 server_id = 4;
-	int32 level = 5;
-	int64 exp = 6;
-	google.protobuf.Timestamp last_played = 7;
-	google.protobuf.Timestamp created_at = 8;
-}
-
 message WorldServerInfoRes {
 	option (types.message_id) = kWorldServerListRes;
 	types.Result result = 1;
-	repeated ServerInfo server_infos = 2;
+	repeated types.ServerInfo server_infos = 2;
 }
 
 message CreateCharacterReq {
@@ -67,7 +50,7 @@ message CreateCharacterReq {
 message CreateCharacterRes {
 	option (types.message_id) = kCreateCharacterRes;
 	types.Result result = 1;
-	CharacterInfo character_info =2;
+	types.CharacterInfo character_info =2;
 }
 
 message GetCharacterListReq {
@@ -78,7 +61,7 @@ message GetCharacterListReq {
 message GetCharacterListRes {
 	option (types.message_id) = kGetCharacterListRes;
 	types.Result result = 1;
-	repeated CharacterInfo character_infos = 2;
+	repeated types.CharacterInfo character_infos = 2;
 }
 
 message PlayStartCharacterReq {

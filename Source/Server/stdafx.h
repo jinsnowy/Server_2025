@@ -52,6 +52,9 @@
 #include "Core/ThirdParty/Sql.h"
 #include "Core/Sql/Sql.h"
 #include "Protobuf/Public/ProtoUtils.h"
+#include "Protobuf/Public/User.h"
+#include "Protobuf/Public/World.h"
+#include "Protobuf/Public/Types.h"
 
 PROTOBUF_IGNORE_WARNINGS_PUSH
 

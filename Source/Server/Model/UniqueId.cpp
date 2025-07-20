@@ -12,4 +12,5 @@ namespace Server
 		uint32_t auto_increment = auto_increment_counter_.fetch_add(1) & kMaxAutoIncrement; // Ensure auto_increment fits in 16 bits
 		return Internal(server_id, timestamp, auto_increment).unique_id;
 	}
+
 }

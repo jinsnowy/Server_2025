@@ -28,16 +28,14 @@ namespace Network {
 		const Buffer& GetBuffer() const {
 			return buffer_;
 		}
-		
-		void SetBuffer(Buffer&& buffer) {
-			buffer_ = std::move(buffer);
-		}
 
 		std::optional<BufferView> Flush();
 
 		size_t GetPendingBufferCount() const {
 			return pending_buffers_.size();
 		}
+
+		void RotateBuffer(Buffer&& new_buffer);
 
 	private:
 		Buffer buffer_;
@@ -61,7 +59,7 @@ namespace Network {
 	private:
 		OutputStream& output_stream_;
 
-		void AssureWriteCapcity(const PacketHeader& header);
+		void AssureWriteCapcity(size_t size);
 	};
 }
 

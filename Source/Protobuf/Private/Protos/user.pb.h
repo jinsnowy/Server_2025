@@ -48,9 +48,6 @@ struct TableStruct_user_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_user_2eproto;
 namespace user {
-class CharacterInfo;
-struct CharacterInfoDefaultTypeInternal;
-extern CharacterInfoDefaultTypeInternal _CharacterInfo_default_instance_;
 class CreateCharacterReq;
 struct CreateCharacterReqDefaultTypeInternal;
 extern CreateCharacterReqDefaultTypeInternal _CreateCharacterReq_default_instance_;
@@ -81,9 +78,6 @@ extern PlayStartCharacterReqDefaultTypeInternal _PlayStartCharacterReq_default_i
 class PlayStartCharacterRes;
 struct PlayStartCharacterResDefaultTypeInternal;
 extern PlayStartCharacterResDefaultTypeInternal _PlayStartCharacterRes_default_instance_;
-class ServerInfo;
-struct ServerInfoDefaultTypeInternal;
-extern ServerInfoDefaultTypeInternal _ServerInfo_default_instance_;
 class WorldServerInfoReq;
 struct WorldServerInfoReqDefaultTypeInternal;
 extern WorldServerInfoReqDefaultTypeInternal _WorldServerInfoReq_default_instance_;
@@ -92,7 +86,6 @@ struct WorldServerInfoResDefaultTypeInternal;
 extern WorldServerInfoResDefaultTypeInternal _WorldServerInfoRes_default_instance_;
 }  // namespace user
 PROTOBUF_NAMESPACE_OPEN
-template<> ::user::CharacterInfo* Arena::CreateMaybeMessage<::user::CharacterInfo>(Arena*);
 template<> ::user::CreateCharacterReq* Arena::CreateMaybeMessage<::user::CreateCharacterReq>(Arena*);
 template<> ::user::CreateCharacterRes* Arena::CreateMaybeMessage<::user::CreateCharacterRes>(Arena*);
 template<> ::user::DisconnectAlertNotify* Arena::CreateMaybeMessage<::user::DisconnectAlertNotify>(Arena*);
@@ -103,7 +96,6 @@ template<> ::user::HelloClientAck* Arena::CreateMaybeMessage<::user::HelloClient
 template<> ::user::HelloServer* Arena::CreateMaybeMessage<::user::HelloServer>(Arena*);
 template<> ::user::PlayStartCharacterReq* Arena::CreateMaybeMessage<::user::PlayStartCharacterReq>(Arena*);
 template<> ::user::PlayStartCharacterRes* Arena::CreateMaybeMessage<::user::PlayStartCharacterRes>(Arena*);
-template<> ::user::ServerInfo* Arena::CreateMaybeMessage<::user::ServerInfo>(Arena*);
 template<> ::user::WorldServerInfoReq* Arena::CreateMaybeMessage<::user::WorldServerInfoReq>(Arena*);
 template<> ::user::WorldServerInfoRes* Arena::CreateMaybeMessage<::user::WorldServerInfoRes>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -909,429 +901,6 @@ class WorldServerInfoReq final :
 };
 // -------------------------------------------------------------------
 
-class ServerInfo final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:user.ServerInfo) */ {
- public:
-  inline ServerInfo() : ServerInfo(nullptr) {}
-  ~ServerInfo() override;
-  explicit PROTOBUF_CONSTEXPR ServerInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  ServerInfo(const ServerInfo& from);
-  ServerInfo(ServerInfo&& from) noexcept
-    : ServerInfo() {
-    *this = ::std::move(from);
-  }
-
-  inline ServerInfo& operator=(const ServerInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline ServerInfo& operator=(ServerInfo&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const ServerInfo& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const ServerInfo* internal_default_instance() {
-    return reinterpret_cast<const ServerInfo*>(
-               &_ServerInfo_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    5;
-
-  friend void swap(ServerInfo& a, ServerInfo& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(ServerInfo* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(ServerInfo* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  ServerInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<ServerInfo>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const ServerInfo& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const ServerInfo& from) {
-    ServerInfo::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(ServerInfo* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "user.ServerInfo";
-  }
-  protected:
-  explicit ServerInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kServerAddressFieldNumber = 2,
-    kServerIdFieldNumber = 1,
-    kCurrentPlayerNumFieldNumber = 4,
-  };
-  // string server_address = 2;
-  void clear_server_address();
-  const std::string& server_address() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_server_address(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_server_address();
-  PROTOBUF_NODISCARD std::string* release_server_address();
-  void set_allocated_server_address(std::string* server_address);
-  private:
-  const std::string& _internal_server_address() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_server_address(const std::string& value);
-  std::string* _internal_mutable_server_address();
-  public:
-
-  // int32 server_id = 1;
-  void clear_server_id();
-  int32_t server_id() const;
-  void set_server_id(int32_t value);
-  private:
-  int32_t _internal_server_id() const;
-  void _internal_set_server_id(int32_t value);
-  public:
-
-  // int32 current_player_num = 4;
-  void clear_current_player_num();
-  int32_t current_player_num() const;
-  void set_current_player_num(int32_t value);
-  private:
-  int32_t _internal_current_player_num() const;
-  void _internal_set_current_player_num(int32_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:user.ServerInfo)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr server_address_;
-    int32_t server_id_;
-    int32_t current_player_num_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_user_2eproto;
-};
-// -------------------------------------------------------------------
-
-class CharacterInfo final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:user.CharacterInfo) */ {
- public:
-  inline CharacterInfo() : CharacterInfo(nullptr) {}
-  ~CharacterInfo() override;
-  explicit PROTOBUF_CONSTEXPR CharacterInfo(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  CharacterInfo(const CharacterInfo& from);
-  CharacterInfo(CharacterInfo&& from) noexcept
-    : CharacterInfo() {
-    *this = ::std::move(from);
-  }
-
-  inline CharacterInfo& operator=(const CharacterInfo& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline CharacterInfo& operator=(CharacterInfo&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()
-  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
-        && GetOwningArena() != nullptr
-  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
-    ) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const CharacterInfo& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const CharacterInfo* internal_default_instance() {
-    return reinterpret_cast<const CharacterInfo*>(
-               &_CharacterInfo_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    6;
-
-  friend void swap(CharacterInfo& a, CharacterInfo& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(CharacterInfo* other) {
-    if (other == this) return;
-  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() != nullptr &&
-        GetOwningArena() == other->GetOwningArena()) {
-   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
-    if (GetOwningArena() == other->GetOwningArena()) {
-  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(CharacterInfo* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  CharacterInfo* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
-    return CreateMaybeMessage<CharacterInfo>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const CharacterInfo& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom( const CharacterInfo& from) {
-    CharacterInfo::MergeImpl(*this, from);
-  }
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  uint8_t* _InternalSerialize(
-      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(CharacterInfo* other);
-
-  private:
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "user.CharacterInfo";
-  }
-  protected:
-  explicit CharacterInfo(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kCharacterNameFieldNumber = 2,
-    kLastPlayedFieldNumber = 7,
-    kCreatedAtFieldNumber = 8,
-    kCharacterIdFieldNumber = 1,
-    kAccountIdFieldNumber = 3,
-    kServerIdFieldNumber = 4,
-    kLevelFieldNumber = 5,
-    kExpFieldNumber = 6,
-  };
-  // string character_name = 2;
-  void clear_character_name();
-  const std::string& character_name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_character_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_character_name();
-  PROTOBUF_NODISCARD std::string* release_character_name();
-  void set_allocated_character_name(std::string* character_name);
-  private:
-  const std::string& _internal_character_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_character_name(const std::string& value);
-  std::string* _internal_mutable_character_name();
-  public:
-
-  // .google.protobuf.Timestamp last_played = 7;
-  bool has_last_played() const;
-  private:
-  bool _internal_has_last_played() const;
-  public:
-  void clear_last_played();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& last_played() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_last_played();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_last_played();
-  void set_allocated_last_played(::PROTOBUF_NAMESPACE_ID::Timestamp* last_played);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_last_played() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_last_played();
-  public:
-  void unsafe_arena_set_allocated_last_played(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* last_played);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_last_played();
-
-  // .google.protobuf.Timestamp created_at = 8;
-  bool has_created_at() const;
-  private:
-  bool _internal_has_created_at() const;
-  public:
-  void clear_created_at();
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& created_at() const;
-  PROTOBUF_NODISCARD ::PROTOBUF_NAMESPACE_ID::Timestamp* release_created_at();
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* mutable_created_at();
-  void set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
-  private:
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp& _internal_created_at() const;
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _internal_mutable_created_at();
-  public:
-  void unsafe_arena_set_allocated_created_at(
-      ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at);
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* unsafe_arena_release_created_at();
-
-  // int64 character_id = 1;
-  void clear_character_id();
-  int64_t character_id() const;
-  void set_character_id(int64_t value);
-  private:
-  int64_t _internal_character_id() const;
-  void _internal_set_character_id(int64_t value);
-  public:
-
-  // int64 account_id = 3;
-  void clear_account_id();
-  int64_t account_id() const;
-  void set_account_id(int64_t value);
-  private:
-  int64_t _internal_account_id() const;
-  void _internal_set_account_id(int64_t value);
-  public:
-
-  // int32 server_id = 4;
-  void clear_server_id();
-  int32_t server_id() const;
-  void set_server_id(int32_t value);
-  private:
-  int32_t _internal_server_id() const;
-  void _internal_set_server_id(int32_t value);
-  public:
-
-  // int32 level = 5;
-  void clear_level();
-  int32_t level() const;
-  void set_level(int32_t value);
-  private:
-  int32_t _internal_level() const;
-  void _internal_set_level(int32_t value);
-  public:
-
-  // int64 exp = 6;
-  void clear_exp();
-  int64_t exp() const;
-  void set_exp(int64_t value);
-  private:
-  int64_t _internal_exp() const;
-  void _internal_set_exp(int64_t value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:user.CharacterInfo)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr character_name_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_played_;
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at_;
-    int64_t character_id_;
-    int64_t account_id_;
-    int32_t server_id_;
-    int32_t level_;
-    int64_t exp_;
-    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_user_2eproto;
-};
-// -------------------------------------------------------------------
-
 class WorldServerInfoRes final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:user.WorldServerInfoRes) */ {
  public:
@@ -1380,7 +949,7 @@ class WorldServerInfoRes final :
                &_WorldServerInfoRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(WorldServerInfoRes& a, WorldServerInfoRes& b) {
     a.Swap(&b);
@@ -1456,22 +1025,22 @@ class WorldServerInfoRes final :
     kServerInfosFieldNumber = 2,
     kResultFieldNumber = 1,
   };
-  // repeated .user.ServerInfo server_infos = 2;
+  // repeated .types.ServerInfo server_infos = 2;
   int server_infos_size() const;
   private:
   int _internal_server_infos_size() const;
   public:
   void clear_server_infos();
-  ::user::ServerInfo* mutable_server_infos(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::ServerInfo >*
+  ::types::ServerInfo* mutable_server_infos(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::ServerInfo >*
       mutable_server_infos();
   private:
-  const ::user::ServerInfo& _internal_server_infos(int index) const;
-  ::user::ServerInfo* _internal_add_server_infos();
+  const ::types::ServerInfo& _internal_server_infos(int index) const;
+  ::types::ServerInfo* _internal_add_server_infos();
   public:
-  const ::user::ServerInfo& server_infos(int index) const;
-  ::user::ServerInfo* add_server_infos();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::ServerInfo >&
+  const ::types::ServerInfo& server_infos(int index) const;
+  ::types::ServerInfo* add_server_infos();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::ServerInfo >&
       server_infos() const;
 
   // .types.Result result = 1;
@@ -1491,7 +1060,7 @@ class WorldServerInfoRes final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::ServerInfo > server_infos_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::ServerInfo > server_infos_;
     int result_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1548,7 +1117,7 @@ class CreateCharacterReq final :
                &_CreateCharacterReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    6;
 
   friend void swap(CreateCharacterReq& a, CreateCharacterReq& b) {
     a.Swap(&b);
@@ -1712,7 +1281,7 @@ class CreateCharacterRes final :
                &_CreateCharacterRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    9;
+    7;
 
   friend void swap(CreateCharacterRes& a, CreateCharacterRes& b) {
     a.Swap(&b);
@@ -1788,23 +1357,23 @@ class CreateCharacterRes final :
     kCharacterInfoFieldNumber = 2,
     kResultFieldNumber = 1,
   };
-  // .user.CharacterInfo character_info = 2;
+  // .types.CharacterInfo character_info = 2;
   bool has_character_info() const;
   private:
   bool _internal_has_character_info() const;
   public:
   void clear_character_info();
-  const ::user::CharacterInfo& character_info() const;
-  PROTOBUF_NODISCARD ::user::CharacterInfo* release_character_info();
-  ::user::CharacterInfo* mutable_character_info();
-  void set_allocated_character_info(::user::CharacterInfo* character_info);
+  const ::types::CharacterInfo& character_info() const;
+  PROTOBUF_NODISCARD ::types::CharacterInfo* release_character_info();
+  ::types::CharacterInfo* mutable_character_info();
+  void set_allocated_character_info(::types::CharacterInfo* character_info);
   private:
-  const ::user::CharacterInfo& _internal_character_info() const;
-  ::user::CharacterInfo* _internal_mutable_character_info();
+  const ::types::CharacterInfo& _internal_character_info() const;
+  ::types::CharacterInfo* _internal_mutable_character_info();
   public:
   void unsafe_arena_set_allocated_character_info(
-      ::user::CharacterInfo* character_info);
-  ::user::CharacterInfo* unsafe_arena_release_character_info();
+      ::types::CharacterInfo* character_info);
+  ::types::CharacterInfo* unsafe_arena_release_character_info();
 
   // .types.Result result = 1;
   void clear_result();
@@ -1823,7 +1392,7 @@ class CreateCharacterRes final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::user::CharacterInfo* character_info_;
+    ::types::CharacterInfo* character_info_;
     int result_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -1880,7 +1449,7 @@ class GetCharacterListReq final :
                &_GetCharacterListReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    8;
 
   friend void swap(GetCharacterListReq& a, GetCharacterListReq& b) {
     a.Swap(&b);
@@ -2028,7 +1597,7 @@ class GetCharacterListRes final :
                &_GetCharacterListRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    11;
+    9;
 
   friend void swap(GetCharacterListRes& a, GetCharacterListRes& b) {
     a.Swap(&b);
@@ -2104,22 +1673,22 @@ class GetCharacterListRes final :
     kCharacterInfosFieldNumber = 2,
     kResultFieldNumber = 1,
   };
-  // repeated .user.CharacterInfo character_infos = 2;
+  // repeated .types.CharacterInfo character_infos = 2;
   int character_infos_size() const;
   private:
   int _internal_character_infos_size() const;
   public:
   void clear_character_infos();
-  ::user::CharacterInfo* mutable_character_infos(int index);
-  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::CharacterInfo >*
+  ::types::CharacterInfo* mutable_character_infos(int index);
+  ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::CharacterInfo >*
       mutable_character_infos();
   private:
-  const ::user::CharacterInfo& _internal_character_infos(int index) const;
-  ::user::CharacterInfo* _internal_add_character_infos();
+  const ::types::CharacterInfo& _internal_character_infos(int index) const;
+  ::types::CharacterInfo* _internal_add_character_infos();
   public:
-  const ::user::CharacterInfo& character_infos(int index) const;
-  ::user::CharacterInfo* add_character_infos();
-  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::CharacterInfo >&
+  const ::types::CharacterInfo& character_infos(int index) const;
+  ::types::CharacterInfo* add_character_infos();
+  const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::CharacterInfo >&
       character_infos() const;
 
   // .types.Result result = 1;
@@ -2139,7 +1708,7 @@ class GetCharacterListRes final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::CharacterInfo > character_infos_;
+    ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::CharacterInfo > character_infos_;
     int result_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
@@ -2196,7 +1765,7 @@ class PlayStartCharacterReq final :
                &_PlayStartCharacterReq_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    10;
 
   friend void swap(PlayStartCharacterReq& a, PlayStartCharacterReq& b) {
     a.Swap(&b);
@@ -2355,7 +1924,7 @@ class PlayStartCharacterRes final :
                &_PlayStartCharacterRes_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    13;
+    11;
 
   friend void swap(PlayStartCharacterRes& a, PlayStartCharacterRes& b) {
     a.Swap(&b);
@@ -3045,424 +2614,6 @@ inline void HelloClientAck::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Ti
 
 // -------------------------------------------------------------------
 
-// ServerInfo
-
-// int32 server_id = 1;
-inline void ServerInfo::clear_server_id() {
-  _impl_.server_id_ = 0;
-}
-inline int32_t ServerInfo::_internal_server_id() const {
-  return _impl_.server_id_;
-}
-inline int32_t ServerInfo::server_id() const {
-  // @@protoc_insertion_point(field_get:user.ServerInfo.server_id)
-  return _internal_server_id();
-}
-inline void ServerInfo::_internal_set_server_id(int32_t value) {
-  
-  _impl_.server_id_ = value;
-}
-inline void ServerInfo::set_server_id(int32_t value) {
-  _internal_set_server_id(value);
-  // @@protoc_insertion_point(field_set:user.ServerInfo.server_id)
-}
-
-// string server_address = 2;
-inline void ServerInfo::clear_server_address() {
-  _impl_.server_address_.ClearToEmpty();
-}
-inline const std::string& ServerInfo::server_address() const {
-  // @@protoc_insertion_point(field_get:user.ServerInfo.server_address)
-  return _internal_server_address();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void ServerInfo::set_server_address(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.server_address_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:user.ServerInfo.server_address)
-}
-inline std::string* ServerInfo::mutable_server_address() {
-  std::string* _s = _internal_mutable_server_address();
-  // @@protoc_insertion_point(field_mutable:user.ServerInfo.server_address)
-  return _s;
-}
-inline const std::string& ServerInfo::_internal_server_address() const {
-  return _impl_.server_address_.Get();
-}
-inline void ServerInfo::_internal_set_server_address(const std::string& value) {
-  
-  _impl_.server_address_.Set(value, GetArenaForAllocation());
-}
-inline std::string* ServerInfo::_internal_mutable_server_address() {
-  
-  return _impl_.server_address_.Mutable(GetArenaForAllocation());
-}
-inline std::string* ServerInfo::release_server_address() {
-  // @@protoc_insertion_point(field_release:user.ServerInfo.server_address)
-  return _impl_.server_address_.Release();
-}
-inline void ServerInfo::set_allocated_server_address(std::string* server_address) {
-  if (server_address != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.server_address_.SetAllocated(server_address, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.server_address_.IsDefault()) {
-    _impl_.server_address_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:user.ServerInfo.server_address)
-}
-
-// int32 current_player_num = 4;
-inline void ServerInfo::clear_current_player_num() {
-  _impl_.current_player_num_ = 0;
-}
-inline int32_t ServerInfo::_internal_current_player_num() const {
-  return _impl_.current_player_num_;
-}
-inline int32_t ServerInfo::current_player_num() const {
-  // @@protoc_insertion_point(field_get:user.ServerInfo.current_player_num)
-  return _internal_current_player_num();
-}
-inline void ServerInfo::_internal_set_current_player_num(int32_t value) {
-  
-  _impl_.current_player_num_ = value;
-}
-inline void ServerInfo::set_current_player_num(int32_t value) {
-  _internal_set_current_player_num(value);
-  // @@protoc_insertion_point(field_set:user.ServerInfo.current_player_num)
-}
-
-// -------------------------------------------------------------------
-
-// CharacterInfo
-
-// int64 character_id = 1;
-inline void CharacterInfo::clear_character_id() {
-  _impl_.character_id_ = int64_t{0};
-}
-inline int64_t CharacterInfo::_internal_character_id() const {
-  return _impl_.character_id_;
-}
-inline int64_t CharacterInfo::character_id() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.character_id)
-  return _internal_character_id();
-}
-inline void CharacterInfo::_internal_set_character_id(int64_t value) {
-  
-  _impl_.character_id_ = value;
-}
-inline void CharacterInfo::set_character_id(int64_t value) {
-  _internal_set_character_id(value);
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.character_id)
-}
-
-// string character_name = 2;
-inline void CharacterInfo::clear_character_name() {
-  _impl_.character_name_.ClearToEmpty();
-}
-inline const std::string& CharacterInfo::character_name() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.character_name)
-  return _internal_character_name();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void CharacterInfo::set_character_name(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.character_name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.character_name)
-}
-inline std::string* CharacterInfo::mutable_character_name() {
-  std::string* _s = _internal_mutable_character_name();
-  // @@protoc_insertion_point(field_mutable:user.CharacterInfo.character_name)
-  return _s;
-}
-inline const std::string& CharacterInfo::_internal_character_name() const {
-  return _impl_.character_name_.Get();
-}
-inline void CharacterInfo::_internal_set_character_name(const std::string& value) {
-  
-  _impl_.character_name_.Set(value, GetArenaForAllocation());
-}
-inline std::string* CharacterInfo::_internal_mutable_character_name() {
-  
-  return _impl_.character_name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* CharacterInfo::release_character_name() {
-  // @@protoc_insertion_point(field_release:user.CharacterInfo.character_name)
-  return _impl_.character_name_.Release();
-}
-inline void CharacterInfo::set_allocated_character_name(std::string* character_name) {
-  if (character_name != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.character_name_.SetAllocated(character_name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.character_name_.IsDefault()) {
-    _impl_.character_name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:user.CharacterInfo.character_name)
-}
-
-// int64 account_id = 3;
-inline void CharacterInfo::clear_account_id() {
-  _impl_.account_id_ = int64_t{0};
-}
-inline int64_t CharacterInfo::_internal_account_id() const {
-  return _impl_.account_id_;
-}
-inline int64_t CharacterInfo::account_id() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.account_id)
-  return _internal_account_id();
-}
-inline void CharacterInfo::_internal_set_account_id(int64_t value) {
-  
-  _impl_.account_id_ = value;
-}
-inline void CharacterInfo::set_account_id(int64_t value) {
-  _internal_set_account_id(value);
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.account_id)
-}
-
-// int32 server_id = 4;
-inline void CharacterInfo::clear_server_id() {
-  _impl_.server_id_ = 0;
-}
-inline int32_t CharacterInfo::_internal_server_id() const {
-  return _impl_.server_id_;
-}
-inline int32_t CharacterInfo::server_id() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.server_id)
-  return _internal_server_id();
-}
-inline void CharacterInfo::_internal_set_server_id(int32_t value) {
-  
-  _impl_.server_id_ = value;
-}
-inline void CharacterInfo::set_server_id(int32_t value) {
-  _internal_set_server_id(value);
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.server_id)
-}
-
-// int32 level = 5;
-inline void CharacterInfo::clear_level() {
-  _impl_.level_ = 0;
-}
-inline int32_t CharacterInfo::_internal_level() const {
-  return _impl_.level_;
-}
-inline int32_t CharacterInfo::level() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.level)
-  return _internal_level();
-}
-inline void CharacterInfo::_internal_set_level(int32_t value) {
-  
-  _impl_.level_ = value;
-}
-inline void CharacterInfo::set_level(int32_t value) {
-  _internal_set_level(value);
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.level)
-}
-
-// int64 exp = 6;
-inline void CharacterInfo::clear_exp() {
-  _impl_.exp_ = int64_t{0};
-}
-inline int64_t CharacterInfo::_internal_exp() const {
-  return _impl_.exp_;
-}
-inline int64_t CharacterInfo::exp() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.exp)
-  return _internal_exp();
-}
-inline void CharacterInfo::_internal_set_exp(int64_t value) {
-  
-  _impl_.exp_ = value;
-}
-inline void CharacterInfo::set_exp(int64_t value) {
-  _internal_set_exp(value);
-  // @@protoc_insertion_point(field_set:user.CharacterInfo.exp)
-}
-
-// .google.protobuf.Timestamp last_played = 7;
-inline bool CharacterInfo::_internal_has_last_played() const {
-  return this != internal_default_instance() && _impl_.last_played_ != nullptr;
-}
-inline bool CharacterInfo::has_last_played() const {
-  return _internal_has_last_played();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CharacterInfo::_internal_last_played() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.last_played_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CharacterInfo::last_played() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.last_played)
-  return _internal_last_played();
-}
-inline void CharacterInfo::unsafe_arena_set_allocated_last_played(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* last_played) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_played_);
-  }
-  _impl_.last_played_ = last_played;
-  if (last_played) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.CharacterInfo.last_played)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::release_last_played() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_played_;
-  _impl_.last_played_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::unsafe_arena_release_last_played() {
-  // @@protoc_insertion_point(field_release:user.CharacterInfo.last_played)
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.last_played_;
-  _impl_.last_played_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::_internal_mutable_last_played() {
-  
-  if (_impl_.last_played_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.last_played_ = p;
-  }
-  return _impl_.last_played_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::mutable_last_played() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_last_played();
-  // @@protoc_insertion_point(field_mutable:user.CharacterInfo.last_played)
-  return _msg;
-}
-inline void CharacterInfo::set_allocated_last_played(::PROTOBUF_NAMESPACE_ID::Timestamp* last_played) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.last_played_);
-  }
-  if (last_played) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(last_played));
-    if (message_arena != submessage_arena) {
-      last_played = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, last_played, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.last_played_ = last_played;
-  // @@protoc_insertion_point(field_set_allocated:user.CharacterInfo.last_played)
-}
-
-// .google.protobuf.Timestamp created_at = 8;
-inline bool CharacterInfo::_internal_has_created_at() const {
-  return this != internal_default_instance() && _impl_.created_at_ != nullptr;
-}
-inline bool CharacterInfo::has_created_at() const {
-  return _internal_has_created_at();
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CharacterInfo::_internal_created_at() const {
-  const ::PROTOBUF_NAMESPACE_ID::Timestamp* p = _impl_.created_at_;
-  return p != nullptr ? *p : reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Timestamp&>(
-      ::PROTOBUF_NAMESPACE_ID::_Timestamp_default_instance_);
-}
-inline const ::PROTOBUF_NAMESPACE_ID::Timestamp& CharacterInfo::created_at() const {
-  // @@protoc_insertion_point(field_get:user.CharacterInfo.created_at)
-  return _internal_created_at();
-}
-inline void CharacterInfo::unsafe_arena_set_allocated_created_at(
-    ::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
-  if (GetArenaForAllocation() == nullptr) {
-    delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.created_at_);
-  }
-  _impl_.created_at_ = created_at;
-  if (created_at) {
-    
-  } else {
-    
-  }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.CharacterInfo.created_at)
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::release_created_at() {
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.created_at_;
-  _impl_.created_at_ = nullptr;
-#ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
-  auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
-  temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  if (GetArenaForAllocation() == nullptr) { delete old; }
-#else  // PROTOBUF_FORCE_COPY_IN_RELEASE
-  if (GetArenaForAllocation() != nullptr) {
-    temp = ::PROTOBUF_NAMESPACE_ID::internal::DuplicateIfNonNull(temp);
-  }
-#endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::unsafe_arena_release_created_at() {
-  // @@protoc_insertion_point(field_release:user.CharacterInfo.created_at)
-  
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* temp = _impl_.created_at_;
-  _impl_.created_at_ = nullptr;
-  return temp;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::_internal_mutable_created_at() {
-  
-  if (_impl_.created_at_ == nullptr) {
-    auto* p = CreateMaybeMessage<::PROTOBUF_NAMESPACE_ID::Timestamp>(GetArenaForAllocation());
-    _impl_.created_at_ = p;
-  }
-  return _impl_.created_at_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::Timestamp* CharacterInfo::mutable_created_at() {
-  ::PROTOBUF_NAMESPACE_ID::Timestamp* _msg = _internal_mutable_created_at();
-  // @@protoc_insertion_point(field_mutable:user.CharacterInfo.created_at)
-  return _msg;
-}
-inline void CharacterInfo::set_allocated_created_at(::PROTOBUF_NAMESPACE_ID::Timestamp* created_at) {
-  ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
-  if (message_arena == nullptr) {
-    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.created_at_);
-  }
-  if (created_at) {
-    ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
-                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(created_at));
-    if (message_arena != submessage_arena) {
-      created_at = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
-          message_arena, created_at, submessage_arena);
-    }
-    
-  } else {
-    
-  }
-  _impl_.created_at_ = created_at;
-  // @@protoc_insertion_point(field_set_allocated:user.CharacterInfo.created_at)
-}
-
-// -------------------------------------------------------------------
-
 // WorldServerInfoRes
 
 // .types.Result result = 1;
@@ -3485,41 +2636,38 @@ inline void WorldServerInfoRes::set_result(::types::Result value) {
   // @@protoc_insertion_point(field_set:user.WorldServerInfoRes.result)
 }
 
-// repeated .user.ServerInfo server_infos = 2;
+// repeated .types.ServerInfo server_infos = 2;
 inline int WorldServerInfoRes::_internal_server_infos_size() const {
   return _impl_.server_infos_.size();
 }
 inline int WorldServerInfoRes::server_infos_size() const {
   return _internal_server_infos_size();
 }
-inline void WorldServerInfoRes::clear_server_infos() {
-  _impl_.server_infos_.Clear();
-}
-inline ::user::ServerInfo* WorldServerInfoRes::mutable_server_infos(int index) {
+inline ::types::ServerInfo* WorldServerInfoRes::mutable_server_infos(int index) {
   // @@protoc_insertion_point(field_mutable:user.WorldServerInfoRes.server_infos)
   return _impl_.server_infos_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::ServerInfo >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::ServerInfo >*
 WorldServerInfoRes::mutable_server_infos() {
   // @@protoc_insertion_point(field_mutable_list:user.WorldServerInfoRes.server_infos)
   return &_impl_.server_infos_;
 }
-inline const ::user::ServerInfo& WorldServerInfoRes::_internal_server_infos(int index) const {
+inline const ::types::ServerInfo& WorldServerInfoRes::_internal_server_infos(int index) const {
   return _impl_.server_infos_.Get(index);
 }
-inline const ::user::ServerInfo& WorldServerInfoRes::server_infos(int index) const {
+inline const ::types::ServerInfo& WorldServerInfoRes::server_infos(int index) const {
   // @@protoc_insertion_point(field_get:user.WorldServerInfoRes.server_infos)
   return _internal_server_infos(index);
 }
-inline ::user::ServerInfo* WorldServerInfoRes::_internal_add_server_infos() {
+inline ::types::ServerInfo* WorldServerInfoRes::_internal_add_server_infos() {
   return _impl_.server_infos_.Add();
 }
-inline ::user::ServerInfo* WorldServerInfoRes::add_server_infos() {
-  ::user::ServerInfo* _add = _internal_add_server_infos();
+inline ::types::ServerInfo* WorldServerInfoRes::add_server_infos() {
+  ::types::ServerInfo* _add = _internal_add_server_infos();
   // @@protoc_insertion_point(field_add:user.WorldServerInfoRes.server_infos)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::ServerInfo >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::ServerInfo >&
 WorldServerInfoRes::server_infos() const {
   // @@protoc_insertion_point(field_list:user.WorldServerInfoRes.server_infos)
   return _impl_.server_infos_;
@@ -3623,30 +2771,24 @@ inline void CreateCharacterRes::set_result(::types::Result value) {
   // @@protoc_insertion_point(field_set:user.CreateCharacterRes.result)
 }
 
-// .user.CharacterInfo character_info = 2;
+// .types.CharacterInfo character_info = 2;
 inline bool CreateCharacterRes::_internal_has_character_info() const {
   return this != internal_default_instance() && _impl_.character_info_ != nullptr;
 }
 inline bool CreateCharacterRes::has_character_info() const {
   return _internal_has_character_info();
 }
-inline void CreateCharacterRes::clear_character_info() {
-  if (GetArenaForAllocation() == nullptr && _impl_.character_info_ != nullptr) {
-    delete _impl_.character_info_;
-  }
-  _impl_.character_info_ = nullptr;
+inline const ::types::CharacterInfo& CreateCharacterRes::_internal_character_info() const {
+  const ::types::CharacterInfo* p = _impl_.character_info_;
+  return p != nullptr ? *p : reinterpret_cast<const ::types::CharacterInfo&>(
+      ::types::_CharacterInfo_default_instance_);
 }
-inline const ::user::CharacterInfo& CreateCharacterRes::_internal_character_info() const {
-  const ::user::CharacterInfo* p = _impl_.character_info_;
-  return p != nullptr ? *p : reinterpret_cast<const ::user::CharacterInfo&>(
-      ::user::_CharacterInfo_default_instance_);
-}
-inline const ::user::CharacterInfo& CreateCharacterRes::character_info() const {
+inline const ::types::CharacterInfo& CreateCharacterRes::character_info() const {
   // @@protoc_insertion_point(field_get:user.CreateCharacterRes.character_info)
   return _internal_character_info();
 }
 inline void CreateCharacterRes::unsafe_arena_set_allocated_character_info(
-    ::user::CharacterInfo* character_info) {
+    ::types::CharacterInfo* character_info) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.character_info_);
   }
@@ -3658,9 +2800,9 @@ inline void CreateCharacterRes::unsafe_arena_set_allocated_character_info(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:user.CreateCharacterRes.character_info)
 }
-inline ::user::CharacterInfo* CreateCharacterRes::release_character_info() {
+inline ::types::CharacterInfo* CreateCharacterRes::release_character_info() {
   
-  ::user::CharacterInfo* temp = _impl_.character_info_;
+  ::types::CharacterInfo* temp = _impl_.character_info_;
   _impl_.character_info_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -3673,34 +2815,35 @@ inline ::user::CharacterInfo* CreateCharacterRes::release_character_info() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::user::CharacterInfo* CreateCharacterRes::unsafe_arena_release_character_info() {
+inline ::types::CharacterInfo* CreateCharacterRes::unsafe_arena_release_character_info() {
   // @@protoc_insertion_point(field_release:user.CreateCharacterRes.character_info)
   
-  ::user::CharacterInfo* temp = _impl_.character_info_;
+  ::types::CharacterInfo* temp = _impl_.character_info_;
   _impl_.character_info_ = nullptr;
   return temp;
 }
-inline ::user::CharacterInfo* CreateCharacterRes::_internal_mutable_character_info() {
+inline ::types::CharacterInfo* CreateCharacterRes::_internal_mutable_character_info() {
   
   if (_impl_.character_info_ == nullptr) {
-    auto* p = CreateMaybeMessage<::user::CharacterInfo>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::types::CharacterInfo>(GetArenaForAllocation());
     _impl_.character_info_ = p;
   }
   return _impl_.character_info_;
 }
-inline ::user::CharacterInfo* CreateCharacterRes::mutable_character_info() {
-  ::user::CharacterInfo* _msg = _internal_mutable_character_info();
+inline ::types::CharacterInfo* CreateCharacterRes::mutable_character_info() {
+  ::types::CharacterInfo* _msg = _internal_mutable_character_info();
   // @@protoc_insertion_point(field_mutable:user.CreateCharacterRes.character_info)
   return _msg;
 }
-inline void CreateCharacterRes::set_allocated_character_info(::user::CharacterInfo* character_info) {
+inline void CreateCharacterRes::set_allocated_character_info(::types::CharacterInfo* character_info) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
-    delete _impl_.character_info_;
+    delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(_impl_.character_info_);
   }
   if (character_info) {
     ::PROTOBUF_NAMESPACE_ID::Arena* submessage_arena =
-        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(character_info);
+        ::PROTOBUF_NAMESPACE_ID::Arena::InternalGetOwningArena(
+                reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(character_info));
     if (message_arena != submessage_arena) {
       character_info = ::PROTOBUF_NAMESPACE_ID::internal::GetOwnedMessage(
           message_arena, character_info, submessage_arena);
@@ -3761,41 +2904,38 @@ inline void GetCharacterListRes::set_result(::types::Result value) {
   // @@protoc_insertion_point(field_set:user.GetCharacterListRes.result)
 }
 
-// repeated .user.CharacterInfo character_infos = 2;
+// repeated .types.CharacterInfo character_infos = 2;
 inline int GetCharacterListRes::_internal_character_infos_size() const {
   return _impl_.character_infos_.size();
 }
 inline int GetCharacterListRes::character_infos_size() const {
   return _internal_character_infos_size();
 }
-inline void GetCharacterListRes::clear_character_infos() {
-  _impl_.character_infos_.Clear();
-}
-inline ::user::CharacterInfo* GetCharacterListRes::mutable_character_infos(int index) {
+inline ::types::CharacterInfo* GetCharacterListRes::mutable_character_infos(int index) {
   // @@protoc_insertion_point(field_mutable:user.GetCharacterListRes.character_infos)
   return _impl_.character_infos_.Mutable(index);
 }
-inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::CharacterInfo >*
+inline ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::CharacterInfo >*
 GetCharacterListRes::mutable_character_infos() {
   // @@protoc_insertion_point(field_mutable_list:user.GetCharacterListRes.character_infos)
   return &_impl_.character_infos_;
 }
-inline const ::user::CharacterInfo& GetCharacterListRes::_internal_character_infos(int index) const {
+inline const ::types::CharacterInfo& GetCharacterListRes::_internal_character_infos(int index) const {
   return _impl_.character_infos_.Get(index);
 }
-inline const ::user::CharacterInfo& GetCharacterListRes::character_infos(int index) const {
+inline const ::types::CharacterInfo& GetCharacterListRes::character_infos(int index) const {
   // @@protoc_insertion_point(field_get:user.GetCharacterListRes.character_infos)
   return _internal_character_infos(index);
 }
-inline ::user::CharacterInfo* GetCharacterListRes::_internal_add_character_infos() {
+inline ::types::CharacterInfo* GetCharacterListRes::_internal_add_character_infos() {
   return _impl_.character_infos_.Add();
 }
-inline ::user::CharacterInfo* GetCharacterListRes::add_character_infos() {
-  ::user::CharacterInfo* _add = _internal_add_character_infos();
+inline ::types::CharacterInfo* GetCharacterListRes::add_character_infos() {
+  ::types::CharacterInfo* _add = _internal_add_character_infos();
   // @@protoc_insertion_point(field_add:user.GetCharacterListRes.character_infos)
   return _add;
 }
-inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::user::CharacterInfo >&
+inline const ::PROTOBUF_NAMESPACE_ID::RepeatedPtrField< ::types::CharacterInfo >&
 GetCharacterListRes::character_infos() const {
   // @@protoc_insertion_point(field_list:user.GetCharacterListRes.character_infos)
   return _impl_.character_infos_;
@@ -3962,10 +3102,6 @@ inline void PlayStartCharacterRes::set_allocated_world_server_address(std::strin
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

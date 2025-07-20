@@ -20,4 +20,8 @@ namespace System {
 	Channel Actor::GetChannel() const {
 		return Channel(channel_.GetContext());
 	}
+
+	std::shared_ptr<Context> Actor::GetContext() const {
+		return channel_.GetContext();
+	}
 }
