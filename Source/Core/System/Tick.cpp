@@ -16,8 +16,4 @@ namespace System {
 	Tick Tick::Current() {
 		return Tick(std::chrono::steady_clock::now());
 	}
-
-	Elapse operator-(const Tick& lhs, const Tick& rhs) {
-		return lhs.operator-(rhs);
-	}
 }

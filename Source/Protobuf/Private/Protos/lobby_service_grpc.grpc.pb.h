@@ -50,6 +50,13 @@ class LobbyService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
+    virtual ::grpc::Status CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::lobby_service::CharacterLoginResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>> AsyncCharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>>(AsyncCharacterLoginRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>> PrepareAsyncCharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>>(PrepareAsyncCharacterLoginRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -58,6 +65,8 @@ class LobbyService final {
       virtual void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -67,6 +76,8 @@ class LobbyService final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::RegisterServerReponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>* AsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::lobby_service::CharacterLoginResponse>* PrepareAsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -85,6 +96,13 @@ class LobbyService final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>> PrepareAsyncPing(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>>(PrepareAsyncPingRaw(context, request, cq));
     }
+    ::grpc::Status CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::lobby_service::CharacterLoginResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>> AsyncCharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>>(AsyncCharacterLoginRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>> PrepareAsyncCharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>>(PrepareAsyncCharacterLoginRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -92,6 +110,8 @@ class LobbyService final {
       void RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, std::function<void(::grpc::Status)>) override;
       void Ping(::grpc::ClientContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, std::function<void(::grpc::Status)>) override;
+      void CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -107,8 +127,11 @@ class LobbyService final {
     ::grpc::ClientAsyncResponseReader< ::lobby_service::RegisterServerReponse>* PrepareAsyncRegisterServerRaw(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* AsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::lobby_service::PingResponse>* PrepareAsyncPingRaw(::grpc::ClientContext* context, const ::lobby_service::PingRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>* AsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>* PrepareAsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_RegisterServer_;
     const ::grpc::internal::RpcMethod rpcmethod_Ping_;
+    const ::grpc::internal::RpcMethod rpcmethod_CharacterLogin_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -119,6 +142,7 @@ class LobbyService final {
     // Sends a greeting
     virtual ::grpc::Status RegisterServer(::grpc::ServerContext* context, const ::lobby_service::RegisterServerRequest* request, ::lobby_service::RegisterServerReponse* response);
     virtual ::grpc::Status Ping(::grpc::ServerContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response);
+    virtual ::grpc::Status CharacterLogin(::grpc::ServerContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_RegisterServer : public BaseClass {
@@ -160,7 +184,27 @@ class LobbyService final {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_Ping<Service > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodAsync(2);
+    }
+    ~WithAsyncMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCharacterLogin(::grpc::ServerContext* context, ::lobby_service::CharacterLoginRequest* request, ::grpc::ServerAsyncResponseWriter< ::lobby_service::CharacterLoginResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_RegisterServer<WithAsyncMethod_Ping<WithAsyncMethod_CharacterLogin<Service > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_RegisterServer : public BaseClass {
    private:
@@ -215,7 +259,34 @@ class LobbyService final {
     virtual ::grpc::ServerUnaryReactor* Ping(
       ::grpc::CallbackServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_Ping<Service > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response) { return this->CharacterLogin(context, request, response); }));}
+    void SetMessageAllocatorFor_CharacterLogin(
+        ::grpc::MessageAllocator< ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(2);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CharacterLogin(
+      ::grpc::CallbackServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_RegisterServer<WithCallbackMethod_Ping<WithCallbackMethod_CharacterLogin<Service > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_RegisterServer : public BaseClass {
@@ -247,6 +318,23 @@ class LobbyService final {
     }
     // disable synchronous version of this method
     ::grpc::Status Ping(::grpc::ServerContext* /*context*/, const ::lobby_service::PingRequest* /*request*/, ::lobby_service::PingResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodGeneric(2);
+    }
+    ~WithGenericMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -292,6 +380,26 @@ class LobbyService final {
     }
   };
   template <class BaseClass>
+  class WithRawMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodRaw(2);
+    }
+    ~WithRawMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestCharacterLogin(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(2, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
   class WithRawCallbackMethod_RegisterServer : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
@@ -333,6 +441,28 @@ class LobbyService final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Ping(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodRawCallback(2,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->CharacterLogin(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* CharacterLogin(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -389,9 +519,36 @@ class LobbyService final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedPing(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::lobby_service::PingRequest,::lobby_service::PingResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<Service > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_CharacterLogin : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_CharacterLogin() {
+      ::grpc::Service::MarkMethodStreamed(2,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse>* streamer) {
+                       return this->StreamedCharacterLogin(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_CharacterLogin() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status CharacterLogin(::grpc::ServerContext* /*context*/, const ::lobby_service::CharacterLoginRequest* /*request*/, ::lobby_service::CharacterLoginResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedCharacterLogin(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::lobby_service::CharacterLoginRequest,::lobby_service::CharacterLoginResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_CharacterLogin<Service > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<Service > > StreamedService;
+  typedef WithStreamedUnaryMethod_RegisterServer<WithStreamedUnaryMethod_Ping<WithStreamedUnaryMethod_CharacterLogin<Service > > > StreamedService;
 };
 
 }  // namespace lobby_service

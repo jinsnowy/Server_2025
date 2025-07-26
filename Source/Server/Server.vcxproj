@@ -295,10 +295,12 @@
     <ClCompile Include="Authenticator\Authenticator.cpp" />
     <ClCompile Include="Database\DB.cpp" />
     <ClCompile Include="InterServer\GrpcService.cpp" />
+    <ClCompile Include="InterServer\LobbyGrpcClient.cpp" />
     <ClCompile Include="InterServer\LobbyGrpcService.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\Account.cpp" />
     <ClCompile Include="Model\Character.cpp" />
+    <ClCompile Include="Model\Combat.cpp" />
     <ClCompile Include="Model\Movable.cpp" />
     <ClCompile Include="Model\Player.cpp" />
     <ClCompile Include="Model\Server.cpp" />
@@ -328,9 +330,11 @@
     <ClInclude Include="Authenticator\Authenticator.h" />
     <ClInclude Include="Database\DB.h" />
     <ClInclude Include="InterServer\GrpcService.h" />
+    <ClInclude Include="InterServer\LobbyGrpcClient.h" />
     <ClInclude Include="InterServer\LobbyGrpcService.h" />
     <ClInclude Include="Model\Account.h" />
     <ClInclude Include="Model\Character.h" />
+    <ClInclude Include="Model\Combat.h" />
     <ClInclude Include="Model\Movable.h" />
     <ClInclude Include="Model\Player.h" />
     <ClInclude Include="Model\Server.h" />
@@ -366,7 +370,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\SQL\docker-compose.yml" />
-    <None Include="..\..\SQL\Lobby.Sql" />
+    <None Include="..\..\SQL\Dockerfile" />
+    <None Include="..\..\SQL\init.sql" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

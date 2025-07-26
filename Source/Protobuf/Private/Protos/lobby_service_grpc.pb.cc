@@ -71,8 +71,38 @@ struct PingResponseDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 PingResponseDefaultTypeInternal _PingResponse_default_instance_;
+PROTOBUF_CONSTEXPR CharacterLoginRequest::CharacterLoginRequest(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.user_id_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.access_token_)*/{&::_pbi::fixed_address_empty_string, ::_pbi::ConstantInitialized{}}
+  , /*decltype(_impl_.playing_character_id_)*/int64_t{0}
+  , /*decltype(_impl_.playing_server_id_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct CharacterLoginRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CharacterLoginRequestDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CharacterLoginRequestDefaultTypeInternal() {}
+  union {
+    CharacterLoginRequest _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CharacterLoginRequestDefaultTypeInternal _CharacterLoginRequest_default_instance_;
+PROTOBUF_CONSTEXPR CharacterLoginResponse::CharacterLoginResponse(
+    ::_pbi::ConstantInitialized): _impl_{
+    /*decltype(_impl_.account_id_)*/int64_t{0}
+  , /*decltype(_impl_.result_)*/0
+  , /*decltype(_impl_._cached_size_)*/{}} {}
+struct CharacterLoginResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR CharacterLoginResponseDefaultTypeInternal()
+      : _instance(::_pbi::ConstantInitialized{}) {}
+  ~CharacterLoginResponseDefaultTypeInternal() {}
+  union {
+    CharacterLoginResponse _instance;
+  };
+};
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 CharacterLoginResponseDefaultTypeInternal _CharacterLoginResponse_default_instance_;
 }  // namespace lobby_service
-static ::_pb::Metadata file_level_metadata_lobby_5fservice_5fgrpc_2eproto[4];
+static ::_pb::Metadata file_level_metadata_lobby_5fservice_5fgrpc_2eproto[6];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_lobby_5fservice_5fgrpc_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_lobby_5fservice_5fgrpc_2eproto = nullptr;
 
@@ -105,12 +135,32 @@ const uint32_t TableStruct_lobby_5fservice_5fgrpc_2eproto::offsets[] PROTOBUF_SE
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginRequest, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginRequest, _impl_.user_id_),
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginRequest, _impl_.access_token_),
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginRequest, _impl_.playing_server_id_),
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginRequest, _impl_.playing_character_id_),
+  ~0u,  // no _has_bits_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginResponse, _internal_metadata_),
+  ~0u,  // no _extensions_
+  ~0u,  // no _oneof_case_
+  ~0u,  // no _weak_field_map_
+  ~0u,  // no _inlined_string_donated_
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginResponse, _impl_.result_),
+  PROTOBUF_FIELD_OFFSET(::lobby_service::CharacterLoginResponse, _impl_.account_id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   { 0, -1, -1, sizeof(::lobby_service::RegisterServerRequest)},
   { 8, -1, -1, sizeof(::lobby_service::RegisterServerReponse)},
   { 16, -1, -1, sizeof(::lobby_service::PingRequest)},
   { 22, -1, -1, sizeof(::lobby_service::PingResponse)},
+  { 28, -1, -1, sizeof(::lobby_service::CharacterLoginRequest)},
+  { 38, -1, -1, sizeof(::lobby_service::CharacterLoginResponse)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
@@ -118,6 +168,8 @@ static const ::_pb::Message* const file_default_instances[] = {
   &::lobby_service::_RegisterServerReponse_default_instance_._instance,
   &::lobby_service::_PingRequest_default_instance_._instance,
   &::lobby_service::_PingResponse_default_instance_._instance,
+  &::lobby_service::_CharacterLoginRequest_default_instance_._instance,
+  &::lobby_service::_CharacterLoginResponse_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
@@ -127,20 +179,28 @@ const char descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto[] PROTOBUF_S
   " \001(\0162\021.types.ServerType\"I\n\025RegisterServe"
   "rReponse\022\035\n\006result\030\001 \001(\0162\r.types.Result\022"
   "\021\n\tserver_id\030\002 \001(\005\"\r\n\013PingRequest\"\016\n\014Pin"
-  "gResponse2\255\001\n\014LobbyService\022\\\n\016RegisterSe"
-  "rver\022$.lobby_service.RegisterServerReque"
-  "st\032$.lobby_service.RegisterServerReponse"
-  "\022\?\n\004Ping\022\032.lobby_service.PingRequest\032\033.l"
-  "obby_service.PingResponseb\006proto3"
+  "gResponse\"w\n\025CharacterLoginRequest\022\017\n\007us"
+  "er_id\030\001 \001(\t\022\024\n\014access_token\030\002 \001(\t\022\031\n\021pla"
+  "ying_server_id\030\003 \001(\005\022\034\n\024playing_characte"
+  "r_id\030\004 \001(\003\"K\n\026CharacterLoginResponse\022\035\n\006"
+  "result\030\001 \001(\0162\r.types.Result\022\022\n\naccount_i"
+  "d\030\002 \001(\0032\214\002\n\014LobbyService\022\\\n\016RegisterServ"
+  "er\022$.lobby_service.RegisterServerRequest"
+  "\032$.lobby_service.RegisterServerReponse\022\?"
+  "\n\004Ping\022\032.lobby_service.PingRequest\032\033.lob"
+  "by_service.PingResponse\022]\n\016CharacterLogi"
+  "n\022$.lobby_service.CharacterLoginRequest\032"
+  "%.lobby_service.CharacterLoginResponseb\006"
+  "proto3"
   ;
 static const ::_pbi::DescriptorTable* const descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps[1] = {
   &::descriptor_table_types_2eproto,
 };
 static ::_pbi::once_flag descriptor_table_lobby_5fservice_5fgrpc_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_lobby_5fservice_5fgrpc_2eproto = {
-    false, false, 433, descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto,
+    false, false, 726, descriptor_table_protodef_lobby_5fservice_5fgrpc_2eproto,
     "lobby_service_grpc.proto",
-    &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once, descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps, 1, 4,
+    &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once, descriptor_table_lobby_5fservice_5fgrpc_2eproto_deps, 1, 6,
     schemas, file_default_instances, TableStruct_lobby_5fservice_5fgrpc_2eproto::offsets,
     file_level_metadata_lobby_5fservice_5fgrpc_2eproto, file_level_enum_descriptors_lobby_5fservice_5fgrpc_2eproto,
     file_level_service_descriptors_lobby_5fservice_5fgrpc_2eproto,
@@ -680,6 +740,533 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*PingResponse::GetClassData() c
       file_level_metadata_lobby_5fservice_5fgrpc_2eproto[3]);
 }
 
+// ===================================================================
+
+class CharacterLoginRequest::_Internal {
+ public:
+};
+
+CharacterLoginRequest::CharacterLoginRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:lobby_service.CharacterLoginRequest)
+}
+CharacterLoginRequest::CharacterLoginRequest(const CharacterLoginRequest& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CharacterLoginRequest* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.user_id_){}
+    , decltype(_impl_.access_token_){}
+    , decltype(_impl_.playing_character_id_){}
+    , decltype(_impl_.playing_server_id_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  _impl_.user_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.user_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_user_id().empty()) {
+    _this->_impl_.user_id_.Set(from._internal_user_id(), 
+      _this->GetArenaForAllocation());
+  }
+  _impl_.access_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.access_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (!from._internal_access_token().empty()) {
+    _this->_impl_.access_token_.Set(from._internal_access_token(), 
+      _this->GetArenaForAllocation());
+  }
+  ::memcpy(&_impl_.playing_character_id_, &from._impl_.playing_character_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.playing_server_id_) -
+    reinterpret_cast<char*>(&_impl_.playing_character_id_)) + sizeof(_impl_.playing_server_id_));
+  // @@protoc_insertion_point(copy_constructor:lobby_service.CharacterLoginRequest)
+}
+
+inline void CharacterLoginRequest::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.user_id_){}
+    , decltype(_impl_.access_token_){}
+    , decltype(_impl_.playing_character_id_){int64_t{0}}
+    , decltype(_impl_.playing_server_id_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+  _impl_.user_id_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.user_id_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  _impl_.access_token_.InitDefault();
+  #ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+    _impl_.access_token_.Set("", GetArenaForAllocation());
+  #endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+}
+
+CharacterLoginRequest::~CharacterLoginRequest() {
+  // @@protoc_insertion_point(destructor:lobby_service.CharacterLoginRequest)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CharacterLoginRequest::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+  _impl_.user_id_.Destroy();
+  _impl_.access_token_.Destroy();
+}
+
+void CharacterLoginRequest::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void CharacterLoginRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:lobby_service.CharacterLoginRequest)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  _impl_.user_id_.ClearToEmpty();
+  _impl_.access_token_.ClearToEmpty();
+  ::memset(&_impl_.playing_character_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.playing_server_id_) -
+      reinterpret_cast<char*>(&_impl_.playing_character_id_)) + sizeof(_impl_.playing_server_id_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CharacterLoginRequest::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // string user_id = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 10)) {
+          auto str = _internal_mutable_user_id();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "lobby_service.CharacterLoginRequest.user_id"));
+        } else
+          goto handle_unusual;
+        continue;
+      // string access_token = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 18)) {
+          auto str = _internal_mutable_access_token();
+          ptr = ::_pbi::InlineGreedyStringParser(str, ptr, ctx);
+          CHK_(ptr);
+          CHK_(::_pbi::VerifyUTF8(str, "lobby_service.CharacterLoginRequest.access_token"));
+        } else
+          goto handle_unusual;
+        continue;
+      // int32 playing_server_id = 3;
+      case 3:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 24)) {
+          _impl_.playing_server_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 playing_character_id = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 32)) {
+          _impl_.playing_character_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CharacterLoginRequest::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:lobby_service.CharacterLoginRequest)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // string user_id = 1;
+  if (!this->_internal_user_id().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_user_id().data(), static_cast<int>(this->_internal_user_id().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "lobby_service.CharacterLoginRequest.user_id");
+    target = stream->WriteStringMaybeAliased(
+        1, this->_internal_user_id(), target);
+  }
+
+  // string access_token = 2;
+  if (!this->_internal_access_token().empty()) {
+    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
+      this->_internal_access_token().data(), static_cast<int>(this->_internal_access_token().length()),
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
+      "lobby_service.CharacterLoginRequest.access_token");
+    target = stream->WriteStringMaybeAliased(
+        2, this->_internal_access_token(), target);
+  }
+
+  // int32 playing_server_id = 3;
+  if (this->_internal_playing_server_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt32ToArray(3, this->_internal_playing_server_id(), target);
+  }
+
+  // int64 playing_character_id = 4;
+  if (this->_internal_playing_character_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(4, this->_internal_playing_character_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lobby_service.CharacterLoginRequest)
+  return target;
+}
+
+size_t CharacterLoginRequest::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:lobby_service.CharacterLoginRequest)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // string user_id = 1;
+  if (!this->_internal_user_id().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_user_id());
+  }
+
+  // string access_token = 2;
+  if (!this->_internal_access_token().empty()) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
+        this->_internal_access_token());
+  }
+
+  // int64 playing_character_id = 4;
+  if (this->_internal_playing_character_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_playing_character_id());
+  }
+
+  // int32 playing_server_id = 3;
+  if (this->_internal_playing_server_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int32SizePlusOne(this->_internal_playing_server_id());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CharacterLoginRequest::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    CharacterLoginRequest::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CharacterLoginRequest::GetClassData() const { return &_class_data_; }
+
+
+void CharacterLoginRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CharacterLoginRequest*>(&to_msg);
+  auto& from = static_cast<const CharacterLoginRequest&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:lobby_service.CharacterLoginRequest)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (!from._internal_user_id().empty()) {
+    _this->_internal_set_user_id(from._internal_user_id());
+  }
+  if (!from._internal_access_token().empty()) {
+    _this->_internal_set_access_token(from._internal_access_token());
+  }
+  if (from._internal_playing_character_id() != 0) {
+    _this->_internal_set_playing_character_id(from._internal_playing_character_id());
+  }
+  if (from._internal_playing_server_id() != 0) {
+    _this->_internal_set_playing_server_id(from._internal_playing_server_id());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CharacterLoginRequest::CopyFrom(const CharacterLoginRequest& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:lobby_service.CharacterLoginRequest)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CharacterLoginRequest::IsInitialized() const {
+  return true;
+}
+
+void CharacterLoginRequest::InternalSwap(CharacterLoginRequest* other) {
+  using std::swap;
+  auto* lhs_arena = GetArenaForAllocation();
+  auto* rhs_arena = other->GetArenaForAllocation();
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.user_id_, lhs_arena,
+      &other->_impl_.user_id_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
+      &_impl_.access_token_, lhs_arena,
+      &other->_impl_.access_token_, rhs_arena
+  );
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CharacterLoginRequest, _impl_.playing_server_id_)
+      + sizeof(CharacterLoginRequest::_impl_.playing_server_id_)
+      - PROTOBUF_FIELD_OFFSET(CharacterLoginRequest, _impl_.playing_character_id_)>(
+          reinterpret_cast<char*>(&_impl_.playing_character_id_),
+          reinterpret_cast<char*>(&other->_impl_.playing_character_id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CharacterLoginRequest::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_lobby_5fservice_5fgrpc_2eproto_getter, &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once,
+      file_level_metadata_lobby_5fservice_5fgrpc_2eproto[4]);
+}
+
+// ===================================================================
+
+class CharacterLoginResponse::_Internal {
+ public:
+};
+
+CharacterLoginResponse::CharacterLoginResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                         bool is_message_owned)
+  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
+  SharedCtor(arena, is_message_owned);
+  // @@protoc_insertion_point(arena_constructor:lobby_service.CharacterLoginResponse)
+}
+CharacterLoginResponse::CharacterLoginResponse(const CharacterLoginResponse& from)
+  : ::PROTOBUF_NAMESPACE_ID::Message() {
+  CharacterLoginResponse* const _this = this; (void)_this;
+  new (&_impl_) Impl_{
+      decltype(_impl_.account_id_){}
+    , decltype(_impl_.result_){}
+    , /*decltype(_impl_._cached_size_)*/{}};
+
+  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+  ::memcpy(&_impl_.account_id_, &from._impl_.account_id_,
+    static_cast<size_t>(reinterpret_cast<char*>(&_impl_.result_) -
+    reinterpret_cast<char*>(&_impl_.account_id_)) + sizeof(_impl_.result_));
+  // @@protoc_insertion_point(copy_constructor:lobby_service.CharacterLoginResponse)
+}
+
+inline void CharacterLoginResponse::SharedCtor(
+    ::_pb::Arena* arena, bool is_message_owned) {
+  (void)arena;
+  (void)is_message_owned;
+  new (&_impl_) Impl_{
+      decltype(_impl_.account_id_){int64_t{0}}
+    , decltype(_impl_.result_){0}
+    , /*decltype(_impl_._cached_size_)*/{}
+  };
+}
+
+CharacterLoginResponse::~CharacterLoginResponse() {
+  // @@protoc_insertion_point(destructor:lobby_service.CharacterLoginResponse)
+  if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
+  (void)arena;
+    return;
+  }
+  SharedDtor();
+}
+
+inline void CharacterLoginResponse::SharedDtor() {
+  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
+}
+
+void CharacterLoginResponse::SetCachedSize(int size) const {
+  _impl_._cached_size_.Set(size);
+}
+
+void CharacterLoginResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:lobby_service.CharacterLoginResponse)
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  ::memset(&_impl_.account_id_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&_impl_.result_) -
+      reinterpret_cast<char*>(&_impl_.account_id_)) + sizeof(_impl_.result_));
+  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
+}
+
+const char* CharacterLoginResponse::_InternalParse(const char* ptr, ::_pbi::ParseContext* ctx) {
+#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
+  while (!ctx->Done(&ptr)) {
+    uint32_t tag;
+    ptr = ::_pbi::ReadTag(ptr, &tag);
+    switch (tag >> 3) {
+      // .types.Result result = 1;
+      case 1:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 8)) {
+          uint64_t val = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+          _internal_set_result(static_cast<::types::Result>(val));
+        } else
+          goto handle_unusual;
+        continue;
+      // int64 account_id = 2;
+      case 2:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<uint8_t>(tag) == 16)) {
+          _impl_.account_id_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
+          CHK_(ptr);
+        } else
+          goto handle_unusual;
+        continue;
+      default:
+        goto handle_unusual;
+    }  // switch
+  handle_unusual:
+    if ((tag == 0) || ((tag & 7) == 4)) {
+      CHK_(ptr);
+      ctx->SetLastTag(tag);
+      goto message_done;
+    }
+    ptr = UnknownFieldParse(
+        tag,
+        _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
+        ptr, ctx);
+    CHK_(ptr != nullptr);
+  }  // while
+message_done:
+  return ptr;
+failure:
+  ptr = nullptr;
+  goto message_done;
+#undef CHK_
+}
+
+uint8_t* CharacterLoginResponse::_InternalSerialize(
+    uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
+  // @@protoc_insertion_point(serialize_to_array_start:lobby_service.CharacterLoginResponse)
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  // .types.Result result = 1;
+  if (this->_internal_result() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteEnumToArray(
+      1, this->_internal_result(), target);
+  }
+
+  // int64 account_id = 2;
+  if (this->_internal_account_id() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::_pbi::WireFormatLite::WriteInt64ToArray(2, this->_internal_account_id(), target);
+  }
+
+  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
+    target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:lobby_service.CharacterLoginResponse)
+  return target;
+}
+
+size_t CharacterLoginResponse::ByteSizeLong() const {
+// @@protoc_insertion_point(message_byte_size_start:lobby_service.CharacterLoginResponse)
+  size_t total_size = 0;
+
+  uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  // int64 account_id = 2;
+  if (this->_internal_account_id() != 0) {
+    total_size += ::_pbi::WireFormatLite::Int64SizePlusOne(this->_internal_account_id());
+  }
+
+  // .types.Result result = 1;
+  if (this->_internal_result() != 0) {
+    total_size += 1 +
+      ::_pbi::WireFormatLite::EnumSize(this->_internal_result());
+  }
+
+  return MaybeComputeUnknownFieldsSize(total_size, &_impl_._cached_size_);
+}
+
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData CharacterLoginResponse::_class_data_ = {
+    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSourceCheck,
+    CharacterLoginResponse::MergeImpl
+};
+const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*CharacterLoginResponse::GetClassData() const { return &_class_data_; }
+
+
+void CharacterLoginResponse::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
+  auto* const _this = static_cast<CharacterLoginResponse*>(&to_msg);
+  auto& from = static_cast<const CharacterLoginResponse&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:lobby_service.CharacterLoginResponse)
+  GOOGLE_DCHECK_NE(&from, _this);
+  uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  if (from._internal_account_id() != 0) {
+    _this->_internal_set_account_id(from._internal_account_id());
+  }
+  if (from._internal_result() != 0) {
+    _this->_internal_set_result(from._internal_result());
+  }
+  _this->_internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void CharacterLoginResponse::CopyFrom(const CharacterLoginResponse& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:lobby_service.CharacterLoginResponse)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+bool CharacterLoginResponse::IsInitialized() const {
+  return true;
+}
+
+void CharacterLoginResponse::InternalSwap(CharacterLoginResponse* other) {
+  using std::swap;
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  ::PROTOBUF_NAMESPACE_ID::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(CharacterLoginResponse, _impl_.result_)
+      + sizeof(CharacterLoginResponse::_impl_.result_)
+      - PROTOBUF_FIELD_OFFSET(CharacterLoginResponse, _impl_.account_id_)>(
+          reinterpret_cast<char*>(&_impl_.account_id_),
+          reinterpret_cast<char*>(&other->_impl_.account_id_));
+}
+
+::PROTOBUF_NAMESPACE_ID::Metadata CharacterLoginResponse::GetMetadata() const {
+  return ::_pbi::AssignDescriptors(
+      &descriptor_table_lobby_5fservice_5fgrpc_2eproto_getter, &descriptor_table_lobby_5fservice_5fgrpc_2eproto_once,
+      file_level_metadata_lobby_5fservice_5fgrpc_2eproto[5]);
+}
+
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace lobby_service
 PROTOBUF_NAMESPACE_OPEN
@@ -698,6 +1285,14 @@ Arena::CreateMaybeMessage< ::lobby_service::PingRequest >(Arena* arena) {
 template<> PROTOBUF_NOINLINE ::lobby_service::PingResponse*
 Arena::CreateMaybeMessage< ::lobby_service::PingResponse >(Arena* arena) {
   return Arena::CreateMessageInternal< ::lobby_service::PingResponse >(arena);
+}
+template<> PROTOBUF_NOINLINE ::lobby_service::CharacterLoginRequest*
+Arena::CreateMaybeMessage< ::lobby_service::CharacterLoginRequest >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::lobby_service::CharacterLoginRequest >(arena);
+}
+template<> PROTOBUF_NOINLINE ::lobby_service::CharacterLoginResponse*
+Arena::CreateMaybeMessage< ::lobby_service::CharacterLoginResponse >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::lobby_service::CharacterLoginResponse >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

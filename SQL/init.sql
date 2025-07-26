@@ -19,6 +19,7 @@ BEGIN
         AccountId BIGINT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         UserId NVARCHAR(128) NOT NULL UNIQUE,
         Username NVARCHAR(128) NOT NULL,
+        AccessToken NVARCHAR(256) NULL,
         LastLogin DATETIME NOT NULL,
         LastLogout DATETIME NULL,
         CreatedAt DATETIME NOT NULL
@@ -33,6 +34,7 @@ CREATE PROCEDURE dbo.usp_UpsertAccount
 (
     @p_UserId NVARCHAR(64),
     @p_Username NVARCHAR(64),
+    @p_AccessToken NVARCHAR(256),
     @p_LastLogin DATETIME,
     @p_AccountId BIGINT OUTPUT
 )
@@ -53,6 +55,7 @@ BEGIN
             BEGIN
                 UPDATE Account
                 SET Username = @p_Username
+                ,   AccessToken = @p_AccessToken
                 ,   LastLogin = @p_LastLogin
                 WHERE AccountId = @v_AccountID;
 
@@ -61,8 +64,8 @@ BEGIN
         ELSE
             BEGIN
                 -- If it does not exist, insert a new account
-                INSERT INTO Account (UserId, Username, LastLogin, LastLogout, CreatedAt)
-                VALUES (@p_UserId, @p_Username, @p_LastLogin, @p_LastLogin, GETUTCDATE());
+                INSERT INTO Account (UserId, Username, AccessToken, LastLogin, LastLogout, CreatedAt)
+                VALUES (@p_UserId, @p_Username, @p_AccessToken, @p_LastLogin, @p_LastLogin, GETUTCDATE());
 
                 SET @p_AccountId = SCOPE_IDENTITY();
             END
@@ -94,7 +97,7 @@ BEGIN
 
     BEGIN TRY
         -- Check if the account already exists
-        SELECT AccountId, Username, LastLogin, LastLogout, CreatedAt
+        SELECT AccountId, Username, AccessToken, LastLogin, LastLogout, CreatedAt
         FROM dbo.Account
         WHERE UserId = @p_UserId;
 
@@ -106,6 +109,92 @@ BEGIN
     RETURN @RETURN
 END
 GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_SelectAccountByAccessToken
+GO
+
+CREATE PROCEDURE dbo.usp_SelectAccountByAccessToken
+(
+    @p_AccessToken NVARCHAR(128)
+)
+AS
+BEGIN
+    DECLARE @v_AccountID BIGINT;
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+   
+        SELECT AccountId, UserId, Username, AccessToken, LastLogin, LastLogout, CreatedAt
+        FROM dbo.Account
+        WHERE AccessToken = @p_AccessToken;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_UpdateAccountLogin
+GO
+
+CREATE PROCEDURE dbo.usp_UpdateAccountLogin
+(
+    @p_AccountId BIGINT,
+    @p_Login DATETIME
+)
+AS
+BEGIN
+    DECLARE @v_AccountID BIGINT;
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+   
+        UPDATE dbo.Account
+        SET LastLogin = @p_Login
+        WHERE AccountId = @p_AccountId;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+
+DROP PROCEDURE IF EXISTS dbo.usp_UpdateAccountLogout
+GO
+
+CREATE PROCEDURE dbo.usp_UpdateAccountLogout
+(
+    @p_AccountId BIGINT,
+    @p_Logout DATETIME
+)
+AS
+BEGIN
+    DECLARE @v_AccountID BIGINT;
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+   
+        UPDATE dbo.Account
+        SET LastLogout = @p_Logout
+        WHERE AccountId = @p_AccountId;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+
 
 -- Character Table
 DROP TABLE IF EXISTS dbo.Character
@@ -141,6 +230,36 @@ BEGIN
     BEGIN TRY
        
         IF EXISTS (SELECT 1 FROM dbo.Character WHERE Name = @p_Name)
+        BEGIN
+            SET @RETURN = 1;
+        END
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+
+DROP PROCEDURE IF EXISTS dbo.usp_CheckCharacterExists
+GO
+
+CREATE PROCEDURE dbo.usp_CheckCharacterExists
+(
+    @p_AccountId BIGINT,
+    @p_ServerId INT,
+    @p_CharacterId BIGINT
+)
+AS
+BEGIN
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+       
+        IF NOT EXISTS (SELECT 1 FROM dbo.Character WHERE AccountId = @p_AccountId AND ServerId = @p_ServerId AND CharacterId = @p_CharacterId)
         BEGIN
             SET @RETURN = 1;
         END
@@ -351,9 +470,36 @@ BEGIN
     BEGIN TRY
 
         -- Check if the account already exists
-        SELECT ServerId
+        SELECT ServerId, ServerType, ServerAddress, MapName, CreatedAt, LastPingTime
         FROM dbo.Server
         WHERE ServerType = @p_ServerType;
+
+    END TRY
+    BEGIN CATCH
+        THROW
+    END CATCH
+
+    RETURN @RETURN
+END
+GO
+
+DROP PROCEDURE IF EXISTS dbo.usp_SelectServerByServerId
+GO
+
+CREATE PROCEDURE dbo.usp_SelectServerByServerId
+(
+    @p_ServerId INT
+)
+AS
+BEGIN
+    DECLARE @RETURN INT = 0;
+
+    BEGIN TRY
+
+        -- Check if the account already exists
+        SELECT ServerId, ServerType, ServerAddress, MapName, CreatedAt, LastPingTime
+        FROM dbo.Server
+        WHERE ServerId = @p_ServerId;
 
     END TRY
     BEGIN CATCH

@@ -25,9 +25,7 @@ namespace Server {
 
 		void OnConnected();
 
-		void OnDisconnected() {
-			LOG_INFO("LobbySession::OnDisconnect session_id:{}", session_id());
-		}
+		void OnDisconnected();
 
 		std::unique_ptr<Network::Protocol> CreateProtocol() override;
 

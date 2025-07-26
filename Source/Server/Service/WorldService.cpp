@@ -1,15 +1,18 @@
 #include "stdafx.h"
 #include "WorldService.h"
 #include "Protobuf/Public/LobbyService.h"
+#include "../InterServer/LobbyGrpcClient.h"
+#include "../InterServer/GrpcService.h"
 
 namespace Server {
+	WorldService::WorldService() = default;
+	WorldService::~WorldService() = default;
+
 	void WorldService::Start() {
 		Service::Start();
 
-		auto channel = grpc::CreateChannel(lobby_server_address_, grpc::InsecureChannelCredentials());
-		lobby_service_stub_ = lobby_service::LobbyService::NewStub(channel);
-
-		health_check_timer_handle_ = System::PeriodicTimer::Schedule(System::Duration::FromSeconds(1), OnHealthCheck, true);
+		lobby_grpc_client_ = std::make_unique<LobbyGrpcClient>(lobby_server_address_);
+		health_check_timer_handle_ = System::PeriodicTimer::Schedule(System::Duration::FromMilliseconds(10), OnHealthCheck, true);
 
 		LOG_INFO("WorldService started.");
 	}
@@ -17,32 +20,36 @@ namespace Server {
 	void WorldService::OnHealthCheck(System::PeriodicTimer::Handle&) {
 		// WorldService that is implemented class of SingletonServiceInterface
 		auto world_service = System::DependencyInjection::Get<WorldService>();
-
-		grpc::ClientContext context;
-		lobby_service::PingRequest request;
-		lobby_service::PingResponse response;
-
-		auto status = world_service->lobby_service_stub_->Ping(&context, request, &response);
-		if (status.ok()) {
-			if (world_service->is_healthy_ == false) {
-				world_service->is_healthy_ = true;
-				if (world_service->is_lobby_grpc_service_inited_ == false) {
-					world_service->is_lobby_grpc_service_inited_ = true;
-					world_service->OnLobbyGrpcServiceInited();
+		auto request = std::make_shared<PingRequest>();
+	
+		world_service->lobby_grpc_client_->Ping(request)
+		.Then([world_service](GrpcCallResult<PingResponse> result) {
+			if (result.ok()) {
+				if (world_service->is_healthy_ == false) {
+					world_service->is_healthy_ = true;
+					if (world_service->is_lobby_grpc_service_inited_ == false) {
+						world_service->is_lobby_grpc_service_inited_ = true;
+						world_service->OnLobbyGrpcServiceInited();
+					}
+					world_service->OnLobbyGrpcServiceConnected();
 				}
-				world_service->OnLobbyGrpcServiceConnected();
 			}
-		}
-		else {
-			if (world_service->is_healthy_ == true) {
-				world_service->is_healthy_ = false;
-				world_service->OnLobbyGrpcServiceDisconnected(status);
+			else {
+				if (world_service->is_healthy_ == true) {
+					world_service->is_healthy_ = false;
+					world_service->OnLobbyGrpcServiceDisconnected(result.status);
+				}
 			}
-		}
+		});
 	}
 
 	bool WorldService::IsHealthy() {
 		return System::DependencyInjection::Get<WorldService>()->is_healthy_;
+	}
+
+	LobbyGrpcClient& WorldService::GetLobbyGrpcClient()
+	{
+		return *lobby_grpc_client_;
 	}
 
 	void WorldService::OnLobbyGrpcServiceInited() {
@@ -64,19 +71,19 @@ namespace Server {
 			return;
 		}
 
-		grpc::ClientContext context;
-		lobby_service::RegisterServerRequest request;
-		request.set_server_address(ipaddress_.ToString());
-		request.set_server_type(types::kWorldServer);
+		auto request = std::make_shared<lobby_service::RegisterServerRequest>();
+		request->set_server_address(ipaddress_.ToString());
+		request->set_server_type(types::kWorldServer);
 
 		lobby_service::RegisterServerReponse response;
-		auto status = lobby_service_stub_->RegisterServer(&context, request, &response);
-		if (status.ok() == false || response.result() != types::kSuccess) {
-			LOG_ERROR("Failed to register WorldService with LobbyGrpcService. Status: {}, Error: {}, Result: {}",
-				static_cast<int32_t>(status.error_code()), status.error_message(), types::Result_Name(response.result()));
-			return;
-		}
-		is_registered_ = true;
+		lobby_grpc_client_->RegisterServer(request)
+		.Then([this](GrpcCallResult<RegisterServerReponse> result) {
+			if (result.ok() && result.response.result() == types::Result::kSuccess) {
+				is_registered_ = true;
+			}
+			result.response.result() == types::Result::kSuccess ? 
+				LOG_INFO("WorldService registered successfully.") : LOG_ERROR("Failed to register WorldService");
+		});
 	}
 }
 

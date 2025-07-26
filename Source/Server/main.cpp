@@ -62,17 +62,11 @@ void PeriodicTimerTest() {
 
 DBConfig GetDBConfig() {
     DBConfig config;
-    config.lobby_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=LobbyDB;";
-    config.game_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=dev;PWD=strongpass1!;Database=GameDB;";
+    config.lobby_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=sa;PWD=StrongPass1!;Database=LobbyDB;";
+    config.game_db_dsn = L"Driver={ODBC Driver 17 for SQL Server};Server=localhost,1433;UID=sa;PWD=StrongPass1!;Database=GameDB;";
     return config;
 }
-struct Operator {
 
-
-    void operator()(int a) {
-        LOG_INFO("Operator called with value: {}", a);
-    }
-};
 int main() {
 
     System::Scheduler::CreateThreadPool(1);

@@ -52,6 +52,14 @@ namespace Server::Model {
 		return stmt.Execute(L"usp_CheckCharacterExistsByName") == false;
 	}
 
+	bool Model::Character::IsCharacterExists(Sql::Agent& agent, int64_t account_id, int32_t server_id, int64_t character_id) {
+		auto stmt = agent.CreateStmt();
+		stmt.BindInParam(account_id);
+		stmt.BindInParam(server_id);
+		stmt.BindInParam(character_id);
+		return stmt.Execute(L"usp_CheckCharacterExists") == false;
+	}
+
 	void Model::Character::WriteTo(types::CharacterInfo* out_character)
 	{
 		out_character->set_character_id(character_id_);

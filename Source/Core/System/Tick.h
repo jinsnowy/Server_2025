@@ -45,13 +45,9 @@ namespace System {
 		}
 
 	private:
-		friend Elapse operator-(const Tick& lhs, const Tick& rhs);
-
 		std::chrono::steady_clock::time_point time_point_;
 
 		Tick(const std::chrono::steady_clock::time_point& Tick);
 	};
-
-	Elapse operator-(const Tick& lhs, const Tick& rhs);
 }
 

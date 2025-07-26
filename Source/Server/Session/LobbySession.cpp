@@ -31,6 +31,10 @@ namespace Server {
 		Send(user::HelloClient{});
 	}
 
+	void LobbySession::OnDisconnected() {
+		LOG_INFO("LobbySession::OnDisconnect session_id:{}", session_id());
+	}
+
 	void LobbySession::AddCharacter(std::unique_ptr<Model::Character> character) {
 		if (character) {
 			characters_[character->character_id()] = std::move(character);
@@ -50,18 +54,22 @@ namespace Server {
 		DEBUG_ASSERT(account_token_info.user_id.empty() == false);
 
 		if (account_ == nullptr) {
-			account_ = std::make_unique<Model::Account>(account_token_info.user_id, account_token_info.username);
-		}
-		else {
-			account_->set_user_id(account_token_info.user_id);
-			account_->set_username(account_token_info.username);
+			account_ = std::make_unique<Model::Account>();
 		}
 
+		account_->set_user_id(account_token_info.user_id);
+		account_->set_username(account_token_info.username);
+		account_->set_access_token(account_token_info.access_token);
 		account_->set_last_login_time(System::Time::UtcNow());
 
 		auto agent = LOBBYDB.GetAgent();
 		if (account_->UpsertToDb(*agent) == false) {
 			LOG_ERROR("Failed to upsert account to database for user_id: {}", account_token_info.user_id);
+			return false;
+		}
+
+		if (account_->LoadFromDb(*agent) == false) {
+			LOG_ERROR("Failed to load account from database for user_id: {}", account_token_info.user_id);
 			return false;
 		}
 
@@ -83,12 +91,11 @@ namespace Server {
 				}
 
 				Ctrl(*session_ptr).Async([account_token_info = result.value()](LobbySession& session) -> std::shared_ptr<LobbySession> {
-				if (session.LoadAccount(account_token_info) == false) {
-					LOG_ERROR("Failed to load account for user_id: {}", account_token_info.user_id);
-					session.Disconnect();
-					return {};
-				}
-
+					if (session.LoadAccount(account_token_info) == false) {
+						LOG_ERROR("Failed to load account for user_id: {}", account_token_info.user_id);
+						session.Disconnect();
+						return {};
+					}
 				return MakeShared(session);
 			}).ThenPost([](LobbySession& session) {
 				DEBUG_ASSERT(session.IsSynchronized());

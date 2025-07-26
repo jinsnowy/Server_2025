@@ -12,12 +12,14 @@ namespace System {
 			state_(std::make_shared<Detail::FutureState<T>>()) {
 		}
 
-		static Future<T> FromResult(const T& result) {
-			return Future<T>(result);
-		}	
-		
-		static Future<T> FromResult(T&& result) {
-			return Future<T>(std::move(result));
+		Future(T&& result)
+			:
+			state_(std::make_shared<Detail::FutureState<T>>(std::move(result))) {
+		}
+
+		Future(const T& result)
+			:
+			state_(std::make_shared<Detail::FutureState<T>>(result)) {
 		}
 
 		void SetResult(const T& result) {
@@ -32,6 +34,11 @@ namespace System {
 			state_->SetException(exception);
 		}
 
+		template<typename _Exception>
+		void SetException(const _Exception& exception) {
+			state_->SetException(std::make_exception_ptr(exception));
+		}
+
 		template<typename F>
 		Detail::Thenable<typename FuncTraits<F>::ReturnType> Then(F&& func);
 
@@ -40,24 +47,20 @@ namespace System {
 
 	private:
 		std::shared_ptr<Detail::FutureState<T>> state_;
-
-		Future(T&& result)
-			: 
-			state_(std::make_shared<Detail::FutureState<T>>(std::move(result))) {
-		}
-
-		Future(const T& result)
-			: 
-			state_(std::make_shared<Detail::FutureState<T>>(result)) {
-		}
 	};
 
 	template<>
 	class Future<void> {
-	private:
+	public:
 		Future()
 			: 
 			state_(std::make_shared<Detail::FutureState<void>>()) {
+		}
+
+		Future(std::monostate)
+			:
+			state_(std::make_shared<Detail::FutureState<void>>()) {
+			state_->SetResult();
 		}
 
 		void SetResult() {
@@ -74,7 +77,7 @@ namespace System {
 
 	namespace Detail {
 		template<typename F>
-		using FutureType = ::System::Future<typename FuncTraits<F>::ReturnType>;
+		using FutureType = Future<typename FuncTraits<F>::ReturnType>;
 
 		class FutureFactory {
 		public:
@@ -94,6 +97,20 @@ namespace System {
 				return std::make_pair(std::move(future), std::move(callback));
 			}
 		};
+	}
+
+	template<typename T>
+	static inline Future<std::remove_cvref_t<T>> FromResult(T&& result) {
+		return Future<std::remove_cvref_t<T>>(std::move(result));
+	}
+
+	template<typename T>
+	static inline Future<std::remove_cvref_t<T>> FromResult(const T& result) {
+		return Future<std::remove_cvref_t<T>>(result);
+	}
+
+	static inline Future<void> FromResult() {
+		return Future<void>(std::monostate{});
 	}
 }
 

@@ -31,12 +31,16 @@ message ServerPingRes {
 
 message HelloWorldServer {
 	option (types.message_id) = kHelloWorldServer;
-	int64 character_id = 1;
+	string user_id = 1;
+	string access_token = 2;
+	int64 playing_character_id = 3;
+	int32 playing_server_id = 4;
 }
 
 message HelloWorldClient {
 	option (types.message_id) = kHelloWorldClient;
 	int32 map_uid = 1;
+	int32 server_tick_interval_ms = 2;
 }
 
 message ClientEnterMapReq {
@@ -64,11 +68,34 @@ message ClientLeaveMapNotify {
 message ClientMoveReq {
 	option (types.message_id) = kClientMoveReq;
 	types.CharacterPose character_pos = 1;
+	float client_timestamp = 3;
 }
 
 message ClientMoveRes {
 	option (types.message_id) = kClientMoveRes;
 	types.CharacterPose character_pos = 2;
+	float client_timestamp = 3;
+	google.protobuf.Timestamp server_timestamp = 4;
+}
+
+message ClientActionReq {
+	option (types.message_id) = kClientActionReq;
+	types.ClientAction client_action = 1;
+	float client_timestamp = 2;
+}
+
+message ClientActionRes {
+	option (types.message_id) = kClientActionRes;
+	types.Result result = 1;
+	types.ClientAction client_action = 2;
+	float client_timestamp = 3;
+	google.protobuf.Timestamp server_timestamp = 4;
+}
+
+message OtherClientActionNotify {
+	option (types.message_id) = kOtherClientActionNotify;
+	int64 character_id = 1;
+	types.ClientAction client_action = 2;
 }
 
 message OtherClientEnterNotify {
@@ -89,5 +116,20 @@ message OtherClientMoveNotify {
 	option (types.message_id) = kOtherClientMoveNotify;
 	int64 character_id = 1;
 	types.CharacterPose character_pos = 2;
-	google.protobuf.Timestamp server_timestamp = 3;
+	types.ClientAction client_action = 3;
+}
+
+message ChangeServerTickIntervalReq {
+	option (types.message_id) = kChangeServerTickIntervalReq;
+	int32 server_tick_interval_ms = 2;
+}
+
+message ChangeServerTickIntervalRes {
+	option (types.message_id) = kChangeServerTickIntervalRes;
+	int32 server_tick_interval_ms = 2;
+}
+
+message ServerTickIntervalChangedNotify {
+	option (types.message_id) = kServerTickIntervalChangedNotify;
+	int32 server_tick_interval_ms = 2;
 }

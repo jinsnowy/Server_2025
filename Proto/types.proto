@@ -39,6 +39,12 @@ enum protocol {
 	kClientEnterMapReq		= 0x1024;
 	kClientEnterMapRes 		= 0x1025;
 	kOtherClientMoveNotify  = 0x1026;
+	kServerTickIntervalChangedNotify = 0x1027;
+	kChangeServerTickIntervalReq 	= 0x1028;
+	kChangeServerTickIntervalRes 	= 0x1029;
+	kClientActionReq 		= 0x102A;
+	kClientActionRes		= 0x102B;
+	kOtherClientActionNotify     = 0x102C;
 }
 
 extend google.protobuf.MessageOptions {
@@ -54,6 +60,11 @@ enum Result {
 	kInternalError = 5;
 	kDatabaseError = 6;
 	kDuplicatedName = 7;
+	kAccessTokenExpired = 8;
+	kInvalidServerId = 9;
+	kInvalidCharacterId = 10;
+	kInvalidUserId = 11;
+	kInvalidCooldown = 12;
 }
 
 enum ServerType {
@@ -80,10 +91,15 @@ message CharacterInfo {
 	google.protobuf.Timestamp created_at = 8;
 }
 
-message Position {
+message Vector3 {
 	float x = 1;
 	float y = 2;
 	float z = 3;
+}
+
+message Vector2 {
+	float x = 1;
+	float y = 2;
 }
 
 message Quat {
@@ -93,9 +109,47 @@ message Quat {
 	float w = 4;
 }
 
+message AxisAndAngle {
+	float x = 1;
+	float y = 2;
+	float z = 3;
+	float angle_in_rad = 4;
+}
+
 message CharacterPose {
-	Position position = 1;
+	Vector3 position = 1;
 	Quat rotation = 2;
+	Vector3 velocity = 3;
+	Vector3 acceleration = 4;
+	AxisAndAngle angular_velocity = 6;
+	Quat aim_rotation = 7;
+	AxisAndAngle aim_angular_velocity = 8;
+	float net_delay_ms = 9;
+}
+
+message JumpAction {
+	bool is_jump = 1;
+}
+
+message MovementChanged {
+	sint32 movement_mode = 1;
+}
+
+message SprintAction {
+	bool is_sprint = 1;
+}
+
+message BaseAttackAction {
+	float client_timestamp = 1;
+}
+
+message ClientAction {
+	oneof ClientActionField {
+		types.JumpAction jump_action = 1;
+		types.SprintAction sprint_action = 2;
+		types.MovementChanged movement_changed_action = 3;
+		types.BaseAttackAction base_attack_action = 4;
+	}
 }
 
 message SectionInfo {

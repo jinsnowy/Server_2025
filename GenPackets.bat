@@ -9,17 +9,19 @@ SET OUTPUT_GRPC_PATH=./Source/Protobuf/Private/Protos
 
 SET UE_PROJECT_PATH=C:\Users\hyojiny1\Documents\Unreal Projects\ChroniclesOfAetheria\Source\ChroniclesOfAetheria\Protocol
 
+del /s /q "%OUTPUT_PATH%\*.*"
 if not exist "%OUTPUT_PATH%" (
     mkdir "%OUTPUT_PATH%"
     echo Directory %OUTPUT_PATH%" created successfully.
 )
+
+del /s /q "%OUTPUT_GRPC_PATH%\*.*"
 if not exist "%OUTPUT_GRPC_PATH%" (
     mkdir "%OUTPUT_GRPC_PATH%"
     echo Directory %OUTPUT_GRPC_PATH%" created successfully.
 )
 
 echo COMPILING PROTO FILES TO %OUTPUT_PATH%/...
-
 
 SET PROTOC=%CD%\Bin\protoc.exe
 SET PROTOC_GEN_GRPC=%CD%\Bin\grpc_cpp_plugin.exe

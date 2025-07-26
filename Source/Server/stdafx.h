@@ -45,6 +45,7 @@
 #include <ranges>
 #include <format>
 #include <source_location>
+#include <concurrent_vector.h>
 
 #include "Core/Platform/Windows.h"
 #include "Core/CoreMinimal.h"

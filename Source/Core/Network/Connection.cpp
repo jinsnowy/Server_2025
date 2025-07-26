@@ -183,66 +183,107 @@ namespace Network {
 			return false;
 		}
 
-		std::list<PacketSegment> completionPackets;
+		static_assert(sizeof(PacketHeader) == 16, "PacketHeader size must be 16 bytes");
 
-		const char* data = recv_stream_->buffer->GetBufferPtr();
-		size_t dataLength = length;
-		size_t readOffset = 0;
-		while (dataLength > 0) {
-			const char* readDataPtr = data + readOffset;
-			if (recv_stream_->pending.has_value())  {
-				auto& pendingStream = recv_stream_->pending.value();
-				size_t currentReadableSize = std::min(pendingStream.remainSegmentLength, dataLength);
-				size_t currentPacketBufferOffset = pendingStream.packetBuffer.size() - pendingStream.remainSegmentLength;
-				memcpy_s(pendingStream.packetBuffer.data() + currentPacketBufferOffset, pendingStream.remainSegmentLength, readDataPtr, currentReadableSize);
-				pendingStream.remainSegmentLength -= currentReadableSize;
-				if (pendingStream.remainSegmentLength == 0) {
-					completionPackets.emplace_back(PacketSegment{ pendingStream.packetBuffer.data(), pendingStream.packetBuffer.size() });
-					recv_stream_->pending.reset();
+		bool has_any_completion_packets = false;
+		
+		const char* buffer_ptr = recv_stream_->buffer->GetBufferPtr();
+		size_t data_size = length;
+		size_t processing_data_size = 0;
+		while (processing_data_size < data_size) {
+			const char* data_ptr = buffer_ptr + processing_data_size;
+
+			// Check if we have a pending stream
+			if (recv_stream_->pending.has_value()) {
+				Network::PendingStream& pending_stream = recv_stream_->pending.value();
+
+				if (pending_stream.dataBuffer.size() < sizeof(PacketHeader)) {
+					size_t remaining_data_size = data_size - processing_data_size;
+					size_t append_data_size = std::min(remaining_data_size, sizeof(PacketHeader) - pending_stream.dataBuffer.size());
+
+					pending_stream.AppendData(data_ptr, append_data_size);
+
+					data_ptr += append_data_size;
+					processing_data_size += append_data_size;
+					if (pending_stream.dataBuffer.size() < sizeof(PacketHeader)) {
+						break;
+					}
+
+					// Now we have enough data to read the header
+					std::memcpy(&pending_stream.header, pending_stream.dataBuffer.data(), sizeof(PacketHeader));
 				}
 
-				dataLength -= currentReadableSize;
-				readOffset += currentReadableSize;
+				const PacketHeader& header = pending_stream.header;
+
+				size_t remaining_data_size = data_size - processing_data_size;
+				size_t required_data_size_to_complete = header.size + PacketHeader::Size();
+				DEBUG_ASSERT(required_data_size_to_complete >= PacketHeader::Size());
+				DEBUG_ASSERT(required_data_size_to_complete >= pending_stream.dataBuffer.size());
+				if (required_data_size_to_complete < pending_stream.dataBuffer.size()) {
+					LOG_ERROR("[SESSION] OnReceived: invalid packet size : {}", required_data_size_to_complete);
+					return false;
+				}
+
+				size_t append_data_size = std::min(remaining_data_size, required_data_size_to_complete - pending_stream.dataBuffer.size());
+				pending_stream.AppendData(data_ptr, append_data_size);
+				data_ptr += append_data_size;
+				processing_data_size += append_data_size;
+				if (required_data_size_to_complete == pending_stream.dataBuffer.size())
+				{
+					PacketSegment completion_packet{
+						.data = pending_stream.dataBuffer.data(),
+						.length = pending_stream.dataBuffer.size()
+					};
+
+					if (protocol_->ProcessReceiveData(completion_packet) == false) {
+						LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
+					}
+					else {
+						has_any_completion_packets = true;
+					}
+
+					recv_stream_->pending.reset(); // Clear pending stream
+				}
 			}
 			else {
-				if (dataLength < PacketHeader::Size()) {
-					LOG_ERROR("[SESSION] OnReceived: invalid length is too small : {}", dataLength);
-					return false;
-				}
-
-				const PacketHeader* header = PacketHeader::Peek(readDataPtr);
-				if (header->size >= PacketHeader::kMaxSize) {
-					LOG_ERROR("[SESSION] OnReceived: invalid length is too large : {}", header->size);
-					return false;
-				}
-
-				size_t packetReadableSize = PacketHeader::Size() + header->size;
-				if (packetReadableSize > dataLength) {
-					std::vector<char> packetBuffer(packetReadableSize);
-					memcpy_s(packetBuffer.data(), packetReadableSize, readDataPtr, dataLength);
+				size_t remaining_data_size = data_size - processing_data_size;
+				if (remaining_data_size < sizeof(PacketHeader)) {
 					recv_stream_->pending.emplace(PendingStream{
-						.header = *header,
-						.packetBuffer = std::move(packetBuffer),
-						.remainSegmentLength = packetReadableSize - dataLength,
-					});
-
-					return true;
+						.header = PacketHeader{},
+						.dataBuffer = {},
+					}).AppendData(data_ptr, remaining_data_size);
+					break; // wait for completion of the pending stream with more data
 				}
 
-				completionPackets.emplace_back(PacketSegment{ readDataPtr, packetReadableSize });
+				const PacketHeader& header = *PacketHeader::Peek(data_ptr);
 
-				dataLength -= packetReadableSize;
-				readOffset += packetReadableSize;
+				if (remaining_data_size < header.size + PacketHeader::Size()) {
+					recv_stream_->pending.emplace(PendingStream{
+						.header = header,
+						.dataBuffer = {},
+					}).AppendData(data_ptr, remaining_data_size);
+					break; // wait for completion of the pending stream with more data
+				}
+
+				const PacketSegment completion_packet{
+					.data = data_ptr ,
+					.length = header.size + PacketHeader::Size(),
+				};
+
+				if (protocol_->ProcessReceiveData(completion_packet) == false) {
+					LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
+				}
+				else {
+					has_any_completion_packets = true;
+				}
+
+				processing_data_size += completion_packet.length;
 			}
 		}
 
-		if (completionPackets.empty() == false) {
-			for (const auto& completion_packet : completionPackets) {
-				if (protocol_->ProcessReceiveData(completion_packet) == false) {
-					LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
-					return false;
-				}
-			}
+
+
+		if (has_any_completion_packets == true) {
 			Ctrl(*session).Post([protocol = protocol_](Session& session) {
 				session.OnProcessPacket(protocol);
 			});

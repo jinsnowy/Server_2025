@@ -14,12 +14,15 @@ namespace Server {
 
 	class Section;
 	class WorldHandlerMap;
+	class WorldService;
 	class WorldSession : public Protobuf::ProtobufSession {
 	public:
 		WorldSession();
 		~WorldSession();
 
 		static void RegisterHandler(WorldHandlerMap* handler_map);
+
+		static WorldService& GetService();
 
 		void OnConnected();
 		void OnDisconnected();
@@ -41,8 +44,14 @@ namespace Server {
 			return player_.get();
 		}
 
+		const std::shared_ptr<Section>& section() const {
+			return section_;
+		}
+
 		void OnSectionEntered(std::shared_ptr<Section> section);
 		void OnSectionLeft(std::shared_ptr<Section> section);
+
+		void OnVerifyClientAction(const std::shared_ptr<const world::ClientActionReq>& msg, world::ClientActionRes& res);
 
 	private:
 		int64_t character_id_ = 0;

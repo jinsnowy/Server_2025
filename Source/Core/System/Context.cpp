@@ -25,7 +25,7 @@ namespace System {
 	}
 
 	void Context::Post(std::unique_ptr<Callable> callable) const {
-		boost::asio::post(*io_context_, CallableWrapper(std::move(callable)));
+		boost::asio::post(*io_context_, Detail::CallablePtr(std::move(callable)));
 	}
 
 	void Context::Run() {

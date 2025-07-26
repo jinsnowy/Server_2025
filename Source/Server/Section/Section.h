@@ -57,13 +57,13 @@ namespace Server {
 		}
 
 		bool IsEmpty() const {
-			return world_sessions_.empty();
+			return _session_count;
 		}
 
 		void EnterSession(std::shared_ptr<WorldSession> session);
 		void LeaveSession(std::shared_ptr<WorldSession> session);
 
-		const std::vector<std::shared_ptr<WorldSession>>& GetSessions() const {
+		const std::array<std::shared_ptr<WorldSession>, 1024>& GetSessions() const {
 			return world_sessions_arr_;
 		}
 
@@ -75,7 +75,8 @@ namespace Server {
 	private:
 		uint64_t _section_id;
 		int32_t _map_uid = 0;
-		std::unordered_map<int64_t/*session_id*/, std::shared_ptr<WorldSession>> world_sessions_;
-		std::vector<std::shared_ptr<WorldSession>> world_sessions_arr_;
+		size_t _session_count = 0;
+		std::array<std::atomic<bool>, 1024> world_sessions_indexes_;
+		std::array<std::shared_ptr<WorldSession>, 1024> world_sessions_arr_;
 	};
 }

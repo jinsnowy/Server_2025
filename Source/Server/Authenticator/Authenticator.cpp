@@ -53,7 +53,7 @@ namespace Server {
 			return std::nullopt;
 		}
 
-		return Model::AccountTokenInfo(user_id_opt.value(), user_name_opt.value());
+		return Model::AccountTokenInfo(user_id_opt.value(), user_name_opt.value(), access_token );
 	}
 
 }

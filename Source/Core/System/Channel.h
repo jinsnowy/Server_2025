@@ -5,6 +5,8 @@ namespace System {
 	class Callable;
 	class Channel {
 	public:
+		static Channel RoundRobin();
+
 		Channel();
 		Channel(const std::shared_ptr<Context>& context) 
 			: 

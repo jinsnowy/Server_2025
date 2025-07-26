@@ -11,15 +11,7 @@ namespace Server {
     void LobbyService::Start() {
         Service::Start();
 
-        System::Scheduler::CreateThread([]() {
-            LobbyGrpcService service;
-            grpc::ServerBuilder builder;
-            builder.AddListeningPort(LobbyGrpcService::kListenAddress, grpc::InsecureServerCredentials());
-            builder.RegisterService(&service);
-            LOG_INFO("LobbyGrpcService started on : {}", LobbyGrpcService::kListenAddress);
-            auto server = builder.BuildAndStart();
-            server->Wait();
-        });
+        LobbyGrpcService::StartAsyncService();
 	}
 }
 

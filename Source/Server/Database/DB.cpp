@@ -20,10 +20,10 @@ namespace Server {
 			throw std::runtime_error("Failed to initialize LobbyDB");
 		}
 
-		if (DB::GetInstance().game_db->Initialize(config.game_db_dsn, 16) == false) {
+	/*	if (DB::GetInstance().game_db->Initialize(config.game_db_dsn, 16) == false) {
 			LOG_ERROR(L"Failed to initialize GameDB with DSN: {}", config.game_db_dsn);
 			throw std::runtime_error("Failed to initialize GameDB");
-		}
+		}*/
 	}
 
 	void DB::Shutdown()

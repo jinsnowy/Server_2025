@@ -113,6 +113,12 @@
     <ClCompile Include="World\PlayerRepository.cpp">
       <Filter>World</Filter>
     </ClCompile>
+    <ClCompile Include="InterServer\LobbyGrpcClient.cpp">
+      <Filter>RPC</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\Combat.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h">
@@ -197,12 +203,21 @@
     <ClInclude Include="World\PlayerRepository.h">
       <Filter>World</Filter>
     </ClInclude>
+    <ClInclude Include="InterServer\LobbyGrpcClient.h">
+      <Filter>RPC</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\Combat.h">
+      <Filter>Model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\SQL\docker-compose.yml">
       <Filter>SQL</Filter>
     </None>
-    <None Include="..\..\SQL\Lobby.Sql">
+    <None Include="..\..\SQL\init.sql">
+      <Filter>SQL</Filter>
+    </None>
+    <None Include="..\..\SQL\Dockerfile">
       <Filter>SQL</Filter>
     </None>
   </ItemGroup>

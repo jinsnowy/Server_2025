@@ -47,6 +47,12 @@ struct TableStruct_lobby_5fservice_5fgrpc_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_lobby_5fservice_5fgrpc_2eproto;
 namespace lobby_service {
+class CharacterLoginRequest;
+struct CharacterLoginRequestDefaultTypeInternal;
+extern CharacterLoginRequestDefaultTypeInternal _CharacterLoginRequest_default_instance_;
+class CharacterLoginResponse;
+struct CharacterLoginResponseDefaultTypeInternal;
+extern CharacterLoginResponseDefaultTypeInternal _CharacterLoginResponse_default_instance_;
 class PingRequest;
 struct PingRequestDefaultTypeInternal;
 extern PingRequestDefaultTypeInternal _PingRequest_default_instance_;
@@ -61,6 +67,8 @@ struct RegisterServerRequestDefaultTypeInternal;
 extern RegisterServerRequestDefaultTypeInternal _RegisterServerRequest_default_instance_;
 }  // namespace lobby_service
 PROTOBUF_NAMESPACE_OPEN
+template<> ::lobby_service::CharacterLoginRequest* Arena::CreateMaybeMessage<::lobby_service::CharacterLoginRequest>(Arena*);
+template<> ::lobby_service::CharacterLoginResponse* Arena::CreateMaybeMessage<::lobby_service::CharacterLoginResponse>(Arena*);
 template<> ::lobby_service::PingRequest* Arena::CreateMaybeMessage<::lobby_service::PingRequest>(Arena*);
 template<> ::lobby_service::PingResponse* Arena::CreateMaybeMessage<::lobby_service::PingResponse>(Arena*);
 template<> ::lobby_service::RegisterServerReponse* Arena::CreateMaybeMessage<::lobby_service::RegisterServerReponse>(Arena*);
@@ -627,6 +635,356 @@ class PingResponse final :
   };
   friend struct ::TableStruct_lobby_5fservice_5fgrpc_2eproto;
 };
+// -------------------------------------------------------------------
+
+class CharacterLoginRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:lobby_service.CharacterLoginRequest) */ {
+ public:
+  inline CharacterLoginRequest() : CharacterLoginRequest(nullptr) {}
+  ~CharacterLoginRequest() override;
+  explicit PROTOBUF_CONSTEXPR CharacterLoginRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CharacterLoginRequest(const CharacterLoginRequest& from);
+  CharacterLoginRequest(CharacterLoginRequest&& from) noexcept
+    : CharacterLoginRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline CharacterLoginRequest& operator=(const CharacterLoginRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CharacterLoginRequest& operator=(CharacterLoginRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CharacterLoginRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CharacterLoginRequest* internal_default_instance() {
+    return reinterpret_cast<const CharacterLoginRequest*>(
+               &_CharacterLoginRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    4;
+
+  friend void swap(CharacterLoginRequest& a, CharacterLoginRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CharacterLoginRequest* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CharacterLoginRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CharacterLoginRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CharacterLoginRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CharacterLoginRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CharacterLoginRequest& from) {
+    CharacterLoginRequest::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CharacterLoginRequest* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "lobby_service.CharacterLoginRequest";
+  }
+  protected:
+  explicit CharacterLoginRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kUserIdFieldNumber = 1,
+    kAccessTokenFieldNumber = 2,
+    kPlayingCharacterIdFieldNumber = 4,
+    kPlayingServerIdFieldNumber = 3,
+  };
+  // string user_id = 1;
+  void clear_user_id();
+  const std::string& user_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_user_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_user_id();
+  PROTOBUF_NODISCARD std::string* release_user_id();
+  void set_allocated_user_id(std::string* user_id);
+  private:
+  const std::string& _internal_user_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_user_id(const std::string& value);
+  std::string* _internal_mutable_user_id();
+  public:
+
+  // string access_token = 2;
+  void clear_access_token();
+  const std::string& access_token() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_access_token(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_access_token();
+  PROTOBUF_NODISCARD std::string* release_access_token();
+  void set_allocated_access_token(std::string* access_token);
+  private:
+  const std::string& _internal_access_token() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_access_token(const std::string& value);
+  std::string* _internal_mutable_access_token();
+  public:
+
+  // int64 playing_character_id = 4;
+  void clear_playing_character_id();
+  int64_t playing_character_id() const;
+  void set_playing_character_id(int64_t value);
+  private:
+  int64_t _internal_playing_character_id() const;
+  void _internal_set_playing_character_id(int64_t value);
+  public:
+
+  // int32 playing_server_id = 3;
+  void clear_playing_server_id();
+  int32_t playing_server_id() const;
+  void set_playing_server_id(int32_t value);
+  private:
+  int32_t _internal_playing_server_id() const;
+  void _internal_set_playing_server_id(int32_t value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:lobby_service.CharacterLoginRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr user_id_;
+    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr access_token_;
+    int64_t playing_character_id_;
+    int32_t playing_server_id_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_lobby_5fservice_5fgrpc_2eproto;
+};
+// -------------------------------------------------------------------
+
+class CharacterLoginResponse final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:lobby_service.CharacterLoginResponse) */ {
+ public:
+  inline CharacterLoginResponse() : CharacterLoginResponse(nullptr) {}
+  ~CharacterLoginResponse() override;
+  explicit PROTOBUF_CONSTEXPR CharacterLoginResponse(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  CharacterLoginResponse(const CharacterLoginResponse& from);
+  CharacterLoginResponse(CharacterLoginResponse&& from) noexcept
+    : CharacterLoginResponse() {
+    *this = ::std::move(from);
+  }
+
+  inline CharacterLoginResponse& operator=(const CharacterLoginResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline CharacterLoginResponse& operator=(CharacterLoginResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()
+  #ifdef PROTOBUF_FORCE_COPY_IN_MOVE
+        && GetOwningArena() != nullptr
+  #endif  // !PROTOBUF_FORCE_COPY_IN_MOVE
+    ) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const CharacterLoginResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const CharacterLoginResponse* internal_default_instance() {
+    return reinterpret_cast<const CharacterLoginResponse*>(
+               &_CharacterLoginResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    5;
+
+  friend void swap(CharacterLoginResponse& a, CharacterLoginResponse& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(CharacterLoginResponse* other) {
+    if (other == this) return;
+  #ifdef PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() != nullptr &&
+        GetOwningArena() == other->GetOwningArena()) {
+   #else  // PROTOBUF_FORCE_COPY_IN_SWAP
+    if (GetOwningArena() == other->GetOwningArena()) {
+  #endif  // !PROTOBUF_FORCE_COPY_IN_SWAP
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(CharacterLoginResponse* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  CharacterLoginResponse* New(::PROTOBUF_NAMESPACE_ID::Arena* arena = nullptr) const final {
+    return CreateMaybeMessage<CharacterLoginResponse>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const CharacterLoginResponse& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom( const CharacterLoginResponse& from) {
+    CharacterLoginResponse::MergeImpl(*this, from);
+  }
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  uint8_t* _InternalSerialize(
+      uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::PROTOBUF_NAMESPACE_ID::Arena* arena, bool is_message_owned);
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(CharacterLoginResponse* other);
+
+  private:
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "lobby_service.CharacterLoginResponse";
+  }
+  protected:
+  explicit CharacterLoginResponse(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kAccountIdFieldNumber = 2,
+    kResultFieldNumber = 1,
+  };
+  // int64 account_id = 2;
+  void clear_account_id();
+  int64_t account_id() const;
+  void set_account_id(int64_t value);
+  private:
+  int64_t _internal_account_id() const;
+  void _internal_set_account_id(int64_t value);
+  public:
+
+  // .types.Result result = 1;
+  void clear_result();
+  ::types::Result result() const;
+  void set_result(::types::Result value);
+  private:
+  ::types::Result _internal_result() const;
+  void _internal_set_result(::types::Result value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:lobby_service.CharacterLoginResponse)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  struct Impl_ {
+    int64_t account_id_;
+    int result_;
+    mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_lobby_5fservice_5fgrpc_2eproto;
+};
 // ===================================================================
 
 
@@ -760,9 +1118,201 @@ inline void RegisterServerReponse::set_server_id(int32_t value) {
 
 // PingResponse
 
+// -------------------------------------------------------------------
+
+// CharacterLoginRequest
+
+// string user_id = 1;
+inline void CharacterLoginRequest::clear_user_id() {
+  _impl_.user_id_.ClearToEmpty();
+}
+inline const std::string& CharacterLoginRequest::user_id() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginRequest.user_id)
+  return _internal_user_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CharacterLoginRequest::set_user_id(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.user_id_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginRequest.user_id)
+}
+inline std::string* CharacterLoginRequest::mutable_user_id() {
+  std::string* _s = _internal_mutable_user_id();
+  // @@protoc_insertion_point(field_mutable:lobby_service.CharacterLoginRequest.user_id)
+  return _s;
+}
+inline const std::string& CharacterLoginRequest::_internal_user_id() const {
+  return _impl_.user_id_.Get();
+}
+inline void CharacterLoginRequest::_internal_set_user_id(const std::string& value) {
+  
+  _impl_.user_id_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CharacterLoginRequest::_internal_mutable_user_id() {
+  
+  return _impl_.user_id_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CharacterLoginRequest::release_user_id() {
+  // @@protoc_insertion_point(field_release:lobby_service.CharacterLoginRequest.user_id)
+  return _impl_.user_id_.Release();
+}
+inline void CharacterLoginRequest::set_allocated_user_id(std::string* user_id) {
+  if (user_id != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.user_id_.SetAllocated(user_id, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.user_id_.IsDefault()) {
+    _impl_.user_id_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:lobby_service.CharacterLoginRequest.user_id)
+}
+
+// string access_token = 2;
+inline void CharacterLoginRequest::clear_access_token() {
+  _impl_.access_token_.ClearToEmpty();
+}
+inline const std::string& CharacterLoginRequest::access_token() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginRequest.access_token)
+  return _internal_access_token();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void CharacterLoginRequest::set_access_token(ArgT0&& arg0, ArgT... args) {
+ 
+ _impl_.access_token_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginRequest.access_token)
+}
+inline std::string* CharacterLoginRequest::mutable_access_token() {
+  std::string* _s = _internal_mutable_access_token();
+  // @@protoc_insertion_point(field_mutable:lobby_service.CharacterLoginRequest.access_token)
+  return _s;
+}
+inline const std::string& CharacterLoginRequest::_internal_access_token() const {
+  return _impl_.access_token_.Get();
+}
+inline void CharacterLoginRequest::_internal_set_access_token(const std::string& value) {
+  
+  _impl_.access_token_.Set(value, GetArenaForAllocation());
+}
+inline std::string* CharacterLoginRequest::_internal_mutable_access_token() {
+  
+  return _impl_.access_token_.Mutable(GetArenaForAllocation());
+}
+inline std::string* CharacterLoginRequest::release_access_token() {
+  // @@protoc_insertion_point(field_release:lobby_service.CharacterLoginRequest.access_token)
+  return _impl_.access_token_.Release();
+}
+inline void CharacterLoginRequest::set_allocated_access_token(std::string* access_token) {
+  if (access_token != nullptr) {
+    
+  } else {
+    
+  }
+  _impl_.access_token_.SetAllocated(access_token, GetArenaForAllocation());
+#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  if (_impl_.access_token_.IsDefault()) {
+    _impl_.access_token_.Set("", GetArenaForAllocation());
+  }
+#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
+  // @@protoc_insertion_point(field_set_allocated:lobby_service.CharacterLoginRequest.access_token)
+}
+
+// int32 playing_server_id = 3;
+inline void CharacterLoginRequest::clear_playing_server_id() {
+  _impl_.playing_server_id_ = 0;
+}
+inline int32_t CharacterLoginRequest::_internal_playing_server_id() const {
+  return _impl_.playing_server_id_;
+}
+inline int32_t CharacterLoginRequest::playing_server_id() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginRequest.playing_server_id)
+  return _internal_playing_server_id();
+}
+inline void CharacterLoginRequest::_internal_set_playing_server_id(int32_t value) {
+  
+  _impl_.playing_server_id_ = value;
+}
+inline void CharacterLoginRequest::set_playing_server_id(int32_t value) {
+  _internal_set_playing_server_id(value);
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginRequest.playing_server_id)
+}
+
+// int64 playing_character_id = 4;
+inline void CharacterLoginRequest::clear_playing_character_id() {
+  _impl_.playing_character_id_ = int64_t{0};
+}
+inline int64_t CharacterLoginRequest::_internal_playing_character_id() const {
+  return _impl_.playing_character_id_;
+}
+inline int64_t CharacterLoginRequest::playing_character_id() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginRequest.playing_character_id)
+  return _internal_playing_character_id();
+}
+inline void CharacterLoginRequest::_internal_set_playing_character_id(int64_t value) {
+  
+  _impl_.playing_character_id_ = value;
+}
+inline void CharacterLoginRequest::set_playing_character_id(int64_t value) {
+  _internal_set_playing_character_id(value);
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginRequest.playing_character_id)
+}
+
+// -------------------------------------------------------------------
+
+// CharacterLoginResponse
+
+// .types.Result result = 1;
+inline void CharacterLoginResponse::clear_result() {
+  _impl_.result_ = 0;
+}
+inline ::types::Result CharacterLoginResponse::_internal_result() const {
+  return static_cast< ::types::Result >(_impl_.result_);
+}
+inline ::types::Result CharacterLoginResponse::result() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginResponse.result)
+  return _internal_result();
+}
+inline void CharacterLoginResponse::_internal_set_result(::types::Result value) {
+  
+  _impl_.result_ = value;
+}
+inline void CharacterLoginResponse::set_result(::types::Result value) {
+  _internal_set_result(value);
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginResponse.result)
+}
+
+// int64 account_id = 2;
+inline void CharacterLoginResponse::clear_account_id() {
+  _impl_.account_id_ = int64_t{0};
+}
+inline int64_t CharacterLoginResponse::_internal_account_id() const {
+  return _impl_.account_id_;
+}
+inline int64_t CharacterLoginResponse::account_id() const {
+  // @@protoc_insertion_point(field_get:lobby_service.CharacterLoginResponse.account_id)
+  return _internal_account_id();
+}
+inline void CharacterLoginResponse::_internal_set_account_id(int64_t value) {
+  
+  _impl_.account_id_ = value;
+}
+inline void CharacterLoginResponse::set_account_id(int64_t value) {
+  _internal_set_account_id(value);
+  // @@protoc_insertion_point(field_set:lobby_service.CharacterLoginResponse.account_id)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

@@ -85,7 +85,7 @@ namespace Network {
 		try {
 			std::string_view buffer_view(buffer.data(), buffer.length());
 			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer.source()});
-			LOG_INFO("[SOCKET] write async: {} bytes", buffer.length());
+			//LOG_INFO("[SOCKET] write async: {} bytes", buffer.length());
 		}
 		catch (const boost::system::system_error& e) {
 			LOG_ERROR("[SOCKET] write error: {}", e.what());
@@ -113,7 +113,7 @@ namespace Network {
 					(conn.*callback)(error, bytes_transferred);
 				});
 
-				LOG_INFO("[SOCKET] read async: {} bytes", bytes_transferred);
+				//LOG_INFO("[SOCKET] read async: {} bytes", bytes_transferred);
 			});
 		}
 		catch (const boost::system::system_error& e) {

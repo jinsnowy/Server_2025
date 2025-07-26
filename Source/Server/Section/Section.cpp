@@ -8,19 +8,27 @@ namespace Server {
 	std::atomic<uint32_t> Section::Id::auto_increment_counter = 1;
 
 	void Section::EnterSession(std::shared_ptr<WorldSession> session) {
-		if (world_sessions_.emplace(session->session_id(), session).second) {
-			world_sessions_arr_.push_back(session);
-			LOG_INFO("Section::EnterSession session_id: {}, section_id: {}", session->session_id(), _section_id);
+		for (size_t i = 0; i < world_sessions_indexes_.size(); ++i) {
+			bool is_occupied = world_sessions_indexes_[i].load();
+			if (!is_occupied && world_sessions_indexes_[i].compare_exchange_strong(is_occupied, true)) {
+				world_sessions_arr_[i] = session;
+				++_session_count;
+
+				LOG_INFO("Section::EnterSession session_id: {}, section_id: {}", session->session_id(), _section_id);
+				return;
+			}
 		}
 	}
 
 	void Section::LeaveSession(std::shared_ptr<WorldSession> session) {
-		world_sessions_.erase(session->session_id());
-		auto iter = std::remove_if(world_sessions_arr_.begin(), world_sessions_arr_.end(),
-			[&session](const std::shared_ptr<WorldSession>& s) { return s->session_id() == session->session_id(); });
-		if (iter != world_sessions_arr_.end()) {
-			world_sessions_arr_.erase(iter, world_sessions_arr_.end());
-			LOG_INFO("Section::LeaveSession session_id: {}, section_id: {}", session->session_id(), _section_id);
+		for (size_t i = 0; i < world_sessions_indexes_.size(); ++i) {
+			if (world_sessions_arr_[i] == session) {
+				world_sessions_indexes_[i].store(false);
+				world_sessions_arr_[i].reset();
+				--_session_count;
+				LOG_INFO("Section::LeaveSession session_id: {}, section_id: {}", session->session_id(), _section_id);
+				return;
+			}
 		}
 	}
 
@@ -31,7 +39,10 @@ namespace Server {
 
 	void Section::Multicast(const std::shared_ptr<const google::protobuf::Message>& message, const int64_t source_session_id) {
 		DEBUG_ASSERT(IsSynchronized());
-		for (const auto& session : world_sessions_arr_) {
+		for (const auto session : world_sessions_arr_) {
+			if (session == nullptr) {
+				continue;
+			}
 			if (session->session_id() != source_session_id) {
 				session->Send(message);
 			}
@@ -40,7 +51,10 @@ namespace Server {
 
 	void Section::ForEach(std::function<void(WorldSession&)> functor, const int64_t source_session_id) {
 		auto shared_functor = std::make_shared<std::function<void(WorldSession&)>>(functor);
-		for (const auto& session : world_sessions_arr_) {
+		for (const auto session : world_sessions_arr_) {
+			if (session == nullptr) {
+				continue;
+			}
 			if (session->session_id() != source_session_id) {
 				Ctrl(*session).Post([shared_functor](WorldSession& session) {
 					auto& functor = *shared_functor;

@@ -8,6 +8,7 @@ service LobbyService {
   // Sends a greeting
   rpc RegisterServer (RegisterServerRequest) returns (RegisterServerReponse);
   rpc Ping (PingRequest) returns (PingResponse);
+  rpc CharacterLogin (CharacterLoginRequest) returns (CharacterLoginResponse);
 }
 
 // The request message containing the user's name.
@@ -26,4 +27,16 @@ message PingRequest {
 }
 
 message PingResponse {
+}
+
+message CharacterLoginRequest {
+	string user_id = 1;
+	string access_token = 2;
+	int32 playing_server_id = 3;
+	int64 playing_character_id = 4;
+}
+
+message CharacterLoginResponse {
+	types.Result result = 1;
+	int64 account_id = 2;
 }

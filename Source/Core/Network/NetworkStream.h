@@ -7,9 +7,13 @@
 namespace Network {
 
 	struct PendingStream {
-		std::optional<PacketHeader> header;
-		std::vector<char> packetBuffer;
-		size_t remainSegmentLength;
+		PacketHeader header;
+		std::vector<char> dataBuffer;
+
+		void AppendData(const char* data, size_t size) {
+			dataBuffer.resize(dataBuffer.size() + size);
+			std::memcpy(dataBuffer.data() + dataBuffer.size() - size, data, size);
+		}
 	};
 
 	struct RecvNetworkStream {

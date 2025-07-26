@@ -9,6 +9,10 @@ Channel::Channel()
 	context_(Scheduler::Current().GetContext()) {
 }
 
+Channel Channel::RoundRobin() {
+	return Channel(Scheduler::RoundRobin().GetContext());
+}
+
 bool Channel::IsSynchronized() const {
 	return context_.get() == Context::Current();
 }

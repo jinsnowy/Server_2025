@@ -24,6 +24,7 @@ namespace lobby_service {
 static const char* LobbyService_method_names[] = {
   "/lobby_service.LobbyService/RegisterServer",
   "/lobby_service.LobbyService/Ping",
+  "/lobby_service.LobbyService/CharacterLogin",
 };
 
 std::unique_ptr< LobbyService::Stub> LobbyService::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -35,6 +36,7 @@ std::unique_ptr< LobbyService::Stub> LobbyService::NewStub(const std::shared_ptr
 LobbyService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
   : channel_(channel), rpcmethod_RegisterServer_(LobbyService_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_Ping_(LobbyService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_CharacterLogin_(LobbyService_method_names[2], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status LobbyService::Stub::RegisterServer(::grpc::ClientContext* context, const ::lobby_service::RegisterServerRequest& request, ::lobby_service::RegisterServerReponse* response) {
@@ -83,6 +85,29 @@ void LobbyService::Stub::async::Ping(::grpc::ClientContext* context, const ::lob
   return result;
 }
 
+::grpc::Status LobbyService::Stub::CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::lobby_service::CharacterLoginResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_CharacterLogin_, context, request, response);
+}
+
+void LobbyService::Stub::async::CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CharacterLogin_, context, request, response, std::move(f));
+}
+
+void LobbyService::Stub::async::CharacterLogin(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_CharacterLogin_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>* LobbyService::Stub::PrepareAsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::lobby_service::CharacterLoginResponse, ::lobby_service::CharacterLoginRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_CharacterLogin_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::lobby_service::CharacterLoginResponse>* LobbyService::Stub::AsyncCharacterLoginRaw(::grpc::ClientContext* context, const ::lobby_service::CharacterLoginRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncCharacterLoginRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 LobbyService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       LobbyService_method_names[0],
@@ -104,6 +129,16 @@ LobbyService::Service::Service() {
              ::lobby_service::PingResponse* resp) {
                return service->Ping(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      LobbyService_method_names[2],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< LobbyService::Service, ::lobby_service::CharacterLoginRequest, ::lobby_service::CharacterLoginResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](LobbyService::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::lobby_service::CharacterLoginRequest* req,
+             ::lobby_service::CharacterLoginResponse* resp) {
+               return service->CharacterLogin(ctx, req, resp);
+             }, this)));
 }
 
 LobbyService::Service::~Service() {
@@ -117,6 +152,13 @@ LobbyService::Service::~Service() {
 }
 
 ::grpc::Status LobbyService::Service::Ping(::grpc::ServerContext* context, const ::lobby_service::PingRequest* request, ::lobby_service::PingResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status LobbyService::Service::CharacterLogin(::grpc::ServerContext* context, const ::lobby_service::CharacterLoginRequest* request, ::lobby_service::CharacterLoginResponse* response) {
   (void) context;
   (void) request;
   (void) response;

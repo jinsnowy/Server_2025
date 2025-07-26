@@ -8,6 +8,7 @@ namespace Server::Model {
 		bool UpsertToDb(Sql::Agent& agent);
 		static std::vector<std::unique_ptr<Character>> LoadByAccountIdAndServerId(Sql::Agent& agent, int64_t account_id, int32_t server_id);
 		static bool IsCharacterExists(Sql::Agent& agent, const std::string& character_name);
+		static bool IsCharacterExists(Sql::Agent& agent, int64_t account_id, int32_t server_id, int64_t character_id);
 
 		void set_character_id(int64_t character_id) { character_id_ = character_id; }
 		int64_t character_id() const { return character_id_; }

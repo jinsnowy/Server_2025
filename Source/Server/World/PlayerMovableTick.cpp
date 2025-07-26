@@ -3,8 +3,7 @@
 #include "Core/System/SingletonActor.h"
 #include "../Session/WorldSession.h"
 
-namespace Server::PlayerMovableTick {
-	
+namespace Server::PlayerMovableTick {	
 	class PlayerMovableTick : public System::SingletonActor<PlayerMovableTick> {
 	public:
 		PlayerMovableTick();
@@ -12,7 +11,12 @@ namespace Server::PlayerMovableTick {
 		void AddSession(const std::shared_ptr<WorldSession>& session);
 		void RemoveSession(const std::shared_ptr<WorldSession>& session);
 
+		const System::Tick& base_tick() const {
+			return base_tick_;
+		}
+
 	private:
+		System::Tick base_tick_;
 		System::PeriodicTimer::Handle tick_timer_handle_;
 		std::unordered_map<int64_t, std::shared_ptr<WorldSession>> world_session_map_;
 		std::vector<std::shared_ptr<WorldSession>> world_sessions_;
@@ -21,6 +25,7 @@ namespace Server::PlayerMovableTick {
 	};
 
 	PlayerMovableTick::PlayerMovableTick() {
+		base_tick_ = System::Tick::Current();
 		tick_timer_handle_ = System::PeriodicTimer::Schedule(System::Duration::FromMilliseconds(kPlayerMovableTickInterval), [](System::PeriodicTimer::Handle&) {
 			Ctrl(PlayerMovableTick::GetInstance()).Post([](PlayerMovableTick& tick) {
 				tick.OnTick();
@@ -53,6 +58,16 @@ namespace Server::PlayerMovableTick {
 		}
 	}
 	
+	void SetServerTickInterVal(int32_t interval)
+	{
+		kPlayerMovableTickInterval = std::max(0, interval);
+	}
+
+
+	float GetServerTick() {
+		return static_cast<float>((System::Tick::Current() - PlayerMovableTick::GetInstance().base_tick()).AsMicroSecs()) / 1'000'000.f;
+	}
+
 	void BeginTick(const std::shared_ptr<WorldSession>& world_session) {
 		Ctrl(PlayerMovableTick::GetInstance()).Post([world_session](PlayerMovableTick& tick) {
 			tick.AddSession(world_session);

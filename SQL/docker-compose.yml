@@ -1,4 +1,3 @@
-version: '3.0'
 services:
   mssql:
     image: mcr.microsoft.com/mssql/server:2022-latest
@@ -8,4 +7,13 @@ services:
       - SA_PASSWORD=StrongPass1!
     ports:
       - "1433:1433"
+    volumes:
+      # Mount your local init.sql into the container
+      - ./init.sql:/usr/src/app/init.sql # Adjust the path if init.sql is in a subfolder
     restart: unless-stopped
+    command: >
+      /bin/bash -c "
+        /opt/mssql/bin/sqlservr &
+        sleep 30s; # Give SQL Server time to start up
+        /opt/mssql-tools18/bin/sqlcmd -S localhost -U SA -P 'StrongPass1!' -i /usr/src/app/init.sql -C;
+        wait" # Wait for sqlservr process to finish
