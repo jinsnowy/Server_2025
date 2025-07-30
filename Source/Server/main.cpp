@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Core/Logging/Logger.h"
 #include "Core/System/Program.h"
+#include "Core/Json/Json.h"
 #include "Server/Session/LobbySession.h"
 #include "Server/Session/ClientSession.h"
 #include "Server/Session/WorldSession.h"
@@ -9,6 +10,7 @@
 #include "Server/Service/WorldServiceDef.h"
 #include "Server/Service/ServiceBuilder.h"
 #include "Server/Service/LobbyService.h"
+#include "Server/DataTable/SpawnerDataRecord.h"
 #include "Core/Sql/Database.h"
 #include "Server/Authenticator/Authenticator.h"
 #include "InterServer/GrpcService.h"
@@ -68,8 +70,9 @@ DBConfig GetDBConfig() {
 }
 
 int main() {
+	DataTable::SpawnerDataRecord::Load("./Data/SpawnAreaActor.json");
 
-    System::Scheduler::CreateThreadPool(1);
+    System::Scheduler::CreateThreadPool(2);
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     grpc::EnableDefaultHealthCheckService(true);
 	DB::GetInstance().Initialize(GetDBConfig());
@@ -107,7 +110,6 @@ int main() {
 
         LOG_INFO("World service started on port 9912");
     });
-
 
     System::Program::Wait();
 

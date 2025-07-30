@@ -2,10 +2,17 @@
 
 namespace types {
 	class SectionInfo;
-} 
+}  // namespace types
 
 namespace Server {
 	class WorldSession;
+	class GameObject;
+	class SpawnSystem;
+	class CollisionSystem;
+	class Npc;
+	class Pc;
+	class Projectile;
+	class WorldService;
 	class Section : public System::Actor {
 	public:
 		struct Id {
@@ -39,24 +46,28 @@ namespace Server {
 			}
 		};
 
-		Section(uint64_t section_id) 
-			:
-			_section_id(section_id) {
-		}
+		static const System::Tick& GetLastTick();
+
+		Section(uint64_t section_id);
+		~Section();
 
 		uint64_t section_id() const {
-			return _section_id;
+			return section_id_;
 		}
 
 		void set_map_uid(int32_t map_uid) {
-			_map_uid = map_uid;
+			map_uid_ = map_uid;
 		}
 
 		int32_t map_uid() const {
-			return _map_uid;
+			return map_uid_;
 		}
 
 		bool IsEmpty() const {
+			return _session_count;
+		}
+
+		size_t GetCount() const {
 			return _session_count;
 		}
 
@@ -70,13 +81,47 @@ namespace Server {
 		void WriteTo(types::SectionInfo* out_section) const;
 
 		void Multicast(const std::shared_ptr<const google::protobuf::Message>& message, const int64_t source_session_id);
+		void Multicast(const std::shared_ptr<const google::protobuf::Message>& message);
 		void ForEach(std::function<void(WorldSession&)> session, const int64_t source_session_id);
 
+		void OnCreated();
+		void OnTick(float delta_time);
+		void OnDestroyed();
+		void OnOwnershipChanged(std::shared_ptr<WorldSession> prev_session);
+
+		int64_t GetOwnerCharacterId() const;
+
+		SpawnSystem& spawn_system() {
+			return *spawn_system_;
+		}
+
+		bool SpawnObject(const std::shared_ptr<GameObject>& object);
+		void SpawnMany(std::vector<std::shared_ptr<Npc>> objects);
+		bool DespawnObject(const std::shared_ptr<GameObject>& object);
+
 	private:
-		uint64_t _section_id;
-		int32_t _map_uid = 0;
+		uint64_t section_id_;
+		int32_t map_uid_ = 0;
 		size_t _session_count = 0;
+		System::Tick last_tick_;
+
+		std::shared_ptr<WorldService> service_;
+		std::shared_ptr<WorldSession> owner_session_;
 		std::array<std::atomic<bool>, 1024> world_sessions_indexes_;
 		std::array<std::shared_ptr<WorldSession>, 1024> world_sessions_arr_;
+
+		std::unordered_map<int64_t, std::shared_ptr<GameObject>> game_objects_; // Map of all game objects in the section
+		std::vector<std::shared_ptr<GameObject>> objects_to_despawn_; // Vector of all sessions in the section
+		std::vector<std::shared_ptr<GameObject>> all_tick_objects_; // Vector of despawned objects
+		std::vector<std::shared_ptr<GameObject>> await_first_tick_objects_; // Vector of objects awaiting first tick update
+
+		std::unique_ptr<SpawnSystem> spawn_system_;
+		std::unique_ptr<CollisionSystem> collision_system_;
+
+		bool AddGameObject(std::shared_ptr<GameObject> object);
+		bool RemoveGameObject(std::shared_ptr<GameObject> object);
+
+		void OnGameObjectAdded(std::shared_ptr<GameObject> object);
+		void OnGameObjectRemoved(std::shared_ptr<GameObject> object);
 	};
 }

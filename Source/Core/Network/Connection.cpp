@@ -281,8 +281,6 @@ namespace Network {
 			}
 		}
 
-
-
 		if (has_any_completion_packets == true) {
 			Ctrl(*session).Post([protocol = protocol_](Session& session) {
 				session.OnProcessPacket(protocol);

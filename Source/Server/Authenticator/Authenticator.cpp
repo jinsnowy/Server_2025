@@ -42,18 +42,19 @@ namespace Server {
 			return std::nullopt;
 		}
 
-		auto user_id_opt = json_doc->GetValue<std::string>("user_id");
-		if (!user_id_opt.has_value()) {
+		std::string user_id = json_doc->TryGetValue<std::string>("user_id", "");
+		if (user_id.empty()) {
 			LOG_ERROR("Missing user_id in response: {}", response.body());
 			return std::nullopt;
 		}
-		auto user_name_opt = json_doc->GetValue<std::string>("username");
-		if (!user_name_opt.has_value()) {
+
+		std::string user_name = json_doc->TryGetValue<std::string>("username", "");
+		if (user_name.empty()) {
 			LOG_ERROR("Missing username in response: {}", response.body());
 			return std::nullopt;
 		}
 
-		return Model::AccountTokenInfo(user_id_opt.value(), user_name_opt.value(), access_token );
+		return Model::AccountTokenInfo(user_id, user_name, access_token );
 	}
 
 }

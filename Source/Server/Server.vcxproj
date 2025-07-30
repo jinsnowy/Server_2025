@@ -56,6 +56,16 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\..\CppReleaseLibrary.props" />
+    <Import Project="..\..\ProtobufLibrary.props" />
+    <Import Project="..\..\DllReleaseCopy.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\..\CppDebugLibrary.props" />
+    <Import Project="..\..\ProtobufLibrary.props" />
+    <Import Project="..\..\DllDebugCopy.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
@@ -63,8 +73,6 @@
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Server.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Server</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
@@ -84,9 +92,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)Bin\$(Configuration)\</OutDir>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\vcpkg-build\dll\include;$(SolutionDir)..\Library\source-build\static-md\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -98,7 +108,6 @@
       <MinimalRebuild>
       </MinimalRebuild>
       <Optimization>Disabled</Optimization>
-      <PrecompiledHeader>Use</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SupportJustMyCode>
@@ -106,7 +115,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x600;_SCL_SECURE_NO_WARNINGS;_CRT_SECURE_NO_WARNINGS;_WINSOCK_DEPRECATED_NO_WARNINGS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -123,23 +131,18 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)..\Library\vcpkg-build\dll\debug\lib;$(SolutionDir)..\Library\source-build\static-md\debug\lib;$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <SubSystem>Console</SubSystem>
-      <AdditionalDependencies>$(SolutionDir)..\Library\source-build\static-md\debug\lib\*.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ws2_32.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
-    <PreBuildEvent>
-      <Command>xcopy $(SolutionDir)..\Library\vcpkg-build\dll\debug\bin\*.dll $(OutDir) /Y /D</Command>
-    </PreBuildEvent>
+    <PreBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Server;C:\Users\ncsoft\Desktop\CppProject\RTS;C:\Users\ncsoft\Desktop\CppProject\RTS\Source\Protobuf;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
@@ -149,7 +152,7 @@
       <MinimalRebuild>
       </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SupportJustMyCode>
@@ -157,7 +160,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;NDEBUG;CMAKE_INTDIR="Release"</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <DebugInformationFormat>
       </DebugInformationFormat>
@@ -176,17 +178,16 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalLibraryDirectories>$(SolutionDir)$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>C:/Users/ncsoft/Desktop/CppProject/RTS/lib/Release/Server.lib</ImportLibrary>
-      <ProgramDataBaseFile>C:/Users/ncsoft/Desktop/CppProject/RTS/bin/Release/Server.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>$(SolutionDir)..\Library\source-build\static-md\lib\*.lib;$(SolutionDir)..\Library\vcpkg-build\dll\lib\*.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib;ws2_32.lib;crypt32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
     </ProjectReference>
+    <PostBuildEvent />
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
@@ -294,19 +295,31 @@
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp" />
     <ClCompile Include="Database\DB.cpp" />
+    <ClCompile Include="DataTable\DataTable.cpp" />
+    <ClCompile Include="DataTable\FileReader.cpp" />
+    <ClCompile Include="DataTable\SpawnerDataRecord.cpp" />
+    <ClCompile Include="GameFramework\CollisionComponent.cpp" />
+    <ClCompile Include="GameFramework\GameObjectComponent.cpp" />
+    <ClCompile Include="GameObject\GameObject.cpp" />
+    <ClCompile Include="GameObject\Pc.cpp" />
+    <ClCompile Include="GameObject\Projectile.cpp" />
+    <ClCompile Include="GameObject\Npc.cpp" />
     <ClCompile Include="InterServer\GrpcService.cpp" />
     <ClCompile Include="InterServer\LobbyGrpcClient.cpp" />
     <ClCompile Include="InterServer\LobbyGrpcService.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model\Account.cpp" />
     <ClCompile Include="Model\Character.cpp" />
+    <ClCompile Include="Model\ClientAction.cpp" />
     <ClCompile Include="Model\Combat.cpp" />
-    <ClCompile Include="Model\Movable.cpp" />
     <ClCompile Include="Model\Player.cpp" />
     <ClCompile Include="Model\Server.cpp" />
     <ClCompile Include="Model\UniqueId.cpp" />
+    <ClCompile Include="Section\CollisionSystem.cpp" />
     <ClCompile Include="Section\Section.cpp" />
+    <ClCompile Include="Section\SectionComponent.cpp" />
     <ClCompile Include="Section\SectionRepository.cpp" />
+    <ClCompile Include="Section\SpawnSystem.cpp" />
     <ClCompile Include="Service\ClientServiceDef.cpp" />
     <ClCompile Include="Service\HandlerMap.cpp" />
     <ClCompile Include="Service\LobbyService.cpp" />
@@ -321,26 +334,40 @@
     <ClCompile Include="Session\WorldSession.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Utilites\Protobuf.cpp" />
     <ClCompile Include="World\NeighborsLookup.cpp" />
-    <ClCompile Include="World\PlayerMovableTick.cpp" />
+    <ClCompile Include="World\PlayerTick.cpp" />
     <ClCompile Include="World\PlayerRepository.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Authenticator\Authenticator.h" />
     <ClInclude Include="Database\DB.h" />
+    <ClInclude Include="DataTable\DataTable.h" />
+    <ClInclude Include="DataTable\FileReader.h" />
+    <ClInclude Include="DataTable\SpawnerDataRecord.h" />
+    <ClInclude Include="GameFramework\CollisionComponent.h" />
+    <ClInclude Include="GameFramework\GameObjectComponent.h" />
+    <ClInclude Include="GameObject\GameObject.h" />
+    <ClInclude Include="GameObject\Pc.h" />
+    <ClInclude Include="GameObject\Projectile.h" />
+    <ClInclude Include="GameObject\Npc.h" />
     <ClInclude Include="InterServer\GrpcService.h" />
     <ClInclude Include="InterServer\LobbyGrpcClient.h" />
     <ClInclude Include="InterServer\LobbyGrpcService.h" />
     <ClInclude Include="Model\Account.h" />
     <ClInclude Include="Model\Character.h" />
+    <ClInclude Include="Model\ClientAction.h" />
     <ClInclude Include="Model\Combat.h" />
-    <ClInclude Include="Model\Movable.h" />
     <ClInclude Include="Model\Player.h" />
     <ClInclude Include="Model\Server.h" />
     <ClInclude Include="Model\UniqueId.h" />
+    <ClInclude Include="Section\CollisionSystem.h" />
     <ClInclude Include="Section\Section.h" />
+    <ClInclude Include="Section\SectionComponent.h" />
     <ClInclude Include="Section\SectionRepository.h" />
+    <ClInclude Include="Section\SpawnSystem.h" />
     <ClInclude Include="Service\ClientServiceDef.h" />
     <ClInclude Include="Service\HandlerMap.h" />
     <ClInclude Include="Service\LobbyService.h" />
@@ -354,8 +381,9 @@
     <ClInclude Include="Session\LobbySession.h" />
     <ClInclude Include="Session\WorldSession.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="Utilites\Protobuf.h" />
     <ClInclude Include="World\NeighborsLookup.h" />
-    <ClInclude Include="World\PlayerMovableTick.h" />
+    <ClInclude Include="World\PlayerTick.h" />
     <ClInclude Include="World\PlayerRepository.h" />
   </ItemGroup>
   <ItemGroup>

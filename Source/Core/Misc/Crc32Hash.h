@@ -1,9 +1,10 @@
 #pragma once
 
 namespace Misc {
-    using hash_type = uint32_t;
     struct crc_32
     {
+        using hash_type = uint32_t;
+
         constexpr static hash_type hash(std::string_view str)
         {
             hash_type crc = 0xffffffff;

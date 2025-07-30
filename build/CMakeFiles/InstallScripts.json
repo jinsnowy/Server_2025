@@ -1,9 +1,0 @@
-{
-	"InstallScripts" : 
-	[
-		"C:/Users/yoon/Desktop/CppProject/RTS/build/cmake_install.cmake",
-		"C:/Users/yoon/Desktop/CppProject/RTS/build/Core/cmake_install.cmake",
-		"C:/Users/yoon/Desktop/CppProject/RTS/build/RTS/cmake_install.cmake"
-	],
-	"Parallel" : false
-}

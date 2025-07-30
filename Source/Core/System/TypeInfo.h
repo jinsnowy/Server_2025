@@ -93,4 +93,12 @@ namespace System
 
     template <typename T>
     constexpr inline hashcode_t hashcode_v = hashcode<T>();
+
+    template<typename T>
+    struct TypeId 
+    {
+        static constexpr Misc::crc_32::hash_type value = hashcode<T>();
+        static constexpr std::string_view name = type_name<T>();
+		static constexpr std::string_view value_name = value_name_v<value>;
+    };
 }

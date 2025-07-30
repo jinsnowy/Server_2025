@@ -18,6 +18,30 @@ namespace System {
 		Tick& operator=(const Tick&) = default;
 
 		Elapse operator-(const Tick& rhs) const;
+
+		bool operator==(const Tick& rhs) const {
+			return time_point_ == rhs.time_point_;
+		}
+
+		bool operator!=(const Tick& rhs) const {
+			return !(*this == rhs);
+		}
+
+		bool operator<(const Tick& rhs) const {
+			return time_point_ < rhs.time_point_;
+		}
+
+		bool operator<=(const Tick& rhs) const {
+			return time_point_ <= rhs.time_point_;
+		}
+		
+		bool operator>(const Tick& rhs) const {
+			return time_point_ > rhs.time_point_;
+		}
+
+		bool operator>=(const Tick& rhs) const {
+			return time_point_ >= rhs.time_point_;
+		}
 	
 		// to epoch milliseconds
 		int64_t GetEpocMilliseconds () const {
@@ -30,6 +54,14 @@ namespace System {
 
 		Tick AddMilliseconds(int64_t milliseconds) const {
 			return Tick(time_point_ + std::chrono::milliseconds(milliseconds));
+		}
+
+		Tick AddSeconds(int64_t seconds) const {
+			return Tick(time_point_ + std::chrono::seconds(seconds));
+		}
+
+		Tick AddSeconds(float seconds) const {
+			return Tick(time_point_ + std::chrono::microseconds(static_cast<int64_t>(seconds * 1000000)));
 		}
 
 		static Tick FromEpocMilliseconds(int64_t milliseconds) {

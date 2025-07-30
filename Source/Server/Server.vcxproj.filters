@@ -28,6 +28,18 @@
     <Filter Include="World">
       <UniqueIdentifier>{9fcdd07c-b1d8-4083-a872-3e57cce5fa2d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DataTable">
+      <UniqueIdentifier>{39ac5e34-4dbe-4f16-b943-5865e937c0a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject">
+      <UniqueIdentifier>{df94f7e8-3fc5-417f-a1bf-3068310f85a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilites">
+      <UniqueIdentifier>{a8f3ebe1-c613-4989-8b75-4bb5bc7dcbca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameFramwork">
+      <UniqueIdentifier>{94bffba4-1a2e-4661-87f9-7af061cbc91b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Authenticator\Authenticator.cpp">
@@ -98,10 +110,7 @@
     <ClCompile Include="Service\LobbyService.cpp">
       <Filter>Service</Filter>
     </ClCompile>
-    <ClCompile Include="Model\Movable.cpp">
-      <Filter>Model</Filter>
-    </ClCompile>
-    <ClCompile Include="World\PlayerMovableTick.cpp">
+    <ClCompile Include="World\PlayerTick.cpp">
       <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="World\NeighborsLookup.cpp">
@@ -118,6 +127,48 @@
     </ClCompile>
     <ClCompile Include="Model\Combat.cpp">
       <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable\SpawnerDataRecord.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable\DataTable.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="DataTable\FileReader.cpp">
+      <Filter>DataTable</Filter>
+    </ClCompile>
+    <ClCompile Include="Section\SpawnSystem.cpp">
+      <Filter>Section</Filter>
+    </ClCompile>
+    <ClCompile Include="Section\SectionComponent.cpp">
+      <Filter>Section</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\GameObject.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Utilites\Protobuf.cpp">
+      <Filter>Utilites</Filter>
+    </ClCompile>
+    <ClCompile Include="Model\ClientAction.cpp">
+      <Filter>Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Projectile.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Npc.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFramework\CollisionComponent.cpp">
+      <Filter>GameFramwork</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFramework\GameObjectComponent.cpp">
+      <Filter>GameFramwork</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject\Pc.cpp">
+      <Filter>GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Section\CollisionSystem.cpp">
+      <Filter>Section</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -188,10 +239,7 @@
     <ClInclude Include="Service\LobbyService.h">
       <Filter>Service</Filter>
     </ClInclude>
-    <ClInclude Include="Model\Movable.h">
-      <Filter>Model</Filter>
-    </ClInclude>
-    <ClInclude Include="World\PlayerMovableTick.h">
+    <ClInclude Include="World\PlayerTick.h">
       <Filter>World</Filter>
     </ClInclude>
     <ClInclude Include="World\NeighborsLookup.h">
@@ -208,6 +256,48 @@
     </ClInclude>
     <ClInclude Include="Model\Combat.h">
       <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable\SpawnerDataRecord.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable\DataTable.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="DataTable\FileReader.h">
+      <Filter>DataTable</Filter>
+    </ClInclude>
+    <ClInclude Include="Section\SpawnSystem.h">
+      <Filter>Section</Filter>
+    </ClInclude>
+    <ClInclude Include="Section\SectionComponent.h">
+      <Filter>Section</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\GameObject.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Utilites\Protobuf.h">
+      <Filter>Utilites</Filter>
+    </ClInclude>
+    <ClInclude Include="Model\ClientAction.h">
+      <Filter>Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Projectile.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Npc.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFramework\CollisionComponent.h">
+      <Filter>GameFramwork</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFramework\GameObjectComponent.h">
+      <Filter>GameFramwork</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject\Pc.h">
+      <Filter>GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Section\CollisionSystem.h">
+      <Filter>Section</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

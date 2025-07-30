@@ -80,6 +80,7 @@ namespace Server {
 		.Then([this](GrpcCallResult<RegisterServerReponse> result) {
 			if (result.ok() && result.response.result() == types::Result::kSuccess) {
 				is_registered_ = true;
+				server_id_ = static_cast<int16_t>(result.response.server_id());
 			}
 			result.response.result() == types::Result::kSuccess ? 
 				LOG_INFO("WorldService registered successfully.") : LOG_ERROR("Failed to register WorldService");

@@ -30,7 +30,7 @@ namespace System {
 
 		template<typename T>
 		static std::shared_ptr<T> Get() {
-			size_t type_id = DependencyInjection::GetTypeId<T>();
+			constexpr size_t type_id = DependencyInjection::GetTypeId<T>();
 			auto it = service_factories_.find(type_id);
 			if (it == service_factories_.end()) {
 				throw std::runtime_error("Service not registered: " + std::string(DependencyInjection::GetName<T>()));

@@ -1,5 +1,0 @@
-C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/yoon/Desktop/CppProject/RTS/build/CMakeFiles/ZERO_CHECK.dir
-C:/Users/yoon/Desktop/CppProject/RTS/build/Core/CMakeFiles/core.dir
-C:/Users/yoon/Desktop/CppProject/RTS/build/RTS/CMakeFiles/RTS.dir
-C:/Users/yoon/Desktop/CppProject/RTS/build/RTS/CMakeFiles/ALL_BUILD.dir

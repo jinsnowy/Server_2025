@@ -23,6 +23,10 @@ namespace Server {
 			lobby_server_address_ = address;
 		}
 
+		int16_t server_id() const {
+			return server_id_;
+		}
+
 		LobbyGrpcClient& GetLobbyGrpcClient();
 
 		void OnLobbyGrpcServiceInited();
@@ -33,6 +37,7 @@ namespace Server {
 		bool is_lobby_grpc_service_inited_ = false;
 		bool is_registered_ = false;
 		bool is_healthy_ = false;
+		int16_t server_id_ = 0;
 		std::string lobby_server_address_;
 		System::PeriodicTimer::Handle health_check_timer_handle_;
 		std::unique_ptr<LobbyGrpcClient> lobby_grpc_client_;

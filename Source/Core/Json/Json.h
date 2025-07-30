@@ -13,24 +13,25 @@ namespace Json {
 		JSection operator[](const char* key);
 		const JSection operator[](const char* key) const;
 
-		template<typename T>
-		std::optional<T> Value() const {
-			try{
-				return root_.get<T>();
-			}
-			catch (...) {
+		JSection GetSection(const char* key) const {
+			return (*this)[key];
+		}
+
+		std::optional<JSection> TryGetSection(const char* key) const {
+			auto iter = root_.find(key);
+			if (iter == root_.end()) {
 				return std::nullopt;
 			}
+			return JSection(*iter);
 		}
 
 		template<typename T>
-		std::optional<T> GetValue(const char* key) const {
-			//static_assert(false, "not implemented for this type");
-			return {};
+		T Value() const {
+			return root_.get<T>();
 		}
 
 		template<typename T>
-		T TryGetValue(const char* key, T default_value) const {
+		T GetValue(const char* key) const {
 			//static_assert(false, "not implemented for this type");
 			return {};
 		}
@@ -117,6 +118,10 @@ namespace Json {
 			return Iterator(root_.end(), root_.end());
 		}
 
+		bool ContainsKey(const char* key) const {
+			return root_.contains(key);
+		}
+
 		std::unordered_map<std::string, JSection> GetSections() const;
 		
 		template<typename T>
@@ -141,63 +146,80 @@ namespace Json {
 		}
 
 #pragma region GetValue
-		template<>
-		std::optional<int8_t> GetValue(const char* key) const;
-		template<>
-		std::optional<int16_t> GetValue(const char* key) const;
-		template<>
-		std::optional<int32_t> GetValue(const char* key) const;
-		template<>
-		std::optional<int64_t> GetValue(const char* key) const;
 
 		template<>
-		std::optional<uint8_t> GetValue(const char* key) const;
-		template<>
-		std::optional<uint16_t> GetValue(const char* key) const;
-		template<>
-		std::optional<uint32_t> GetValue(const char* key) const;
-		template<>
-		std::optional<uint64_t> GetValue(const char* key) const;
+		int8_t GetValue(const char* key) const {
+			return GetSection(key).Value<int8_t>();
+		}
 
 		template<>
-		std::optional<float> GetValue(const char* key) const;
-		template<>
-		std::optional<double> GetValue(const char* key) const;
-		template<>
-		std::optional<std::string> GetValue(const char* key) const;
-		template<>
-		std::optional<bool> GetValue(const char* key) const;
-#pragma endregion
-
- #pragma region TryGetValue
-		template<>
-		int8_t TryGetValue(const char* key, int8_t default_value) const;
-		template<>
-		int16_t TryGetValue(const char* key, int16_t default_value) const;
-		template<>
-		int32_t TryGetValue(const char* key, int32_t default_value) const;
-		template<>
-		int64_t TryGetValue(const char* key, int64_t default_value) const;
+		int16_t GetValue(const char* key) const {
+			return GetSection(key).Value<int16_t>();
+		}
 
 		template<>
-		uint8_t TryGetValue(const char* key, uint8_t default_value) const;
-		template<>
-		uint16_t TryGetValue(const char* key, uint16_t default_value) const;
-		template<>
-		uint32_t TryGetValue(const char* key, uint32_t default_value) const;
-		template<>
-		uint64_t TryGetValue(const char* key, uint64_t default_value) const;
+		int32_t GetValue(const char* key) const {
+			return GetSection(key).Value<int32_t>();
+		}
 
 		template<>
-		float TryGetValue(const char* key, float default_value) const;
-		template<>
-		double TryGetValue(const char* key, double default_value) const;
-		template<>
-		std::string TryGetValue(const char* key, std::string default_value) const;
-		std::string TryGetValue(const char* key, const std::string& default_value) const;
-		template<>
-		bool TryGetValue(const char* key, bool default_value) const;
+		int64_t GetValue(const char* key) const {
+			return GetSection(key).Value<int64_t>();
+		}
 
+		template<>
+		uint8_t GetValue(const char* key) const {
+			return GetSection(key).Value<uint8_t>();
+		}
+
+		template<>
+		uint16_t GetValue(const char* key) const {
+			return GetSection(key).Value<uint16_t>();
+		}
+
+		template<>
+		uint32_t GetValue(const char* key) const {
+			return GetSection(key).Value<uint32_t>();
+		}
+
+		template<>
+		uint64_t GetValue(const char* key) const {
+			return GetSection(key).Value<uint64_t>();
+		}
+
+		template<>
+		float GetValue(const char* key) const {
+			return GetSection(key).Value<float>();
+		}
+
+		template<>
+		double GetValue(const char* key) const {
+			return GetSection(key).Value<double>();
+		}
+
+		template<>
+		std::string GetValue(const char* key) const {
+			return GetSection(key).Value<std::string>();
+		}
+
+		template<>
+		bool GetValue(const char* key) const {
+			return GetSection(key).Value<bool>();
+		}
+
+		template<typename T>
+		T TryGetValue(const char* key, T default_value) const {
+			auto iter = root_.find(key);
+			if (iter != root_.end()) {
+				try {
+					return iter->get<T>();
+				}
+				catch (const nlohmann::json::exception&) {
+					return default_value;
+				}
+			}
+			return {};
+		}
 #pragma endregion
 
 	private:
@@ -210,6 +232,10 @@ namespace Json {
 		~JDocument();
 
 		static std::optional<JDocument> TryParse(const std::string& json_str);
+		static std::optional<JDocument> TryParse(std::ifstream& file);
+
+		static JDocument Parse(const std::string& json_str);
+		static JDocument Parse(std::ifstream& file);
 
 		JSection operator[](const char* key);
 		const JSection operator[](const char* key) const;
@@ -218,8 +244,24 @@ namespace Json {
 			return (*this)[key];
 		}
 
+		JSection::ConstIterator begin() const {
+			return JSection::ConstIterator(root_.cbegin(), root_.cend());
+		}
+
+		JSection::ConstIterator end() const {
+			return JSection::ConstIterator(root_.cend(), root_.cend());
+		}
+
+		JSection::Iterator begin() {
+			return JSection::Iterator(root_.begin(), root_.end());
+		}
+
+		JSection::Iterator end() {
+			return JSection::Iterator(root_.end(), root_.end());
+		}
+
 		template<typename T>
-		std::optional<T> GetValue(const char* key) const {
+		T GetValue(const char* key) const {
 			return JSection(root_).GetValue<T>(key);
 		}
 

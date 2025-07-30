@@ -16,7 +16,7 @@
 #include <random>
 #include <functional>
 #include <utility>
-#include <xutility> // 매우 중요
+#include <xutility>
 
 #include <array>
 #include <bitset>
@@ -45,9 +45,11 @@
 #include <ranges>
 #include <format>
 #include <source_location>
-#include <concurrent_vector.h>
 
+#ifdef _MSC_VER
 #include "Core/Platform/Windows.h"
+#endif 
+
 #include "Core/CoreMinimal.h"
 #include "Core/ThirdParty/Protobuf.h"
 #include "Core/ThirdParty/Sql.h"
@@ -56,6 +58,7 @@
 #include "Protobuf/Public/User.h"
 #include "Protobuf/Public/World.h"
 #include "Protobuf/Public/Types.h"
+#include "Core/Math/LinAlgebra.h"
 
 PROTOBUF_IGNORE_WARNINGS_PUSH
 
@@ -70,20 +73,3 @@ namespace google::protobuf {
 	class Message;
 } // namespace google::protobuf
 
-#ifdef _WIN32
-
-#ifndef NDEBUG
-
-#pragma comment(lib, "boost_system-vc143-mt-gd-x64-1_88.lib")
-#pragma comment(lib, "boost_filesystem-vc143-mt-gd-x64-1_88.lib")
-#pragma comment(lib, "boost_locale-vc143-mt-gd-x64-1_88.lib")
-
-// CURL
-#pragma comment(lib, "libcurl-d.lib")
-
-// ODBC
-#pragma comment(lib, "odbc32.lib")
-
-#endif
-
-#endif

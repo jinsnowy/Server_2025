@@ -52,10 +52,9 @@
 #include <ranges>
 #include <format>
 
-#ifdef _WIN32
-#undef CreateDirectory
-#undef SendMessage
-#undef PostMessage
+
+#ifdef _MSC_VER
+#include "Core/Platform/Windows.h"
 #endif 
 
 #include "Core/ThirdParty/BoostAsio.h"
@@ -69,3 +68,4 @@
 #include "Core/Network/Packet/Packet.h"
 #include "Core/System/Actor.h"
 #include "Core/System/Actor.hpp"
+#include "Core/Math/LinAlgebra.h"

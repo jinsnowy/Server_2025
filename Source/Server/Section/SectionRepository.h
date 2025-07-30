@@ -8,4 +8,6 @@ namespace Server {
 namespace Server::SectionRepository {
 	System::Future<std::shared_ptr<Section>> EnterSection(int32_t map_uid, std::shared_ptr<WorldSession> session);
 	void LeaveSection(int32_t map_uid, std::shared_ptr<WorldSession> session);
+	System::Future<std::shared_ptr<Section>> FindSection(uint64_t section_id);
+	const System::Tick& GetLastTick();
 }

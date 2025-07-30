@@ -57,12 +57,16 @@
   <ImportGroup Label="PropertySheets">
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="..\..\CppReleaseLibrary.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="..\..\CppDebugLibrary.props" />
+  </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core.dir\Release\</IntDir>
-    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Core</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\hyojiny1\Desktop\CppProject\RTS\lib\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Core.dir\MinSizeRel\</IntDir>
@@ -75,7 +79,6 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(SolutionDir)Source;$(ProjectDir);$(SolutionDir)..\Library\vcpkg-build\dll\include;$(SolutionDir)..\Library\source-build\static-md\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>$(IntDir)</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -94,7 +97,6 @@
       <TreatWarningAsError>true</TreatWarningAsError>
       <UseFullPaths>false</UseFullPaths>
       <WarningLevel>Level4</WarningLevel>
-      <PreprocessorDefinitions>%(PreprocessorDefinitions);WIN32;_WINDOWS;_WIN32_WINNT=0x0A00;CMAKE_INTDIR="Debug";PROTOBUF_USE_DLLS</PreprocessorDefinitions>
       <ObjectFileName>$(IntDir)</ObjectFileName>
       <ScanSourceForModuleDependencies>false</ScanSourceForModuleDependencies>
     </ClCompile>
@@ -127,8 +129,6 @@
       </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/Release/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/Release/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SupportJustMyCode>
@@ -171,7 +171,7 @@
       </MinimalRebuild>
       <Optimization>MinSpace</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/MinSizeRel/cmake_pch.hxx</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/MinSizeRel/cmake_pch.pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -216,8 +216,8 @@
       </MinimalRebuild>
       <Optimization>MaxSpeed</Optimization>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <PrecompiledHeaderFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/CMakeFiles/Core.dir/RelWithDebInfo/cmake_pch.hxx</PrecompiledHeaderFile>
-      <PrecompiledHeaderOutputFile>C:/Users/hyojiny1/Desktop/CppProject/RTS/Source/Core/Core.dir/RelWithDebInfo/cmake_pch.pch</PrecompiledHeaderOutputFile>
+      <PrecompiledHeaderFile>stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderOutputFile>$(IntDir)$(TargetName).pch</PrecompiledHeaderOutputFile>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <SupportJustMyCode>
@@ -246,7 +246,6 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Container\CircularBuffer.cpp" />
     <ClCompile Include="Container\LruCache.cpp" />
     <ClCompile Include="Container\MPSC.cpp" />
     <ClCompile Include="Container\SList.cpp" />
@@ -256,9 +255,13 @@
     <ClCompile Include="Http\HttpResponse.cpp" />
     <ClCompile Include="Json\Json.cpp" />
     <ClCompile Include="Logging\Logger.cpp" />
+    <ClCompile Include="Math\Collision\CapsuleCollider.cpp" />
+    <ClCompile Include="Math\Collision\Collider.cpp" />
+    <ClCompile Include="Math\Collision\Helper.cpp" />
     <ClCompile Include="Math\LinAlgebra.cpp" />
     <ClCompile Include="Misc\ApplyVariants.cpp" />
     <ClCompile Include="Misc\Crc32Hash.cpp" />
+    <ClCompile Include="Misc\Utils.cpp" />
     <ClCompile Include="Network\Acceptor.cpp" />
     <ClCompile Include="Network\Buffer.cpp" />
     <ClCompile Include="Network\BufferMemory.cpp" />
@@ -288,6 +291,7 @@
     <ClCompile Include="Sql\StmtImpl.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="System\Actor.cpp" />
     <ClCompile Include="System\Callable.cpp" />
@@ -320,7 +324,6 @@
     <ClCompile Include="ThirdParty\Sql.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Container\CircularBuffer.h" />
     <ClInclude Include="Container\LruCache.h" />
     <ClInclude Include="Container\MPSC.h" />
     <ClInclude Include="Container\SList.h" />
@@ -331,9 +334,13 @@
     <ClInclude Include="Http\HttpResponse.h" />
     <ClInclude Include="Json\Json.h" />
     <ClInclude Include="Logging\Logger.h" />
+    <ClInclude Include="Math\Collision\CapsuleCollider.h" />
+    <ClInclude Include="Math\Collision\Collider.h" />
+    <ClInclude Include="Math\Collision\Helper.h" />
     <ClInclude Include="Math\LinAlgebra.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Misc\Crc32Hash.h" />
+    <ClInclude Include="Misc\Utils.h" />
     <ClInclude Include="Network\Acceptor.h" />
     <ClInclude Include="Network\Buffer.h" />
     <ClInclude Include="Network\BufferMemory.h" />
@@ -399,7 +406,7 @@
     <ClInclude Include="System\TypeInfo.h" />
     <ClInclude Include="ThirdParty\BoostAsio.h" />
     <ClInclude Include="ThirdParty\Curl.h" />
-    <ClInclude Include="ThirdParty\Glm.h" />
+    <ClInclude Include="ThirdParty\Eigen.h" />
     <ClInclude Include="ThirdParty\Json.h" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum.hpp" />
     <ClInclude Include="ThirdParty\MagicEnum\magic_enum_containers.hpp" />

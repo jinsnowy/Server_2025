@@ -17,8 +17,8 @@ mongodb:
 auth-provider:
   temp-session-expiry-seconds: 300
   google:
-    client-id: 115847244815-vc7451712git8cu7snkkj8nkbfs784ci.apps.googleusercontent.com
-    client-secret: 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
+    client-id: your-client-id
+    client-secret: your-client-secret
     redirect-uri: "http://localhost:8080/auth/google/callback"
     userinfo-api-uri: "https://www.googleapis.com/oauth2/v2/userinfo"
     scopes:
