@@ -29,7 +29,12 @@ namespace Network {
 		size_t GetRemainingByteCount() const { return GetBufferSize() - end_pos_; }
 
 		bool IsEmpty() const { return end_pos_ == start_pos_; }
-		BufferView AsView() const;
+		void Clear() {
+			start_pos_ = 0;
+			end_pos_ = 0;
+		}
+
+		std::string ToString() const;
 
 	private:
 		std::shared_ptr<BufferMemory> source_;
@@ -39,9 +44,9 @@ namespace Network {
 
 	class BufferView final {
 	public:
-		BufferView(const std::shared_ptr<BufferMemory>& buffer, size_t data_offset, size_t data_length)
+		BufferView(const std::shared_ptr<Buffer>& buffer, size_t data_offset, size_t data_length)
 			:
-			source_(buffer),
+			buffer_(buffer),
 			data_(buffer->GetBufferPtr() + data_offset),
 			data_length_(data_length) {
 		}
@@ -54,10 +59,12 @@ namespace Network {
 			return data_length_;
 		}
 
-		std::shared_ptr<BufferMemory> source() const { return source_; }
-
+		const std::shared_ptr<Buffer>& buffer() const {
+			return buffer_;
+		}
+	
 	private:
-		std::shared_ptr<BufferMemory> source_;
+		std::shared_ptr<Buffer> buffer_;
 		const char* data_;
 		const size_t data_length_;
 	};
@@ -84,10 +91,6 @@ namespace Network {
 
 		size_t GetRemainingSize() const {
 			return buffer_.GetRemainingByteCount();
-		}
-
-		BufferView GetWrittenBufferView() const {
-			return BufferView(buffer_.source(), buffer_.start_pos(), buffer_.GetByteCount());
 		}
 
 	private:

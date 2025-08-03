@@ -9,6 +9,7 @@
 #include "Core/Network/BufferPool.h"
 #include "Core/Network/NetworkStream.h"
 #include "Core/Network/Protocol.h"
+#include "Core/Network/SendNode.h"
 
 namespace Network {
 	Connection::Connection(std::unique_ptr<Socket> socket) 
@@ -16,44 +17,38 @@ namespace Network {
 		System::Actor(System::Channel(socket->context())),
 		socket_(std::move(socket)),
 		resolver_(std::make_unique<Resolver>(socket_->context())),
+		output_stream_(std::make_unique<OutputStream>()),
 		send_stream_(std::make_unique<SendNetworkStream>()),
-		recv_stream_(std::make_unique<RecvNetworkStream>())
-	{
+		recv_stream_(std::make_unique<RecvNetworkStream>()) {
+		socket_->raw_socket().set_option(boost::asio::socket_base::keep_alive(true));
+		socket_->raw_socket().set_option(boost::asio::socket_base::linger(true, 0));
+		const auto& remote_endpoint = socket_->raw_socket().remote_endpoint();
+		connceted_address_ = IPAddress(remote_endpoint.address().to_string(), remote_endpoint.port());
 	}
 
 	Connection::Connection(std::shared_ptr<System::Context> context)
 		:
 		socket_(std::make_unique<Socket>(context)),
 		resolver_(std::make_unique<Resolver>(context)),
+		output_stream_(std::make_unique<OutputStream>()),
 		send_stream_(std::make_unique<SendNetworkStream>()),
 		recv_stream_(std::make_unique<RecvNetworkStream>()) {
+		socket_->raw_socket().set_option(boost::asio::socket_base::keep_alive(true));
+		socket_->raw_socket().set_option(boost::asio::socket_base::linger(true, 0));
 	}
 
-	Connection::~Connection() {
-		if (IsConnected()) {
-			Disconnect();
-		}
-	}
+	Connection::~Connection() = default;
 
-	void Connection::Connect(const std::string& ip, const uint16_t& port, std::shared_ptr<Session> session) {
+	void Connection::Connect(const std::string& ip, const uint16_t& port) {
 		DEBUG_ASSERT(IsSynchronized());
 
-		ip_ = ip;
-		port_ = port;
-		session_ = session;
-		resolver_->Resolve(ip_, port_, &Connection::OnResolved, GetShared(this));
+		target_address_ = IPAddress(ip, port);
+		resolver_->Resolve(ip, port, &Connection::OnResolved, SharedFrom(this));
 	}
 
 	void Connection::Disconnect() {
-		DEBUG_ASSERT(IsSynchronized());
 		if (socket_->IsOpen()){
 			socket_->Close();
-		}
-
-		auto session = session_.lock();
-		if (session) {
-			session->OnDisconnected();
-			session_.reset();
 		}
 	}
 
@@ -61,80 +56,87 @@ namespace Network {
 		return socket_->IsOpen();
 	}
 
-	void Connection::Send(const BufferView& buffer) {
-		DEBUG_ASSERT(IsSynchronized());
-		send_stream_->pending_buffers.push_back(buffer);
-		if (send_stream_->is_sending == false) {
-			FlushSend(false);
-		}
-	}
+	void Connection::Send(std::unique_ptr<SendNode> node) {
+		static constexpr size_t kMaxPendingBuffers = 512;
 
-	bool Connection::IsSendInProgress() const {
-		return send_stream_->is_sending.load();
+		size_t pending_buffers_size = send_stream_->pending_buffers.Push(std::move(node));
+		if (pending_buffers_size == 0) {
+			Ctrl(*this).Post([](Connection& connection) {
+				connection.FlushSend();
+			});
+		}
+		/*else if (pending_buffers_size > 1024) {
+			LOG_ERROR("[CONNECTION] Send: too many pending buffers: {}", pending_buffers_size);
+			Disconnect();
+		}*/
 	}
 
 	void Connection::OnResolved(const boost::system::error_code& error, boost::asio::ip::tcp::resolver::results_type results) {
 		DEBUG_ASSERT(IsSynchronized());
 		if (error) {
-			LOG_ERROR("[CONNECTION] resolve to {} failed by {}", ToString(), error.message());
+			on_connect_failed_delegate_.ExecuteIfBound(target_address_, error.message());
 			return;
 		}
 
-		socket_->ConnectAsync(results, &Connection::OnConnected, GetShared(this));
+		socket_->ConnectAsync(results, &Connection::OnConnected, SharedFrom(this));
 	}
 
 	void Connection::OnConnected(const boost::system::error_code& error, const boost::asio::ip::tcp::endpoint& endpoint) {
 		DEBUG_ASSERT(IsSynchronized());
+
 		if (error) {
-			LOG_ERROR("[CONNECTION] connect to {} failed by {}", ToString(), error.to_string());
+			on_connect_failed_delegate_.ExecuteIfBound(connceted_address_, error.message());
 			return;
 		}
 
-		socket_->raw_socket().set_option(boost::asio::socket_base::keep_alive(true));
-		socket_->raw_socket().set_option(boost::asio::socket_base::linger(true, 0));
+		connceted_address_ = IPAddress(endpoint.address().to_string(), endpoint.port());
 
-		ip_ = endpoint.address().to_string();
-		port_ = endpoint.port();
+		BeginConnection();
+	}
 
-		send_stream_->is_sending = false;
-		recv_stream_->buffer.reset(new Buffer(RequestRecvBuffer()));
+	void Connection::OnDisconnected() {
+		DEBUG_ASSERT(IsSynchronized());
+		on_disconnected_delegate_.ExecuteIfBound();
+		socket_->Close();
+	}
 
-		auto session = session_.lock();
-		if (session == nullptr) {
-			LOG_ERROR("[CONNECTION] session is null after connection established");
-			return;
+	void Connection::BeginConnection() {
+		DEBUG_ASSERT(IsSynchronized());
+
+		is_sending_ = false;
+		output_stream_->Clear();
+		send_stream_.reset(new SendNetworkStream());
+		recv_stream_.reset(new RecvNetworkStream());
+
+		if (protocol_factory_) {
+			protocol_ = protocol_factory_();
+		}
+		else {
+			LOG_WARNING("[Connection] Protocol factory is not set, using default protocol");
 		}
 
 		BeginReceive();
 
-		protocol_ = session->CreateProtocol();
+		on_connected_delegate_.ExecuteIfBound(SharedFrom(this), connceted_address_);
 
-		Ctrl(*session).Post([conn = GetShared(this)](Session& session) {
-			session.set_connection(conn);
-			session.OnConnected();
-		});
+		LOG_INFO("[Connection] Begin Connection");
 	}
 
 	void Connection::BeginReceive() {
 		DEBUG_ASSERT(IsSynchronized());
-		socket_->ReadAsync(*recv_stream_->buffer, &Connection::OnReceived, GetShared(this));
+		socket_->ReadAsync(*recv_stream_->buffer, &Connection::OnReceived, SharedFrom(this));
 	}
 
 	void Connection::OnReceived(const boost::system::error_code& error, std::size_t bytes_transferred) {
 		DEBUG_ASSERT(IsSynchronized());
 
-		if (socket_->IsOpen() == false) {
-			Disconnect();
-			return;
-		}
-
 		if (bytes_transferred == 0) {
-			Disconnect();
+			OnDisconnected();
 			return;
 		}
 
 		if (error) {
-			Disconnect();
+			OnDisconnected();
 			LOG_ERROR("Error during async_read: error_code: {}, message: {}", error.value(), error.message());
 			return;
 		}
@@ -154,30 +156,7 @@ namespace Network {
 		}
 	}
 
-	void Connection::OnSendCompleted(const boost::system::error_code& error, std::size_t /*bytes_transferred*/) {
-		DEBUG_ASSERT(IsSynchronized());
-		if (error) {
-			LOG_ERROR("Error during async_write: {}", error.message());
-		}
-
-		auto session = session_.lock();
-		if (session == nullptr) {
-			return;
-		}
-
-		FlushSend(true);
-	}
-
 	bool Connection::ReceiveImpl(const size_t length) {
-		auto session = session_.lock();
-		if (session == nullptr) {
-			return false;
-		}
-
-		if (protocol_ == nullptr) {
-			return false;
-		}
-		
 		if (recv_stream_->buffer->GetBufferSize() < length) {
 			LOG_ERROR("[SESSION] OnReceived: invalid length is too large : {}", length);
 			return false;
@@ -230,13 +209,14 @@ namespace Network {
 				processing_data_size += append_data_size;
 				if (required_data_size_to_complete == pending_stream.dataBuffer.size())
 				{
-					PacketSegment completion_packet{
+					const PacketSegment completion_packet{
 						.data = pending_stream.dataBuffer.data(),
 						.length = pending_stream.dataBuffer.size()
 					};
 
-					if (protocol_->ProcessReceiveData(completion_packet) == false) {
+					if (OnDataReceived(completion_packet) == false) {
 						LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
+						return false;
 					}
 					else {
 						has_any_completion_packets = true;
@@ -270,11 +250,11 @@ namespace Network {
 					.length = header.size + PacketHeader::Size(),
 				};
 
-				if (protocol_->ProcessReceiveData(completion_packet) == false) {
-					LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
+				if (OnDataReceived(completion_packet)) {
+					has_any_completion_packets = true;
 				}
 				else {
-					has_any_completion_packets = true;
+					LOG_ERROR("[SESSION] OnProcessPacket: invalid packet id : {}", completion_packet.header().id);
 				}
 
 				processing_data_size += completion_packet.length;
@@ -282,42 +262,74 @@ namespace Network {
 		}
 
 		if (has_any_completion_packets == true) {
-			Ctrl(*session).Post([protocol = protocol_](Session& session) {
-				session.OnProcessPacket(protocol);
-			});
+			on_data_received_delegate_.ExecuteIfBound();
 		}
 
 		return true;
 	}
 
-	std::string Connection::ToString() const {
-		return FORMAT("{}:{}", ip_, port_);
+	bool Connection::OnDataReceived(const PacketSegment& segment) {
+		if (protocol_ == nullptr) {
+			LOG_WARNING("[CONNECTION] OnDataReceived: protocol is not set, skipping processing for message_id: {}", segment.header().id);
+			return true;
+		}
+		return protocol_->ProcessReceiveData(segment);
 	}
 
-	void Connection::FlushSend(bool continueOnWriter) {
+	std::string Connection::ToString() const {
+		return connceted_address_.IsValid() ? connceted_address_.ToString() : target_address_.ToString();
+	}
+
+	void Connection::FlushSend() {
 		DEBUG_ASSERT(IsSynchronized());
-		if (continueOnWriter == false && send_stream_->is_sending == true) {
-			return;
-		}
 
-		if (send_stream_->pending_buffers.empty()) {
-			send_stream_->is_sending = false;
-			auto session = session_.lock();
-			if (session != nullptr) {
-				Ctrl(*session).Post([](Session& session) {
-					session.FlushToSendStream();
-				});
+		std::unique_ptr<SendNode> node;
+		size_t node_count = 0;
+		while (send_stream_->pending_buffers.TryPop_NoCount(node)) {
+			++node_count;
+			if (node->SerializeTo(*output_stream_) == false) {
+				LOG_ERROR("[CONNECTION] FlushSend: failed to serialize node, message_id: {}", node->GetMessageId());
+				continue;
 			}
+		}
+		send_stream_->pending_buffers.DecreaseNodeCount(node_count);
+
+		if (is_sending_ == true) {
 			return;
 		}
 
-		send_stream_->is_sending = true;
-		SendImpl(send_stream_->pending_buffers.front());
-		send_stream_->pending_buffers.pop_front();
+		auto buffer_view = output_stream_->NextBuffer();
+		if (buffer_view.has_value()) {
+			is_sending_ = true;
+			SendImpl(buffer_view.value());
+		}
+		else if (node_count > 0) {
+			RELEASE_ASSERT(false && "this is not expecting serialization behavior");
+		}
 	}
 
 	void Connection::SendImpl(const BufferView& buffer) {
 		DEBUG_ASSERT(IsSynchronized());
-		socket_->WriteAsync(buffer, &Connection::OnSendCompleted, GetShared(this));
+		socket_->WriteAsync(buffer, &Connection::OnSendCompleted, SharedFrom(this));
+	}
+
+	void Connection::OnSendCompleted(const boost::system::error_code& error, const std::shared_ptr<Buffer>& buffer, std::size_t bytes_transferred) {
+		DEBUG_ASSERT(IsSynchronized());
+		if (error) {
+			LOG_ERROR("Error during async_write: {}", error.message());
+			Disconnect();
+			return;
+		}
+
+		buffer->set_start_pos(buffer->start_pos() + bytes_transferred);
+
+		auto buffer_view = output_stream_->NextBuffer();
+		if (buffer_view.has_value()) {
+			SendImpl(buffer_view.value());
+		}
+		else {
+			is_sending_ = false; // Reset sending state
+			FlushSend();
+		}
 	}
 }

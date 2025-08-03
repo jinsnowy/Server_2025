@@ -28,8 +28,6 @@ namespace Server {
 	}
 
 	void Pc::ReadFrom(const types::CharacterPose& char_pose) {
-		std::lock_guard<std::mutex> lock(mutex_);
-
 		transform_.translation.x() = char_pose.position().x();
 		transform_.translation.y() = char_pose.position().y();
 		transform_.translation.z() = char_pose.position().z();
@@ -52,8 +50,6 @@ namespace Server {
 	}
 
 	void Pc::WriteTo(types::CharacterPose* out_char_pose) const {
-		std::lock_guard<std::mutex> lock(mutex_);
-
 		auto* position = out_char_pose->mutable_position();
 		position->set_x(transform_.translation.x());
 		position->set_y(transform_.translation.y());
@@ -92,8 +88,6 @@ namespace Server {
 	}
 
 	bool Pc::IsValidProjectile(const Math::Vec3& base, const types::Pose& pose) const {
-		std::lock_guard<std::mutex> lock(mutex_);
-
 		float diff_x = base.x() - pose.location().x();
 		float diff_y = base.y() - pose.location().y();
 		float diff_z = base.z() - pose.location().z();
@@ -109,7 +103,6 @@ namespace Server {
 	}
 
 	Math::Vec3 Pc::GetExpectedPosition(const System::Tick& tick) const {
-		std::lock_guard<std::mutex> lock(mutex_);
 		auto delta_time = (tick - timestamp_).AsSecs();
 		if (delta_time > 0.f) {
 			return position() + velocity_ * delta_time;

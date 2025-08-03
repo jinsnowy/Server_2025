@@ -23,10 +23,10 @@ namespace Server {
 		return std::make_unique<LobbyProtocol>();
 	}
 
-	void LobbySession::OnConnected() {
-		ProtobufSession::OnConnected();
+	void LobbySession::OnConnected(const Network::IPAddress& address) {
+		ProtobufSession::OnConnected(address);
 
-		LOG_INFO("LobbySession::OnConnected session_id:{}, address:{}", session_id(), connection()->ToString());
+		LOG_INFO("LobbySession::OnConnected session_id:{}, address:{}", session_id(), address.ToString());
 
 		Send(user::HelloClient{});
 	}

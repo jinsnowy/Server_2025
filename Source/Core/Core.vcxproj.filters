@@ -46,6 +46,12 @@
     <Filter Include="Math\Collision">
       <UniqueIdentifier>{07dc438c-ff20-40d9-9fee-4e2b9f7cc6dd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="System\Detail">
+      <UniqueIdentifier>{b71ca125-462e-418b-96d2-939322967dfa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{a95c6685-b893-4c7c-af43-53340ff430b2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Container\MPSC.cpp">
@@ -264,6 +270,21 @@
     </ClCompile>
     <ClCompile Include="Math\Collision\Helper.cpp">
       <Filter>Math\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Delegate.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="System\Detail\AnyInvocable.cpp">
+      <Filter>System\Detail</Filter>
+    </ClCompile>
+    <ClCompile Include="Common\Utility.cpp">
+      <Filter>Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\SendNode.cpp">
+      <Filter>Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\StreamWriter.cpp">
+      <Filter>Network</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -541,6 +562,21 @@
     </ClInclude>
     <ClInclude Include="Math\Collision\Helper.h">
       <Filter>Math\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Delegate.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="System\Detail\AnyInvocable.h">
+      <Filter>System\Detail</Filter>
+    </ClInclude>
+    <ClInclude Include="Common\Utility.h">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\SendNode.h">
+      <Filter>Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\StreamWriter.h">
+      <Filter>Network</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

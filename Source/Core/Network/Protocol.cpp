@@ -5,8 +5,7 @@
 
 namespace Network
 {
-    bool Protocol::ProcessReceiveData( const PacketSegment& segment)
-    {
+    bool Protocol::ProcessReceiveData(const PacketSegment& segment) {
         const size_t packetId = segment.header().id;
         if (packetId <= static_cast<size_t>(InternalPacketId::kCount)) {
             switch (static_cast<InternalPacketId>(packetId)) {
@@ -22,8 +21,6 @@ namespace Network
 
             return true;
         }
-
-        //
 
         return false;
     }

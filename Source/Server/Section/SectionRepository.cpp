@@ -85,7 +85,7 @@ namespace Server {
 				Ctrl(*session).Post([section, future](WorldSession& session) {
 					session.OnSectionEntered(section);
 					DEBUG_ASSERT(session.pc().character_id() != 0);
-					Ctrl(*section).Post([session = System::Actor::GetShared(&session), future](Section& section) {
+					Ctrl(*section).Post([session = SharedFrom(&session), future](Section& section) {
 						section.EnterSession(session);
 					});
 				});

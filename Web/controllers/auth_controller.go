@@ -56,6 +56,18 @@ func GoogleLoginCallback(c *gin.Context) {
 	}
 
 	// get user id if exists from external accounts
+	userEmail := user["email"].(string)
+	if userEmail == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "email not found in user info"})
+		return
+	}
+
+	userName := user["name"].(string)
+	if userName == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "name not found in user info"})
+		return
+	}
+
 	prevUser, err := user_repository.GetUserByExternalAccount(google.Provider, user["email"].(string))
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to get user"})
@@ -85,11 +97,12 @@ func GoogleLoginCallback(c *gin.Context) {
 	newUserId := utils.GenerateGuid()
 	newUser := models.User{
 		UserId:   newUserId,
-		Username: "",
+		Username: userName,
 		ExternalAccounts: []models.ExternalAccount{
 			{
+				UserId:   newUserId,
 				Provider: google.Provider,
-				UserId:   user["email"].(string),
+				Email:    userEmail,
 			},
 		},
 		LastLoginTime: utils.GetTimeNow(),
@@ -142,12 +155,6 @@ func GoogleLogin(c *gin.Context) {
 		return
 	}
 
-	_, err := token_repository.GetValue(session_id)
-	if err != nil {
-		c.JSON(http.StatusNotFound, gin.H{"error": "failed to get token"})
-		return
-	}
-
 	google := config.GetAuthProviderConfig().Google
 	authURL := google.OAuth2Config.AuthCodeURL(session_id, oauth2.AccessTypeOnline)
 
@@ -191,6 +198,8 @@ func GetSessionStatus(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to upsert access token"})
 		return
 	}
+
+	token_repository.DeleteKey(sessionRequest.SessionId)
 
 	c.JSON(http.StatusOK, models.UserSessionResponse{
 		Status:      "done",

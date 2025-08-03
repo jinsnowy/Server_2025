@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Network/Buffer.h"
+#include "Core/Network/Buffer.h"
 
 namespace Network {
 	Buffer RequestSendBuffer();

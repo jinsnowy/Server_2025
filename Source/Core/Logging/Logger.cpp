@@ -62,15 +62,15 @@ namespace Log {
         }
     }
 
-    void Logger::LogInternal(Loglevel loglevel, const char* function, int32_t line, const std::string_view& message) {
+    void Logger::LogInternal(Loglevel loglevel, const std::string_view& fileline, const std::string_view& message) {
         std::string time_str = System::DateTime::Now().ToString();
-        log_queue_.Push(std::format("{}[{}][{}][{}({})] {}", time_str, ToString(loglevel), System::Scheduler::ThreadId(), function, line, message));
+        log_queue_.Push(std::format("{}[{}][{}][{}] {}", time_str, ToString(loglevel), System::Scheduler::ThreadId(), fileline.data(), message));
     }
 
-    void Logger::LogInternal(Loglevel loglevel, const char* function, int32_t line, const std::wstring_view& message) {
+    void Logger::LogInternal(Loglevel loglevel, const std::string_view& fileline, const std::wstring_view& message) {
         std::string time_str = System::DateTime::Now().ToString();
         std::string converted_message = System::String::Convert(message);
-        log_queue_.Push(std::format("{}[{}][{}][{}({})] {}", time_str, ToString(loglevel), System::Scheduler::ThreadId(), function, line,  std::move(converted_message)));
+        log_queue_.Push(std::format("{}[{}][{}][{}] {}", time_str, ToString(loglevel), System::Scheduler::ThreadId(), fileline.data(), std::move(converted_message)));
     }
 
     void Logger::Run() {

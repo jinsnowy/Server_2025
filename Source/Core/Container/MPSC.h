@@ -44,18 +44,18 @@ namespace Container {
 			UnsafeClear();
 		}
 
-		void Push(T&& input) {
+		size_t Push(T&& input) {
 			buffer_node_t* node = new buffer_node_t(std::move(input));
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
-			_unsafe_size.fetch_add(1, std::memory_order_relaxed);
+			return _count.fetch_add(1);
 		}
 
-		void Push(const T& input) {
+		size_t Push(const T& input) {
 			buffer_node_t* node = new buffer_node_t(input);
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
-			_unsafe_size.fetch_add(1, std::memory_order_relaxed);
+			return _count.fetch_add(1);
 		}
 
 		bool TryPop(T& output) {
@@ -68,10 +68,29 @@ namespace Container {
 
 			output = std::move(next->data);
 			_tail.store(next, std::memory_order_release);
-			_unsafe_size.fetch_sub(1, std::memory_order_relaxed);
+			_count.fetch_sub(1);
 			delete tail;
 		
 			return true;
+		}
+
+		bool TryPop_NoCount(T& output) {
+			buffer_node_t* tail = _tail.load(std::memory_order_relaxed);
+			buffer_node_t* next = tail->next.load(std::memory_order_acquire);
+
+			if (next == nullptr) {
+				return false;
+			}
+
+			output = std::move(next->data);
+			_tail.store(next, std::memory_order_release);
+			delete tail;
+
+			return true;
+		}
+
+		size_t DecreaseNodeCount(size_t popped_count) {
+			return _count.fetch_sub(popped_count);
 		}
 
 		bool IsEmpty() const {
@@ -84,8 +103,8 @@ namespace Container {
 			}
 		}
 
-		size_t UnsafeSize() const {
-			return _unsafe_size;
+		size_t count() const {
+			return _count;
 		}
 
 	private:
@@ -103,7 +122,7 @@ namespace Container {
 		std::atomic<buffer_node_t*> _head;
 		char 					    _cache_padding[kCacheLineSize - sizeof(std::atomic<buffer_node_t*>)];
 		std::atomic<buffer_node_t*> _tail;
-		std::atomic<size_t> _unsafe_size = 0;
+		std::atomic<size_t> _count = 0;
 
 		MPSCQueue(const MPSCQueue&) {}
 		void operator=(const MPSCQueue&) {}

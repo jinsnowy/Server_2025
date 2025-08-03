@@ -68,23 +68,23 @@ namespace Network {
 	struct WriteCompletionEvent {
 		Socket::SendCallback callback;
 		std::weak_ptr<Connection> weak_conn;
-		std::shared_ptr<BufferMemory> buffer;
+		std::shared_ptr<Buffer> buffer;
 
 		void operator()(const boost::system::error_code& error, std::size_t bytes_transferred) {
 			auto conn = weak_conn.lock();
 			if (!conn) {
 				return;
 			}
-			Ctrl(*conn).Post([callback = this->callback, error, bytes_transferred](Connection& conn) {
-				(conn.*callback)(error, bytes_transferred);
+			Ctrl(*conn).Post([callback = std::move(this->callback), buffer = this->buffer, error, bytes_transferred](Connection& conn) mutable {
+				(conn.*callback)(error, buffer, bytes_transferred);
 			});
 		}
 	};
 
-	void Socket::WriteAsync(const BufferView& buffer, SendCallback callback, std::shared_ptr<Connection> conn) {
+	void Socket::WriteAsync(const BufferView& buffer_view, SendCallback callback, std::shared_ptr<Connection> conn) {
 		try {
-			std::string_view buffer_view(buffer.data(), buffer.length());
-			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view), WriteCompletionEvent{ callback, conn, buffer.source()});
+			std::string_view buffer_view_as_string(buffer_view.data(), buffer_view.length());
+			boost::asio::async_write(*socket_, boost::asio::buffer(buffer_view_as_string), WriteCompletionEvent{ callback, conn, buffer_view.buffer()});
 			//LOG_INFO("[SOCKET] write async: {} bytes", buffer.length());
 		}
 		catch (const boost::system::system_error& e) {

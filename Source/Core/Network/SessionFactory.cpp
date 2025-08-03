@@ -15,11 +15,6 @@ namespace Network {
     }
 
     void SessionFactory::OnConnect(std::shared_ptr<Connection> connection) {
-        if (!connection->IsConnected()) {
-            LOG_ERROR("SessionFactory::OnConnect connection is not connected {}", connection->ToString());
-            return;
-        }
-
         auto session = session_factory_();
         if (on_connect_) {
             bool is_session_okay = on_connect_(session);
@@ -28,9 +23,8 @@ namespace Network {
             }
         }
         
-        Ctrl(*connection).Post([session](Connection& connection) {
-			connection.set_session(session);
-            connection.OnConnected(boost::system::error_code{}, connection.socket()->raw_socket().remote_endpoint());
+        Ctrl(*session).Post([connection](Session& session) {
+			session.BeginSession(connection);
         });
     }
 }

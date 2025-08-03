@@ -16,7 +16,7 @@ class Socket {
 public:
 	using ConnectCallback = void (Connection::*)(const boost::system::error_code&, const boost::asio::ip::tcp::endpoint&);
 	using ReadCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
-	using SendCallback = void (Connection::*)(const boost::system::error_code&, std::size_t);
+	using SendCallback = void (Connection::*)(const boost::system::error_code&, const std::shared_ptr<Buffer>&, std::size_t);
 
 	Socket(const std::shared_ptr<System::Context>& context);
 	~Socket();

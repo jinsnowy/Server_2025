@@ -256,6 +256,7 @@
     <ClInclude Include="Public\GrpcHeader.h" />
     <ClInclude Include="Public\LobbyService.h" />
     <ClInclude Include="Public\ProtobufDescriptor.h" />
+    <ClInclude Include="Public\ProtobufNode.h" />
     <ClInclude Include="Public\ProtobufProtocol.h" />
     <ClInclude Include="Public\ProtobufSerializer.h" />
     <ClInclude Include="Public\ProtobufSession.h" />
@@ -263,12 +264,14 @@
     <ClInclude Include="Public\Types.h" />
     <ClInclude Include="Public\User.h" />
     <ClInclude Include="Public\World.h" />
+    <ClInclude Include="Public\ProtobufOutputStream.h" />
     <ClInclude Include="stdafx.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\GrpcHeader.cpp" />
     <ClCompile Include="Private\HelloWorld.cpp" />
     <ClCompile Include="Private\ProtobufDescriptor.cpp" />
+    <ClCompile Include="Private\ProtobufNode.cpp" />
     <ClCompile Include="Private\ProtobufProtocol.cpp" />
     <ClCompile Include="Private\ProtobufSerializer.cpp" />
     <ClCompile Include="Private\ProtobufSession.cpp" />
@@ -304,6 +307,7 @@
     <ClCompile Include="Private\World.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Private\ProtobufOutputStream.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>

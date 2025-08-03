@@ -8,15 +8,9 @@ namespace Protobuf {
 		ProtobufSession(const std::shared_ptr<System::Context>& context);
 		ProtobufSession();
 
-		void OnConnected() override;
+		void OnConnected(const Network::IPAddress& address) override;
 
 		void Send(const google::protobuf::Message& message);
 		void Send(const std::shared_ptr<const google::protobuf::Message>& message);
-
-	private:
-		void SendInternal(const google::protobuf::Message& message);
-		void SendInternal(const size_t message_id, const std::string& serialized_string);
 	};
-
-
 }

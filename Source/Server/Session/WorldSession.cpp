@@ -45,8 +45,8 @@ namespace Server {
 		return UniqueId::Issue(GetService().server_id());
 	}
 
-	void WorldSession::OnConnected() {
-		ProtobufSession::OnConnected();
+	void WorldSession::OnConnected(const Network::IPAddress& address) {
+		ProtobufSession::OnConnected(address);
 
 		LOG_INFO("WorldSession::OnConnected session_id:{}, address:{}", session_id(), GetConnectionString());
 	}
@@ -56,7 +56,7 @@ namespace Server {
 
 		LOG_INFO("WorldSession::OnDisconnected session_id:{}, address:{}", session_id(), GetConnectionString());
 
-		auto this_session = System::Actor::GetShared(this);
+		auto this_session = SharedFrom(this);
 		PlayerTick::EndTick(this_session);
 
 		if (section_ != nullptr) {
@@ -89,7 +89,7 @@ namespace Server {
 		}
 
 		section_ = section;
-		pc().set_client(GetShared(this));
+		pc().set_client(SharedFrom(this));
 
 		world::ClientEnterMapNotify enter_notify;
 		section->WriteTo(enter_notify.mutable_section_info());
@@ -238,7 +238,7 @@ namespace Server {
 
 		WorldService& world_service = WorldSession::GetService();
 		world_service.GetLobbyGrpcClient().CharacterLogin(login_request)
-			.Then([playing_character_id, session = System::Actor::GetShared(&session)](GrpcCallResult<CharacterLoginResponse> result) mutable {
+			.Then([playing_character_id, session = SharedFrom(&session)](GrpcCallResult<CharacterLoginResponse> result) mutable {
 			if (result.ok() == false) {
 				LOG_ERROR("Failed to login character: {}", result.status.error_message());
 				session->Disconnect();
@@ -256,7 +256,7 @@ namespace Server {
 					return;
 				}
 
-				auto this_session = System::Actor::GetShared(&session);
+				auto this_session = SharedFrom(&session);
 				PlayerTick::BeginTick(this_session);
 
 				world::HelloWorldClient hello_client;
@@ -272,6 +272,12 @@ namespace Server {
 	}
 	
 	static void OnRecvClientEnterMapReq(WorldSession& session, const std::shared_ptr<const world::ClientEnterMapReq>& msg) {
+		if (session.section() != nullptr) {
+			LOG_ERROR("WorldSession::OnRecvClientEnterMapReq session_id:{} already in section: {}",
+				session.session_id(), session.section()->section_id());
+			return;
+		}
+
 		int32_t map_uid = msg->map_uid();
 		if (map_uid > 0) {
 			session.pc().ReadFrom(msg->character_pos());
@@ -279,9 +285,9 @@ namespace Server {
 			LOG_INFO("WorldSession::OnRecvClientEnterMapReq session_id:{}, address:{}, map_uid:{}",
 				session.session_id(), session.GetConnectionString(), map_uid);
 
-			auto session_ptr = System::Actor::GetShared(&session);
+			auto session_ptr = SharedFrom(&session);
 
-			SectionRepository::EnterSection(map_uid, System::Actor::GetShared(&session))
+			SectionRepository::EnterSection(map_uid, SharedFrom(&session))
 			.ThenPost([session_ptr](Section& section) {
 				auto res = std::make_shared<world::ClientEnterMapRes>();
 				res->set_result(types::Result::kSuccess);
@@ -301,8 +307,11 @@ namespace Server {
 			return;
 		}
 
-		session.pc().ReadFrom((msg->character_pos()));
-
+		auto session_ptr = SharedFrom(&session);
+		Ctrl(*session.section()).Post([session_ptr, msg](Section&) {
+			session_ptr->pc().ReadFrom((msg->character_pos()));
+		});
+	
 		auto move_notify = std::make_shared<world::OtherClientMoveNotify>();
 		move_notify->set_character_id(session.character_id());
 		*move_notify->mutable_character_pos() = msg->character_pos();
@@ -367,7 +376,7 @@ namespace Server {
 			return;
 		}
 
-		auto session_ptr = System::Actor::GetShared(&session);
+		auto session_ptr = SharedFrom(&session);
 		Ctrl(*session.section()).Post([msg, session_ptr, res](Section& section) {
 
 			auto& spawn_system = section.spawn_system();
@@ -484,7 +493,7 @@ namespace Server {
 		}
 		res->set_object_id(projectile->object_id());
 
-		Ctrl(*session.section()).Post([projectile, projectile_speed, session_ptr = System::Actor::GetShared(&session), res](Section& section) {
+		Ctrl(*session.section()).Post([projectile, projectile_speed, session_ptr = SharedFrom(&session), res](Section& section) {
 			section.SpawnObject(projectile);
 			session_ptr->Send(res);
 		});
@@ -499,7 +508,7 @@ namespace Server {
 			return;
 		}
 
-		Ctrl(*session.section()).Post([req, res, session_ptr = System::Actor::GetShared(&session)](Section& section) {
+		Ctrl(*session.section()).Post([req, res, session_ptr = SharedFrom(&session)](Section& section) {
 			auto projectile = section.spawn_system().FindProjectile(req->projectile_object_id());
 			if (projectile == nullptr) {
 				res->set_result(types::Result::kNotFound);

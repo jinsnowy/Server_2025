@@ -3,9 +3,10 @@
 #include "Core/Network/Packet/Packet.h"
 #include "Core/Network/Buffer.h"
 #include "Core/Network/OutputStream.h"
+#include "Core/Container/MPSC.h"
 
 namespace Network {
-
+	class SendNode;
 	struct PendingStream {
 		PacketHeader header;
 		std::vector<char> dataBuffer;
@@ -19,10 +20,12 @@ namespace Network {
 	struct RecvNetworkStream {
 		std::unique_ptr<Buffer> buffer;
 		std::optional<PendingStream> pending;
+
+		RecvNetworkStream();
 	};
 
 	struct SendNetworkStream {
-		std::atomic<bool> is_sending = false;
-		std::list<BufferView> pending_buffers;
+		Container::MPSCQueue<std::unique_ptr<SendNode>> pending_buffers;
+		~SendNetworkStream();
 	};
 }

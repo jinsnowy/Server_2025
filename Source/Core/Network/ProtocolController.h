@@ -11,7 +11,6 @@ namespace Network {
 	public:
 		bool ProcessReceiveData(const PacketSegment& segment) override;
 
-
 	protected:
 		bool IsValid(const size_t& packetId) const {
 			return TSerializer::IsValid(packetId);

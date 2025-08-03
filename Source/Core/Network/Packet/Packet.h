@@ -5,13 +5,12 @@ namespace Network {
 		static const PacketHeader* Peek(const char* data) {
 			return reinterpret_cast<const PacketHeader*>(data);
 		}
+
 		static constexpr size_t Size() {
 			return sizeof(PacketHeader);
 		}
 
-		static constexpr size_t kMaxSize = 1ULL << 16;
-
-		size_t id;
+		uint64_t id;
 		size_t size;
 	};
 

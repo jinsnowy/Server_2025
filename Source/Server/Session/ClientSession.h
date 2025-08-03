@@ -8,7 +8,8 @@ namespace Server {
     public:
         ClientSession();
 
-        void OnConnected() override ;
+        void OnConnected(const Network::IPAddress& address) override;
+        void OnConnectFailed(const Network::IPAddress& address, const std::string& error_message) override;
 
         void OnDisconnected() override {
             LOG_INFO("ClientSession::OnDisconnected session_id:{}, address:{}", session_id_, connection()->ToString());

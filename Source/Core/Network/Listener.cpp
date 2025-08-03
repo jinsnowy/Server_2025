@@ -47,7 +47,7 @@ namespace Network {
     }
 
     void Listener::AcceptInternal() {
-        acceptor_->AcceptAsync(&Listener::OnAccept, GetShared(this));
+        acceptor_->AcceptAsync(&Listener::OnAccept, SharedFrom(this));
     }
 
     void Listener::OnAccept(std::unique_ptr<Socket> socket, const boost::system::error_code& error) {
@@ -66,6 +66,12 @@ namespace Network {
             AcceptInternal();
             return;
         }
+
+        if (socket == nullptr || !socket->IsOpen()) {
+            LOG_ERROR("Listener::OnAccept: socket is null or not open");
+            AcceptInternal();
+            return;
+		}
 
         auto connection = std::make_shared<Connection>(std::move(socket));
         session_factory_->OnConnect(connection);

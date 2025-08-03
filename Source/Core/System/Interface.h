@@ -3,6 +3,7 @@
 #include "Core/System/Macro.h"
 #include "Core/System/FuncTraits.h"
 #include "Core/System/Callable.h"
+#include "Core/System/Delegate.h"
 #include "Core/System/Actor.h"
 #include "Core/System/Actor.hpp"
 #include "Core/System/Channel.h"

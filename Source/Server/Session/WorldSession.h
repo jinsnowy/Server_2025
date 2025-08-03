@@ -26,7 +26,7 @@ namespace Server {
 
 		static WorldService& GetService();
 
-		void OnConnected();
+		void OnConnected(const Network::IPAddress& address);
 		void OnDisconnected();
 
 		std::unique_ptr<Network::Protocol> CreateProtocol() override;
@@ -75,7 +75,6 @@ namespace Server {
 		bool ConsumeAction(const types::ClientAction::ClientActionFieldCase& type, Model::ClientAction* out_action);
 
 		int64_t GenerateId() const;
-		
 
 	private:
 		int64_t character_id_ = 0;

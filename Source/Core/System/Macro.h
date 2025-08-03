@@ -28,6 +28,8 @@
 #endif
 
 #define DEBUG_ASSERT(expr)\
+__pragma(warning(push)) \
+__pragma(warning(disable: 4127))\
 do{\
 	if (!(expr)) {\
 		if (IsDebuggerPresent()) {\
@@ -35,15 +37,19 @@ do{\
 		}\
 	}\
 	__assume(expr);\
-} while (false)
+} while (false)\
+__pragma(warning(pop))
 
 #define RELEASE_ASSERT(expr)\
+__pragma(warning(push)) \
+__pragma(warning(disable: 4127))\
 do {\
 	if (!(expr)) {\
 		std::abort();\
 	}\
 	__assume(expr);\
-} while (false)
+} while (false)\
+__pragma(warning(pop))
 
 #define DEBUG_BREAK \
 if (IsDebuggerPresent()) {\

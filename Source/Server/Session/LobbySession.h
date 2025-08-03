@@ -23,7 +23,7 @@ namespace Server {
 
 		static void RegisterHandler(LobbyHandlerMap* handler_map);
 
-		void OnConnected();
+		void OnConnected(const Network::IPAddress& address);
 
 		void OnDisconnected();
 

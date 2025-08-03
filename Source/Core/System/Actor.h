@@ -19,11 +19,6 @@ namespace System {
 		Channel GetChannel() const;
 		std::shared_ptr<Context> GetContext() const;
 
-		template<typename T, typename = std::enable_if_t<std::is_base_of_v<Actor, T>>>
-		static std::shared_ptr<T> GetShared(T* ptr) {
-			return std::static_pointer_cast<T>(ptr->shared_from_this());
-		}
-
 	private:
 		Channel channel_;
 	};

@@ -15,7 +15,7 @@ namespace System
 		
 		TEST_METHOD(BindFunction_OneParam)
 		{
-			Delegate<int> delegate;
+			Delegate<void(int)> delegate;
 			int value = 0;
 			delegate.BindFunction([&value](int v) {
 				value = v;
@@ -42,7 +42,7 @@ namespace System
 			};
 
 			int value = 0;
-			Delegate<int> delegate;
+			Delegate<void(int)> delegate;
 
 			auto a = std::make_shared<A>(value);
 
@@ -82,7 +82,7 @@ namespace System
 
 		TEST_METHOD(Unbind)
 		{
-			Delegate<int> delegate;
+			Delegate<void(int)> delegate;
 			int value = 0;
 			delegate.BindFunction([&value](int v) {
 				value = v;
@@ -100,7 +100,7 @@ namespace System
 	{
 		TEST_METHOD(BindFunction_OneParam)
 		{
-			MulticastDelegate<int> delegate;
+			MulticastDelegate<void(int)> delegate;
 			int value1 = 0, value2 = 0;
 			delegate.BindFunction([&value1](int v) {
 				value1 = v;
@@ -177,7 +177,7 @@ namespace System
 
 		TEST_METHOD(Remove)
 		{
-			MulticastDelegate<int> delegate;
+			MulticastDelegate<void(int)> delegate;
 			int value1 = 0, value2 = 0;
 			auto callback1 = delegate.BindFunction([&value1](int v) {
 				value1 = v;
@@ -208,7 +208,7 @@ namespace System
 
 		TEST_METHOD(Clear)
 		{
-			MulticastDelegate<int> delegate;
+			MulticastDelegate<void(int)> delegate;
 			int value1 = 0, value2 = 0;
 			auto callback1 = delegate.BindFunction([&value1](int v) {
 				value1 = v;

@@ -168,10 +168,13 @@ namespace System {
     void Scheduler::Run() {
         while (is_running_) {
             context_->BeginContext();
-            context_->io_context().run_for(std::chrono::milliseconds(10));
+            size_t count = context_->io_context().run_for(std::chrono::milliseconds(10));
             context_->timer_context().Flush();
             context_->execution_context().run_for(20);
             context_->EndContext();
+            if (count == 0) {
+				std::this_thread::sleep_for(std::chrono::milliseconds(5));
+            }
         }
     }
 

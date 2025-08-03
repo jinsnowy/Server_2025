@@ -15,7 +15,8 @@ namespace Network {
 	{
 	}
 
-	BufferView Buffer::AsView() const {
-		return BufferView(source_, start_pos_, GetByteCount());
+	std::string Buffer::ToString() const {
+		return FORMAT("Buffer(start_pos: {}, end_pos: {}, size: {})",
+			start_pos_, end_pos_, source_->GetBufferSize());
 	}
 }

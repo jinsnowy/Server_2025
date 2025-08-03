@@ -19,8 +19,9 @@ type UserAccessToken struct {
 }
 
 type ExternalAccount struct {
+	UserId   string `bson:"user_id"`
 	Provider string `bson:"provider"`
-	UserId   string `bson:"email"`
+	Email    string `bson:"email"`
 }
 
 type UserSessionRequest struct {

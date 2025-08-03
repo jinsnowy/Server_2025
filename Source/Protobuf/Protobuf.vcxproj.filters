@@ -58,6 +58,12 @@
     <ClInclude Include="Private\Protos\lobby_service_grpc.pb.h">
       <Filter>Private\Protos</Filter>
     </ClInclude>
+    <ClInclude Include="Public\ProtobufOutputStream.h">
+      <Filter>Public</Filter>
+    </ClInclude>
+    <ClInclude Include="Public\ProtobufNode.h">
+      <Filter>Public</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Private\HelloWorld.cpp">
@@ -105,6 +111,12 @@
     </ClCompile>
     <ClCompile Include="Private\Protos\lobby_service_grpc.pb.cc">
       <Filter>Private\Protos</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufOutputStream.cpp">
+      <Filter>Private</Filter>
+    </ClCompile>
+    <ClCompile Include="Private\ProtobufNode.cpp">
+      <Filter>Private</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

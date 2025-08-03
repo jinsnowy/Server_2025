@@ -2,8 +2,20 @@
 
 #include "Core/System/Singleton.h"
 #include "Core/Container/MPSC.h"
+#include "Core/System/Macro.h"
 
 namespace Log {
+
+namespace Detail {
+    static constexpr std::string_view GetPrettyFileName(const char* file) {
+        std::string_view file_view(file);
+        size_t pos = file_view.find_last_of("/\\");
+        if (pos == std::string_view::npos) {
+            return file_view; // No path separator found, return the original string
+        }
+        return file_view.substr(file_view.find_last_of("/\\") + 1);
+    }
+} // namespace Detail
 
 enum class Loglevel {
     kDebug,
@@ -35,21 +47,21 @@ public:
     ~Logger();
 
     template<typename ...Args>
-    void Log(Loglevel loglevel, const char* function, int32_t line, const char* format, Args&& ...args) {
-        LogInternal(loglevel, function, line, std::vformat(format, std::make_format_args(args...)));
+    void Log(Loglevel loglevel, const std::string_view& fileline, const char* format, Args&& ...args) {
+        LogInternal(loglevel, fileline, std::vformat(format, std::make_format_args(args...)));
     }
 
     template<typename ...Args>
-    void Log(Loglevel logLevel, const char* function, int32_t line, const wchar_t* format, Args&& ...args) {
-        LogInternal(logLevel, function, line, std::vformat(std::wstring_view(format), std::make_wformat_args(args...)));
+    void Log(Loglevel logLevel, const std::string_view& fileline, const wchar_t* format, Args&& ...args) {
+        LogInternal(logLevel, fileline, std::vformat(std::wstring_view(format), std::make_wformat_args(args...)));
     }
 
-    void Log(Loglevel loglevel, const char* function, int32_t line, const std::string_view& message) {
-        LogInternal(loglevel, function, line, message);
+    void Log(Loglevel loglevel, const std::string_view& fileline, const std::string_view& message) {
+        LogInternal(loglevel, fileline, message);
     }
 
-    void Log(Loglevel logLevel, const char* function, int32_t line, const std::wstring_view& message) {
-        LogInternal(logLevel, function, line, message);
+    void Log(Loglevel logLevel, const std::string_view& fileline, const std::wstring_view& message) {
+        LogInternal(logLevel, fileline, message);
     }
 
     static void Destroy();
@@ -67,13 +79,14 @@ private:
     std::thread log_thread_;
     std::ofstream log_file_;
 
-    void LogInternal(Loglevel loglevel, const char* function, int32_t line, const std::string_view& message);
-    void LogInternal(Loglevel loglevel, const char* function, int32_t line, const std::wstring_view& message);
+    void LogInternal(Loglevel loglevel, const std::string_view& fileline, const std::string_view& message);
+    void LogInternal(Loglevel loglevel, const std::string_view& fileline, const std::wstring_view& message);
 };
 }
 
-#define LOG_DEBUG(...) Log::Logger::GetInstance().Log(Log::Loglevel::kDebug, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_INFO(...) Log::Logger::GetInstance().Log(Log::Loglevel::kInfo, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_WARNING(...) Log::Logger::GetInstance().Log(Log::Loglevel::kWarning, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_ERROR(...) Log::Logger::GetInstance().Log(Log::Loglevel::kError, __FUNCTION__, __LINE__, __VA_ARGS__)
-#define LOG_FATAL(...) Log::Logger::GetInstance().Log(Log::Loglevel::kFatal, __FUNCTION__, __LINE__, __VA_ARGS__)
+#define __LOG_FILE_LINE__ Log::Detail::GetPrettyFileName(__FILELINE__)
+#define LOG_DEBUG(...) Log::Logger::GetInstance().Log(Log::Loglevel::kDebug, __LOG_FILE_LINE__, __VA_ARGS__)
+#define LOG_INFO(...) Log::Logger::GetInstance().Log(Log::Loglevel::kInfo, __LOG_FILE_LINE__, __VA_ARGS__)
+#define LOG_WARNING(...) Log::Logger::GetInstance().Log(Log::Loglevel::kWarning, __LOG_FILE_LINE__, __VA_ARGS__)
+#define LOG_ERROR(...) Log::Logger::GetInstance().Log(Log::Loglevel::kError, __LOG_FILE_LINE__, __VA_ARGS__)
+#define LOG_FATAL(...) Log::Logger::GetInstance().Log(Log::Loglevel::kFatal, __LOG_FILE_LINE__, __VA_ARGS__)

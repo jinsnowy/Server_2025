@@ -246,6 +246,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Common\Utility.cpp" />
     <ClCompile Include="Container\LruCache.cpp" />
     <ClCompile Include="Container\MPSC.cpp" />
     <ClCompile Include="Container\SList.cpp" />
@@ -277,9 +278,11 @@
     <ClCompile Include="Network\Protocol.cpp" />
     <ClCompile Include="Network\ProtocolController.cpp" />
     <ClCompile Include="Network\Resolver.cpp" />
+    <ClCompile Include="Network\SendNode.cpp" />
     <ClCompile Include="Network\Session.cpp" />
     <ClCompile Include="Network\SessionFactory.cpp" />
     <ClCompile Include="Network\Socket.cpp" />
+    <ClCompile Include="Network\StreamWriter.cpp" />
     <ClCompile Include="Sql\Agent.cpp" />
     <ClCompile Include="Sql\Column.cpp" />
     <ClCompile Include="Sql\Conn.cpp" />
@@ -295,7 +298,9 @@
     </ClCompile>
     <ClCompile Include="System\Actor.cpp" />
     <ClCompile Include="System\Callable.cpp" />
+    <ClCompile Include="System\Delegate.cpp" />
     <ClCompile Include="System\DependencyInjection.cpp" />
+    <ClCompile Include="System\Detail\AnyInvocable.cpp" />
     <ClCompile Include="System\Enum.cpp" />
     <ClCompile Include="System\ExecutionContext.cpp" />
     <ClCompile Include="System\LexicalCast.cpp" />
@@ -324,6 +329,7 @@
     <ClCompile Include="ThirdParty\Sql.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Common\Utility.h" />
     <ClInclude Include="Container\LruCache.h" />
     <ClInclude Include="Container\MPSC.h" />
     <ClInclude Include="Container\SList.h" />
@@ -357,9 +363,11 @@
     <ClInclude Include="Network\Protocol.h" />
     <ClInclude Include="Network\ProtocolController.h" />
     <ClInclude Include="Network\Resolver.h" />
+    <ClInclude Include="Network\SendNode.h" />
     <ClInclude Include="Network\Session.h" />
     <ClInclude Include="Network\SessionFactory.h" />
     <ClInclude Include="Network\Socket.h" />
+    <ClInclude Include="Network\StreamWriter.h" />
     <ClInclude Include="Platform\Windows.h" />
     <ClInclude Include="Sql\Agent.h" />
     <ClInclude Include="Sql\Column.h" />
@@ -374,7 +382,9 @@
     <ClInclude Include="System\Actor.h" />
     <ClInclude Include="System\Actor.hpp" />
     <ClInclude Include="System\Callable.h" />
+    <ClInclude Include="System\Delegate.h" />
     <ClInclude Include="System\DependencyInjection.h" />
+    <ClInclude Include="System\Detail\AnyInvocable.h" />
     <ClInclude Include="System\Enum.h" />
     <ClInclude Include="System\ExecutionContext.h" />
     <ClInclude Include="System\LexicalCast.h" />

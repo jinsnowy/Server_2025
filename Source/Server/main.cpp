@@ -19,8 +19,8 @@
 #include "Protobuf/Public/User.h"
 #include "Database/DB.h"
 #include "Protobuf/Public/ProtoUtils.h"
-// The service implementation
 
+// The service implementation
 
 using namespace Server;
 
@@ -72,7 +72,7 @@ DBConfig GetDBConfig() {
 int main() {
 	DataTable::SpawnerDataRecord::Load("./Data/SpawnAreaActor.json");
 
-    System::Scheduler::CreateThreadPool(2);
+    System::Scheduler::CreateThreadPool(4);
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
     grpc::EnableDefaultHealthCheckService(true);
 	DB::GetInstance().Initialize(GetDBConfig());
@@ -108,8 +108,11 @@ int main() {
         world_server->set_lobby_server_address(LobbyGrpcService::kConnectAddress);
         world_server->Start();
 
+        PeriodicTimerTest();
+
         LOG_INFO("World service started on port 9912");
     });
+
 
     System::Program::Wait();
 
