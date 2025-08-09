@@ -5,7 +5,10 @@
 
 namespace Server {
 
-	class LobbyHandlerMap : public HandlerMap<LobbyHandlerMap> {};
+	class LobbyHandlerMap : public HandlerMap<LobbyHandlerMap> {
+	public:
+		LobbyHandlerMap(Protection) {}
+	};
 	using LobbyProtocol = Protocol<LobbyHandlerMap>;
 
 }

@@ -22,7 +22,6 @@ namespace Network {
     }
 
     void Listener::Listen() {
-        DEBUG_ASSERT(IsSynchronized());
         is_listening_ = true;
         acceptor_->Listen();
 
@@ -42,7 +41,6 @@ namespace Network {
     }
 
     void Listener::Accept() {
-        DEBUG_ASSERT(IsSynchronized());
         AcceptInternal();
     }
 

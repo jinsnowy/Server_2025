@@ -14,7 +14,6 @@
 namespace Network {
 	Connection::Connection(std::unique_ptr<Socket> socket) 
 		:
-		System::Actor(System::Channel(socket->context())),
 		socket_(std::move(socket)),
 		resolver_(std::make_unique<Resolver>(socket_->context())),
 		output_stream_(std::make_unique<OutputStream>()),
@@ -59,8 +58,8 @@ namespace Network {
 	void Connection::Send(std::unique_ptr<SendNode> node) {
 		static constexpr size_t kMaxPendingBuffers = 512;
 
-		size_t pending_buffers_size = send_stream_->pending_buffers.Push(std::move(node));
-		if (pending_buffers_size == 0) {
+		send_stream_->pending_buffers.Push(std::move(node));
+		if (send_stream_->pending_buffers.IncreaseNodeCount(1) == 0) {
 			Ctrl(*this).Post([](Connection& connection) {
 				connection.FlushSend();
 			});
@@ -285,7 +284,7 @@ namespace Network {
 
 		std::unique_ptr<SendNode> node;
 		size_t node_count = 0;
-		while (send_stream_->pending_buffers.TryPop_NoCount(node)) {
+		while (send_stream_->pending_buffers.TryPop(node)) {
 			++node_count;
 			if (node->SerializeTo(*output_stream_) == false) {
 				LOG_ERROR("[CONNECTION] FlushSend: failed to serialize node, message_id: {}", node->GetMessageId());

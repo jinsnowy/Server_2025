@@ -3,7 +3,7 @@
 #include "Core/Sql/Database.h"
 
 namespace Server {
-	DB::DB()
+	DB::DB(Protection)
 	{
 	}
 

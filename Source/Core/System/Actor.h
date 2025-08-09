@@ -1,25 +1,36 @@
 #pragma once
 
 #include "Core/System/Channel.h"
-#include "Core/System/Callable.h"
-#include "Core/System/FuncTraits.h"
+#include "Core/System/Detail/AsyncResult.h"
+#include "Core/Misc/Utils.h"
 
 namespace System {
-	class Channel;
 	class Context;
 	class Actor : public std::enable_shared_from_this<Actor> {
 	public:
-
 		Actor();
 		Actor(const Channel& channel);
 		
 		virtual ~Actor() = default;
 
-		bool IsSynchronized() const;
-		Channel GetChannel() const;
-		std::shared_ptr<Context> GetContext() const;
+		uint64_t actor_id() const {
+			return actor_id_;
+		}
+
+		Channel& GetChannel() {
+			return channel_;
+		}
+
+		const Channel& GetChannel() const {
+			return channel_;
+		}
+
+		bool IsSynchronized() const {
+			return channel_.IsSynchronized();
+		}
 
 	private:
+		uint64_t actor_id_ = 0;
 		Channel channel_;
 	};
 
@@ -27,10 +38,9 @@ namespace System {
 	class Future;
 
 	template<typename A>
-	struct ActorController {
-		A& actor;
-
-		ActorController(A& a);
+	class ActorController {
+	public:
+		ActorController(A& a, const void* signature);
 
 		template<typename F>
 		void Post(F&& func);
@@ -39,19 +49,13 @@ namespace System {
 		void Patch(F&& func);
 
 		template<typename F>
-		Future<typename FuncTraits<F>::ReturnType> Async(F&& func);
+		Future<Detail::AsyncResult<F>> Async(F&& func);
+
+	private:
+		A& actor_;
+		const void* signature_ = nullptr;
 	};
-
-	template<typename A>
-	static std::shared_ptr<A> MakeShared(A* ptr) {
-		return std::static_pointer_cast<A>(ptr->shared_from_this());
-	}
-
-	template<typename A>
-	static std::shared_ptr<A> MakeShared(A& inst) {
-		return std::static_pointer_cast<A>(inst.shared_from_this());
-	}
 }
 
-#define Ctrl System::ActorController
+#define Ctrl(actor) System::ActorController(actor, _ReturnAddress())
 

@@ -70,7 +70,7 @@ namespace System
 				int& value;
 			};
 			int value = 0;
-			Delegate<int> delegate;
+			Delegate<void(int)> delegate;
 			auto a = std::make_shared<A>(value);
 			delegate.BindSP(a, &A::Method);
 			delegate.Execute(42);
@@ -127,7 +127,7 @@ namespace System
 				int& value;
 			};
 			int value1 = 0, value2 = 0;
-			MulticastDelegate<int> delegate;
+			MulticastDelegate<void(int)> delegate;
 			auto a1 = std::make_shared<A>(value1);
 			auto a2 = std::make_shared<A>(value2);
 			delegate.BindWeak(a1, &A::Method);
@@ -160,7 +160,7 @@ namespace System
 				int& value;
 			};
 			int value1 = 0, value2 = 0;
-			MulticastDelegate<int> delegate;
+			MulticastDelegate<void(int)> delegate;
 			auto a1 = std::make_shared<A>(value1);
 			auto a2 = std::make_shared<A>(value2);
 			delegate.BindSP(a1, &A::Method);

@@ -1,27 +1,19 @@
 #include "stdafx.h"
 #include "Core/System/Actor.h"
+#include "Core/System/AutoIncrement.h"
+#include "Core/System/Dispatcher.h"
 
 namespace System {
-
 	Actor::Actor()
 		:
-		channel_(Channel()) {
+		channel_(Channel::Acquire()),
+		actor_id_(AutoIncrement<Actor, uint64_t>::Next())
+	{
 	}
 
 	Actor::Actor(const Channel& channel)
 		:
-		channel_(channel) {
-	}
-
-	bool Actor::IsSynchronized() const {
-		return channel_.IsSynchronized();
-	}
-
-	Channel Actor::GetChannel() const {
-		return Channel(channel_.GetContext());
-	}
-
-	std::shared_ptr<Context> Actor::GetContext() const {
-		return channel_.GetContext();
+		channel_(channel) ,
+		actor_id_(AutoIncrement<Actor, uint64_t>::Next()) {
 	}
 }

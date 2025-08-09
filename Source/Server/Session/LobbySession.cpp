@@ -83,7 +83,7 @@ namespace Server {
 
 			Ctrl(Authenticator::GetInstance()).Async([message](Authenticator& authenticator) mutable {
 				return authenticator.ConsumeToken(message->access_token());
-			}).Then([message, session_ptr = MakeShared(&session)](std::optional<Model::AccountTokenInfo> result) -> std::shared_ptr<Server::LobbySession> {
+			}).THEN([message, session_ptr = SharedFrom(&session)](std::optional<Model::AccountTokenInfo> result) -> std::shared_ptr<Server::LobbySession> {
 				if (result.has_value() == false) {
 					LOG_ERROR("Invalid access token for user_id: {}", message->user_id());
 					session_ptr->Disconnect();
@@ -96,8 +96,8 @@ namespace Server {
 						session.Disconnect();
 						return {};
 					}
-				return MakeShared(session);
-			}).ThenPost([](LobbySession& session) {
+				return SharedFrom(&session);
+			}).THEN_POST([](LobbySession& session) {
 				DEBUG_ASSERT(session.IsSynchronized());
 
 				LOG_INFO("[LOGIN] account: {} logined", session.account().ToString());

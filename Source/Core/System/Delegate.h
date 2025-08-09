@@ -1,13 +1,13 @@
 #pragma once
 
-#include "Core/System/Detail/AnyInvocable.h"
+#include "Core/System/Function.h"
 
 namespace System {
 	namespace Detail {
 		template<typename T, typename Signature, typename ...Args> 
 		struct WeakLambda {
 			std::weak_ptr<T> owner;
-			AnyInvocable<Signature> inner_invocable;
+			Function<Signature> inner_invocable;
 
 			WeakLambda(const std::weak_ptr<T>& owner_in, Signature callback)
 				:
@@ -32,7 +32,7 @@ namespace System {
 		template<typename T, typename Signature, typename ...Args>
 		struct StrongLambda {
 			std::shared_ptr<T> owner;
-			AnyInvocable<Signature> inner_invocable;
+			Function<Signature> inner_invocable;
 
 			StrongLambda(const std::shared_ptr<T>& owner_in, Signature callback)
 				:
@@ -51,7 +51,7 @@ namespace System {
 	template<typename Signature>
 	class Delegate {
 	public:
-		using Callback = AnyInvocable<Signature>;
+		using Callback = Function<Signature>;
 
 		void BindFunction(Callback&& callable) {
 			callback_ = std::make_unique<Callback>(std::move(callable));
@@ -108,7 +108,7 @@ namespace System {
 	template<typename Signature>
 	class MulticastDelegate {
 	public:
-		using Callback = AnyInvocable<Signature>;
+		using Callback = Function<Signature>;
 
 		Callback* BindFunction(Callback&& callable) {
 			return callbacks_.emplace_back(new Callback(std::move(callable))).get();

@@ -36,7 +36,7 @@ namespace Server {
 		GameObject::Update(delta_time);
 
 		auto collider = collision_component_->collider();
-		SectionRepository::FindSection(section_id_).ThenPost([position = collider->center()](Section& section) {
+		SectionRepository::FindSection(section_id_).THEN_POST([position = collider->center()](Section& section) {
 			auto notify = std::make_shared<world::DebugSimulationPositionNotify>();
 			notify->set_color(types::Color::kGreen);
 			notify->set_shape(types::DebugShape::kCapsule);

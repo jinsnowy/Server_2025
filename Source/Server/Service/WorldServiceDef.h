@@ -5,6 +5,9 @@
 
 namespace Server {
 
-	class WorldHandlerMap : public HandlerMap<WorldHandlerMap> {};
+	class WorldHandlerMap : public HandlerMap<WorldHandlerMap> {
+	public:
+		WorldHandlerMap(Protection){}
+	};
 	using WorldProtocol = Protocol<WorldHandlerMap>;
 }

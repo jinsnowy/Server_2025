@@ -71,7 +71,7 @@ private:
     bool is_running_ = true;
     Container::MPSCQueue<std::string> log_queue_;
 
-    Logger();
+    Logger(Protection);
 
     void Run();
 

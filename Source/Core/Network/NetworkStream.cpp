@@ -5,9 +5,7 @@
 #include "Core/Network/BufferPool.h"
 
 namespace Network {
-	SendNetworkStream::~SendNetworkStream() {
-		pending_buffers.UnsafeClear();
-	}
+	SendNetworkStream::~SendNetworkStream() = default;
 
 	RecvNetworkStream::RecvNetworkStream()
 		:

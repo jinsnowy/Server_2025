@@ -14,7 +14,7 @@ namespace System {
 		int32_t repeated_count = 0;
 		System::Tick next_run_time;
 		System::Duration period;
-		std::function<void(PeriodicTimer::Handle&)> body;
+		Function<void(PeriodicTimer::Handle&)> body;
 
 		void Execute();
 		void Cancel();
@@ -24,15 +24,19 @@ namespace System {
 	namespace Detail {
 		class PeriodicTimerManager : public SingletonActor<PeriodicTimerManager> {
 		public:
-			std::shared_ptr<PeriodicTimerItem> Schedule(const Duration& period, std::function<void(PeriodicTimer::Handle&)> body, bool first_launch) {
-				DEBUG_ASSERT(IsSynchronized());
+			static std::shared_ptr<PeriodicTimerItem> CreateItem(const Duration& period, Function<void(PeriodicTimer::Handle&)> body, bool first_launch) {
 				auto item = std::make_shared<PeriodicTimerItem>();
-				item->id = ++id_counter_;
+				item->id = ++PeriodicTimerManager::GetInstance().id_counter_;
 				item->repeated_count = 0;
 				item->is_running = true;
 				item->period = period;
 				item->body = std::move(body);
 				item->next_run_time = first_launch ? Tick::Current() : Tick::Current().AddMilliseconds(period.Milliseconds());
+				return item;
+			}
+
+			std::shared_ptr<PeriodicTimerItem> Schedule(const std::shared_ptr<PeriodicTimerItem>& item) {
+				DEBUG_ASSERT(IsSynchronized());
 				timers_.emplace(item->id, item);
 				item->Reserve();
 				return item;
@@ -110,8 +114,12 @@ namespace System {
 		handle_ = nullptr;
 	}
 
-	PeriodicTimer::Handle PeriodicTimer::Schedule(const System::Duration& period, std::function<void(PeriodicTimer::Handle&)> body, bool first_launch) {
-		auto item = Detail::PeriodicTimerManager::GetInstance().Schedule(period, std::move(body), first_launch);
+	PeriodicTimer::Handle PeriodicTimer::Schedule(const System::Duration& period, Function<void(PeriodicTimer::Handle&)> body, bool first_launch) {
+		auto item = Detail::PeriodicTimerManager::CreateItem(period, std::move(body), first_launch);
+		auto& manager = Detail::PeriodicTimerManager::GetInstance();
+		Ctrl(manager).Post([item](Detail::PeriodicTimerManager& manager) {
+			manager.Schedule(item);
+		});
 		return Handle(new std::weak_ptr<PeriodicTimerItem>(item));
 	}
 }

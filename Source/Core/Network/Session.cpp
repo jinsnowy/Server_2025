@@ -12,17 +12,17 @@
 namespace Network {
 	std::atomic<int64_t> Session::session_counter_ = 1;
 
-    Session::Session(const std::shared_ptr<System::Context>& context)
+    Session::Session()
         :
-        Actor(System::Channel(context)),
+        Actor(System::Channel::Acquire()),
         output_stream_(std::make_unique<OutputStream>()),
 		session_id_(session_counter_++)
     {
     }
 
-    Session::Session()
+    Session::Session(const System::Channel& channel)
         :
-        Actor(System::Channel()),
+        Actor(channel),
         connection_(nullptr),
         output_stream_(std::make_unique<OutputStream>()),
 		session_id_(session_counter_++)
@@ -38,7 +38,7 @@ namespace Network {
             connection_ = nullptr;
         }
 
-        connection_ = std::make_shared<Connection>(GetChannel().GetContext());;
+        connection_ = std::make_shared<Connection>(System::Context::Acquire());
 		connection_->on_connected_delegate().BindWeak(SharedFrom(this), &Session::OnConnectedInternal);
 		connection_->on_connect_failed_delegate().BindWeak(SharedFrom(this), &Session::OnConnectFailedInternal);
         connection_->protocol_factory() = [session = SharedFrom(this)]() -> std::unique_ptr<Protocol> {

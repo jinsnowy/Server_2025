@@ -238,7 +238,7 @@ namespace Server {
 
 		WorldService& world_service = WorldSession::GetService();
 		world_service.GetLobbyGrpcClient().CharacterLogin(login_request)
-			.Then([playing_character_id, session = SharedFrom(&session)](GrpcCallResult<CharacterLoginResponse> result) mutable {
+			.THEN([playing_character_id, session = SharedFrom(&session)](GrpcCallResult<CharacterLoginResponse> result) mutable {
 			if (result.ok() == false) {
 				LOG_ERROR("Failed to login character: {}", result.status.error_message());
 				session->Disconnect();
@@ -288,7 +288,7 @@ namespace Server {
 			auto session_ptr = SharedFrom(&session);
 
 			SectionRepository::EnterSection(map_uid, SharedFrom(&session))
-			.ThenPost([session_ptr](Section& section) {
+			.THEN_POST([session_ptr](Section& section) {
 				auto res = std::make_shared<world::ClientEnterMapRes>();
 				res->set_result(types::Result::kSuccess);
 				section.WriteTo(res->mutable_section_info());

@@ -16,9 +16,9 @@ namespace System {
     public:
         DateTime();
         DateTime(const Time& time);
-        DateTime(const uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second, uint16_t millisecond);
+        DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second, uint16_t millisecond);
 
-        static DayOfWeek GetDayOfWeek(const uint16_t year, uint8_t month, uint8_t day);
+        static DayOfWeek GetDayOfWeek(uint16_t year, uint8_t month, uint8_t day);
         static DateTime Now();
         static DateTime UtcNow();
 

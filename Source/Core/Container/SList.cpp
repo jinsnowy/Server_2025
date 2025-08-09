@@ -18,6 +18,7 @@ namespace System {
 			void* Request() override;
 			void Enqueue(void* data) override;
 			void* Alloc() override;
+			void Destroy(void* ptr) override;
 
 		private:
 			size_t allocation_size_;
@@ -51,7 +52,7 @@ namespace System {
 
 		void SListImpl::Destroy(SListEntryPointer node) {
 			destructor_(AsData(node));
-			free(node);
+			_aligned_free(node);
 		}
 
 		SListEntryPointer SListImpl::AsNode(void* data) {
@@ -76,6 +77,13 @@ namespace System {
 
 		void* SListImpl::Alloc() {
 			return AsData(_aligned_malloc(node_size_, MEMORY_ALLOCATION_ALIGNMENT));
+		}
+
+		void SListImpl::Destroy(void* ptr) {
+			if (ptr == nullptr) {
+				return;
+			}
+			Destroy(AsNode(ptr));
 		}
 
 		std::unique_ptr<ISList> CreateSListImpl(size_t allocation_size, void(*destructor)(void*)) {

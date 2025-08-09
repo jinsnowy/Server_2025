@@ -45,7 +45,7 @@ namespace Server {
 		transform_.translation += old_velocity * delta_time + 0.5f * (velocity_ - old_velocity) * delta_time;
 
 		auto collider = collision_component_->collider();
-		SectionRepository::FindSection(section_id_).ThenPost([position = collider->center()](Section& section) {
+		SectionRepository::FindSection(section_id_).THEN_POST([position = collider->center()](Section& section) {
 			auto notify = std::make_shared<world::DebugSimulationPositionNotify>();
 			notify->set_color(types::Color::kRed);
 			notify->set_shape(types::DebugShape::kSphere);
@@ -76,7 +76,7 @@ namespace Server {
 		}
 
 		auto projectile = std::static_pointer_cast<Projectile>(shared_from_this());
-		SectionRepository::FindSection(section_id_).ThenPost([npc = std::static_pointer_cast<Npc>(hit_object), projectile](Section& section) {
+		SectionRepository::FindSection(section_id_).THEN_POST([npc = std::static_pointer_cast<Npc>(hit_object), projectile](Section& section) {
 			section.DespawnObject(projectile);
 
 			auto notify = std::make_shared<world::HitObjectByProjectileNotify>();

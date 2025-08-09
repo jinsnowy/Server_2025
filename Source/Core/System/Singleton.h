@@ -6,7 +6,7 @@ template<typename T>
 class Singleton {
 public:
     static T& GetInstance() {
-        static T instance;
+        static T instance(Protection{});
         return instance;
     }
 
@@ -19,6 +19,8 @@ public:
 protected:
     Singleton() = default;
     virtual ~Singleton() = default;
+
+    struct Protection {};
 };
 
 }

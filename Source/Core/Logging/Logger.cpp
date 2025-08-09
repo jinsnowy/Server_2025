@@ -8,7 +8,7 @@
 
 namespace Log {
     
-    Logger::Logger() {
+    Logger::Logger(Protection) {
         try {
             std::string current_working_dir = System::Diagnostics::GetCurrentWorkingDirectory();
             std::string program_name = System::Path::GetFileNameWithoutExtension(System::Diagnostics::GetProgramName());

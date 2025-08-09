@@ -39,7 +39,7 @@ namespace Server {
 	}
 
 	void SpawnSystem::OnSectionCreated(Section& section) {
-		spawner_data_record_ = DataTable::SpawnerDataRecord::GetInstance().Find(section.map_uid());
+		spawner_data_record_ = DataTable::SpawnerDataRecordTable::GetInstance().Find(section.map_uid());
 		if (!spawner_data_record_) {
 			LOG_ERROR("SpawnerDataRecord not found for map_uid: {}", section.map_uid());
 		}

@@ -5,7 +5,7 @@
 namespace Protobuf {
 	class ProtobufSession : public Network::Session {
 	public:
-		ProtobufSession(const std::shared_ptr<System::Context>& context);
+		ProtobufSession(const System::Channel& channel);
 		ProtobufSession();
 
 		void OnConnected(const Network::IPAddress& address) override;

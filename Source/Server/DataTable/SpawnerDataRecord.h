@@ -8,7 +8,7 @@
 
 namespace Server::DataTable
 {
-	struct SpawnerDataRecord : public DataTable<int32_t, SpawnerDataRecord> {
+	struct SpawnerDataRecord {
 		struct Item {
 			int32_t spawnerId = 0;
 			Math::Vec3 location;
@@ -32,9 +32,13 @@ namespace Server::DataTable
 
 		int32_t map_uid;
 		std::unordered_map<int32_t, Item> items;
+	};
 
-		static void Load(const std::string& path)
-		{
+	struct SpawnerDataRecordTable : public DataTable<int32_t, SpawnerDataRecord> {
+		SpawnerDataRecordTable() = default;
+		~SpawnerDataRecordTable() = default;
+
+		static void Load(const std::string& path) {
 			try
 			{
 				FileReader file_reader(System::Path::Join(System::Path::GetWokringDirectory(), path));
@@ -44,23 +48,30 @@ namespace Server::DataTable
 				record->map_uid = json_doc.GetValue<int32_t>("mapUid");
 				const auto& spawnItems = json_doc.GetSection("spawnAreaActors");
 				for (const auto& item : spawnItems) {
-					Item spawner_item;
+					SpawnerDataRecord::Item spawner_item;
 					spawner_item.Read(item);
 					record->items.emplace(spawner_item.spawnerId, spawner_item);
 				}
 
 				const int32_t map_uid = record->map_uid;
-				DataTable<int32_t, SpawnerDataRecord>::GetInstance().Add(map_uid, std::move(record));
+				SpawnerDataRecordTable::GetInstance().Add(map_uid, std::move(record));
 			}
 			catch (const std::exception& e)
 			{
 				LOG_ERROR("Failed to load SpawnerDataRecord from {}: {}", path, e.what());
 				throw e;
 			}
-		
-	
+		}
+
+		static void Clear() {
+			DataTable<int32_t, SpawnerDataRecord>::GetInstance().Clear();
+		}
+
+		static size_t Count() {
+			return DataTable<int32_t, SpawnerDataRecord>::GetInstance().Count();
 		}
 	};
+
 
 }
 

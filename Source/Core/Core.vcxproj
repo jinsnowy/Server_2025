@@ -248,6 +248,7 @@
   <ItemGroup>
     <ClCompile Include="Common\Utility.cpp" />
     <ClCompile Include="Container\LruCache.cpp" />
+    <ClCompile Include="Container\MPMC.cpp" />
     <ClCompile Include="Container\MPSC.cpp" />
     <ClCompile Include="Container\SList.cpp" />
     <ClCompile Include="Container\SPSC.cpp" />
@@ -259,7 +260,9 @@
     <ClCompile Include="Math\Collision\CapsuleCollider.cpp" />
     <ClCompile Include="Math\Collision\Collider.cpp" />
     <ClCompile Include="Math\Collision\Helper.cpp" />
+    <ClCompile Include="Math\Integer.cpp" />
     <ClCompile Include="Math\LinAlgebra.cpp" />
+    <ClCompile Include="Math\Random.cpp" />
     <ClCompile Include="Misc\ApplyVariants.cpp" />
     <ClCompile Include="Misc\Crc32Hash.cpp" />
     <ClCompile Include="Misc\Utils.cpp" />
@@ -297,12 +300,17 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="System\Actor.cpp" />
-    <ClCompile Include="System\Callable.cpp" />
+    <ClCompile Include="System\AutoIncrement.cpp" />
     <ClCompile Include="System\Delegate.cpp" />
     <ClCompile Include="System\DependencyInjection.cpp" />
     <ClCompile Include="System\Detail\AnyInvocable.cpp" />
+    <ClCompile Include="System\Detail\IMessage.cpp" />
+    <ClCompile Include="System\Dispatcher.cpp" />
     <ClCompile Include="System\Enum.cpp" />
     <ClCompile Include="System\ExecutionContext.cpp" />
+    <ClCompile Include="System\Function.cpp" />
+    <ClCompile Include="System\FutureController.cpp" />
+    <ClCompile Include="System\FutureState.cpp" />
     <ClCompile Include="System\LexicalCast.cpp" />
     <ClCompile Include="System\Channel.cpp" />
     <ClCompile Include="System\Context.cpp" />
@@ -312,6 +320,8 @@
     <ClCompile Include="System\Exceptions.cpp" />
     <ClCompile Include="System\FuncTraits.cpp" />
     <ClCompile Include="System\Future.cpp" />
+    <ClCompile Include="System\Message.cpp" />
+    <ClCompile Include="System\MessageQueue.cpp" />
     <ClCompile Include="System\Path.cpp" />
     <ClCompile Include="System\PeriodicTimer.cpp" />
     <ClCompile Include="System\Program.cpp" />
@@ -319,6 +329,7 @@
     <ClCompile Include="System\ServiceInterface.cpp" />
     <ClCompile Include="System\Singleton.cpp" />
     <ClCompile Include="System\SingletonActor.cpp" />
+    <ClCompile Include="System\SpinWait.cpp" />
     <ClCompile Include="System\String.cpp" />
     <ClCompile Include="System\Thenable.cpp" />
     <ClCompile Include="System\ThreadLocalStorage.cpp" />
@@ -331,6 +342,7 @@
   <ItemGroup>
     <ClInclude Include="Common\Utility.h" />
     <ClInclude Include="Container\LruCache.h" />
+    <ClInclude Include="Container\MPMC.h" />
     <ClInclude Include="Container\MPSC.h" />
     <ClInclude Include="Container\SList.h" />
     <ClInclude Include="Container\SPSC.h" />
@@ -343,7 +355,9 @@
     <ClInclude Include="Math\Collision\CapsuleCollider.h" />
     <ClInclude Include="Math\Collision\Collider.h" />
     <ClInclude Include="Math\Collision\Helper.h" />
+    <ClInclude Include="Math\Integer.h" />
     <ClInclude Include="Math\LinAlgebra.h" />
+    <ClInclude Include="Math\Random.h" />
     <ClInclude Include="Misc\ApplyVariants.h" />
     <ClInclude Include="Misc\Crc32Hash.h" />
     <ClInclude Include="Misc\Utils.h" />
@@ -381,12 +395,20 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="System\Actor.h" />
     <ClInclude Include="System\Actor.hpp" />
-    <ClInclude Include="System\Callable.h" />
+    <ClInclude Include="System\AutoIncrement.h" />
     <ClInclude Include="System\Delegate.h" />
     <ClInclude Include="System\DependencyInjection.h" />
     <ClInclude Include="System\Detail\AnyInvocable.h" />
+    <ClInclude Include="System\Detail\AsyncResult.h" />
+    <ClInclude Include="System\Detail\IMessage.h" />
+    <ClInclude Include="System\Detail\Templates.h" />
+    <ClInclude Include="System\Dispatcher.h" />
     <ClInclude Include="System\Enum.h" />
     <ClInclude Include="System\ExecutionContext.h" />
+    <ClInclude Include="System\Function.h" />
+    <ClInclude Include="System\FutureController.h" />
+    <ClInclude Include="System\FutureController.hpp" />
+    <ClInclude Include="System\FutureState.h" />
     <ClInclude Include="System\LexicalCast.h" />
     <ClInclude Include="System\Channel.h" />
     <ClInclude Include="System\Context.h" />
@@ -399,6 +421,8 @@
     <ClInclude Include="System\Future.hpp" />
     <ClInclude Include="System\Interface.h" />
     <ClInclude Include="System\Macro.h" />
+    <ClInclude Include="System\Message.h" />
+    <ClInclude Include="System\MessageQueue.h" />
     <ClInclude Include="System\Path.h" />
     <ClInclude Include="System\PeriodicTimer.h" />
     <ClInclude Include="System\Program.h" />
@@ -406,6 +430,7 @@
     <ClInclude Include="System\ServiceInterface.h" />
     <ClInclude Include="System\Singleton.h" />
     <ClInclude Include="System\SingletonActor.h" />
+    <ClInclude Include="System\SpinWait.h" />
     <ClInclude Include="System\String.h" />
     <ClInclude Include="System\Thenable.h" />
     <ClInclude Include="System\Thenable.hpp" />

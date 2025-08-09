@@ -6,7 +6,7 @@ namespace System {
 
 	class ProgramImpl : public System::Singleton<ProgramImpl> {
 	public:
-		ProgramImpl() {
+		ProgramImpl(Protection) {
 			std::signal(SIGINT, SignalHandler);
 			std::signal(SIGTERM, SignalHandler);
 			std::signal(SIGABRT, SignalHandler);

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <exception>
+
 namespace System {
 	class FutureNoResultException : public std::exception {
 	public:

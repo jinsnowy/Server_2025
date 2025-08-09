@@ -41,21 +41,27 @@ namespace Container {
 		}
 
 		~MPSCQueue() {
-			UnsafeClear();
+			Clear();
 		}
 
-		size_t Push(T&& input) {
+		void Push(T&& input) {
 			buffer_node_t* node = new buffer_node_t(std::move(input));
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
-			return _count.fetch_add(1);
 		}
 
-		size_t Push(const T& input) {
+		void Push(const T& input) {
 			buffer_node_t* node = new buffer_node_t(input);
 			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
 			prev_head->next.store(node, std::memory_order_release);
-			return _count.fetch_add(1);
+		}
+		
+		template<typename ...Args>
+		T& Emplace(Args&&... args) {
+			buffer_node_t* node = new buffer_node_t(T(std::forward<Args>(args)...));
+			buffer_node_t* prev_head = _head.exchange(node, std::memory_order_acq_rel);
+			prev_head->next.store(node, std::memory_order_release);
+			return node->data;
 		}
 
 		bool TryPop(T& output) {
@@ -74,36 +80,28 @@ namespace Container {
 			return true;
 		}
 
-		bool TryPop_NoCount(T& output) {
-			buffer_node_t* tail = _tail.load(std::memory_order_relaxed);
-			buffer_node_t* next = tail->next.load(std::memory_order_acquire);
-
-			if (next == nullptr) {
-				return false;
-			}
-
-			output = std::move(next->data);
-			_tail.store(next, std::memory_order_release);
-			delete tail;
-
-			return true;
-		}
-
 		size_t DecreaseNodeCount(size_t popped_count) {
 			return _count.fetch_sub(popped_count);
+		}
+
+		size_t IncreaseNodeCount(size_t pushed_count) {
+			return _count.fetch_add(pushed_count);
 		}
 
 		bool IsEmpty() const {
 			return _tail.load(std::memory_order_relaxed)->next.load(std::memory_order_relaxed) == nullptr;
 		}
 
-		void UnsafeClear() {
+		void Clear() {
 			T output;
 			while (TryPop(output)) {
+				if constexpr(std::is_pointer_v<std::remove_cvref_t<T>>) {
+					delete output; // If T is a pointer, delete the object
+				}
 			}
 		}
 
-		size_t count() const {
+		size_t Count() const {
 			return _count;
 		}
 

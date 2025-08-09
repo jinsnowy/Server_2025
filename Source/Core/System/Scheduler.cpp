@@ -6,6 +6,7 @@
 #include "Core/System/TimerContext.h"
 #include "Core/System/ExecutionContext.h"
 #include "Core/System/Tick.h"
+#include "Core/System/Message.h"
 
 namespace System {
 
@@ -18,7 +19,7 @@ namespace System {
             std::thread thread;
         };
 
-        SchedulerStorage() {
+        SchedulerStorage(Protection) {
         }
 
         ~SchedulerStorage() {
@@ -95,11 +96,11 @@ namespace System {
         }
     }
 
-    void Scheduler::CreateThread(std::function<void()> task) {
+    void Scheduler::CreateThread(Function<void()> task) {
         auto thread = std::thread([task = std::move(task)]() mutable {
             current_scheduler_ = nullptr;
             task();
-            });
+        });
         SchedulerStorage::GetInstance().AddStandaloneThread(std::move(thread));
     }
 
@@ -130,39 +131,43 @@ namespace System {
         return current_scheduler_ != nullptr;
     }
 
-    void Scheduler::ForEach(std::function<void(Scheduler&)> func) {
+    uint16_t Scheduler::ThreadPoolCount() {
+        return  SchedulerStorage::GetInstance().GetSchedulerCount();
+    }
+
+    void Scheduler::ForEach(Function<void(Scheduler&)> func) {
         int32_t scheduler_count = SchedulerStorage::GetInstance().GetSchedulerCount();
         for (int32_t i = 0; i < scheduler_count; ++i) {
-            SchedulerStorage::GetInstance().GetSchedulerByIndex(i).Post([func = func] {
+            SchedulerStorage::GetInstance().GetSchedulerByIndex(i).Post(BUILD_MESSAGE([func = std::move(func)]() mutable {
                 func(Scheduler::Current());
-            });
+            }));
         }
 	}
 
-    void Scheduler::Any(std::function<void(Scheduler&)> func) {
-        RoundRobin().Post([func = std::move(func)]() {
+    void Scheduler::Any(Function<void(Scheduler&)> func) {
+        RoundRobin().Post(BUILD_MESSAGE([func = std::move(func)]() mutable {
             func(Current());
-        });
+        }));
 	}
 
-    void Scheduler::Reserve(int32_t milliseconds, std::function<void()> functor) {
+    void Scheduler::Reserve(int32_t milliseconds, Function<void()> functor) {
         if (IsThreadPool() == true) {
 			Current().context().timer_context().Reserve(milliseconds, std::move(functor));
             return;
         }
-        RoundRobin().Post([milliseconds, functor = std::move(functor)]() mutable {
+        RoundRobin().Post(BUILD_MESSAGE([milliseconds, functor = std::move(functor)]() mutable {
 			Current().context().timer_context().Reserve(milliseconds, std::move(functor));
-        });
+        }));
 	}
 
-    void Scheduler::ReserveAt(const Tick& tick, std::function<void()> functor) {
+    void Scheduler::ReserveAt(const Tick& tick, Function<void()> functor) {
         if (IsThreadPool() == true) {
             Current().context().timer_context().ReserveAt(tick, std::move(functor));
             return;
         }
-        RoundRobin().Post([tick, functor = std::move(functor)]() mutable {
+        RoundRobin().Post(BUILD_MESSAGE([tick, functor = std::move(functor)]() mutable {
             Current().context().timer_context().ReserveAt(tick, std::move(functor));
-        });
+        }));
     }
 
     void Scheduler::Run() {
@@ -187,7 +192,7 @@ namespace System {
         context_->Stop();
     }
 
-    void Scheduler::Post(std::function<void()> task) {
-        context_->Post(std::move(task));
+    void Scheduler::Post(Message* message) {
+        context_->execution_context().Post(message);
     }
 }

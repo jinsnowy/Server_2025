@@ -68,7 +68,7 @@ namespace Network {
 			return output_stream_;
 		}
 
-		System::AnyInvocable<std::unique_ptr<Protocol>()>& protocol_factory() {
+		System::Function<std::unique_ptr<Protocol>()>& protocol_factory() {
 			return protocol_factory_;
 		}
 
@@ -78,7 +78,7 @@ namespace Network {
 		std::unique_ptr<Socket> socket_;
 		std::unique_ptr<Resolver> resolver_;
 
-		System::AnyInvocable<std::unique_ptr<Protocol>()> protocol_factory_;
+		System::Function<std::unique_ptr<Protocol>()> protocol_factory_;
 		System::Delegate<void(std::shared_ptr<Connection>, const IPAddress&)> on_connected_delegate_;
 		System::Delegate<void(const IPAddress&, const std::string&)> on_connect_failed_delegate_;
 		System::Delegate<void()> on_disconnected_delegate_;

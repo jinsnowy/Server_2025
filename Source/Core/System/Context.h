@@ -9,6 +9,9 @@ namespace System {
 	class Context : public std::enable_shared_from_this<Context> {
 	public:
 		static Context* Current() { return current_context; }
+		static TimerContext& CurrentTimerContext() { return current_context->timer_context(); }
+		static ExecutionContext& CurrentExecutionContext() { return current_context->execution_context(); }
+		static std::shared_ptr<Context> Acquire();
 
 		Context();
 		~Context();
@@ -18,9 +21,6 @@ namespace System {
 
 		Context(Context&&);
 		Context& operator=(Context&&);
-
-		void Post(std::function<void()> func) const;
-		void Post(std::unique_ptr<Callable> callable) const;
 
 		boost::asio::io_context& io_context() { return *io_context_; }
 		const boost::asio::io_context& io_context() const { return *io_context_; }

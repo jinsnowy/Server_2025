@@ -23,7 +23,7 @@ namespace Server {
 		auto request = std::make_shared<PingRequest>();
 	
 		world_service->lobby_grpc_client_->Ping(request)
-		.Then([world_service](GrpcCallResult<PingResponse> result) {
+		.THEN([world_service](GrpcCallResult<PingResponse> result) {
 			if (result.ok()) {
 				if (world_service->is_healthy_ == false) {
 					world_service->is_healthy_ = true;
@@ -77,7 +77,7 @@ namespace Server {
 
 		lobby_service::RegisterServerReponse response;
 		lobby_grpc_client_->RegisterServer(request)
-		.Then([this](GrpcCallResult<RegisterServerReponse> result) {
+		.THEN([this](GrpcCallResult<RegisterServerReponse> result) {
 			if (result.ok() && result.response.result() == types::Result::kSuccess) {
 				is_registered_ = true;
 				server_id_ = static_cast<int16_t>(result.response.server_id());

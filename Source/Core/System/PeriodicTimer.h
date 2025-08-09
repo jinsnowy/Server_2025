@@ -33,7 +33,7 @@ namespace System {
 			void Release();
 		};
 
-		static Handle Schedule(const System::Duration& period, std::function<void(PeriodicTimer::Handle&)> body, bool first_launch = true);
+		static Handle Schedule(const System::Duration& period, Function<void(PeriodicTimer::Handle&)> body, bool first_launch = true);
 	};
 }
 

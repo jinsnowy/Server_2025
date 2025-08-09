@@ -9,6 +9,7 @@ namespace System {
 			virtual void* Request() = 0;
 			virtual void* Alloc() = 0;
 			virtual void Enqueue(void* buffer) = 0;
+			virtual void Destroy(void* ptr) = 0;
 		};
 
 		std::unique_ptr<ISList> CreateSListImpl(size_t allocation_size, void(*destructor)(void*));
@@ -47,6 +48,7 @@ namespace System {
 			else {
 				out_item = *item;
 			}
+			impl_->Destroy(item);
 			count_.fetch_sub(1, std::memory_order_release);
 			return true;
 		}

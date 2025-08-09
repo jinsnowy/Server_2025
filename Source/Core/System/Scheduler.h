@@ -7,30 +7,32 @@
 namespace System {
 class Context;
 class Tick;
+class Message;
 class Scheduler {
 public:
     Scheduler();
     ~Scheduler();
 
     static void CreateThreadPool(int thread_count = std::thread::hardware_concurrency());
-	static void CreateThread(std::function<void()> task);
+	static void CreateThread(Function<void()> task);
     static void Destroy();
 
     static Scheduler& RoundRobin();
     static Scheduler& Current();
     static int32_t ThreadId();
 
-	static void Any(std::function<void(Scheduler&)> func);
-    static void ForEach(std::function<void(Scheduler&)> func);
-    static void Reserve(int32_t milliseconds, std::function<void()> functor);
-    static void ReserveAt(const Tick& tick, std::function<void()> functor);
+	static void Any(Function<void(Scheduler&)> func);
+    static void ForEach(Function<void(Scheduler&)> func);
+    static void Reserve(int32_t milliseconds, Function<void()> functor);
+    static void ReserveAt(const Tick& tick, Function<void()> functor);
 
 	static bool IsThreadPool();
+	static uint16_t ThreadPoolCount();
 
-    void Post(std::function<void()> task);
+    void Post(Message* message);
   
     template<typename F>
-    Future<typename FuncTraits<F>::ReturnType> Async(F&& func) {
+    decltype(auto) Async(F&& func) {
         auto item = Detail::FutureFactory::Create(std::forward<F>(func));
         Post(std::move(item.second));
         return item.first;

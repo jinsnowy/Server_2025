@@ -8,9 +8,9 @@
 #include "Core/Network/OutputStream.h"
 
 namespace Protobuf {
-	ProtobufSession::ProtobufSession(const std::shared_ptr<System::Context>& context)
+	ProtobufSession::ProtobufSession(const System::Channel& channel)
 		:
-		Network::Session(context) {
+		Network::Session(channel) {
 	}
 	
 	ProtobufSession::ProtobufSession()

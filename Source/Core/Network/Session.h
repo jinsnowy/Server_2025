@@ -21,8 +21,8 @@ class IPAddress;
 class SendNode;
 class Session : public System::Actor {
 public:
-    Session(const std::shared_ptr<System::Context>& context);
     Session();
+    Session(const System::Channel& channel);
     ~Session();
 
     void Connect(const std::string& ip, const uint16_t& port);

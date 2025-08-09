@@ -11,19 +11,18 @@ namespace System {
 		:
 		tick_base_(Tick::Current().GetEpocMilliseconds()),
 		tick_index_(0ULL),
-		queues_{},
-		context_(context)
-	{
+		shorterm_queues_{},
+		context_(context) {
+		shorterm_queues_.resize(kShortTermQueueLength);
 	}
 
 	TimerContext::~TimerContext() {
-		queues_.fill(ReserveItemList()); // Clear all queues
 		while (!longterm_queue_.empty()) {
 			longterm_queue_.pop(); // Clear long term queue
 		}
 	}
 
-	void TimerContext::ReserveAt(const Tick& time, std::function<void()> func) {
+	void TimerContext::ReserveAt(const Tick& time, Function<void()> func) {
 		DEBUG_ASSERT(Context::Current() == context_);
 		int64_t target_tick = time.GetEpocMilliseconds();
 		size_t index = std::max(0LL, target_tick - tick_base_);
@@ -32,11 +31,11 @@ namespace System {
 			return;
 		}
 
-		auto& queue = queues_[(index + tick_index_) % kShortTermQueueLength];
+		auto& queue = shorterm_queues_[(index + tick_index_) % kShortTermQueueLength];
 		queue.Enqueue(std::move(func), target_tick);
 	}
 
-	void TimerContext::Reserve(int32_t milliseconds, std::function<void()> func) {
+	void TimerContext::Reserve(const int64_t milliseconds, Function<void()> func) {
 		DEBUG_ASSERT(Context::Current() == context_);
 		int64_t target_tick = Tick::Current().GetEpocMilliseconds() + milliseconds;
 		size_t index = std::max(0LL, target_tick - tick_base_);
@@ -45,17 +44,17 @@ namespace System {
 			return;
 		}
 
-		auto& queue = queues_[(index + tick_index_) % kShortTermQueueLength];
+		auto& queue = shorterm_queues_[(index + tick_index_) % kShortTermQueueLength];
 		queue.Enqueue(std::move(func), target_tick);
 	}
 
-	void TimerContext::Reserve(const System::Duration& duration, std::function<void()> func) {
+	void TimerContext::Reserve(const System::Duration& duration, Function<void()> func) {
 		Reserve(duration.Milliseconds(), std::move(func));
 	}
 
 	void TimerContext::Flush() {
 		DEBUG_ASSERT(Context::Current() == context_);
-		static constexpr int64_t kMaxFlushCount = 1000; // Limit flush to prevent infinite loops (1s)
+	
 		int64_t current_tick = Tick::Current().GetEpocMilliseconds();
 		size_t flush_tick_count = std::min(kMaxFlushCount, current_tick - tick_base_);
 		if (flush_tick_count == 0) {
@@ -64,14 +63,9 @@ namespace System {
 
 		size_t tick_index = tick_index_;
 		for (size_t cnt = 0; cnt < flush_tick_count; ++cnt) {
-			auto& queue = queues_[tick_index];
+			auto& queue = shorterm_queues_[tick_index];
 			while (auto item = queue.Dequeue()) {
-				try {
-					(item->functor)(); // Execute the function
-				}
-				catch (const std::exception& e) {
-					LOG_ERROR("TimerContext: Exception in reserved function: {}", e.what());
-				}
+				(item->functor)(); // Execute the function
 			}
 			tick_index = (tick_index + 1) % kShortTermQueueLength;
 		}
@@ -92,7 +86,7 @@ namespace System {
 			if (index >= kShortTermQueueLength) {
 				continue;
 			}
-			auto& queue = queues_[(index + tick_index_) % kShortTermQueueLength];
+			auto& queue = shorterm_queues_[(index + tick_index_) % kShortTermQueueLength];
 			queue.Enqueue(std::move(item.func), item.target_tick);
 			longterm_queue_.pop();
 		}
@@ -106,7 +100,7 @@ namespace System {
 		}
 	}
 
-	void TimerContext::ReserveItemList::Enqueue(Functor&& functor, int64_t target_tick) {
+	void TimerContext::ReserveItemList::Enqueue(Function<void()>&& functor, int64_t target_tick) {
 		if (head == nullptr) {
 			head = tail = new ReserveItemNode(std::move(functor), target_tick);
 		}
@@ -130,6 +124,4 @@ namespace System {
 		delete node;
 		return item;
 	}
-
-
 }

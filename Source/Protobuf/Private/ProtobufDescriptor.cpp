@@ -5,6 +5,10 @@
 namespace Protobuf {
 	class MessageDescriptorStorage : public System::Singleton<MessageDescriptorStorage> {
 	public:
+		MessageDescriptorStorage(Protection)
+		{
+		}
+
 		std::unordered_map<size_t, const google::protobuf::Descriptor*> _descriptors;
 
 		void AddDescriptor(size_t message_id, const google::protobuf::Descriptor* descriptor) {

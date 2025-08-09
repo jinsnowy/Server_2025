@@ -13,7 +13,7 @@ namespace Server {
 
 	class DB : public System::Singleton<DB> {
 	public:
-		DB();
+		DB(Protection);
 		~DB();
 
 		void Initialize(DBConfig config);

@@ -5,7 +5,8 @@ namespace Container {
 	template<typename TKey, typename TValue>
 	class LruCache {
 	public:
-		LruCache(size_t max_size) : max_size_(max_size) {}
+		LruCache(size_t max_size) 
+			: max_size_(max_size) {}
 
 		bool Put(const TKey& key, TValue&& value) {
 			auto it = lookup_table_.find(key);

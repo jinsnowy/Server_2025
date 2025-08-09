@@ -76,6 +76,9 @@ namespace Server {
  
     class GrpcCallCallback : public System::Singleton<GrpcCallCallback> {
     public:
+        GrpcCallCallback(Protection) {
+        }
+
         template<typename _Request, typename _Response>
         void RegisterCallback(GrpcCallImpl<_Request, _Response> grpc_call_impl) {
             size_t key = System::hashcode<std::decay_t<_Request>>();

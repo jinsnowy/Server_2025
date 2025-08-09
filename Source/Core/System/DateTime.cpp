@@ -33,7 +33,7 @@ namespace System {
 		millisecond_ = posix_milliseconds % 1000;
     }
 
-    DateTime::DateTime(const uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second, uint16_t millisecond)
+    DateTime::DateTime(uint16_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second, uint16_t millisecond)
         :
         year_(year),
         month_(month),
@@ -45,7 +45,7 @@ namespace System {
         day_of_week_ = GetDayOfWeek(year_, month_, day_);
     }
     
-    DayOfWeek DateTime::GetDayOfWeek(const uint16_t year, uint8_t month, uint8_t day) {
+    DayOfWeek DateTime::GetDayOfWeek(uint16_t year, uint8_t month, uint8_t day) {
         return static_cast<System::DayOfWeek>(std::chrono::year_month_day(std::chrono::year(year), std::chrono::month(month), std::chrono::day(day))._Calculate_weekday());
     }
 

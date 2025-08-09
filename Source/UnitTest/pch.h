@@ -54,6 +54,10 @@
 #include <format>
 #include <source_location>
 
+#ifdef _MSC_VER
+#include "Core/Platform/Windows.h"
+#endif 
+
 #include "Core/CoreMinimal.h"
 #include "Core/ThirdParty/Protobuf.h"
 #include "Core/ThirdParty/Sql.h"

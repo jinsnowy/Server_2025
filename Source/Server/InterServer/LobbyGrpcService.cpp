@@ -5,6 +5,7 @@
 #include "../Model/Account.h"
 #include "../Model/Character.h"
 #include "../Authenticator/Authenticator.h"
+#include "Core/System/Message.h"
 
 namespace Server {
 	using System::Future;
@@ -74,7 +75,7 @@ namespace Server {
 				next_call->Proceed(); // Start the next call
 
 				System::Future<_Response> response = handler_(&ctx_, request_);
-				response.Then([this](_Response response) {
+				response.THEN([this](_Response response) {
 					DEBUG_ASSERT(this->GetChannel().IsSynchronized());
 					responder_.Finish(response, grpc::Status::OK, this);
 					status_ = FINISH;
@@ -107,10 +108,13 @@ namespace Server {
 
 	class LobbyGrpcServiceCallback : public System::Singleton<LobbyGrpcServiceCallback> {
 	public:
+		LobbyGrpcServiceCallback(Protection) {
+		}
+
 		template<typename _Request, typename _Response>
 		void RegisterHandler(AsyncServiceRequest<_Request, _Response> async_service_requset, GrpcHandler<_Request, _Response> handler) {
 			const AsyncCallDataFactory factory = [handler, async_service_requset](lobby_service::LobbyService::AsyncService* service, grpc::ServerCompletionQueue* cq) -> AsyncCallData* {
-				return new AsyncCallDataImpl<_Request, _Response>(service, cq, handler, async_service_requset, System::Channel::RoundRobin());
+				return new AsyncCallDataImpl<_Request, _Response>(service, cq, handler, async_service_requset, System::Channel::Acquire());
 			};
 
 			async_call_data_factories_.push_back(factory);
@@ -165,9 +169,9 @@ namespace Server {
 
 				// 태그를 기반으로 요청 처리
 				
-				static_cast<AsyncCallData*>(tag)->GetChannel().Post([tag]() {
+				static_cast<AsyncCallData*>(tag)->GetChannel().Post(BUILD_MESSAGE([tag]() {
 					static_cast<AsyncCallData*>(tag)->Proceed(); // Proceed with the call
-				});
+				}));
 			}
 		});
 	}

@@ -1,52 +1,5 @@
 #pragma once
 
-// clang-format off
-/*
-namespace std {
-  template<class Sig> class AnyInvocable; // never defined
-
-  template<class R, class... ArgTypes>
-  class AnyInvocable<R(ArgTypes...) cv ref noexcept(noex)> {
-  public:
-    using result_type = R;
-
-    // SECTION.3, construct/copy/destroy
-    AnyInvocable() noexcept;
-    AnyInvocable(nullptr_t) noexcept;
-    AnyInvocable(AnyInvocable&&) noexcept;
-    template<class F> AnyInvocable(F&&);
-
-    template<class T, class... Args>
-      explicit AnyInvocable(in_place_type_t<T>, Args&&...);
-    template<class T, class U, class... Args>
-      explicit AnyInvocable(in_place_type_t<T>, initializer_list<U>, Args&&...);
-
-    AnyInvocable& operator=(AnyInvocable&&) noexcept;
-    AnyInvocable& operator=(nullptr_t) noexcept;
-    template<class F> AnyInvocable& operator=(F&&);
-    template<class F> AnyInvocable& operator=(reference_wrapper<F>) noexcept;
-
-    ~AnyInvocable();
-
-    // SECTION.4, AnyInvocable modifiers
-    void swap(AnyInvocable&) noexcept;
-
-    // SECTION.5, AnyInvocable capacity
-    explicit operator bool() const noexcept;
-
-    // SECTION.6, AnyInvocable invocation
-    R operator()(ArgTypes...) cv ref noexcept(noex);
-
-    // SECTION.7, null pointer comparisons
-    friend bool operator==(const AnyInvocable&, nullptr_t) noexcept;
-
-    // SECTION.8, specialized algorithms
-    friend void swap(AnyInvocable&, AnyInvocable&) noexcept;
-  };
-}
-*/
-// clang-format on
-
 namespace System {
     namespace Detail {
         using buffer = std::aligned_storage_t<sizeof(void*) * 2, alignof(void*)>;
@@ -126,7 +79,6 @@ namespace System {
             using handler = std::conditional_t<is_small_object_v<T>, small_handler<T>,
                 large_handler<T>>;
         };
-
 
         template <class R, class C, class... ArgTypes>
         struct handler_member_traits {
@@ -304,7 +256,7 @@ namespace System {
         private:
             storage storage_;
             handle_func handle_ = nullptr;
-            call_func call_;
+            call_func call_ = nullptr;
         };
 
         template <class T>
@@ -432,16 +384,14 @@ namespace System {
                 std::is_nothrow_invocable_r_v<R, FCall, T*, ArgTypes...>)>,
             std::is_constructible<std::decay_t<F>, F>>;
 
-    }  // namespace Detail
-
-    template <class Signature>
-    class AnyInvocable;
+        template <class Signature>
+        class AnyInvocable;
 
 #define __SYSTEM_ANY_INVOCABLE(cv, ref, noex, inv_quals)                        \
   template <class _R, class... _ArgTypes>                                        \
   class AnyInvocable<_R(_ArgTypes...) cv ref noexcept(noex)> final        \
-      : public Detail::AnyInvocableImpl<_R, noex, _ArgTypes...> {          \
-    using BaseType = Detail::AnyInvocableImpl<_R, noex, _ArgTypes...>;    \
+      : public AnyInvocableImpl<_R, noex, _ArgTypes...> {          \
+    using BaseType = AnyInvocableImpl<_R, noex, _ArgTypes...>;    \
                                                                                \
    public:                                                                     \
     using BaseType::BaseType;                                                \
@@ -450,7 +400,7 @@ namespace System {
                                                                                \
     template <                                                                 \
         class F,                                                               \
-        class = std::enable_if_t<Detail::can_convert<                      \
+        class = std::enable_if_t<can_convert<                      \
             AnyInvocable, F, noex, _R, F inv_quals, _ArgTypes...>::value>>      \
     AnyInvocable(F&& f) {                                                     \
       BaseType::template create<std::decay_t<F>>(std::forward<F>(f));         \
@@ -499,29 +449,29 @@ namespace System {
     }                                                                          \
   }
 
-    // cv -> {`empty`, const}
-    // ref -> {`empty`, &, &&}
-    // noex -> {true, false}
-    // inv_quals -> (is_empty(ref) ? & : ref)
-    __SYSTEM_ANY_INVOCABLE(, , false, &);               // 000
-    __SYSTEM_ANY_INVOCABLE(, , true, &);                // 001
-    __SYSTEM_ANY_INVOCABLE(, &, false, &);              // 010
-    __SYSTEM_ANY_INVOCABLE(, &, true, &);               // 011
-    __SYSTEM_ANY_INVOCABLE(, &&, false, &&);            // 020
-    __SYSTEM_ANY_INVOCABLE(, &&, true, &&);             // 021
-    __SYSTEM_ANY_INVOCABLE(const, , false, const&);     // 100
-    __SYSTEM_ANY_INVOCABLE(const, , true, const&);      // 101
-    __SYSTEM_ANY_INVOCABLE(const, &, false, const&);    // 110
-    __SYSTEM_ANY_INVOCABLE(const, &, true, const&);     // 111
-    __SYSTEM_ANY_INVOCABLE(const, &&, false, const&&);  // 120
-    __SYSTEM_ANY_INVOCABLE(const, &&, true, const&&);   // 121
+        // cv -> {`empty`, const}
+        // ref -> {`empty`, &, &&}
+        // noex -> {true, false}
+        // inv_quals -> (is_empty(ref) ? & : ref)
+        __SYSTEM_ANY_INVOCABLE(, , false, &);               // 000
+        __SYSTEM_ANY_INVOCABLE(, , true, &);                // 001
+        __SYSTEM_ANY_INVOCABLE(, &, false, &);              // 010
+        __SYSTEM_ANY_INVOCABLE(, &, true, &);               // 011
+        __SYSTEM_ANY_INVOCABLE(, &&, false, &&);            // 020
+        __SYSTEM_ANY_INVOCABLE(, &&, true, &&);             // 021
+        __SYSTEM_ANY_INVOCABLE(const, , false, const&);     // 100
+        __SYSTEM_ANY_INVOCABLE(const, , true, const&);      // 101
+        __SYSTEM_ANY_INVOCABLE(const, &, false, const&);    // 110
+        __SYSTEM_ANY_INVOCABLE(const, &, true, const&);     // 111
+        __SYSTEM_ANY_INVOCABLE(const, &&, false, const&&);  // 120
+        __SYSTEM_ANY_INVOCABLE(const, &&, true, const&&);   // 121
 #undef __SYSTEM_ANY_INVOCABLE
 
 #define __SYSTEM_ANY_MEMBER_INVOCABLE(cv, ref, noex, inv_quals)                        \
   template <class _R, class _C, class... _ArgTypes>                                        \
   class AnyInvocable<_R(_C::*)(_ArgTypes...) cv ref noexcept(noex)>  final     \
-      : public Detail::AnyInvocableMemberImpl<_R, _C, noex, _ArgTypes...> {          \
-    using BaseType = Detail::AnyInvocableMemberImpl<_R, _C, noex, _ArgTypes...>;    \
+      : public AnyInvocableMemberImpl<_R, _C, noex, _ArgTypes...> {          \
+    using BaseType = AnyInvocableMemberImpl<_R, _C, noex, _ArgTypes...>;    \
                                                                                \
    public:                                                                     \
     using BaseType::BaseType;                                                \
@@ -530,7 +480,7 @@ namespace System {
                                                                                \
     template <                                                                 \
         class F,                                                               \
-        class = std::enable_if_t<Detail::can_convert<                      \
+        class = std::enable_if_t<can_convert<                      \
             AnyInvocable, F, noex, _R, F inv_quals, _C, _ArgTypes...>::value>>      \
     AnyInvocable(F&& f) {                                                     \
       BaseType::template create<std::decay_t<F>>(std::forward<F>(f));         \
@@ -578,18 +528,19 @@ namespace System {
       return BaseType::call(ptr, std::forward<_ArgTypes>(args)...);                 \
     }                                                                          \
   }
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, , false, &);               // 000
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, , true, &);                // 001
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, &, false, &);              // 010
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, &, true, &);               // 011
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, &&, false, &&);            // 020
-    __SYSTEM_ANY_MEMBER_INVOCABLE(, &&, true, &&);             // 021
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, , false, const&);     // 100
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, , true, const&);      // 101
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, &, false, const&);    // 110
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, &, true, const&);     // 111
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, &&, false, const&&);  // 120
-    __SYSTEM_ANY_MEMBER_INVOCABLE(const, &&, true, const&&);   // 121
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, , false, &);               // 000
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, , true, &);                // 001
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, &, false, &);              // 010
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, &, true, &);               // 011
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, &&, false, &&);            // 020
+        __SYSTEM_ANY_MEMBER_INVOCABLE(, &&, true, &&);             // 021
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, , false, const&);     // 100
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, , true, const&);      // 101
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, &, false, const&);    // 110
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, &, true, const&);     // 111
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, &&, false, const&&);  // 120
+        __SYSTEM_ANY_MEMBER_INVOCABLE(const, &&, true, const&&);   // 121
 
 #undef __SYSTEM_ANY_MEMBER_INVOCABLE
+    }  // namespace Detail
 }  // namespace System

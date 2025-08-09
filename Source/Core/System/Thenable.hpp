@@ -2,79 +2,60 @@
 
 #include "Core/System/Actor.h"
 #include "Core/System/Thenable.h"
+#include "Core/System/Detail/Templates.h"
+#include "Core/System/Detail/IMessage.h"
+#include "Core/System/FutureController.h"
 
 namespace System {
 	namespace Detail {
-		template<typename T>
-		struct SharedPtrWrapper {
-			static constexpr bool value = false;
-		};
-
-		template<typename T>
-		struct SharedPtrWrapper<std::shared_ptr<T>> {
-			using Type = std::remove_cvref_t<T>;
-			static constexpr bool value = true;
-		};
-
-		template<typename T>
-		static constexpr bool IsSharedPtrWrapperV = SharedPtrWrapper<T>::value;
-
-		template<typename F, typename R, typename _Actor>
-		struct WhenResultAndPatchActorMessage {
-			std::shared_ptr<FutureState<R>> thenable_state;
-			F func;
-
-			WhenResultAndPatchActorMessage(const std::shared_ptr<FutureState<R>>& state, F&& f)
-				:
-				thenable_state(state),
-				func(std::forward<F>(f)) {
-			}
-
-			void operator()(_Actor& actor) {
-				try {
-					if constexpr (std::is_void_v<R>) {
-						func(actor);
-						thenable_state->SetResult();
-					}
-					else {
-						thenable_state->SetResult(func(actor));
-					}
+		template<typename F, typename R, typename _R>
+		inline void WhenResult<F, R, _R>::operator()(R&& result) {
+			if constexpr (std::is_void_v<R>) {
+				if constexpr (std::is_void_v<_R>) {
+					func_();
+					thenable_state_->SetResult();
 				}
-				catch (...) {
-					thenable_state->SetException(std::current_exception());
+				else {
+					thenable_state_->SetResult(func_());
 				}
 			}
-		};
-			
-		template<typename T, typename R, typename F>
-		static inline std::function<void(T)> WhenResultAndPatch(std::shared_ptr<FutureState<R>> thenable_state, F&& func) {
-			static_assert(std::is_base_of_v<Actor, typename SharedPtrWrapper<T>::Type>, "T must not be an std::shared_ptr<Actor> for WhenResultAndPatch");
-			using A = typename SharedPtrWrapper<T>::Type;
-			return[thenable_state, func = std::forward<F>(func)](std::shared_ptr<A> shared_actor) mutable {
-				if (!shared_actor) {
-					thenable_state->SetException(std::make_exception_ptr(ActorNullException()));
-					return;
+			else {
+				if constexpr (std::is_void_v<_R>) {
+					func_(std::move(result));
+					thenable_state_->SetResult();
 				}
-				System::ActorController<A>(*shared_actor).Patch(WhenResultAndPatchActorMessage<F, R, A>(thenable_state, std::forward<F>(func)));
-			};
+				else {
+					thenable_state_->SetResult(func_(std::move(result)));
+				}
+			}
+		}
+
+		template<typename F, typename R, typename _R>
+		inline void WhenResultAndPost<F, R, _R>::operator()(R&& result) {
+			if (!result) {
+				thenable_state_->SetException(std::make_exception_ptr(ActorNullException()));
+				return;
+			}
+
+			using A = typename SharedPtrWrapper<R>::InnerType;
+			ActorController<A> controller(*result, _ReturnAddress());
+			controller.Post(WhenResultAndPostBody<std::remove_cvref_t<A>, _R>(std::move(func_), thenable_state_, signature_));
+		}
+
+		template<typename A, typename _R>
+		inline void WhenResultAndPostBody<A, _R>::operator()(A& actor) {
+			if constexpr (std::is_void_v<_R>) {
+				func_(actor);
+				thenable_state_->SetResult();
+			}
+			else {
+				thenable_state_->SetResult(func_(actor));
+			}
 		}
 
 		template<typename R>
-		template<typename F>
-		inline Thenable<typename FuncTraits<F>::ReturnType> Thenable<R>::Then(F&& func) {
-			using R_ = typename FuncTraits<F>::ReturnType;
-			Thenable<R_> thenable(thenable_state_);
-			thenable_state_->callback_ = Detail::WhenResult<R, R_>(thenable, std::forward<F>(func));
-			return thenable;
-		}
-
-		template<typename R>
-		template<typename F>
-		inline Thenable<typename FuncTraits<F>::ReturnType> Thenable<R>::ThenPost(F&& func) {
-			using R_ = typename FuncTraits<F>::ReturnType;
-			Thenable<R_> thenable(thenable_state_);
-			thenable_state_->callback_ = Detail::WhenResultAndPatch<R, R_>(thenable.thenable_state(), std::forward<F>(func));
-			return thenable;
+		inline Detail::FutureController<R> Thenable<R>::GetController(const void* signature) {
+			return Detail::FutureController<R>(thenable_state_, signature);
 		}
 	}
 }

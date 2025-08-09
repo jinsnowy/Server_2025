@@ -87,3 +87,7 @@ Class& operator=(const Class&) = delete;
 #define STRINGIFY(x) STRINGIFY_IMPL(x)
 
 #define __FILELINE__ __FILE__ "(" STRINGIFY(__LINE__) ")"
+
+
+#define THEN GetController(static_cast<const void*>(__FILELINE__)).Then
+#define THEN_POST GetController(static_cast<const void*>(__FILELINE__)).ThenPost

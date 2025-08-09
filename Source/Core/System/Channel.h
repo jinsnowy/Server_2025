@@ -1,35 +1,68 @@
 #pragma once
 
+#include "Core/Container/MPSC.h"
+#include "Core/System/Context.h"
+#include "Core/System/Function.h"
+
 namespace System {
-	class Context;
-	class Callable;
+	namespace Detail {
+		class IMessage;
+	} // namespace Detail
+
+	class Dispatcher;
+	class Message;
 	class Channel {
 	public:
-		static Channel RoundRobin();
+		~Channel();
 
-		Channel();
-		Channel(const std::shared_ptr<Context>& context) 
-			: 
-			context_(context) {
-		}
+		static Channel Acquire();
+		static Channel Empty();
 
-		~Channel() = default;
+		Channel(const Channel&);
+		Channel& operator=(const Channel&);
 
-		Channel(const Channel&) = default;
-		Channel& operator=(const Channel&) = default;
+		Channel(Channel&&)noexcept;
+		Channel& operator=(Channel&&)noexcept;
 
-		bool IsSynchronized() const;
+		bool IsSynchronized() const { return state_->current_context_ == Context::Current(); }
+		size_t Dispatched(size_t count) const;
 
-		void Post(std::function<void()> func) const;
-		void Post(std::unique_ptr<Callable> callable) const;
-		void Post(Callable* callable) const;
+		void Post(Message* message);
 
-		std::shared_ptr<Context>& GetContext() { return context_; }
-		const std::shared_ptr<Context>& GetContext() const { return context_; }
+		void Push(Detail::IMessage* message);
+		bool TryPop(Detail::IMessage*& message);
+
+		bool IsEmpty() const;
+		size_t GetRefCount() const;
 
 	private:
-		std::shared_ptr<Context> context_;
+		friend class ExecutionContext;
+		friend class Dispatcher;
+
+		struct State {
+			Context* current_context_ = nullptr;
+			Container::MPSCQueue<Detail::IMessage*> message_queue_;
+			State();
+			~State();
+		};
+
+		struct EmptyTag {
+		};
+
+		Channel();
+		Channel(EmptyTag);
+
+		std::shared_ptr<State> state_;
+
+		void BeginContext(Context* context) {
+			state_->current_context_ = context;
+		}
+
+		void EndContext() {
+			state_->current_context_ = nullptr;
+		}
 	};
+
 } // namespace System
 
 

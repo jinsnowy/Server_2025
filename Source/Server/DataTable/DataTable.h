@@ -3,8 +3,11 @@
 namespace Server::DataTable
 {
 	template<typename Key, typename Record>
-	class DataTable : public System::Singleton<DataTable<Key, Record>>{
+	class DataTable : public System::Singleton<DataTable<Key, Record>> {
 	public:
+		DataTable(System::Singleton<DataTable<Key, Record>>::Protection) {
+		}
+
 		void Add(const Key& key, std::unique_ptr<Record> record) {
 			records_.emplace(key, std::move(record));
 		}

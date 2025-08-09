@@ -70,7 +70,7 @@ DBConfig GetDBConfig() {
 }
 
 int main() {
-	DataTable::SpawnerDataRecord::Load("./Data/SpawnAreaActor.json");
+	DataTable::SpawnerDataRecordTable::Load("./Data/SpawnAreaActor.json");
 
     System::Scheduler::CreateThreadPool(4);
     grpc::reflection::InitProtoReflectionServerBuilderPlugin();
@@ -82,7 +82,7 @@ int main() {
 	WorldSession::RegisterHandler(&WorldHandlerMap::GetInstance());
 
     auto& scheduler = System::Scheduler::RoundRobin();
-    scheduler.Post([]() {
+    scheduler.Post(BUILD_MESSAGE([]() {
         Authenticator::GetInstance().Initialize("http://localhost:8080");
 
 		ServiceBuilder lobby_service_builder;
@@ -111,7 +111,7 @@ int main() {
         PeriodicTimerTest();
 
         LOG_INFO("World service started on port 9912");
-    });
+    }));
 
 
     System::Program::Wait();
